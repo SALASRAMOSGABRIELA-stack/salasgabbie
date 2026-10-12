@@ -16,6 +16,23 @@
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css" />
+
+    <!-- Custom Pencil Cursor & Ink Canvas Styles -->
+    <style>
+      body, a, button, input {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
+      }
+
+      #trailCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none; /* Allows clicking links/buttons underneath */
+        z-index: 9999;        /* Places ink drawing over background elements */
+      }
+    </style>
   </head>
   <body>
 
@@ -302,6 +319,9 @@
 
     </div>
 
+    <!-- Canvas for Ink Trail Drawing -->
+    <canvas id="trailCanvas"></canvas>
+
     <!-- Interactive Polish: Subtle cursor parallax on floating gradient orbs -->
     <script>
       (function() {
@@ -327,6 +347,59 @@
             blob.style.translate = `${offsetX}px ${offsetY}px`;
           });
         });
+      })();
+
+      // 2. Dragging Ink Trail Effect
+      (function() {
+        const canvas = document.getElementById('trailCanvas');
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const points = [];
+        const maxAge = 45; // Speed at which ink fades
+
+        window.addEventListener('mousemove', (e) => {
+          points.push({ x: e.clientX, y: e.clientY, age: 0 });
+        });
+
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          for (let i = 0; i < points.length; i++) {
+            const p = points[i];
+            p.age++;
+
+            if (p.age > maxAge) {
+              points.splice(i, 1);
+              i--;
+              continue;
+            }
+
+            if (i > 0) {
+              const prev = points[i - 1];
+              const opacity = 1 - (p.age / maxAge);
+              const width = (1 - (p.age / maxAge)) * 5 + 1;
+
+              ctx.beginPath();
+              ctx.moveTo(prev.x, prev.y);
+              ctx.lineTo(p.x, p.y);
+              ctx.strokeStyle = `rgba(30, 30, 30, ${opacity})`;
+              ctx.lineWidth = width;
+              ctx.lineCap = 'round';
+              ctx.stroke();
+            }
+          }
+
+          requestAnimationFrame(animate);
+        }
+
+        animate();
       })();
     </script>
   </body>
