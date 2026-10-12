@@ -18,14 +18,55 @@
     <link rel="stylesheet" href="style.css" />
 
     <!-- Custom Pencil Cursor & Ink Canvas Styles -->
+   <!-- Dark Forest Theme & Custom Pencil Cursor -->
     <style>
-      /* Hide background blobs and grid overlay completely */
-      .aurora-background,
-      .geometric-grid-overlay {
-        display: none !important;
+      /* 1. Base Page Background & Text */
+      body {
+        background-color: #0b130e !important;
+        color: #e2f0d9 !important;
       }
+
+      /* 2. Glass Panels & Cards */
+      .glass-panel, 
+      .profile-card, 
+      .character-card, 
+      .showcase-hero-card,
+      nav.navbar {
+        background: rgba(18, 30, 22, 0.75) !important;
+        border: 1px solid rgba(72, 117, 85, 0.3) !important;
+        color: #e2f0d9 !important;
+      }
+
+      /* 3. Text Colors & Headings */
+      h1, h2, h3, h4, 
+      .hero-title, 
+      .section-title, 
+      .character-title, 
+      .brand-text {
+        color: #e2f0d9 !important;
+      }
+
+      p, .hero-description, .character-desc, .profile-bio {
+        color: #9cbca3 !important;
+      }
+
+      /* 4. Gradient Text Accent */
+      .gradient-text {
+        background: linear-gradient(135deg, #52b788, #dda15e) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+      }
+
+      /* 5. Forest Aurora Blobs */
+      .aurora-blob.blob-1 { background: #1b4332 !important; }
+      .aurora-blob.blob-2 { background: #2d6a4f !important; }
+      .aurora-blob.blob-3 { background: #081c15 !important; }
+      .aurora-blob.blob-4 { background: #dda15e !important; opacity: 0.15 !important; }
+
+      /* 6. Custom Cursor & Ink Canvas */
       body, a, button, input {
-        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23333" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2383a58d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
       }
 
       #trailCanvas {
@@ -34,8 +75,8 @@
         left: 0;
         width: 100%;
         height: 100%;
-        pointer-events: none; /* Allows clicking links/buttons underneath */
-        z-index: 9999;        /* Places ink drawing over background elements */
+        pointer-events: none;
+        z-index: 9999;
       }
     </style>
   </head>
