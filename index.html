@@ -19,11 +19,12 @@
 
     <!-- Custom Pencil Cursor & Ink Canvas Styles -->
    <!-- Dark Forest Theme & Custom Pencil Cursor -->
+    <!-- Dark Forest Theme & Visible Green Typography -->
     <style>
       /* 1. Base Page Background & Text */
       body {
         background-color: #0b130e !important;
-        color: #e2f0d9 !important;
+        color: #e2f0d9 !important; /* Very light sage for high visibility */
       }
 
       /* 2. Glass Panels & Cards */
@@ -32,41 +33,81 @@
       .character-card, 
       .showcase-hero-card,
       nav.navbar {
-        background: rgba(18, 30, 22, 0.75) !important;
-        border: 1px solid rgba(72, 117, 85, 0.3) !important;
+        background: rgba(18, 30, 22, 0.85) !important;
+        border: 1px solid rgba(72, 117, 85, 0.4) !important;
         color: #e2f0d9 !important;
       }
 
-      /* 3. Text Colors & Headings */
-      h1, h2, h3, h4, 
+      /* 3. Headings & Main Titles (Bright Soft Cream Green) */
+      h1, h2, h3, h4, h5, h6,
       .hero-title, 
       .section-title, 
+      .showcase-heading,
       .character-title, 
-      .brand-text {
-        color: #e2f0d9 !important;
+      .profile-heading,
+      .brand-text,
+      .brand-symbol {
+        color: #f0f7ee !important;
       }
 
-      p, .hero-description, .character-desc, .profile-bio {
-        color: #9cbca3 !important;
+      /* 4. Body Paragraphs & Descriptions (Visible Sage Green) */
+      p, 
+      .hero-description, 
+      .showcase-text, 
+      .character-desc, 
+      .profile-bio,
+      .footer-sub,
+      .milestone-text span {
+        color: #b7d5c4 !important;
       }
 
-      /* 4. Gradient Text Accent */
+      /* 5. Subtitles, Labels, Tags & Small Text (Medium Seafoam Green) */
+      span, 
+      div, 
+      li, 
+      code,
+      .section-label,
+      .eyebrow-chip,
+      .spec-label,
+      .spec-value,
+      .card-num,
+      .footer-copy,
+      .card-footer-info {
+        color: #8db596 !important;
+      }
+
+      /* 6. Navigation Links & Action Buttons */
+      a, 
+      .nav-links a, 
+      .btn-primary, 
+      .btn-secondary,
+      .social-btn,
+      .back-to-top {
+        color: #70e000 !important; /* Vibrant lime accent green for visibility */
+      }
+
+      a:hover, 
+      .nav-links a:hover {
+        color: #9ef01a !important;
+      }
+
+      /* 7. Gradient Text Accent (Emerald to Bright Spring Green) */
       .gradient-text {
-        background: linear-gradient(135deg, #52b788, #dda15e) !important;
+        background: linear-gradient(135deg, #70e000, #38b000) !important;
         -webkit-background-clip: text !important;
         background-clip: text !important;
         -webkit-text-fill-color: transparent !important;
       }
 
-      /* 5. Forest Aurora Blobs */
+      /* 8. Forest Aurora Background Blobs */
       .aurora-blob.blob-1 { background: #1b4332 !important; }
       .aurora-blob.blob-2 { background: #2d6a4f !important; }
       .aurora-blob.blob-3 { background: #081c15 !important; }
-      .aurora-blob.blob-4 { background: #dda15e !important; opacity: 0.15 !important; }
+      .aurora-blob.blob-4 { background: #40916c !important; opacity: 0.2 !important; }
 
-      /* 6. Custom Cursor & Ink Canvas */
+      /* 9. Custom Pencil Cursor & Ink Canvas */
       body, a, button, input {
-        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2383a58d" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%2370e000" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
       }
 
       #trailCanvas {
