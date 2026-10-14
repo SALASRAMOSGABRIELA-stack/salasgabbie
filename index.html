@@ -137,6 +137,15 @@
   height: 180px;
   pointer-events: none;
   z-index: 9997;
+}/* Realistic Top Foliage Canvas */
+#foliageCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 220px;
+  pointer-events: none;
+  z-index: 9997;
 }
     </style>
   </head>
@@ -707,6 +716,194 @@
         ctx.fill();
 
         ctx.restore();
+      });
+    });
+
+    requestAnimationFrame(animate);
+  }
+
+  animate();
+})();
+// Realistic & Dense Top Draping Foliage
+(function() {
+  const canvas = document.getElementById('foliageCanvas');
+  if (!canvas) return;
+  const ctx = canvas.getContext('2d');
+
+  let width, height;
+  function resize() {
+    width = canvas.width = window.innerWidth;
+    height = canvas.height = 220;
+  }
+  resize();
+  window.addEventListener('resize', resize);
+
+  let mouseX = -1000, mouseY = -1000;
+  window.addEventListener('mousemove', (e) => {
+    mouseX = e.clientX;
+    mouseY = e.clientY;
+  });
+
+  // Color palettes for rich depth
+  const bgPalette = ['#0a2218', '#113222', '#153e2a'];
+  const mainPalette = ['#1b4332', '#2d6a4f', '#40916c', '#205c3b'];
+  const highlightPalette = ['#52b788', '#70e000', '#74c69d', '#9ef01a'];
+
+  const vineCount = Math.floor(window.innerWidth / 18); // Dense foliage cluster
+  const vines = [];
+
+  for (let i = 0; i < vineCount; i++) {
+    const x = (i / (vineCount - 1)) * window.innerWidth + (Math.random() * 24 - 12);
+    const length = 80 + Math.random() * 110; // Variable drape lengths
+    const segmentCount = 8;
+    const segments = [];
+
+    for (let j = 0; j <= segmentCount; j++) {
+      segments.push({
+        x: x,
+        y: (j / segmentCount) * length - 10,
+        origX: x,
+        origY: (j / segmentCount) * length - 10,
+        vx: 0,
+        vy: 0
+      });
+    }
+
+    // Dense leaf distribution
+    const leaves = [];
+    for (let j = 1; j <= segmentCount; j++) {
+      // Multiple leaves per segment for volume
+      const leafCount = Math.floor(Math.random() * 2) + 1;
+      for (let k = 0; k < leafCount; k++) {
+        leaves.push({
+          segmentIdx: j,
+          side: (k % 2 === 0 ? 1 : -1) * (Math.random() > 0.3 ? 1 : -1),
+          size: 11 + Math.random() * 12,
+          color: mainPalette[Math.floor(Math.random() * mainPalette.length)],
+          highlightColor: highlightPalette[Math.floor(Math.random() * highlightPalette.length)],
+          angleOffset: (Math.random() * 0.5 - 0.25) + Math.PI / 3.5,
+          type: Math.random() > 0.4 ? 'monstera' : 'teardrop',
+          flutter: Math.random() * Math.PI * 2
+        });
+      }
+    }
+
+    vines.push({
+      segments,
+      leaves,
+      phase: Math.random() * Math.PI * 2,
+      isBackground: Math.random() > 0.65
+    });
+  }
+
+  let time = 0;
+
+  function drawDetailedLeaf(ctx, size, color, highlight, type, flutter) {
+    ctx.beginPath();
+    const flutterWidth = Math.sin(flutter) * 0.15 + 1;
+
+    if (type === 'monstera') {
+      // Broad, realistic tropical leaf shape
+      ctx.moveTo(0, 0);
+      ctx.bezierCurveTo(size * 0.4 * flutterWidth, -size * 0.5, size * 0.9 * flutterWidth, -size * 0.3, size, 0);
+      ctx.bezierCurveTo(size * 0.9 * flutterWidth, size * 0.3, size * 0.4 * flutterWidth, size * 0.5, 0, 0);
+    } else {
+      // Smooth organic teardrop leaf shape
+      ctx.moveTo(0, 0);
+      ctx.quadraticCurveTo(size * 0.5 * flutterWidth, -size * 0.4, size, 0);
+      ctx.quadraticCurveTo(size * 0.5 * flutterWidth, size * 0.4, 0, 0);
+    }
+
+    ctx.fillStyle = color;
+    ctx.fill();
+
+    // Leaf Center Vein Highlight
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.quadraticCurveTo(size * 0.5 * flutterWidth, 0, size * 0.85, 0);
+    ctx.strokeStyle = highlight;
+    ctx.lineWidth = 1;
+    ctx.stroke();
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, width, height);
+    time += 0.02;
+
+    // Render in 2 passes: Background canopy first, then foreground
+    [true, false].forEach((renderBg) => {
+      vines.forEach((v) => {
+        if (v.isBackground !== renderBg) return;
+
+        const wind = Math.sin(time + v.phase) * 4;
+
+        // Physics joints update
+        for (let j = 1; j < v.segments.length; j++) {
+          const seg = v.segments[j];
+          const targetX = seg.origX + wind * (j / v.segments.length);
+
+          // Interaction with cursor
+          const dx = mouseX - seg.x;
+          const dy = mouseY - seg.y;
+          const dist = Math.sqrt(dx * dx + dy * dy);
+
+          if (dist < 110) {
+            const force = (1 - dist / 110) * 22;
+            const angle = Math.atan2(dy, dx);
+            seg.vx -= Math.cos(angle) * force;
+            seg.vy -= Math.sin(angle) * force;
+          }
+
+          // Spring tension returning to resting drape position
+          seg.vx += (targetX - seg.x) * 0.04;
+          seg.vy += (seg.origY - seg.y) * 0.04;
+
+          seg.vx *= 0.84; // Damping
+          seg.vy *= 0.84;
+
+          seg.x += seg.vx;
+          seg.y += seg.vy;
+        }
+
+        // Draw Thick Stem
+        ctx.beginPath();
+        ctx.moveTo(v.segments[0].x, v.segments[0].y);
+        for (let j = 1; j < v.segments.length - 1; j++) {
+          const xc = (v.segments[j].x + v.segments[j + 1].x) / 2;
+          const yc = (v.segments[j].y + v.segments[j + 1].y) / 2;
+          ctx.quadraticCurveTo(v.segments[j].x, v.segments[j].y, xc, yc);
+        }
+        ctx.strokeStyle = v.isBackground ? '#0d281a' : '#143d28';
+        ctx.lineWidth = v.isBackground ? 2 : 3.5;
+        ctx.stroke();
+
+        // Draw Leaves
+        v.leaves.forEach((l) => {
+          const seg = v.segments[l.segmentIdx];
+          const prevSeg = v.segments[l.segmentIdx - 1];
+
+          const vineAngle = Math.atan2(seg.y - prevSeg.y, seg.x - prevSeg.x);
+          const leafAngle = vineAngle + l.side * l.angleOffset;
+
+          ctx.save();
+          ctx.translate(seg.x, seg.y);
+          ctx.rotate(leafAngle);
+
+          const leafColor = v.isBackground 
+            ? bgPalette[Math.floor(Math.random() * bgPalette.length)] 
+            : l.color;
+
+          drawDetailedLeaf(
+            ctx, 
+            l.size, 
+            leafColor, 
+            v.isBackground ? '#19422d' : l.highlightColor, 
+            l.type, 
+            time * 2 + l.flutter
+          );
+
+          ctx.restore();
+        });
       });
     });
 
