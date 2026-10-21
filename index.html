@@ -11,20 +11,18 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Standalone SVG Favicon (No broken 404 links) -->
+    <!-- Standalone SVG Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23ff5277'/><stop offset='50%' stop-color='%238b5cf6'/><stop offset='100%' stop-color='%2306b6d4'/></linearGradient></defs><rect width='100' height='100' rx='28' fill='url(%23g)'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>" />
 
     <!-- Main Stylesheet -->
     <link rel="stylesheet" href="style.css" />
 
-    <!-- Custom Pencil Cursor & Ink Canvas Styles -->
-   <!-- Dark Forest Theme & Custom Pencil Cursor -->
-    <!-- Dark Forest Theme & Visible Green Typography -->
+    <!-- Custom Theme & Overlay Styles -->
     <style>
       /* 1. Base Page Background & Text */
       body {
         background-color: #0b130e !important;
-        color: #e2f0d9 !important; /* Very light sage for high visibility */
+        color: #e2f0d9 !important;
       }
 
       /* 2. Glass Panels & Cards */
@@ -38,7 +36,7 @@
         color: #e2f0d9 !important;
       }
 
-      /* 3. Headings & Main Titles (Bright Soft Cream Green) */
+      /* 3. Headings & Main Titles */
       h1, h2, h3, h4, h5, h6,
       .hero-title, 
       .section-title, 
@@ -50,7 +48,7 @@
         color: #eff2ee !important;
       }
 
-      /* 4. Body Paragraphs & Descriptions (Visible Sage Green) */
+      /* 4. Body Paragraphs & Descriptions */
       p, 
       .hero-description, 
       .showcase-text, 
@@ -61,7 +59,7 @@
         color: #fcfffd !important;
       }
 
-      /* 5. Subtitles, Labels, Tags & Small Text (Medium Seafoam Green) */
+      /* 5. Subtitles, Labels, Tags & Small Text */
       span, 
       div, 
       li, 
@@ -83,7 +81,7 @@
       .btn-secondary,
       .social-btn,
       .back-to-top {
-        color: #fefcfc !important; /* Vibrant lime accent green for visibility */
+        color: #fefcfc !important;
       }
 
       a:hover, 
@@ -91,7 +89,7 @@
         color: #63a9d1 !important;
       }
 
-      /* 7. Gradient Text Accent (Emerald to Bright Spring Green) */
+      /* 7. Gradient Text Accent */
       .gradient-text {
         background: linear-gradient(135deg, #8ab0ed, #4388d7) !important;
         -webkit-background-clip: text !important;
@@ -109,6 +107,7 @@
       body, a, button, input {
         cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
       }
+
       #trailCanvas {
         position: fixed;
         top: 0;
@@ -118,41 +117,32 @@
         pointer-events: none;
         z-index: 9999;
       }
-      /* Interactive Grass Overlay */
-#grassCanvas {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 120px;
-  pointer-events: none;
-  z-index: 9998;
-}
-/* Realistically Layered & Depth-Shaded Grass Overlay */
-#grassCanvas {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 140px;
-  pointer-events: none;
-  z-index: 9998;
-}
-/* Interactive Flying Birds Canvas Overlay */
-#birdsCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9996; /* Placed behind grass/foliage but above dark background */
-}
+
+      /* 10. Canvas Overlays */
+      #grassCanvas {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 140px;
+        pointer-events: none;
+        z-index: 9998;
+      }
+
+      #birdsCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9996;
+      }
     </style>
   </head>
   <body>
 
-    <!-- 1. COLORFUL BACKGROUND: Animated Chromatic Mesh Aura & Subtle Geometric Grid -->
+    <!-- COLORFUL BACKGROUND -->
     <div class="aurora-background" aria-hidden="true">
       <div class="aurora-blob blob-1"></div>
       <div class="aurora-blob blob-2"></div>
@@ -163,7 +153,7 @@
 
     <div class="site-wrapper">
 
-      <!-- 2. NAVBAR: Symmetrical Header with Bilateral Balance -->
+      <!-- NAVBAR -->
       <header>
         <nav class="glass-panel navbar" aria-label="Main Navigation">
           <a href="#" class="brand">
@@ -185,8 +175,9 @@
         </nav>
       </header>
 
-      <!-- 3. HERO: Symmetrical Centerpiece & Minimalist Typography -->
+      <!-- MAIN CONTENT -->
       <main>
+        <!-- HERO SECTION -->
         <section class="glass-panel hero-section">
           <div class="eyebrow-chip">
             <span>Santa Monica College</span>
@@ -215,14 +206,13 @@
           </div>
         </section>
 
-        <!-- 4. SHOWCASE: Symmetrical Artwork Presentation -->
+        <!-- SHOWCASE SECTION -->
         <section id="showcase" class="showcase-container" style="margin-top: 4rem;">
           <div class="section-header">
             <span class="section-label">Featured Artwork</span>
-           <h2 class="section-title" style="color: #1b7ed5 !important;">The Four Archetypes</h2>
+            <h2 class="section-title" style="color: #1b7ed5 !important;">The Four Archetypes</h2>
           </div>
 
-          <!-- Featured Showcase Card: Symmetrical 50/50 Split -->
           <div class="glass-panel showcase-hero-card">
             <div class="artwork-frame">
               <span class="artwork-badge">Original 2×2 Study</span>
@@ -257,7 +247,7 @@
             </div>
           </div>
 
-          <!-- 5. SYMMETRICAL 2x2 BREAKDOWN OF THE CHARACTERS -->
+          <!-- CHARACTER GRID -->
           <div id="characters" class="symmetric-grid-4">
             <!-- Card 1 -->
             <article class="glass-panel character-card card-white">
@@ -333,7 +323,7 @@
           </div>
         </section>
 
-        <!-- 6. SYMMETRICAL DUAL-COLUMN: About & Coursework -->
+        <!-- ABOUT & MILESTONES -->
         <section id="about" style="margin-top: 4rem;">
           <div class="section-header">
             <span class="section-label">Identity &amp; Trajectory</span>
@@ -341,7 +331,7 @@
           </div>
 
           <div class="symmetrical-columns-2">
-            <!-- Column 1: About Gabbie -->
+            <!-- Column 1: About -->
             <div class="glass-panel profile-card">
               <div>
                 <h3 class="profile-heading">About Gabbie</h3>
@@ -363,7 +353,7 @@
               </div>
             </div>
 
-            <!-- Column 2: 10C Coursework Milestones -->
+            <!-- Column 2: Milestones -->
             <div id="milestones" class="glass-panel profile-card">
               <div>
                 <h3 class="profile-heading">10C Semester Milestones</h3>
@@ -404,7 +394,7 @@
 
       </main>
 
-      <!-- 7. FOOTER: Symmetrical Anchor Bar -->
+      <!-- FOOTER -->
       <footer>
         <div class="glass-panel footer-panel">
           <div class="footer-copy">
@@ -432,13 +422,14 @@
 
     </div>
 
+    <!-- CANVAS ELEMENTS -->
     <canvas id="grassCanvas"></canvas>
     <canvas id="birdsCanvas"></canvas>
-    <!-- Canvas for Ink Trail Drawing -->
     <canvas id="trailCanvas"></canvas>
 
-    <!-- Interactive Polish: Subtle cursor parallax on floating gradient orbs -->
+    <!-- SCRIPTS -->
     <script>
+      // 1. Subtle Cursor Parallax on Floating Orbs
       (function() {
         const blobs = document.querySelectorAll('.aurora-blob');
         if (!blobs.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -457,9 +448,7 @@
 
           blobs.forEach((blob, index) => {
             const factor = (index + 1) * 20;
-            const offsetX = mouseX * factor;
-            const offsetY = mouseY * factor;
-            blob.style.translate = `${offsetX}px ${offsetY}px`;
+            blob.style.translate = `${mouseX * factor}px ${mouseY * factor}px`;
           });
         });
       })();
@@ -477,7 +466,7 @@
         window.addEventListener('resize', resizeCanvas);
 
         const points = [];
-        const maxAge = 45; // Speed at which ink fades
+        const maxAge = 45;
 
         window.addEventListener('mousemove', (e) => {
           points.push({ x: e.clientX, y: e.clientY, age: 0 });
@@ -516,201 +505,172 @@
 
         animate();
       })();
-      // Realistic Layered Grass with Lighting, Wind Vectors, & Bend Physics
-(function() {
-  const canvas = document.getElementById('grassCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
 
-  let width, height;
-  function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = 140;
-  }
-  resize();
-  window.addEventListener('resize', resize);
+      // 3. Realistic Layered Grass
+      (function() {
+        const canvas = document.getElementById('grassCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
 
-  let mouseX = -1000;
-  window.addEventListener('mousemove', (e) => {
-    mouseX = e.clientX;
-  });
+        let width, height;
+        function resize() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = 140;
+        }
+        resize();
+        window.addEventListener('resize', resize);
 
-  // Layered Palette: Darker base tones for background depth, vivid highlights for foreground
-  const bgColors = ['#0d2116', '#143121', '#1a3e2b'];
-  const midColors = ['#1b4332', '#2d6a4f', '#2d724f'];
-  const fgColors = ['#40916c', '#52b788', '#70e000', '#9ef01a'];
+        let mouseX = -1000;
+        window.addEventListener('mousemove', (e) => {
+          mouseX = e.clientX;
+        });
 
-  const bladeCount = Math.floor(window.innerWidth / 2.5); // High density
-  const blades = [];
+        const bgColors = ['#0d2116', '#143121', '#1a3e2b'];
+        const midColors = ['#1b4332', '#2d6a4f', '#2d724f'];
+        const fgColors = ['#40916c', '#52b788', '#70e000', '#9ef01a'];
 
-  for (let i = 0; i < bladeCount; i++) {
-    const layer = Math.random(); // Depth layering: 0 = far back, 1 = front
-    let colorSet;
-    if (layer < 0.35) colorSet = bgColors;
-    else if (layer < 0.75) colorSet = midColors;
-    else colorSet = fgColors;
+        const bladeCount = Math.floor(window.innerWidth / 2.5);
+        const blades = [];
 
-    blades.push({
-      x: (i / bladeCount) * window.innerWidth + (Math.random() * 8 - 4),
-      height: 45 + layer * 55 + Math.random() * 25, // Foreground blades are taller
-      baseWidth: (2 + layer * 3) + Math.random(),
-      tipWidth: 0.5 + Math.random() * 0.5,
-      angle: (Math.random() - 0.5) * 0.2,
-      targetAngle: 0,
-      naturalCurvature: (Math.random() - 0.5) * 0.35, // Individual natural curve
-      stiffness: 0.03 + layer * 0.04,
-      color: colorSet[Math.floor(Math.random() * colorSet.length)],
-      layer: layer,
-      phase: Math.random() * Math.PI * 2
-    });
-  }
+        for (let i = 0; i < bladeCount; i++) {
+          const layer = Math.random();
+          let colorSet = layer < 0.35 ? bgColors : layer < 0.75 ? midColors : fgColors;
 
-  // Sort blades so background renders behind foreground for true 3D depth
-  blades.sort((a, b) => a.layer - b.layer);
+          blades.push({
+            x: (i / bladeCount) * window.innerWidth + (Math.random() * 8 - 4),
+            height: 45 + layer * 55 + Math.random() * 25,
+            baseWidth: (2 + layer * 3) + Math.random(),
+            tipWidth: 0.5 + Math.random() * 0.5,
+            angle: (Math.random() - 0.5) * 0.2,
+            targetAngle: 0,
+            naturalCurvature: (Math.random() - 0.5) * 0.35,
+            stiffness: 0.03 + layer * 0.04,
+            color: colorSet[Math.floor(Math.random() * colorSet.length)],
+            layer: layer,
+            phase: Math.random() * Math.PI * 2
+          });
+        }
 
-  let time = 0;
+        blades.sort((a, b) => a.layer - b.layer);
 
-  function animate() {
-    ctx.clearRect(0, 0, width, height);
-    time += 0.025;
+        let time = 0;
 
-    blades.forEach((b) => {
-      // Wind dynamics with rolling wave variation
-      const windWave = Math.sin(time * 1.5 + b.x * 0.008 + b.phase) * 0.22;
-      
-      // Interaction with cursor (force diminishes with distance)
-      const dist = Math.abs(mouseX - b.x);
-      let mouseForce = 0;
-      if (dist < 100) {
-        const power = (1 - dist / 100);
-        mouseForce = (mouseX < b.x ? 1 : -1) * power * 1.1;
-      }
+        function animate() {
+          ctx.clearRect(0, 0, width, height);
+          time += 0.025;
 
-      b.targetAngle = b.naturalCurvature + windWave + mouseForce;
-      b.angle += (b.targetAngle - b.angle) * b.stiffness;
+          blades.forEach((b) => {
+            const windWave = Math.sin(time * 1.5 + b.x * 0.008 + b.phase) * 0.22;
+            const dist = Math.abs(mouseX - b.x);
+            let mouseForce = dist < 100 ? (mouseX < b.x ? 1 : -1) * (1 - dist / 100) * 1.1 : 0;
 
-      // Curve calculation points
-      const rootX = b.x;
-      const rootY = height;
-      
-      const tipX = rootX + Math.sin(b.angle) * b.height;
-      const tipY = rootY - Math.cos(b.angle) * b.height;
-      
-      const midX = rootX + Math.sin(b.angle * 0.5) * (b.height * 0.5) + (b.naturalCurvature * 15);
-      const midY = rootY - (b.height * 0.5);
+            b.targetAngle = b.naturalCurvature + windWave + mouseForce;
+            b.angle += (b.targetAngle - b.angle) * b.stiffness;
 
-      // Render Blade with Linear Gradient for Realistic Top-Glow
-      const gradient = ctx.createLinearGradient(rootX, rootY, tipX, tipY);
-      gradient.addColorStop(0, '#06130b'); // Dark rooted base
-      gradient.addColorStop(0.4, b.color);
-      gradient.addColorStop(1, b.layer > 0.6 ? '#adff2f' : b.color); // Sunlit tip highlight
+            const rootX = b.x;
+            const rootY = height;
+            const tipX = rootX + Math.sin(b.angle) * b.height;
+            const tipY = rootY - Math.cos(b.angle) * b.height;
+            const midX = rootX + Math.sin(b.angle * 0.5) * (b.height * 0.5) + (b.naturalCurvature * 15);
+            const midY = rootY - (b.height * 0.5);
 
-      ctx.beginPath();
-      ctx.moveTo(rootX - b.baseWidth / 2, rootY);
-      
-      // Left side curve to tip
-      ctx.quadraticCurveTo(midX - b.baseWidth / 4, midY, tipX, tipY);
-      
-      // Right side curve back to root
-      ctx.quadraticCurveTo(midX + b.baseWidth / 4, midY, rootX + b.baseWidth / 2, rootY);
-      ctx.closePath();
+            const gradient = ctx.createLinearGradient(rootX, rootY, tipX, tipY);
+            gradient.addColorStop(0, '#06130b');
+            gradient.addColorStop(0.4, b.color);
+            gradient.addColorStop(1, b.layer > 0.6 ? '#adff2f' : b.color);
 
-      ctx.fillStyle = gradient;
-      ctx.fill();
-    });
+            ctx.beginPath();
+            ctx.moveTo(rootX - b.baseWidth / 2, rootY);
+            ctx.quadraticCurveTo(midX - b.baseWidth / 4, midY, tipX, tipY);
+            ctx.quadraticCurveTo(midX + b.baseWidth / 4, midY, rootX + b.baseWidth / 2, rootY);
+            ctx.closePath();
 
-    requestAnimationFrame(animate);
-  }
+            ctx.fillStyle = gradient;
+            ctx.fill();
+          });
 
-  animate();
-})();
-// Random Silhouetted Birds Flying in the Background
-(function() {
-  const canvas = document.getElementById('birdsCanvas');
-  if (!canvas) return;
-  const ctx = canvas.getContext('2d');
+          requestAnimationFrame(animate);
+        }
 
-  let width, height;
-  function resize() {
-    width = canvas.width = window.innerWidth;
-    height = canvas.height = window.innerHeight;
-  }
-  resize();
-  window.addEventListener('resize', resize);
+        animate();
+      })();
 
-  const birdCount = 7;
-  const birds = [];
+      // 4. Flying Birds Background Silhouette
+      (function() {
+        const canvas = document.getElementById('birdsCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
 
-  function createBird(resetFromLeft = false) {
-    const scale = 0.5 + Math.random() * 0.7; // Variable depth/size
-    return {
-      x: resetFromLeft ? -50 : Math.random() * (window.innerWidth + 100) - 50,
-      y: Math.random() * (window.innerHeight * 0.5) + 30, // Upper half of screen
-      vx: 1.2 + Math.random() * 1.5, // Forward speed
-      vy: (Math.random() - 0.5) * 0.4, // Gentle vertical drift
-      scale: scale,
-      wingPhase: Math.random() * Math.PI * 2,
-      wingSpeed: 0.08 + Math.random() * 0.05,
-      opacity: 0.25 + scale * 0.35 // Farther birds are slightly fainter
-    };
-  }
+        let width, height;
+        function resize() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
 
-  for (let i = 0; i < birdCount; i++) {
-    birds.push(createBird());
-  }
+        const birdCount = 7;
+        const birds = [];
 
-  function drawBirdSilhouette(ctx, b) {
-    ctx.save();
-    ctx.translate(b.x, b.y);
-    ctx.scale(b.scale, b.scale);
+        function createBird(resetFromLeft = false) {
+          const scale = 0.5 + Math.random() * 0.7;
+          return {
+            x: resetFromLeft ? -50 : Math.random() * (window.innerWidth + 100) - 50,
+            y: Math.random() * (window.innerHeight * 0.5) + 30,
+            vx: 1.2 + Math.random() * 1.5,
+            vy: (Math.random() - 0.5) * 0.4,
+            scale: scale,
+            wingPhase: Math.random() * Math.PI * 2,
+            wingSpeed: 0.08 + Math.random() * 0.05,
+            opacity: 0.25 + scale * 0.35
+          };
+        }
 
-    // Calculate wing flap position using sine wave
-    const wingY = Math.sin(b.wingPhase) * 12;
+        for (let i = 0; i < birdCount; i++) {
+          birds.push(createBird());
+        }
 
-    ctx.beginPath();
-    // Head and body
-    ctx.moveTo(-12, 0);
-    ctx.quadraticCurveTo(-4, -2, 0, 0);
-    ctx.quadraticCurveTo(8, 2, 14, 0);
+        function drawBirdSilhouette(ctx, b) {
+          ctx.save();
+          ctx.translate(b.x, b.y);
+          ctx.scale(b.scale, b.scale);
 
-    // Left wing
-    ctx.quadraticCurveTo(2, wingY - 6, -6, wingY - 14);
-    ctx.quadraticCurveTo(-2, wingY * 0.5, -4, 0);
+          const wingY = Math.sin(b.wingPhase) * 12;
 
-    // Right wing
-    ctx.quadraticCurveTo(2, wingY - 6, 8, wingY - 12);
-    ctx.quadraticCurveTo(4, wingY * 0.5, 2, 0);
+          ctx.beginPath();
+          ctx.moveTo(-12, 0);
+          ctx.quadraticCurveTo(-4, -2, 0, 0);
+          ctx.quadraticCurveTo(8, 2, 14, 0);
+          ctx.quadraticCurveTo(2, wingY - 6, -6, wingY - 14);
+          ctx.quadraticCurveTo(-2, wingY * 0.5, -4, 0);
+          ctx.quadraticCurveTo(2, wingY - 6, 8, wingY - 12);
+          ctx.quadraticCurveTo(4, wingY * 0.5, 2, 0);
 
-    ctx.fillStyle = `rgba(10, 25, 18, ${b.opacity})`; // Dark forest silhouette matching theme
-    ctx.fill();
+          ctx.fillStyle = `rgba(10, 25, 18, ${b.opacity})`;
+          ctx.fill();
+          ctx.restore();
+        }
 
-    ctx.restore();
-  }
+        function animate() {
+          ctx.clearRect(0, 0, width, height);
 
-  function animate() {
-    ctx.clearRect(0, 0, width, height);
+          birds.forEach((b, index) => {
+            b.x += b.vx;
+            b.y += b.vy + Math.sin(b.wingPhase * 0.3) * 0.3;
+            b.wingPhase += b.wingSpeed;
 
-    birds.forEach((b, index) => {
-      b.x += b.vx;
-      b.y += b.vy;
-      b.wingPhase += b.wingSpeed;
+            if (b.x > width + 60) {
+              birds[index] = createBird(true);
+            }
 
-      // Slight sine wave glide
-      b.y += Math.sin(b.wingPhase * 0.3) * 0.3;
+            drawBirdSilhouette(ctx, b);
+          });
 
-      // Respawn bird on left side when it exits screen on right
-      if (b.x > width + 60) {
-        birds[index] = createBird(true);
-      }
+          requestAnimationFrame(animate);
+        }
 
-      drawBirdSilhouette(ctx, b);
-    });
-
-    requestAnimationFrame(animate);
-  }
-
-  animate();
-})();
+        animate();
+      })();
     </script>
   </body>
 </html>
