@@ -23,107 +23,92 @@
       body {
         background-color: #0b130e !important;
         color: #e2f0d9 !important;
+        margin: 0;
       }
 
-    /* 2. Realistic Paper Panels & Cards */
-.glass-panel, 
-.profile-card, 
-.character-card, 
-.showcase-hero-card,
-.artwork-frame,
-nav.navbar {
-  /* Warm cream/off-white paper color */
-  background-color: #faf8f5 !important;
-  color: #1a241e !important;
-  
-  /* Paper thickness & subtle border edge */
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  border-radius: 6px !important;
-  padding: 2rem;
-  position: relative;
+      /* 2. Realistic Paper Panels & Cards */
+      .glass-panel, 
+      .profile-card, 
+      nav.navbar {
+        background-color: #faf8f5 !important;
+        color: #1a241e !important;
+        border: 1px solid rgba(0, 0, 0, 0.08) !important;
+        border-radius: 6px !important;
+        padding: 2rem;
+        position: relative;
+        box-shadow:
+          0 1px 1px rgba(0, 0, 0, 0.08),
+          0 4px 12px rgba(0, 0, 0, 0.15),
+          0 16px 32px rgba(0, 0, 0, 0.2) !important;
+        background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0) !important;
+        background-size: 8px 8px !important;
+        transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.25s ease !important;
+      }
 
-  /* Layered realistic drop shadows for paper depth */
-  box-shadow:
-    0 1px 1px rgba(0, 0, 0, 0.08),
-    0 4px 12px rgba(0, 0, 0, 0.15),
-    0 16px 32px rgba(0, 0, 0, 0.2) !important;
+      /* Lifted effect on hover */
+      .profile-card:hover {
+        transform: translateY(-4px) rotate(-0.5deg) !important;
+        box-shadow:
+          0 2px 4px rgba(0, 0, 0, 0.08),
+          0 8px 24px rgba(0, 0, 0, 0.18),
+          0 24px 48px rgba(0, 0, 0, 0.25) !important;
+      }
 
-  /* Subtle micro-texture to mimic paper fibers */
-  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0) !important;
-  background-size: 8px 8px !important;
+      /* 3. Navbar Layout & About Button */
+      nav.navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+      }
 
-  /* Smooth transition for hover effects */
-  transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.25s ease !important;
-}
+      .btn-nav-about {
+        display: inline-block;
+        padding: 0.5rem 1.25rem;
+        background-color: #577ec8;
+        color: #ffffff !important;
+        border-radius: 4px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.2s ease;
+      }
 
-/* Subtle lifted paper effect when hovering over cards */
-.profile-card:hover, 
-.character-card:hover,
-.artwork-frame:hover {
-  transform: translateY(-4px) rotate(-0.5deg) !important;
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.08),
-    0 8px 24px rgba(0, 0, 0, 0.18),
-    0 24px 48px rgba(0, 0, 0, 0.25) !important;
-}
-/* Decorative Masking Tape on Top Left Corner */
-.artwork-frame::before,
-.character-card::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 20px;
-  width: 70px;
-  height: 22px;
-  background: rgba(235, 225, 205, 0.7);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  transform: rotate(-3deg);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  pointer-events: none;
-}
+      .btn-nav-about:hover {
+        background-color: #4369b1;
+        color: #ffffff !important;
+      }
 
-      /* 3. Headings & Main Titles */
+      /* 4. Headings & Main Titles */
       h1, h2, h3, h4, h5, h6,
       .hero-title, 
       .section-title, 
-      .showcase-heading,
-      .character-title, 
       .profile-heading,
       .brand-text,
       .brand-symbol {
         color: #5c8dda !important;
       }
 
-      /* 4. Body Paragraphs & Descriptions */
+      /* 5. Body Paragraphs & Descriptions */
       p, 
       .hero-description, 
-      .showcase-text, 
-      .character-desc, 
       .profile-bio,
-      .footer-sub,
-      .milestone-text span {
+      .footer-sub {
         color: #598cd3 !important;
       }
 
-      /* 5. Subtitles, Labels, Tags & Small Text */
+      /* 6. Subtitles, Labels, Tags & Small Text */
       span, 
       div, 
       li, 
       code,
       .section-label,
       .eyebrow-chip,
-      .spec-label,
-      .spec-value,
-      .card-num,
-      .footer-copy,
-      .card-footer-info {
+      .footer-copy {
         color: #52a0e9 !important;
       }
 
-      /* 6. Navigation Links & Action Buttons */
+      /* 7. Navigation Links & Action Buttons */
       a, 
-      .nav-links a, 
       .btn-primary, 
       .btn-secondary,
       .social-btn,
@@ -131,12 +116,11 @@ nav.navbar {
         color: #577ec8 !important;
       }
 
-      a:hover, 
-      .nav-links a:hover {
+      a:hover {
         color: #63a9d1 !important;
       }
 
-      /* 7. Gradient Text Accent */
+      /* 8. Gradient Text Accent */
       .gradient-text {
         background: linear-gradient(135deg, #8ab0ed, #4388d7) !important;
         -webkit-background-clip: text !important;
@@ -144,46 +128,15 @@ nav.navbar {
         -webkit-text-fill-color: transparent !important;
       }
 
-      /* 8. Forest Aurora Background Blobs */
+      /* 9. Forest Aurora Background Blobs */
       .aurora-blob.blob-1 { background: #4790e3 !important; }
       .aurora-blob.blob-2 { background: #05235b !important; }
       .aurora-blob.blob-3 { background: #0264ab !important; }
       .aurora-blob.blob-4 { background: #0510e6 !important; opacity: 0.2 !important; }
 
-      /* 9. Custom Pencil Cursor & Ink Canvas */
+      /* 10. Custom Pencil Cursor */
       body, a, button, input {
         cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
-      }
-
-      #trailCanvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9999;
-      }
-
-      /* 10. Canvas Overlays */
-      #grassCanvas {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 140px;
-        pointer-events: none;
-        z-index: 9998;
-      }
-
-      #birdsCanvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9996;
       }
     </style>
   </head>
@@ -208,12 +161,8 @@ nav.navbar {
             <span class="brand-text">WHERESGABBIE</span>
           </a>
 
-          <ul class="nav-links">
-            <li><a href="#showcase">Showcase</a></li>
-            <li><a href="#characters">Characters</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#milestones">Coursework</a></li>
-          </ul>
+          <!-- STANDALONE ABOUT BUTTON -->
+          <a href="#about" class="btn-nav-about">About</a>
 
           <div class="badge-tag">
             <span class="badge-pulse"></span>
@@ -241,154 +190,44 @@ nav.navbar {
           </p>
 
           <div class="hero-actions">
-            <a href="#showcase" class="btn-primary">
-              <span>View Projects</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-              </svg>
-            </a>
             <a href="#about" class="btn-secondary">
               <span>About Gabbie</span>
             </a>
           </div>
         </section>
 
-        <!-- SHOWCASE SECTION -->
-        <section id="showcase" class="showcase-container" style="margin-top: 4rem;">
-          <div class="section-header">
-            <span class="section-label">Featured Projects</span>
-            <h2 class="section-title" style="color: #1b7ed5 !important;">Uncanny Valley</h2>
-          </div>
-
-          <div class="glass-panel showcase-hero-card" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem;">
-  
-  <div class="artwork-frame">
-    <span class="artwork-badge">PokéBaseMonBall Cards</span>
-    <a href="images/Final 1.png" target="_blank" rel="noopener noreferrer" title="Click to open full-size image in a new tab">
-      <img src="images/Final 1.png" alt="Cards" width="500" height="500" loading="eager" />
-    </a>
-  </div>
-
-  <div class="showcase-info" style="max-width: 600px;">
-    <span class="showcase-tag">Project 01 · Fall 2026</span>
-    <h3 class="showcase-heading">Repurposing existing designs</h3>
-    <p class="showcase-text">
-      Taking Pokémon and MLB trading cards and mashing them together to create uncanny trading cards.
-    </p>
-  </div>
-
-<!-- ADDITIONAL SHOWCASE GALLERY (Square Grid Layout) -->
-<div class="showcase-gallery-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 520px; margin: 2rem auto 0 auto;">
-
-  <!-- Card 1 -->
-  <div class="artwork-frame" style="padding: 0.75rem;">
-    <span class="artwork-badge" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Original References</span>
-    <a href="images/References.png" target="_blank" rel="noopener noreferrer" title="Open Original References in new tab">
-      <img src="images/References.png" alt="Original References artwork" style="aspect-ratio: 1 / 1; object-fit: cover; width: 100%; height: auto; border-radius: 4px;" loading="lazy" />
-    </a>
-  </div>
-
-  <!-- Card 2 -->
-  <div class="artwork-frame" style="padding: 0.75rem;">
-    <span class="artwork-badge" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Final Draft Options</span>
-    <a href="images/Drafts.png" target="_blank" rel="noopener noreferrer" title="Open Final Draft Options in new tab">
-      <img src="images/Drafts.png" alt="Final Draft Options artwork" style="aspect-ratio: 1 / 1; object-fit: cover; width: 100%; height: auto; border-radius: 4px;" loading="lazy" />
-    </a>
-  </div>
-
-  <!-- Card 3 -->
-  <div class="artwork-frame" style="padding: 0.75rem;">
-    <span class="artwork-badge" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Option 2</span>
-    <a href="images/Final 2.png" target="_blank" rel="noopener noreferrer" title="Open Option 2 in new tab">
-      <img src="images/Final 2.png" alt="Option 2 artwork" style="aspect-ratio: 1 / 1; object-fit: cover; width: 100%; height: auto; border-radius: 4px;" loading="lazy" />
-    </a>
-  </div>
-
-  <!-- Card 4 -->
-  <div class="artwork-frame" style="padding: 0.75rem;">
-    <span class="artwork-badge" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Option 3</span>
-    <a href="images/Final 3.png" target="_blank" rel="noopener noreferrer" title="Open Option 3 in new tab">
-      <img src="images/Final 3.png" alt="Option 3 artwork" style="aspect-ratio: 1 / 1; object-fit: cover; width: 100%; height: auto; border-radius: 4px;" loading="lazy" />
-    </a>
-  </div>
-
-</div>
-          
-        </section>
-
-        <!-- ABOUT & MILESTONES -->
+        <!-- ABOUT SECTION -->
         <section id="about" style="margin-top: 4rem;">
           <div class="section-header">
             <span class="section-label">Identity &amp; Trajectory</span>
             <h2 class="section-title" style="color: #1b7ed5 !important;">Context &amp; Practice</h2>
           </div>
 
-          <div class="symmetrical-columns-2">
-            <!-- Column 1: About -->
-            <div class="glass-panel profile-card">
-              <div>
-                <h3 class="profile-heading">About Gabbie</h3>
-                <p class="profile-bio">
-                  Student, designer, and digital creator working at the intersection of graphic storytelling.
-                </p>
-              </div>
-
-              <div>
-                <div style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.6rem; letter-spacing: 0.08em;">
-                  Interests &amp; Disciplines
-                </div>
-                <div class="skill-tags">
-                  <span class="skill-tag">Character Design</span>
-                  <span class="skill-tag">Typography</span>
-                  <span class="skill-tag">Digital Storytelling</span>
-                  <span class="skill-tag">Traditional Art</span>
-                </div>
-              </div>
+          <div class="glass-panel profile-card" style="max-width: 650px; margin: 0 auto;">
+            <div>
+              <h3 class="profile-heading">About Gabbie</h3>
+              <p class="profile-bio">
+                Student, designer, and digital creator working at the intersection of graphic storytelling.
+              </p>
             </div>
 
-            <!-- Column 2: Milestones -->
-            <div id="milestones" class="glass-panel profile-card">
-              <div>
-                <h3 class="profile-heading">10C Semester Milestones</h3>
-                <ul class="milestones-list">
-                  <li class="milestone-item">
-                    <span class="milestone-bullet">✓</span>
-                    <div class="milestone-text">
-                      <strong>01. Character Conception &amp; Assets</strong>
-                      <span>Completed vector illustrations and initial quadrant assets.</span>
-                    </div>
-                  </li>
-                  <li class="milestone-item">
-                    <span class="milestone-bullet">✓</span>
-                    <div class="milestone-text">
-                      <strong>02. Web Architecture &amp; Theming</strong>
-                      <span>Implemented chromatic background, symmetrical grid &amp; typography.</span>
-                    </div>
-                  </li>
-                  <li class="milestone-item">
-                    <span class="milestone-bullet">03</span>
-                    <div class="milestone-text">
-                      <strong>03. Interactive Modules &amp; Showcase</strong>
-                      <span>Expanding project portfolio with multimedia and digital works.</span>
-                    </div>
-                  </li>
-                  <li class="milestone-item">
-                    <span class="milestone-bullet">04</span>
-                    <div class="milestone-text">
-                      <strong>04. Final Exhibition &amp; Deployment</strong>
-                      <span>Live publication on GitHub Pages at <code>salasgabbie</code>.</span>
-                    </div>
-                  </li>
-                </ul>
+            <div style="margin-top: 1.5rem;">
+              <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; text-transform: uppercase; color: #52a0e9; margin-bottom: 0.6rem; letter-spacing: 0.08em;">
+                Interests &amp; Disciplines
+              </div>
+              <div class="skill-tags">
+                <span class="skill-tag">Character Design</span>
+                <span class="skill-tag">Typography</span>
+                <span class="skill-tag">Digital Storytelling</span>
+                <span class="skill-tag">Traditional Art</span>
               </div>
             </div>
           </div>
         </section>
-
       </main>
 
       <!-- FOOTER -->
-      <footer>
+      <footer style="margin-top: 4rem;">
         <div class="glass-panel footer-panel">
           <div class="footer-copy">
             <span class="footer-title">WHERESGABBIE</span>
@@ -396,33 +235,26 @@ nav.navbar {
 
           <div class="social-links">
             <a href="https://github.com/SALASRAMOSGABRIELA-stack/salasgabbie" class="social-btn" aria-label="GitHub Repository" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
               </svg>
             </a>
             <a href="https://salasramosgabriela-stack.github.io/salasgabbie/" class="social-btn" aria-label="GitHub Pages Live Site" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
               </svg>
             </a>
             <a href="#top" class="back-to-top">
-              <span>Back to Top</span>
-              <span>↑</span>
+              <span>Back to Top ↑</span>
             </a>
           </div>
         </div>
       </footer>
-
     </div>
-
-    <!-- CANVAS ELEMENTS -->
-    <canvas id="grassCanvas"></canvas>
-    <canvas id="birdsCanvas"></canvas>
-    <canvas id="trailCanvas"></canvas>
 
     <!-- SCRIPTS -->
     <script>
-      // 1. Subtle Cursor Parallax on Floating Orbs
+      // Subtle Cursor Parallax on Floating Background Orbs
       (function() {
         const blobs = document.querySelectorAll('.aurora-blob');
         if (!blobs.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -441,228 +273,9 @@ nav.navbar {
 
           blobs.forEach((blob, index) => {
             const factor = (index + 1) * 20;
-            blob.style.translate = `${mouseX * factor}px ${mouseY * factor}px`;
+            blob.style.transform = `translate(${mouseX * factor}px, ${mouseY * factor}px)`;
           });
         });
-      })();
-
-      // 2. Dragging Ink Trail Effect
-      (function() {
-        const canvas = document.getElementById('trailCanvas');
-        const ctx = canvas.getContext('2d');
-
-        function resizeCanvas() {
-          canvas.width = window.innerWidth;
-          canvas.height = window.innerHeight;
-        }
-        resizeCanvas();
-        window.addEventListener('resize', resizeCanvas);
-
-        const points = [];
-        const maxAge = 45;
-
-        window.addEventListener('mousemove', (e) => {
-          points.push({ x: e.clientX, y: e.clientY, age: 0 });
-        });
-
-        function animate() {
-          ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-          for (let i = 0; i < points.length; i++) {
-            const p = points[i];
-            p.age++;
-
-            if (p.age > maxAge) {
-              points.splice(i, 1);
-              i--;
-              continue;
-            }
-
-            if (i > 0) {
-              const prev = points[i - 1];
-              const opacity = 1 - (p.age / maxAge);
-              const width = (1 - (p.age / maxAge)) * 5 + 1;
-
-              ctx.beginPath();
-              ctx.moveTo(prev.x, prev.y);
-              ctx.lineTo(p.x, p.y);
-              ctx.strokeStyle = `rgba(30, 30, 30, ${opacity})`;
-              ctx.lineWidth = width;
-              ctx.lineCap = 'round';
-              ctx.stroke();
-            }
-          }
-
-          requestAnimationFrame(animate);
-        }
-
-        animate();
-      })();
-
-      // 3. Realistic Layered Grass
-      (function() {
-        const canvas = document.getElementById('grassCanvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-
-        let width, height;
-        function resize() {
-          width = canvas.width = window.innerWidth;
-          height = canvas.height = 140;
-        }
-        resize();
-        window.addEventListener('resize', resize);
-
-        let mouseX = -1000;
-        window.addEventListener('mousemove', (e) => {
-          mouseX = e.clientX;
-        });
-
-        const bgColors = ['#0d2116', '#143121', '#1a3e2b'];
-        const midColors = ['#1b4332', '#2d6a4f', '#2d724f'];
-        const fgColors = ['#40916c', '#52b788', '#70e000', '#9ef01a'];
-
-        const bladeCount = Math.floor(window.innerWidth / 2.5);
-        const blades = [];
-
-        for (let i = 0; i < bladeCount; i++) {
-          const layer = Math.random();
-          let colorSet = layer < 0.35 ? bgColors : layer < 0.75 ? midColors : fgColors;
-
-          blades.push({
-            x: (i / bladeCount) * window.innerWidth + (Math.random() * 8 - 4),
-            height: 45 + layer * 55 + Math.random() * 25,
-            baseWidth: (2 + layer * 3) + Math.random(),
-            tipWidth: 0.5 + Math.random() * 0.5,
-            angle: (Math.random() - 0.5) * 0.2,
-            targetAngle: 0,
-            naturalCurvature: (Math.random() - 0.5) * 0.35,
-            stiffness: 0.03 + layer * 0.04,
-            color: colorSet[Math.floor(Math.random() * colorSet.length)],
-            layer: layer,
-            phase: Math.random() * Math.PI * 2
-          });
-        }
-
-        blades.sort((a, b) => a.layer - b.layer);
-
-        let time = 0;
-
-        function animate() {
-          ctx.clearRect(0, 0, width, height);
-          time += 0.025;
-
-          blades.forEach((b) => {
-            const windWave = Math.sin(time * 1.5 + b.x * 0.008 + b.phase) * 0.22;
-            const dist = Math.abs(mouseX - b.x);
-            let mouseForce = dist < 100 ? (mouseX < b.x ? 1 : -1) * (1 - dist / 100) * 1.1 : 0;
-
-            b.targetAngle = b.naturalCurvature + windWave + mouseForce;
-            b.angle += (b.targetAngle - b.angle) * b.stiffness;
-
-            const rootX = b.x;
-            const rootY = height;
-            const tipX = rootX + Math.sin(b.angle) * b.height;
-            const tipY = rootY - Math.cos(b.angle) * b.height;
-            const midX = rootX + Math.sin(b.angle * 0.5) * (b.height * 0.5) + (b.naturalCurvature * 15);
-            const midY = rootY - (b.height * 0.5);
-
-            const gradient = ctx.createLinearGradient(rootX, rootY, tipX, tipY);
-            gradient.addColorStop(0, '#06130b');
-            gradient.addColorStop(0.4, b.color);
-            gradient.addColorStop(1, b.layer > 0.6 ? '#adff2f' : b.color);
-
-            ctx.beginPath();
-            ctx.moveTo(rootX - b.baseWidth / 2, rootY);
-            ctx.quadraticCurveTo(midX - b.baseWidth / 4, midY, tipX, tipY);
-            ctx.quadraticCurveTo(midX + b.baseWidth / 4, midY, rootX + b.baseWidth / 2, rootY);
-            ctx.closePath();
-
-            ctx.fillStyle = gradient;
-            ctx.fill();
-          });
-
-          requestAnimationFrame(animate);
-        }
-
-        animate();
-      })();
-
-      // 4. Flying Birds Background Silhouette
-      (function() {
-        const canvas = document.getElementById('birdsCanvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-
-        let width, height;
-        function resize() {
-          width = canvas.width = window.innerWidth;
-          height = canvas.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener('resize', resize);
-
-        const birdCount = 7;
-        const birds = [];
-
-        function createBird(resetFromLeft = false) {
-          const scale = 0.5 + Math.random() * 0.7;
-          return {
-            x: resetFromLeft ? -50 : Math.random() * (window.innerWidth + 100) - 50,
-            y: Math.random() * (window.innerHeight * 0.5) + 30,
-            vx: 1.2 + Math.random() * 1.5,
-            vy: (Math.random() - 0.5) * 0.4,
-            scale: scale,
-            wingPhase: Math.random() * Math.PI * 2,
-            wingSpeed: 0.08 + Math.random() * 0.05,
-            opacity: 0.25 + scale * 0.35
-          };
-        }
-
-        for (let i = 0; i < birdCount; i++) {
-          birds.push(createBird());
-        }
-
-        function drawBirdSilhouette(ctx, b) {
-          ctx.save();
-          ctx.translate(b.x, b.y);
-          ctx.scale(b.scale, b.scale);
-
-          const wingY = Math.sin(b.wingPhase) * 12;
-
-          ctx.beginPath();
-          ctx.moveTo(-12, 0);
-          ctx.quadraticCurveTo(-4, -2, 0, 0);
-          ctx.quadraticCurveTo(8, 2, 14, 0);
-          ctx.quadraticCurveTo(2, wingY - 6, -6, wingY - 14);
-          ctx.quadraticCurveTo(-2, wingY * 0.5, -4, 0);
-          ctx.quadraticCurveTo(2, wingY - 6, 8, wingY - 12);
-          ctx.quadraticCurveTo(4, wingY * 0.5, 2, 0);
-
-          ctx.fillStyle = `rgba(10, 25, 18, ${b.opacity})`;
-          ctx.fill();
-          ctx.restore();
-        }
-
-        function animate() {
-          ctx.clearRect(0, 0, width, height);
-
-          birds.forEach((b, index) => {
-            b.x += b.vx;
-            b.y += b.vy + Math.sin(b.wingPhase * 0.3) * 0.3;
-            b.wingPhase += b.wingSpeed;
-
-            if (b.x > width + 60) {
-              birds[index] = createBird(true);
-            }
-
-            drawBirdSilhouette(ctx, b);
-          });
-
-          requestAnimationFrame(animate);
-        }
-
-        animate();
       })();
     </script>
   </body>
