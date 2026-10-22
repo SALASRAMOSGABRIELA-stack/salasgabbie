@@ -23,107 +23,120 @@
       body {
         background-color: #0b130e !important;
         color: #e2f0d9 !important;
+        margin: 0;
       }
 
-    /* 2. Realistic Paper Panels & Cards */
-.glass-panel, 
-.profile-card, 
-.character-card, 
-.showcase-hero-card,
-.artwork-frame,
-nav.navbar {
-  /* Warm cream/off-white paper color */
-  background-color: #faf8f5 !important;
-  color: #1a241e !important;
-  
-  /* Paper thickness & subtle border edge */
-  border: 1px solid rgba(0, 0, 0, 0.08) !important;
-  border-radius: 6px !important;
-  padding: 2rem;
-  position: relative;
+      /* 2. Realistic Paper Panels & Cards */
+      .glass-panel, 
+      .profile-card, 
+      .showcase-hero-card,
+      .artwork-frame,
+      nav.navbar {
+        background-color: #faf8f5 !important;
+        color: #1a241e !important;
+        border: 1px solid rgba(0, 0, 0, 0.08) !important;
+        border-radius: 6px !important;
+        padding: 2rem;
+        position: relative;
+        box-shadow:
+          0 1px 1px rgba(0, 0, 0, 0.08),
+          0 4px 12px rgba(0, 0, 0, 0.15),
+          0 16px 32px rgba(0, 0, 0, 0.2) !important;
+        background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0) !important;
+        background-size: 8px 8px !important;
+        transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.25s ease !important;
+      }
 
-  /* Layered realistic drop shadows for paper depth */
-  box-shadow:
-    0 1px 1px rgba(0, 0, 0, 0.08),
-    0 4px 12px rgba(0, 0, 0, 0.15),
-    0 16px 32px rgba(0, 0, 0, 0.2) !important;
+      /* Lifted hover effect */
+      .profile-card:hover,
+      .artwork-frame:hover {
+        transform: translateY(-4px) rotate(-0.5deg) !important;
+        box-shadow:
+          0 2px 4px rgba(0, 0, 0, 0.08),
+          0 8px 24px rgba(0, 0, 0, 0.18),
+          0 24px 48px rgba(0, 0, 0, 0.25) !important;
+      }
 
-  /* Subtle micro-texture to mimic paper fibers */
-  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0) !important;
-  background-size: 8px 8px !important;
+      /* Decorative Masking Tape on Top Left Corner */
+      .artwork-frame::before {
+        content: "";
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        width: 70px;
+        height: 22px;
+        background: rgba(235, 225, 205, 0.7);
+        border: 1px solid rgba(0, 0, 0, 0.05);
+        transform: rotate(-3deg);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+        z-index: 10;
+        pointer-events: none;
+      }
 
-  /* Smooth transition for hover effects */
-  transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.25s ease !important;
-}
+      /* 3. Navbar Layout & Navigation Buttons */
+      nav.navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+      }
 
-/* Subtle lifted paper effect when hovering over cards */
-.profile-card:hover, 
-.character-card:hover,
-.artwork-frame:hover {
-  transform: translateY(-4px) rotate(-0.5deg) !important;
-  box-shadow:
-    0 2px 4px rgba(0, 0, 0, 0.08),
-    0 8px 24px rgba(0, 0, 0, 0.18),
-    0 24px 48px rgba(0, 0, 0, 0.25) !important;
-}
-/* Decorative Masking Tape on Top Left Corner */
-.artwork-frame::before,
-.character-card::before {
-  content: "";
-  position: absolute;
-  top: -10px;
-  left: 20px;
-  width: 70px;
-  height: 22px;
-  background: rgba(235, 225, 205, 0.7);
-  border: 1px solid rgba(0, 0, 0, 0.05);
-  transform: rotate(-3deg);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-  z-index: 10;
-  pointer-events: none;
-}
+      .nav-buttons-group {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
 
-      /* 3. Headings & Main Titles */
+      .btn-nav {
+        display: inline-block;
+        padding: 0.5rem 1.25rem;
+        background-color: #577ec8;
+        color: #ffffff !important;
+        border-radius: 4px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.2s ease, transform 0.15s ease;
+      }
+
+      .btn-nav:hover {
+        background-color: #4369b1;
+        color: #ffffff !important;
+        transform: translateY(-1px);
+      }
+
+      /* 4. Headings & Main Titles */
       h1, h2, h3, h4, h5, h6,
       .hero-title, 
       .section-title, 
       .showcase-heading,
-      .character-title, 
       .profile-heading,
       .brand-text,
       .brand-symbol {
         color: #5c8dda !important;
       }
 
-      /* 4. Body Paragraphs & Descriptions */
+      /* 5. Body Paragraphs & Descriptions */
       p, 
       .hero-description, 
       .showcase-text, 
-      .character-desc, 
       .profile-bio,
-      .footer-sub,
-      .milestone-text span {
+      .footer-sub {
         color: #598cd3 !important;
       }
 
-      /* 5. Subtitles, Labels, Tags & Small Text */
+      /* 6. Subtitles, Labels, Tags & Small Text */
       span, 
       div, 
       li, 
       code,
       .section-label,
       .eyebrow-chip,
-      .spec-label,
-      .spec-value,
-      .card-num,
-      .footer-copy,
-      .card-footer-info {
+      .footer-copy {
         color: #52a0e9 !important;
       }
 
-      /* 6. Navigation Links & Action Buttons */
+      /* 7. Action Links */
       a, 
-      .nav-links a, 
       .btn-primary, 
       .btn-secondary,
       .social-btn,
@@ -131,12 +144,11 @@ nav.navbar {
         color: #577ec8 !important;
       }
 
-      a:hover, 
-      .nav-links a:hover {
+      a:hover {
         color: #63a9d1 !important;
       }
 
-      /* 7. Gradient Text Accent */
+      /* 8. Gradient Text Accent */
       .gradient-text {
         background: linear-gradient(135deg, #8ab0ed, #4388d7) !important;
         -webkit-background-clip: text !important;
@@ -144,13 +156,13 @@ nav.navbar {
         -webkit-text-fill-color: transparent !important;
       }
 
-      /* 8. Forest Aurora Background Blobs */
+      /* 9. Background Aurora Blobs */
       .aurora-blob.blob-1 { background: #4790e3 !important; }
       .aurora-blob.blob-2 { background: #05235b !important; }
       .aurora-blob.blob-3 { background: #0264ab !important; }
       .aurora-blob.blob-4 { background: #0510e6 !important; opacity: 0.2 !important; }
 
-      /* 9. Custom Pencil Cursor & Ink Canvas */
+      /* 10. Custom Pencil Cursor */
       body, a, button, input {
         cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
       }
@@ -165,7 +177,6 @@ nav.navbar {
         z-index: 9999;
       }
 
-      /* 10. Canvas Overlays */
       #grassCanvas {
         position: fixed;
         bottom: 0;
@@ -208,12 +219,11 @@ nav.navbar {
             <span class="brand-text">WHERESGABBIE</span>
           </a>
 
-          <ul class="nav-links">
-            <li><a href="#showcase">Showcase</a></li>
-            <li><a href="#characters">Characters</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#milestones">Coursework</a></li>
-          </ul>
+          <!-- TWO NAVIGATION BUTTONS ONLY: PROJECTS & ABOUT -->
+          <div class="nav-buttons-group">
+            <a href="#showcase" class="btn-nav">Projects</a>
+            <a href="#about" class="btn-nav">About</a>
+          </div>
 
           <div class="badge-tag">
             <span class="badge-pulse"></span>
@@ -260,135 +270,96 @@ nav.navbar {
             <h2 class="section-title" style="color: #1b7ed5 !important;">Uncanny Valley</h2>
           </div>
 
+          <!-- FEATURED HERO CARD -->
           <div class="glass-panel showcase-hero-card" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem;">
-  
-  <div class="artwork-frame">
-    <span class="artwork-badge">PokéBaseMonBall Cards</span>
-    <a href="images/Final 1.png" target="_blank" rel="noopener noreferrer" title="Click to open full-size image in a new tab">
-      <img src="images/Final 1.png" alt="Cards" width="500" height="500" loading="eager" />
-    </a>
-  </div>
+            
+            <div class="artwork-frame">
+              <span class="artwork-badge">PokéBaseMonBall Cards</span>
+              <a href="images/Final 1.png" target="_blank" rel="noopener noreferrer" title="Click to open full-size image in a new tab">
+                <img src="images/Final 1.png" alt="Cards" width="500" height="500" loading="eager" />
+              </a>
+            </div>
 
-  <div class="showcase-info" style="max-width: 600px;">
-    <span class="showcase-tag">Project 01 · Fall 2026</span>
-    <h3 class="showcase-heading">Repurposing existing designs</h3>
-    <p class="showcase-text">
-      Taking Pokémon and MLB trading cards and mashing them together to create uncanny trading cards.
-    </p>
-  </div>
+            <div class="showcase-info" style="max-width: 600px;">
+              <span class="showcase-tag">Project 01 · Fall 2026</span>
+              <h3 class="showcase-heading">Repurposing existing designs</h3>
+              <p class="showcase-text">
+                Taking Pokémon and MLB trading cards and mashing them together to create uncanny trading cards.
+              </p>
+            </div>
 
-<!-- ADDITIONAL SHOWCASE GALLERY (Square Grid Layout) -->
-<div class="showcase-gallery-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 520px; margin: 2rem auto 0 auto;">
+          </div>
 
-  <!-- Card 1 -->
-  <div class="artwork-frame" style="padding: 0.75rem;">
-    <span class="artwork-badge" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Original References</span>
-    <a href="images/References.png" target="_blank" rel="noopener noreferrer" title="Open Original References in new tab">
-      <img src="images/References.png" alt="Original References artwork" style="aspect-ratio: 1 / 1; object-fit: cover; width: 100%; height: auto; border-radius: 4px;" loading="lazy" />
-    </a>
-  </div>
+          <!-- ADDITIONAL SHOWCASE GALLERY (Compact 2x2 Square Grid) -->
+          <div class="showcase-gallery-grid" style="display: grid; grid-template-columns: repeat(2, 1fr); gap: 1rem; max-width: 520px; margin: 2rem auto 0 auto;">
 
-  <!-- Card 2 -->
-  <div class="artwork-frame" style="padding: 0.75rem;">
-    <span class="artwork-badge" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Final Draft Options</span>
-    <a href="images/Drafts.png" target="_blank" rel="noopener noreferrer" title="Open Final Draft Options in new tab">
-      <img src="images/Drafts.png" alt="Final Draft Options artwork" style="aspect-ratio: 1 / 1; object-fit: cover; width: 100%; height: auto; border-radius: 4px;" loading="lazy" />
-    </a>
-  </div>
+            <!-- Card 1 -->
+            <div class="artwork-frame" style="padding: 0.75rem;">
+              <span class="artwork-badge" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Original References</span>
+              <a href="images/References.png" target="_blank" rel="noopener noreferrer" title="Open Original References in new tab">
+                <img src="images/References.png" alt="Original References artwork" style="aspect-ratio: 1 / 1; object-fit: cover; width: 100%; height: auto; border-radius: 4px;" loading="lazy" />
+              </a>
+            </div>
 
-  <!-- Card 3 -->
-  <div class="artwork-frame" style="padding: 0.75rem;">
-    <span class="artwork-badge" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Option 2</span>
-    <a href="images/Final 2.png" target="_blank" rel="noopener noreferrer" title="Open Option 2 in new tab">
-      <img src="images/Final 2.png" alt="Option 2 artwork" style="aspect-ratio: 1 / 1; object-fit: cover; width: 100%; height: auto; border-radius: 4px;" loading="lazy" />
-    </a>
-  </div>
+            <!-- Card 2 -->
+            <div class="artwork-frame" style="padding: 0.75rem;">
+              <span class="artwork-badge" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Final Draft Options</span>
+              <a href="images/Drafts.png" target="_blank" rel="noopener noreferrer" title="Open Final Draft Options in new tab">
+                <img src="images/Drafts.png" alt="Final Draft Options artwork" style="aspect-ratio: 1 / 1; object-fit: cover; width: 100%; height: auto; border-radius: 4px;" loading="lazy" />
+              </a>
+            </div>
 
-  <!-- Card 4 -->
-  <div class="artwork-frame" style="padding: 0.75rem;">
-    <span class="artwork-badge" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Option 3</span>
-    <a href="images/Final 3.png" target="_blank" rel="noopener noreferrer" title="Open Option 3 in new tab">
-      <img src="images/Final 3.png" alt="Option 3 artwork" style="aspect-ratio: 1 / 1; object-fit: cover; width: 100%; height: auto; border-radius: 4px;" loading="lazy" />
-    </a>
-  </div>
+            <!-- Card 3 -->
+            <div class="artwork-frame" style="padding: 0.75rem;">
+              <span class="artwork-badge" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Option 2</span>
+              <a href="images/Final 2.png" target="_blank" rel="noopener noreferrer" title="Open Option 2 in new tab">
+                <img src="images/Final 2.png" alt="Option 2 artwork" style="aspect-ratio: 1 / 1; object-fit: cover; width: 100%; height: auto; border-radius: 4px;" loading="lazy" />
+              </a>
+            </div>
 
-</div>
-          
+            <!-- Card 4 -->
+            <div class="artwork-frame" style="padding: 0.75rem;">
+              <span class="artwork-badge" style="font-size: 0.75rem; padding: 0.2rem 0.5rem;">Option 3</span>
+              <a href="images/Final 3.png" target="_blank" rel="noopener noreferrer" title="Open Option 3 in new tab">
+                <img src="images/Final 3.png" alt="Option 3 artwork" style="aspect-ratio: 1 / 1; object-fit: cover; width: 100%; height: auto; border-radius: 4px;" loading="lazy" />
+              </a>
+            </div>
+
+          </div>
         </section>
 
-        <!-- ABOUT & MILESTONES -->
+        <!-- ABOUT SECTION -->
         <section id="about" style="margin-top: 4rem;">
           <div class="section-header">
             <span class="section-label">Identity &amp; Trajectory</span>
             <h2 class="section-title" style="color: #1b7ed5 !important;">Context &amp; Practice</h2>
           </div>
 
-          <div class="symmetrical-columns-2">
-            <!-- Column 1: About -->
-            <div class="glass-panel profile-card">
-              <div>
-                <h3 class="profile-heading">About Gabbie</h3>
-                <p class="profile-bio">
-                  Student, designer, and digital creator working at the intersection of graphic storytelling.
-                </p>
-              </div>
-
-              <div>
-                <div style="font-family: var(--font-mono); font-size: 0.72rem; text-transform: uppercase; color: var(--text-muted); margin-bottom: 0.6rem; letter-spacing: 0.08em;">
-                  Interests &amp; Disciplines
-                </div>
-                <div class="skill-tags">
-                  <span class="skill-tag">Character Design</span>
-                  <span class="skill-tag">Typography</span>
-                  <span class="skill-tag">Digital Storytelling</span>
-                  <span class="skill-tag">Traditional Art</span>
-                </div>
-              </div>
+          <div class="glass-panel profile-card" style="max-width: 650px; margin: 0 auto;">
+            <div>
+              <h3 class="profile-heading">About Gabbie</h3>
+              <p class="profile-bio">
+                Student, designer, and digital creator working at the intersection of graphic storytelling.
+              </p>
             </div>
 
-            <!-- Column 2: Milestones -->
-            <div id="milestones" class="glass-panel profile-card">
-              <div>
-                <h3 class="profile-heading">10C Semester Milestones</h3>
-                <ul class="milestones-list">
-                  <li class="milestone-item">
-                    <span class="milestone-bullet">✓</span>
-                    <div class="milestone-text">
-                      <strong>01. Character Conception &amp; Assets</strong>
-                      <span>Completed vector illustrations and initial quadrant assets.</span>
-                    </div>
-                  </li>
-                  <li class="milestone-item">
-                    <span class="milestone-bullet">✓</span>
-                    <div class="milestone-text">
-                      <strong>02. Web Architecture &amp; Theming</strong>
-                      <span>Implemented chromatic background, symmetrical grid &amp; typography.</span>
-                    </div>
-                  </li>
-                  <li class="milestone-item">
-                    <span class="milestone-bullet">03</span>
-                    <div class="milestone-text">
-                      <strong>03. Interactive Modules &amp; Showcase</strong>
-                      <span>Expanding project portfolio with multimedia and digital works.</span>
-                    </div>
-                  </li>
-                  <li class="milestone-item">
-                    <span class="milestone-bullet">04</span>
-                    <div class="milestone-text">
-                      <strong>04. Final Exhibition &amp; Deployment</strong>
-                      <span>Live publication on GitHub Pages at <code>salasgabbie</code>.</span>
-                    </div>
-                  </li>
-                </ul>
+            <div style="margin-top: 1.5rem;">
+              <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; text-transform: uppercase; color: #52a0e9; margin-bottom: 0.6rem; letter-spacing: 0.08em;">
+                Interests &amp; Disciplines
+              </div>
+              <div class="skill-tags">
+                <span class="skill-tag">Character Design</span>
+                <span class="skill-tag">Typography</span>
+                <span class="skill-tag">Digital Storytelling</span>
+                <span class="skill-tag">Traditional Art</span>
               </div>
             </div>
           </div>
         </section>
-
       </main>
 
       <!-- FOOTER -->
-      <footer>
+      <footer style="margin-top: 4rem;">
         <div class="glass-panel footer-panel">
           <div class="footer-copy">
             <span class="footer-title">WHERESGABBIE</span>
@@ -396,23 +367,21 @@ nav.navbar {
 
           <div class="social-links">
             <a href="https://github.com/SALASRAMOSGABRIELA-stack/salasgabbie" class="social-btn" aria-label="GitHub Repository" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
               </svg>
             </a>
             <a href="https://salasramosgabriela-stack.github.io/salasgabbie/" class="social-btn" aria-label="GitHub Pages Live Site" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" aria-hidden="true">
-                <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
               </svg>
             </a>
             <a href="#top" class="back-to-top">
-              <span>Back to Top</span>
-              <span>↑</span>
+              <span>Back to Top ↑</span>
             </a>
           </div>
         </div>
       </footer>
-
     </div>
 
     <!-- CANVAS ELEMENTS -->
@@ -422,7 +391,7 @@ nav.navbar {
 
     <!-- SCRIPTS -->
     <script>
-      // 1. Subtle Cursor Parallax on Floating Orbs
+      // 1. Subtle Cursor Parallax
       (function() {
         const blobs = document.querySelectorAll('.aurora-blob');
         if (!blobs.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
@@ -441,7 +410,7 @@ nav.navbar {
 
           blobs.forEach((blob, index) => {
             const factor = (index + 1) * 20;
-            blob.style.translate = `${mouseX * factor}px ${mouseY * factor}px`;
+            blob.style.transform = `translate(${mouseX * factor}px, ${mouseY * factor}px)`;
           });
         });
       })();
@@ -449,6 +418,7 @@ nav.navbar {
       // 2. Dragging Ink Trail Effect
       (function() {
         const canvas = document.getElementById('trailCanvas');
+        if (!canvas) return;
         const ctx = canvas.getContext('2d');
 
         function resizeCanvas() {
@@ -499,7 +469,7 @@ nav.navbar {
         animate();
       })();
 
-      // 3. Realistic Layered Grass
+      // 3. Layered Grass Effect
       (function() {
         const canvas = document.getElementById('grassCanvas');
         if (!canvas) return;
@@ -588,7 +558,7 @@ nav.navbar {
         animate();
       })();
 
-      // 4. Flying Birds Background Silhouette
+      // 4. Flying Birds Silhouette
       (function() {
         const canvas = document.getElementById('birdsCanvas');
         if (!canvas) return;
