@@ -20,182 +20,187 @@
     <!-- Custom Theme & Overlay Styles -->
     <style>
       /* 1. Base Page Background & Text */
-      body {
-        background-color: #0b130e !important;
-        color: #e2f0d9 !important;
-        margin: 0;
-      }
+body {
+  background-color: #0b130e !important;
+  color: #e2f0d9 !important;
+  margin: 0;
+}
 
-      /* 2. Realistic Paper Panels & Cards */
-      .glass-panel, 
-      .profile-card, 
-      .showcase-hero-card,
-      .artwork-frame,
-      nav.navbar {
-        background-color: #faf8f5 !important;
-        color: #1a241e !important;
-        border: 1px solid rgba(0, 0, 0, 0.08) !important;
-        border-radius: 6px !important;
-        padding: 2rem;
-        position: relative;
-        box-shadow:
-          0 1px 1px rgba(0, 0, 0, 0.08),
-          0 4px 12px rgba(0, 0, 0, 0.15),
-          0 16px 32px rgba(0, 0, 0, 0.2) !important;
-        background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0) !important;
-        background-size: 8px 8px !important;
-        transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.25s ease !important;
-      }
+/* 2. Realistic Paper Panels & Cards with Ripped / Torn Paper Edges */
+.glass-panel, 
+.profile-card, 
+.showcase-hero-card,
+.artwork-frame,
+nav.navbar {
+  background-color: #faf8f5 !important;
+  color: #1a241e !important;
+  padding: 2.2rem 2rem;
+  position: relative;
+  
+  /* Irregular Jagged Clip-Path for Torn Paper Edge */
+  clip-path: polygon(
+    0% 1.5%, 3% 0%, 7% 1.8%, 12% 0.3%, 17% 1.5%, 22% 0%, 28% 1.2%, 34% 0.2%, 40% 1.6%, 45% 0%, 52% 1.4%, 58% 0.1%, 64% 1.7%, 70% 0.2%, 76% 1.5%, 82% 0%, 88% 1.6%, 94% 0.2%, 100% 1.5%,
+    99.2% 12%, 100% 25%, 98.8% 38%, 100% 50%, 99.1% 63%, 100% 75%, 98.9% 88%, 100% 98.5%,
+    95% 100%, 89% 98.4%, 83% 99.8%, 77% 98.2%, 71% 100%, 65% 98.5%, 59% 99.9%, 53% 98.3%, 47% 100%, 41% 98.6%, 35% 99.8%, 29% 98.3%, 23% 100%, 17% 98.5%, 11% 99.9%, 5% 98.4%, 0% 100%,
+    0.8% 88%, 0% 75%, 1.2% 63%, 0% 50%, 0.9% 38%, 0% 25%, 1.1% 12%
+  ) !important;
 
-      /* Lifted hover effect */
-      .profile-card:hover,
-      .artwork-frame:hover {
-        transform: translateY(-4px) rotate(-0.5deg) !important;
-        box-shadow:
-          0 2px 4px rgba(0, 0, 0, 0.08),
-          0 8px 24px rgba(0, 0, 0, 0.18),
-          0 24px 48px rgba(0, 0, 0, 0.25) !important;
-      }
+  /* Layered paper drop shadows */
+  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35)) !important;
 
-      /* Decorative Masking Tape on Top Left Corner */
-      .artwork-frame::before {
-        content: "";
-        position: absolute;
-        top: -10px;
-        left: 20px;
-        width: 70px;
-        height: 22px;
-        background: rgba(235, 225, 205, 0.7);
-        border: 1px solid rgba(0, 0, 0, 0.05);
-        transform: rotate(-3deg);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-        z-index: 10;
-        pointer-events: none;
-      }
+  /* Paper fiber micro-texture */
+  background-image: radial-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 0) !important;
+  background-size: 6px 6px !important;
+  
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), filter 0.25s ease !important;
+}
 
-      /* 3. Navbar Layout & Navigation Buttons */
-      nav.navbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem 2rem;
-      }
+/* Hover Lifted Paper Animation */
+.profile-card:hover,
+.artwork-frame:hover {
+  transform: translateY(-4px) rotate(-0.5deg) !important;
+  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3)) drop-shadow(0 16px 32px rgba(0, 0, 0, 0.45)) !important;
+}
 
-      .nav-buttons-group {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
+/* Masking Tape Accent on top left corner */
+.artwork-frame::before {
+  content: "";
+  position: absolute;
+  top: -8px;
+  left: 18px;
+  width: 65px;
+  height: 20px;
+  background: rgba(235, 225, 205, 0.75);
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  transform: rotate(-3deg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+  z-index: 10;
+  pointer-events: none;
+}
 
-      .btn-nav {
-        display: inline-block;
-        padding: 0.5rem 1.25rem;
-        background-color: #577ec8;
-        color: #ffffff !important;
-        border-radius: 4px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: background-color 0.2s ease, transform 0.15s ease;
-      }
+/* 3. Navbar Layout & Navigation Buttons */
+nav.navbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 2rem;
+}
 
-      .btn-nav:hover {
-        background-color: #4369b1;
-        color: #ffffff !important;
-        transform: translateY(-1px);
-      }
+.nav-buttons-group {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
 
-      /* 4. Headings & Main Titles */
-      h1, h2, h3, h4, h5, h6,
-      .hero-title, 
-      .section-title, 
-      .showcase-heading,
-      .profile-heading,
-      .brand-text,
-      .brand-symbol {
-        color: #5c8dda !important;
-      }
+.btn-nav {
+  display: inline-block;
+  padding: 0.5rem 1.25rem;
+  background-color: #577ec8;
+  color: #ffffff !important;
+  border-radius: 4px;
+  font-weight: 600;
+  text-decoration: none;
+  transition: background-color 0.2s ease, transform 0.15s ease;
+}
 
-      /* 5. Body Paragraphs & Descriptions */
-      p, 
-      .hero-description, 
-      .showcase-text, 
-      .profile-bio,
-      .footer-sub {
-        color: #598cd3 !important;
-      }
+.btn-nav:hover {
+  background-color: #4369b1;
+  color: #ffffff !important;
+  transform: translateY(-1px);
+}
 
-      /* 6. Subtitles, Labels, Tags & Small Text */
-      span, 
-      div, 
-      li, 
-      code,
-      .section-label,
-      .eyebrow-chip,
-      .footer-copy {
-        color: #52a0e9 !important;
-      }
+/* 4. Headings & Main Titles */
+h1, h2, h3, h4, h5, h6,
+.hero-title, 
+.section-title, 
+.showcase-heading,
+.profile-heading,
+.brand-text,
+.brand-symbol {
+  color: #5c8dda !important;
+}
 
-      /* 7. Action Links */
-      a, 
-      .btn-primary, 
-      .btn-secondary,
-      .social-btn,
-      .back-to-top {
-        color: #577ec8 !important;
-      }
+/* 5. Body Paragraphs & Descriptions */
+p, 
+.hero-description, 
+.showcase-text, 
+.profile-bio,
+.footer-sub {
+  color: #598cd3 !important;
+}
 
-      a:hover {
-        color: #63a9d1 !important;
-      }
+/* 6. Subtitles, Labels, Tags & Small Text */
+span, 
+div, 
+li, 
+code,
+.section-label,
+.eyebrow-chip,
+.footer-copy {
+  color: #52a0e9 !important;
+}
 
-      /* 8. Gradient Text Accent */
-      .gradient-text {
-        background: linear-gradient(135deg, #8ab0ed, #4388d7) !important;
-        -webkit-background-clip: text !important;
-        background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-      }
+/* 7. Action Links */
+a, 
+.btn-primary, 
+.btn-secondary,
+.social-btn,
+.back-to-top {
+  color: #577ec8 !important;
+}
 
-      /* 9. Background Aurora Blobs */
-      .aurora-blob.blob-1 { background: #4790e3 !important; }
-      .aurora-blob.blob-2 { background: #05235b !important; }
-      .aurora-blob.blob-3 { background: #0264ab !important; }
-      .aurora-blob.blob-4 { background: #0510e6 !important; opacity: 0.2 !important; }
+a:hover {
+  color: #63a9d1 !important;
+}
 
-      /* 10. Custom Pencil Cursor */
-      body, a, button, input {
-        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
-      }
+/* 8. Gradient Text Accent */
+.gradient-text {
+  background: linear-gradient(135deg, #8ab0ed, #4388d7) !important;
+  -webkit-background-clip: text !important;
+  background-clip: text !important;
+  -webkit-text-fill-color: transparent !important;
+}
 
-      #trailCanvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9999;
-      }
+/* 9. Background Aurora Blobs */
+.aurora-blob.blob-1 { background: #4790e3 !important; }
+.aurora-blob.blob-2 { background: #05235b !important; }
+.aurora-blob.blob-3 { background: #0264ab !important; }
+.aurora-blob.blob-4 { background: #0510e6 !important; opacity: 0.2 !important; }
 
-      #grassCanvas {
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 140px;
-        pointer-events: none;
-        z-index: 9998;
-      }
+/* 10. Custom Pencil Cursor */
+body, a, button, input {
+  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
+}
 
-      #birdsCanvas {
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9996;
-      }
+#trailCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+#grassCanvas {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 140px;
+  pointer-events: none;
+  z-index: 9998;
+}
+
+#birdsCanvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9996;
+}
     </style>
   </head>
   <body>
@@ -239,7 +244,7 @@
           <div class="eyebrow-chip">
             <span>Santa Monica College</span>
             <span>•</span>
-            <span>Digital Design &amp; Web</span>
+            <span>Digital Media &amp; Web</span>
           </div>
 
           <h1 class="hero-title">
