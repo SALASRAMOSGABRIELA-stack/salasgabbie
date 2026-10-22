@@ -25,16 +25,47 @@
         color: #e2f0d9 !important;
       }
 
-      /* 2. Glass Panels & Cards */
-      .glass-panel, 
-      .profile-card, 
-      .character-card, 
-      .showcase-hero-card,
-      nav.navbar {
-        background: rgba(18, 30, 22, 0.85) !important;
-        border: 1px solid rgba(72, 117, 85, 0.4) !important;
-        color: #e2f0d9 !important;
-      }
+    /* 2. Realistic Paper Panels & Cards */
+.glass-panel, 
+.profile-card, 
+.character-card, 
+.showcase-hero-card,
+.artwork-frame,
+nav.navbar {
+  /* Warm cream/off-white paper color */
+  background-color: #faf8f5 !important;
+  color: #1a241e !important;
+  
+  /* Paper thickness & subtle border edge */
+  border: 1px solid rgba(0, 0, 0, 0.08) !important;
+  border-radius: 6px !important;
+  padding: 2rem;
+  position: relative;
+
+  /* Layered realistic drop shadows for paper depth */
+  box-shadow:
+    0 1px 1px rgba(0, 0, 0, 0.08),
+    0 4px 12px rgba(0, 0, 0, 0.15),
+    0 16px 32px rgba(0, 0, 0, 0.2) !important;
+
+  /* Subtle micro-texture to mimic paper fibers */
+  background-image: radial-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 0) !important;
+  background-size: 8px 8px !important;
+
+  /* Smooth transition for hover effects */
+  transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), box-shadow 0.25s ease !important;
+}
+
+/* Subtle lifted paper effect when hovering over cards */
+.profile-card:hover, 
+.character-card:hover,
+.artwork-frame:hover {
+  transform: translateY(-4px) rotate(-0.5deg) !important;
+  box-shadow:
+    0 2px 4px rgba(0, 0, 0, 0.08),
+    0 8px 24px rgba(0, 0, 0, 0.18),
+    0 24px 48px rgba(0, 0, 0, 0.25) !important;
+}
 
       /* 3. Headings & Main Titles */
       h1, h2, h3, h4, h5, h6,
