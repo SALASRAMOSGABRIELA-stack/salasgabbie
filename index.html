@@ -66,6 +66,22 @@ nav.navbar {
     0 8px 24px rgba(0, 0, 0, 0.18),
     0 24px 48px rgba(0, 0, 0, 0.25) !important;
 }
+/* Decorative Masking Tape on Top Left Corner */
+.artwork-frame::before,
+.character-card::before {
+  content: "";
+  position: absolute;
+  top: -10px;
+  left: 20px;
+  width: 70px;
+  height: 22px;
+  background: rgba(235, 225, 205, 0.7);
+  border: 1px solid rgba(0, 0, 0, 0.05);
+  transform: rotate(-3deg);
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  z-index: 10;
+  pointer-events: none;
+}
 
       /* 3. Headings & Main Titles */
       h1, h2, h3, h4, h5, h6,
