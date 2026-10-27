@@ -410,9 +410,9 @@
             
             <div class="artwork-frame" style="width: 100%; max-width: 750px; margin: 0 auto; padding: 0rem;">
               <span class="artwork-badge">PokéBaseMonBall Cards</span>
-              <a href="images/Final 1.png" target="_blank" rel="noopener noreferrer" title="Click to open full-size image in a new tab" style="display: block; width: 100%;">
-                <img src="images/Final 1.png" alt="Cards" style="width: 100%; height: auto; max-height: 650px; object-fit: contain; border-radius: 6px;" loading="eager" />
-              </a>
+             <a href="images/Final 1.png" class="lightbox-trigger" title="Click to view image preview" style="display: block; width: 100%;">
+  <img src="images/Final 1.png" alt="Cards" style="width: 100%; height: auto; max-height: 650px; object-fit: contain; border-radius: 6px;" loading="eager" />
+</a>
             </div>
 
             <div class="showcase-info" style="max-width: 600px;">
@@ -568,6 +568,16 @@
     </div>
 
     <!-- SCRIPTS -->
+     <!-- SINGLE IMAGE LIGHTBOX MODAL -->
+<div id="imageModal" class="modal-overlay" aria-hidden="true">
+  <div class="modal-card" style="max-width: 900px; padding: 2rem 1.5rem 1.5rem 1.5rem;">
+    <button id="closeImageModalBtn" class="modal-close-btn" aria-label="Close preview">&times;</button>
+    
+    <div style="display: flex; justify-content: center; align-items: center; min-height: 400px;">
+      <img id="lightboxImage" src="" alt="Full View" style="max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px;" />
+    </div>
+  </div>
+</div>
     <script>
       // 1. Subtle Cursor Parallax
       (function() {
@@ -876,6 +886,47 @@
           if (e.key === 'ArrowRight') updateSlides(currentIndex + 1);
         });
       })();
+      // 6. Single Image Lightbox Controller
+(function() {
+  const imageModal = document.getElementById('imageModal');
+  const lightboxImg = document.getElementById('lightboxImage');
+  const closeBtn = document.getElementById('closeImageModalBtn');
+  const triggers = document.querySelectorAll('.lightbox-trigger');
+
+  if (!imageModal || !lightboxImg) return;
+
+  // Open modal on image click
+  triggers.forEach(trigger => {
+    trigger.addEventListener('click', (e) => {
+      e.preventDefault(); // Prevents navigating away or opening a new tab
+      const imageSrc = trigger.getAttribute('href');
+      lightboxImg.setAttribute('src', imageSrc);
+      imageModal.classList.add('active');
+      imageModal.setAttribute('aria-hidden', 'false');
+    });
+  });
+
+  // Close modal functions
+  function closeLightbox() {
+    imageModal.classList.remove('active');
+    imageModal.setAttribute('aria-hidden', 'true');
+    lightboxImg.setAttribute('src', '');
+  }
+
+  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
+
+  // Close when clicking dark backdrop
+  imageModal.addEventListener('click', (e) => {
+    if (e.target === imageModal) closeLightbox();
+  });
+
+  // Close on Escape key press
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && imageModal.classList.contains('active')) {
+      closeLightbox();
+    }
+  });
+})();
     </script>
   </body>
 </html>
