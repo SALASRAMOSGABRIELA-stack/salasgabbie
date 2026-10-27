@@ -20,187 +20,187 @@
     <!-- Custom Theme & Overlay Styles -->
     <style>
       /* 1. Base Page Background & Text */
-body {
-  background-color: #0b130e !important;
-  color: #e2f0d9 !important;
-  margin: 0;
-}
+      body {
+        background-color: #0b130e !important;
+        color: #e2f0d9 !important;
+        margin: 0;
+      }
 
-/* 2. Realistic Paper Panels & Cards with Ripped / Torn Paper Edges */
-.glass-panel, 
-.profile-card, 
-.showcase-hero-card,
-.artwork-frame,
-nav.navbar {
-  background-color: #faf8f5 !important;
-  color: #1a241e !important;
-  padding: 2.2rem 2rem;
-  position: relative;
-  
-  /* Irregular Jagged Clip-Path for Torn Paper Edge */
-  clip-path: polygon(
-    0% 1.5%, 3% 0%, 7% 1.8%, 12% 0.3%, 17% 1.5%, 22% 0%, 28% 1.2%, 34% 0.2%, 40% 1.6%, 45% 0%, 52% 1.4%, 58% 0.1%, 64% 1.7%, 70% 0.2%, 76% 1.5%, 82% 0%, 88% 1.6%, 94% 0.2%, 100% 1.5%,
-    99.2% 12%, 100% 25%, 98.8% 38%, 100% 50%, 99.1% 63%, 100% 75%, 98.9% 88%, 100% 98.5%,
-    95% 100%, 89% 98.4%, 83% 99.8%, 77% 98.2%, 71% 100%, 65% 98.5%, 59% 99.9%, 53% 98.3%, 47% 100%, 41% 98.6%, 35% 99.8%, 29% 98.3%, 23% 100%, 17% 98.5%, 11% 99.9%, 5% 98.4%, 0% 100%,
-    0.8% 88%, 0% 75%, 1.2% 63%, 0% 50%, 0.9% 38%, 0% 25%, 1.1% 12%
-  ) !important;
+      /* 2. Realistic Paper Panels & Cards with Ripped / Torn Paper Edges */
+      .glass-panel, 
+      .profile-card, 
+      .showcase-hero-card,
+      .artwork-frame,
+      nav.navbar {
+        background-color: #faf8f5 !important;
+        color: #1a241e !important;
+        padding: 2.2rem 2rem;
+        position: relative;
+        
+        /* Irregular Jagged Clip-Path for Torn Paper Edge */
+        clip-path: polygon(
+          0% 1.5%, 3% 0%, 7% 1.8%, 12% 0.3%, 17% 1.5%, 22% 0%, 28% 1.2%, 34% 0.2%, 40% 1.6%, 45% 0%, 52% 1.4%, 58% 0.1%, 64% 1.7%, 70% 0.2%, 76% 1.5%, 82% 0%, 88% 1.6%, 94% 0.2%, 100% 1.5%,
+          99.2% 12%, 100% 25%, 98.8% 38%, 100% 50%, 99.1% 63%, 100% 75%, 98.9% 88%, 100% 98.5%,
+          95% 100%, 89% 98.4%, 83% 99.8%, 77% 98.2%, 71% 100%, 65% 98.5%, 59% 99.9%, 53% 98.3%, 47% 100%, 41% 98.6%, 35% 99.8%, 29% 98.3%, 23% 100%, 17% 98.5%, 11% 99.9%, 5% 98.4%, 0% 100%,
+          0.8% 88%, 0% 75%, 1.2% 63%, 0% 50%, 0.9% 38%, 0% 25%, 1.1% 12%
+        ) !important;
 
-  /* Layered paper drop shadows */
-  filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35)) !important;
+        /* Layered paper drop shadows */
+        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35)) !important;
 
-  /* Paper fiber micro-texture */
-  background-image: radial-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 0) !important;
-  background-size: 6px 6px !important;
-  
-  transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), filter 0.25s ease !important;
-}
+        /* Paper fiber micro-texture */
+        background-image: radial-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 0) !important;
+        background-size: 6px 6px !important;
+        
+        transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), filter 0.25s ease !important;
+      }
 
-/* Hover Lifted Paper Animation */
-.profile-card:hover,
-.artwork-frame:hover {
-  transform: translateY(-4px) rotate(-0.5deg) !important;
-  filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3)) drop-shadow(0 16px 32px rgba(0, 0, 0, 0.45)) !important;
-}
+      /* Hover Lifted Paper Animation */
+      .profile-card:hover,
+      .artwork-frame:hover {
+        transform: translateY(-4px) rotate(-0.5deg) !important;
+        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3)) drop-shadow(0 16px 32px rgba(0, 0, 0, 0.45)) !important;
+      }
 
-/* Masking Tape Accent on top left corner */
-.artwork-frame::before {
-  content: "";
-  position: absolute;
-  top: -8px;
-  left: 18px;
-  width: 65px;
-  height: 20px;
-  background: rgba(235, 225, 205, 0.75);
-  border: 1px solid rgba(0, 0, 0, 0.08);
-  transform: rotate(-3deg);
-  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-  z-index: 10;
-  pointer-events: none;
-}
+      /* Masking Tape Accent on top left corner */
+      .artwork-frame::before {
+        content: "";
+        position: absolute;
+        top: -8px;
+        left: 18px;
+        width: 65px;
+        height: 20px;
+        background: rgba(235, 225, 205, 0.75);
+        border: 1px solid rgba(0, 0, 0, 0.08);
+        transform: rotate(-3deg);
+        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
+        z-index: 10;
+        pointer-events: none;
+      }
 
-/* 3. Navbar Layout & Navigation Buttons */
-nav.navbar {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 1rem 2rem;
-}
+      /* 3. Navbar Layout & Navigation Buttons */
+      nav.navbar {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 1rem 2rem;
+      }
 
-.nav-buttons-group {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-}
+      .nav-buttons-group {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+      }
 
-.btn-nav {
-  display: inline-block;
-  padding: 0.5rem 1.25rem;
-  background-color: #577ec8;
-  color: #ffffff !important;
-  border-radius: 4px;
-  font-weight: 600;
-  text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.15s ease;
-}
+      .btn-nav {
+        display: inline-block;
+        padding: 0.5rem 1.25rem;
+        background-color: #577ec8;
+        color: #ffffff !important;
+        border-radius: 4px;
+        font-weight: 600;
+        text-decoration: none;
+        transition: background-color 0.2s ease, transform 0.15s ease;
+      }
 
-.btn-nav:hover {
-  background-color: #4369b1;
-  color: #ffffff !important;
-  transform: translateY(-1px);
-}
+      .btn-nav:hover {
+        background-color: #4369b1;
+        color: #ffffff !important;
+        transform: translateY(-1px);
+      }
 
-/* 4. Headings & Main Titles */
-h1, h2, h3, h4, h5, h6,
-.hero-title, 
-.section-title, 
-.showcase-heading,
-.profile-heading,
-.brand-text,
-.brand-symbol {
-  color: #5c8dda !important;
-}
+      /* 4. Headings & Main Titles */
+      h1, h2, h3, h4, h5, h6,
+      .hero-title, 
+      .section-title, 
+      .showcase-heading,
+      .profile-heading,
+      .brand-text,
+      .brand-symbol {
+        color: #5c8dda !important;
+      }
 
-/* 5. Body Paragraphs & Descriptions */
-p, 
-.hero-description, 
-.showcase-text, 
-.profile-bio,
-.footer-sub {
-  color: #598cd3 !important;
-}
+      /* 5. Body Paragraphs & Descriptions */
+      p, 
+      .hero-description, 
+      .showcase-text, 
+      .profile-bio,
+      .footer-sub {
+        color: #598cd3 !important;
+      }
 
-/* 6. Subtitles, Labels, Tags & Small Text */
-span, 
-div, 
-li, 
-code,
-.section-label,
-.eyebrow-chip,
-.footer-copy {
-  color: #52a0e9 !important;
-}
+      /* 6. Subtitles, Labels, Tags & Small Text */
+      span, 
+      div, 
+      li, 
+      code,
+      .section-label,
+      .eyebrow-chip,
+      .footer-copy {
+        color: #52a0e9 !important;
+      }
 
-/* 7. Action Links */
-a, 
-.btn-primary, 
-.btn-secondary,
-.social-btn,
-.back-to-top {
-  color: #577ec8 !important;
-}
+      /* 7. Action Links */
+      a, 
+      .btn-primary, 
+      .btn-secondary,
+      .social-btn,
+      .back-to-top {
+        color: #577ec8 !important;
+      }
 
-a:hover {
-  color: #63a9d1 !important;
-}
+      a:hover {
+        color: #63a9d1 !important;
+      }
 
-/* 8. Gradient Text Accent */
-.gradient-text {
-  background: linear-gradient(135deg, #8ab0ed, #4388d7) !important;
-  -webkit-background-clip: text !important;
-  background-clip: text !important;
-  -webkit-text-fill-color: transparent !important;
-}
+      /* 8. Gradient Text Accent */
+      .gradient-text {
+        background: linear-gradient(135deg, #8ab0ed, #4388d7) !important;
+        -webkit-background-clip: text !important;
+        background-clip: text !important;
+        -webkit-text-fill-color: transparent !important;
+      }
 
-/* 9. Background Aurora Blobs */
-.aurora-blob.blob-1 { background: #4790e3 !important; }
-.aurora-blob.blob-2 { background: #05235b !important; }
-.aurora-blob.blob-3 { background: #0264ab !important; }
-.aurora-blob.blob-4 { background: #0510e6 !important; opacity: 0.2 !important; }
+      /* 9. Background Aurora Blobs */
+      .aurora-blob.blob-1 { background: #4790e3 !important; }
+      .aurora-blob.blob-2 { background: #05235b !important; }
+      .aurora-blob.blob-3 { background: #0264ab !important; }
+      .aurora-blob.blob-4 { background: #0510e6 !important; opacity: 0.2 !important; }
 
-/* 10. Custom Pencil Cursor */
-body, a, button, input {
-  cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
-}
+      /* 10. Custom Pencil Cursor */
+      body, a, button, input {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
+      }
 
-#trailCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9999;
-}
+      #trailCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+      }
 
-#grassCanvas {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  height: 140px;
-  pointer-events: none;
-  z-index: 9998;
-}
+      #grassCanvas {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 140px;
+        pointer-events: none;
+        z-index: 9998;
+      }
 
-#birdsCanvas {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  pointer-events: none;
-  z-index: 9996;
-}
+      #birdsCanvas {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        z-index: 9996;
+      }
     </style>
   </head>
   <body>
@@ -275,15 +275,15 @@ body, a, button, input {
             <h2 class="section-title" style="color: #1b7ed5 !important;">Uncanny Valley</h2>
           </div>
 
-          <!-- FEATURED HERO CARD -->
+          <!-- FEATURED HERO CARD WITH TRIGGER BUTTON -->
           <div class="glass-panel showcase-hero-card" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem;">
             
             <div class="artwork-frame" style="width: 100%; max-width: 750px; margin: 0 auto; padding: 1rem;">
-  <span class="artwork-badge">PokéBaseMonBall Cards</span>
-  <a href="images/Final 1.png" target="_blank" rel="noopener noreferrer" title="Click to open full-size image in a new tab" style="display: block; width: 100%;">
-    <img src="images/Final 1.png" alt="Cards" style="width: 100%; height: auto; max-height: 650px; object-fit: contain; border-radius: 6px;" loading="eager" />
-  </a>
-</div>
+              <span class="artwork-badge">PokéBaseMonBall Cards</span>
+              <a href="images/Final 1.png" target="_blank" rel="noopener noreferrer" title="Click to open full-size image in a new tab" style="display: block; width: 100%;">
+                <img src="images/Final 1.png" alt="Cards" style="width: 100%; height: auto; max-height: 650px; object-fit: contain; border-radius: 6px;" loading="eager" />
+              </a>
+            </div>
 
             <div class="showcase-info" style="max-width: 600px;">
               <span class="showcase-tag">Project 01 · Fall 2026</span>
@@ -291,6 +291,13 @@ body, a, button, input {
               <p class="showcase-text">
                 Taking Pokémon and MLB trading cards and mashing them together to create uncanny trading cards.
               </p>
+
+              <!-- NEW TAB TRIGGER BUTTON -->
+              <div style="margin-top: 1.5rem;">
+                <button id="openSlideshowBtn" class="btn-nav" style="cursor: pointer; border: none; padding: 0.75rem 1.75rem; font-size: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
+                  View 5-Picture Showcase ↗
+                </button>
+              </div>
             </div>
 
           </div>
@@ -666,6 +673,175 @@ body, a, button, input {
         }
 
         animate();
+      })();
+
+      // 5. Open 5-Picture Slideshow in a New Tab
+      (function() {
+        const btn = document.getElementById('openSlideshowBtn');
+        if (!btn) return;
+
+        // Paths to your 5 PNG images
+        const images = [
+          'images/Uncanny Valley.png',
+          'images/Uncanny Valley2.png',
+          'images/Uncanny Valley3.png',
+          'images/Uncanny Valley4.png',
+          'images/Uncanny Valley5.png'
+        ];
+
+        btn.addEventListener('click', () => {
+          const newWin = window.open('', '_blank');
+          if (!newWin) return;
+
+          const slidesHTML = images.map((src, idx) => `
+            <div class="slide ${idx === 0 ? 'active' : ''}">
+              <div class="counter">Image ${idx + 1} of ${images.length}</div>
+              <img src="${src}" alt="Showcase Image ${idx + 1}">
+            </div>
+          `).join('');
+
+          const dotsHTML = images.map((_, idx) => `
+            <span class="dot ${idx === 0 ? 'active' : ''}" onclick="setSlide(${idx})"></span>
+          `).join('');
+
+          newWin.document.write(`
+            <!DOCTYPE html>
+            <html lang="en">
+            <head>
+              <meta charset="utf-8">
+              <title>WHERESGABBIE — 5-Picture Showcase</title>
+              <meta name="viewport" content="width=device-width, initial-scale=1.0">
+              <style>
+                * { box-sizing: border-box; margin: 0; padding: 0; }
+                body {
+                  background-color: #0b130e;
+                  color: #e2f0d9;
+                  font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+                  display: flex;
+                  flex-direction: column;
+                  align-items: center;
+                  justify-content: center;
+                  min-height: 100vh;
+                  padding: 2rem;
+                }
+                .slideshow-card {
+                  background-color: #faf8f5;
+                  color: #1a241e;
+                  padding: 2rem;
+                  border-radius: 12px;
+                  max-width: 900px;
+                  width: 100%;
+                  text-align: center;
+                  box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+                  position: relative;
+                }
+                .slide-wrapper {
+                  position: relative;
+                  min-height: 500px;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+                .slide {
+                  display: none;
+                  width: 100%;
+                }
+                .slide.active {
+                  display: block;
+                }
+                .slide img {
+                  max-width: 100%;
+                  max-height: 550px;
+                  object-fit: contain;
+                  border-radius: 8px;
+                }
+                .counter {
+                  font-family: monospace;
+                  font-size: 0.85rem;
+                  color: #52a0e9;
+                  margin-bottom: 0.75rem;
+                  text-transform: uppercase;
+                }
+                .nav-btn {
+                  position: absolute;
+                  top: 50%;
+                  transform: translateY(-50%);
+                  background: rgba(0, 0, 0, 0.65);
+                  color: white;
+                  border: none;
+                  width: 44px;
+                  height: 44px;
+                  border-radius: 50%;
+                  font-size: 1.25rem;
+                  cursor: pointer;
+                  transition: background 0.2s;
+                  display: flex;
+                  align-items: center;
+                  justify-content: center;
+                }
+                .nav-btn:hover { background: rgba(0, 0, 0, 0.9); }
+                .nav-btn.prev { left: 10px; }
+                .nav-btn.next { right: 10px; }
+                .dots-container {
+                  margin-top: 1.25rem;
+                  display: flex;
+                  justify-content: center;
+                  gap: 8px;
+                }
+                .dot {
+                  width: 12px;
+                  height: 12px;
+                  background: #ccc;
+                  border-radius: 50%;
+                  cursor: pointer;
+                  transition: background 0.2s, transform 0.2s;
+                }
+                .dot.active {
+                  background: #577ec8;
+                  transform: scale(1.2);
+                }
+              </style>
+            </head>
+            <body>
+              <div class="slideshow-card">
+                <h2 style="color: #5c8dda; margin-bottom: 1rem;">PokéBaseMonBall Showcase</h2>
+                <div class="slide-wrapper">
+                  ${slidesHTML}
+                  <button class="nav-btn prev" onclick="changeSlide(-1)">❮</button>
+                  <button class="nav-btn next" onclick="changeSlide(1)">❯</button>
+                </div>
+                <div class="dots-container">
+                  ${dotsHTML}
+                </div>
+              </div>
+
+              <script>
+                let currentIndex = 0;
+                const slides = document.querySelectorAll('.slide');
+                const dots = document.querySelectorAll('.dot');
+
+                function showSlide(index) {
+                  slides.forEach((s, i) => s.classList.toggle('active', i === index));
+                  dots.forEach((d, i) => d.classList.toggle('active', i === index));
+                  currentIndex = index;
+                }
+
+                function changeSlide(direction) {
+                  let nextIndex = currentIndex + direction;
+                  if (nextIndex >= slides.length) nextIndex = 0;
+                  if (nextIndex < 0) nextIndex = slides.length - 1;
+                  showSlide(nextIndex);
+                }
+
+                function setSlide(index) {
+                  showSlide(index);
+                }
+              <\/script>
+            </body>
+            </html>
+          `);
+          newWin.document.close();
+        });
       })();
     </script>
   </body>
