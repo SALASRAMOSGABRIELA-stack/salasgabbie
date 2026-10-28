@@ -54,24 +54,38 @@
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
 }
-/* Fluid Gallery Scaling for Resizable / Maximized Windows */
+/* Gallery Window Body & Viewport Flex Centering */
 #win-slideshow .os-window-body {
-  display: flex;
-  flex-direction: column;
-  height: 100%;
+  display: flex !important;
+  flex-direction: column !important;
+  height: 100% !important;
+  padding: 1rem !important;
 }
 
+/* Slide Container Centering */
 .modal-slide {
-  width: 100%;
-  height: 100%;
-  display: none;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  width: 100% !important;
+  height: 100% !important;
+  display: none !important;
+  flex-direction: column !important;
+  align-items: center !important;     /* Centers horizontally */
+  justify-content: center !important;  /* Centers vertically */
+  text-align: center !important;
 }
 
 .modal-slide.active {
-  display: flex;
+  display: flex !important;
+}
+
+/* Image Centering & Fluid Scaling */
+.modal-slide img {
+  max-width: 100% !important;
+  max-height: 80% !important;          /* Leaves room for the slide counter label */
+  width: auto !important;
+  height: auto !important;
+  object-fit: contain !important;
+  margin: auto !important;             /* Guarantees dead-center alignment */
+  display: block !important;
 }
 
 /* Forces images to scale cleanly with window expansion without getting cut off or distorted */
@@ -467,40 +481,40 @@
   <div class="os-window-body flex flex-col items-center justify-between text-center p-4">
     <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">PokéBaseMonBall Gallery Slideshow</h3>
 
-    <!-- Fluid Slide Viewport -->
+    <!-- Centered Slide Viewport -->
     <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
       
       <!-- Slide 1 -->
       <div class="modal-slide active">
         <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE UNO OF 05</div>
-        <img src="images/Uncanny Valley.png" alt="Uncanny Valley 1" class="gallery-img" />
+        <img src="images/Uncanny Valley.png" alt="Uncanny Valley 1" />
       </div>
 
       <!-- Slide 2 -->
       <div class="modal-slide">
         <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE DOS OF 05</div>
-        <img src="images/Uncanny Valley2.png" alt="Uncanny Valley 2" class="gallery-img" />
+        <img src="images/Uncanny Valley2.png" alt="Uncanny Valley 2" />
       </div>
 
       <!-- Slide 3 -->
       <div class="modal-slide">
         <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE TRES OF 05</div>
-        <img src="images/Uncanny Valley3.png" alt="Uncanny Valley 3" class="gallery-img" />
+        <img src="images/Uncanny Valley3.png" alt="Uncanny Valley 3" />
       </div>
 
       <!-- Slide 4 -->
       <div class="modal-slide">
         <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CUATRO OF 05</div>
-        <img src="images/Uncanny Valley4.png" alt="Uncanny Valley 4" class="gallery-img" />
+        <img src="images/Uncanny Valley4.png" alt="Uncanny Valley 4" />
       </div>
 
       <!-- Slide 5 -->
       <div class="modal-slide">
         <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CINCO OF 05</div>
-        <img src="images/Uncanny Valley5.png" alt="Uncanny Valley 5" class="gallery-img" />
+        <img src="images/Uncanny Valley5.png" alt="Uncanny Valley 5" />
       </div>
 
-      <!-- Controls -->
+      <!-- Slide Navigation Controls -->
       <button id="prevSlideBtn" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20">❮</button>
       <button id="nextSlideBtn" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20">❯</button>
     </div>
