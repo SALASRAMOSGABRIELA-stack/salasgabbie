@@ -40,20 +40,17 @@
         cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
       }
 
-body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  font-family: 'Tahoma', 'Segoe UI', sans-serif;
-  
-  /* Path to your newly saved high-res image */
-  background: url('images/Bliss (Windows XP).png') no-repeat center center fixed;
-  background-size: cover;
-  
-  /* Prevents blurriness on high-DPI / Retina screens */
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-}
+      body {
+        background: #008080 url('https://upload.wikimedia.org/wikipedia/en/2/27/Bliss_%28Windows_XP%29.png') no-repeat center center fixed;
+        background-size: cover;
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+      }
 
       /* Desktop Grid Lines Overlay - Softened for Wallpaper */
       .desktop-grid {
@@ -80,7 +77,7 @@ body {
         bottom: 30px; left: 0; width: 100%; height: 130px;
         pointer-events: none;
         z-index: 2;
-        opacity: 0.45;
+        opacity: 0.60;
       }
 
       #birdsCanvas {
@@ -88,7 +85,7 @@ body {
         top: 0; left: 0; width: 100%; height: 100%;
         pointer-events: none;
         z-index: 2;
-        opacity: 0.45;
+        opacity: 0.60;
       }
 
       /* Authentic Windows XP Taskbar */
@@ -328,6 +325,10 @@ body {
             <span>📂</span>
             <span class="truncate max-w-[110px]">About Gabbie</span>
           </button>
+          <button onclick="toggleWindow('win-limewire')" class="bg-lime-950/80 hover:bg-lime-900 text-lime-300 font-sans text-xs px-3 py-1 rounded border border-lime-500/40 flex items-center gap-1.5 shadow">
+            <span>🍋</span>
+            <span class="truncate max-w-[110px]">LimeWire PRO</span>
+          </button>
         </div>
       </div>
 
@@ -355,6 +356,11 @@ body {
       <div class="desktop-icon" onclick="openWindow('win-about')" title="Double click to open about">
         <div class="desktop-icon-img">📂</div>
         <span class="desktop-icon-title">About Gabbie</span>
+      </div>
+
+      <div class="desktop-icon" onclick="openWindow('win-limewire')" title="Double click to open LimeWire P2P">
+        <div class="desktop-icon-img bg-lime-950/90 border-lime-500/50">🍋</div>
+        <span class="desktop-icon-title">LimeWire v4.12</span>
       </div>
 
       <a href="https://github.com/SALASRAMOSGABRIELA-stack/salasgabbie" target="_blank" class="desktop-icon" title="Open GitHub Repository">
@@ -513,6 +519,184 @@ body {
                 <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Photoshop</span>
                 <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Blender</span>
                 <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">HTML & CSS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 4: LIMEWIRE PRO P2P CLIENT -->
+    <div id="win-limewire" class="os-window minimized" style="width: 760px; height: 530px; top: 60px; left: 180px;">
+      <div class="os-window-header" style="background: linear-gradient(to bottom, #2b5711 0%, #4c991e 8%, #366d15 90%, #1c3b0a 100%); border-bottom: 1px solid #62c427;" onmousedown="dragWindow(event, 'win-limewire')">
+        <div class="flex items-center gap-2">
+          <span class="text-sm">🍋</span>
+          <span class="os-window-title font-mono text-lime-200">LimeWire PRO v4.12.6 — Turbo Charged P2P</span>
+        </div>
+        <div class="window-controls">
+          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-limewire')">_</span>
+          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-limewire')">□</span>
+          <span class="win-btn win-btn-close" onclick="closeWindow('win-limewire')">✕</span>
+        </div>
+      </div>
+
+      <div class="os-window-body p-0 flex flex-col bg-zinc-950 text-lime-100 font-mono text-xs">
+        <!-- LimeWire Top Navigation Toolbar -->
+        <div class="bg-gradient-to-b from-zinc-900 to-zinc-950 border-b border-lime-900/40 p-2.5 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <button class="bg-lime-500/20 hover:bg-lime-500/30 text-lime-300 border border-lime-500/40 px-3 py-1 rounded flex items-center gap-1.5 font-bold">
+              <span>🔍</span> Search
+            </button>
+            <button class="bg-zinc-800/80 hover:bg-zinc-800 text-zinc-400 border border-zinc-700 px-3 py-1 rounded flex items-center gap-1.5">
+              <span>📥</span> Monitor
+            </button>
+            <button class="bg-zinc-800/80 hover:bg-zinc-800 text-zinc-400 border border-zinc-700 px-3 py-1 rounded flex items-center gap-1.5">
+              <span>📻</span> Library
+            </button>
+          </div>
+          <div class="flex items-center gap-2 bg-lime-950/60 border border-lime-600/30 px-2.5 py-1 rounded text-[11px] text-lime-400">
+            <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
+            <span>Ultrapeer Connected (532 hosts)</span>
+          </div>
+        </div>
+
+        <!-- LimeWire Main Area (Sidebar Search + Table) -->
+        <div class="flex-1 flex overflow-hidden">
+          <!-- Left Search Controls Sidebar -->
+          <div class="w-56 bg-zinc-900/90 border-r border-lime-900/30 p-3 flex flex-col justify-between">
+            <div>
+              <div class="text-[10px] text-lime-400/80 uppercase tracking-widest font-bold mb-2">P2P File Search</div>
+              <div class="space-y-2.5">
+                <div>
+                  <label class="text-[10px] text-zinc-400 block mb-1">Keywords / Title</label>
+                  <input type="text" id="lwSearchInput" value="WHERESGABBIE 2026 Art" class="w-full bg-black border border-lime-600/40 rounded px-2 py-1 text-lime-300 focus:outline-none focus:border-lime-400" />
+                </div>
+                <div>
+                  <label class="text-[10px] text-zinc-400 block mb-1">Media Type</label>
+                  <select class="w-full bg-black border border-lime-600/40 rounded px-2 py-1 text-lime-300 focus:outline-none">
+                    <option>Audio & Music (.mp3)</option>
+                    <option>Images & Artwork (.png)</option>
+                    <option>Documents (.pdf)</option>
+                  </select>
+                </div>
+                <button onclick="triggerLWSearch()" class="w-full bg-lime-600 hover:bg-lime-500 text-black font-bold py-1.5 rounded shadow transition-colors mt-1">
+                  Start Search
+                </button>
+              </div>
+            </div>
+
+            <!-- Fake Bandwidth Monitor -->
+            <div class="bg-black/80 border border-lime-900/40 p-2.5 rounded text-[10px] space-y-1">
+              <div class="flex justify-between text-zinc-400">
+                <span>Down Speed:</span>
+                <span class="text-lime-400 font-bold">1,240 KB/s</span>
+              </div>
+              <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-lime-400 h-full w-[78%] animate-pulse"></div>
+              </div>
+              <div class="flex justify-between text-zinc-400 pt-1">
+                <span>Sharing:</span>
+                <span class="text-amber-400">12 Files</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Right File Search Results Table -->
+          <div class="flex-1 flex flex-col bg-zinc-950 overflow-hidden">
+            <div class="overflow-x-auto flex-1">
+              <table class="w-full text-left border-collapse text-[11px]">
+                <thead>
+                  <tr class="bg-zinc-900 text-lime-400/90 border-b border-zinc-800 select-none">
+                    <th class="p-2 font-bold">File Name</th>
+                    <th class="p-2 font-bold">Size</th>
+                    <th class="p-2 font-bold">Quality</th>
+                    <th class="p-2 font-bold">Speed</th>
+                    <th class="p-2 font-bold text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="lwTableBody" class="divide-y divide-zinc-900 text-zinc-300">
+                  <tr class="hover:bg-lime-950/30 transition-colors">
+                    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
+                      <span>🎵</span> PokéBaseMon_Theme_2026.mp3
+                    </td>
+                    <td class="p-2 text-zinc-400">4.2 MB</td>
+                    <td class="p-2 text-lime-400">320 kbps</td>
+                    <td class="p-2 text-emerald-400">T3 Line (128)</td>
+                    <td class="p-2 text-right">
+                      <button onclick="playLimeTrack('PokéBaseMon Theme', 0)" class="bg-lime-500/20 hover:bg-lime-500 text-lime-300 hover:text-black border border-lime-500/40 px-2 py-0.5 rounded transition-all">
+                        ▶ Preview
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-lime-950/30 transition-colors">
+                    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
+                      <span>🖼️</span> Uncanny_Valley_FullHD_Set.zip
+                    </td>
+                    <td class="p-2 text-zinc-400">18.6 MB</td>
+                    <td class="p-2 text-lime-400">Lossless PNG</td>
+                    <td class="p-2 text-emerald-400">Cable (84)</td>
+                    <td class="p-2 text-right">
+                      <button onclick="openWindow('win-slideshow')" class="bg-zinc-800 hover:bg-lime-500 text-zinc-300 hover:text-black border border-zinc-700 px-2 py-0.5 rounded transition-all">
+                        ⬇ Open Gallery
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-lime-950/30 transition-colors">
+                    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
+                      <span>🎵</span> Gabbie_Salas_Art10C_Beats.mp3
+                    </td>
+                    <td class="p-2 text-zinc-400">3.8 MB</td>
+                    <td class="p-2 text-lime-400">256 kbps</td>
+                    <td class="p-2 text-emerald-400">DSL (42)</td>
+                    <td class="p-2 text-right">
+                      <button onclick="playLimeTrack('Art 10C Chill Synth', 1)" class="bg-lime-500/20 hover:bg-lime-500 text-lime-300 hover:text-black border border-lime-500/40 px-2 py-0.5 rounded transition-all">
+                        ▶ Preview
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-lime-950/30 transition-colors">
+                    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
+                      <span>📄</span> Digital_Media_Portfolio_2026.pdf
+                    </td>
+                    <td class="p-2 text-zinc-400">2.1 MB</td>
+                    <td class="p-2 text-lime-400">Vector Print</td>
+                    <td class="p-2 text-emerald-400">T1 (67)</td>
+                    <td class="p-2 text-right">
+                      <button onclick="openWindow('win-about')" class="bg-zinc-800 hover:bg-lime-500 text-zinc-300 hover:text-black border border-zinc-700 px-2 py-0.5 rounded transition-all">
+                        📄 View Info
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <!-- Bottom Built-in Media Player Bar -->
+            <div class="bg-zinc-900 border-t border-lime-900/40 p-2.5 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <button id="lwPlayBtn" onclick="toggleLimeAudio()" class="w-8 h-8 rounded-full bg-lime-500 hover:bg-lime-400 text-black flex items-center justify-center font-bold text-sm shadow">
+                  ▶
+                </button>
+                <div>
+                  <div id="lwTrackName" class="text-lime-300 font-bold text-[11px]">Ready - Select track to preview</div>
+                  <div class="text-[10px] text-zinc-400 flex items-center gap-2">
+                    <span id="lwAudioStatus">Status: Idle</span>
+                    <span>•</span>
+                    <span id="lwAudioTime">0:00 / 2:45</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Equalizer animation visualizer -->
+              <div class="flex items-end gap-1 h-6">
+                <span class="w-1 bg-lime-400 rounded-t animate-bounce h-3"></span>
+                <span class="w-1 bg-lime-400 rounded-t animate-bounce h-5" style="animation-delay: 0.15s"></span>
+                <span class="w-1 bg-lime-400 rounded-t animate-bounce h-2" style="animation-delay: 0.3s"></span>
+                <span class="w-1 bg-lime-400 rounded-t animate-bounce h-6" style="animation-delay: 0.45s"></span>
+                <span class="w-1 bg-lime-400 rounded-t animate-bounce h-4" style="animation-delay: 0.2s"></span>
               </div>
             </div>
           </div>
@@ -857,6 +1041,58 @@ body {
           if (e.target === imageModal) closeLightbox();
         });
       })();
+
+      // 6. LimeWire Audio Preview & Search Controller
+      let isLimePlaying = false;
+      let synthAudio = null;
+
+      function playLimeTrack(trackName, typeIndex) {
+        document.getElementById('lwTrackName').textContent = "Playing: " + trackName;
+        document.getElementById('lwAudioStatus').textContent = "Status: Streaming (320 kbps)";
+        document.getElementById('lwPlayBtn').textContent = "❚❚";
+        isLimePlaying = true;
+        
+        // Synthesize a retro preview audio tone using Web Audio API
+        try {
+          if (synthAudio) synthAudio.close();
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          synthAudio = new AudioContext();
+          const osc = synthAudio.createOscillator();
+          const gain = synthAudio.createGain();
+          osc.type = typeIndex === 0 ? 'sine' : 'triangle';
+          osc.frequency.setValueAtTime(440 + typeIndex * 110, synthAudio.currentTime);
+          gain.gain.setValueAtTime(0.08, synthAudio.currentTime);
+          osc.connect(gain);
+          gain.connect(synthAudio.destination);
+          osc.start();
+        } catch(e) {
+          console.log("Web Audio API initiated.");
+        }
+      }
+
+      function toggleLimeAudio() {
+        const playBtn = document.getElementById('lwPlayBtn');
+        if (isLimePlaying) {
+          isLimePlaying = false;
+          playBtn.textContent = "▶";
+          document.getElementById('lwAudioStatus').textContent = "Status: Paused";
+          if (synthAudio) synthAudio.suspend();
+        } else {
+          isLimePlaying = true;
+          playBtn.textContent = "❚❚";
+          document.getElementById('lwAudioStatus').textContent = "Status: Playing";
+          if (synthAudio) synthAudio.resume();
+        }
+      }
+
+      function triggerLWSearch() {
+        const val = document.getElementById('lwSearchInput').value;
+        const status = document.getElementById('lwAudioStatus');
+        status.textContent = "Searching P2P Network for '" + val + "'...";
+        setTimeout(() => {
+          status.textContent = "Search complete: 4 files found.";
+        }, 800);
+      }
     </script>
   </body>
 </html>
