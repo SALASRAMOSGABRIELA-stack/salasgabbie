@@ -143,16 +143,23 @@
         box-shadow: inset 1px 0 2px rgba(0,0,0,0.3);
       }
 
-      /* Desktop Icons Container */
-      .desktop-icons-grid {
-        position: fixed;
-        top: 20px;
-        left: 20px;
-        display: grid;
-        grid-template-columns: repeat(1, minmax(0, 1fr));
-        gap: 1.5rem;
-        z-index: 5;
-      }
+/* DESKTOP ICON CONTAINER - CLEAN FIXED LAYOUT */
+.desktop-icons-grid {
+  position: fixed;
+  top: 20px;
+  left: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  z-index: 10;
+  pointer-events: auto;
+}
+
+/* Ensure desktop grid overlay doesn't render mini boxes */
+.desktop-grid, 
+.desktop-grid-overlay {
+  display: none !important;
+}
 
       .desktop-icon {
         width: 86px;
