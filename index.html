@@ -56,7 +56,9 @@
 }
 
       /* Desktop Grid Lines Overlay - Softened for Wallpaper */
-      .desktop-grid {
+/* Fixed: Prevents grid pattern overlay from creating mini box artifacts */
+.desktop-grid-overlay {
+  display: none !important;
         position: fixed;
         inset: 0;
         background-image: 
@@ -301,9 +303,6 @@
     <canvas id="trailCanvas"></canvas>
     <canvas id="birdsCanvas"></canvas>
     <canvas id="grassCanvas"></canvas>
-
-    <!-- DESKTOP GRID OVERLAY -->
-    <div class="desktop-grid" aria-hidden="true"></div>
 
     <!-- WINDOWS XP TASKBAR -->
     <header class="xp-taskbar">
