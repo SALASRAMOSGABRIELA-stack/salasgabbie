@@ -425,6 +425,12 @@
     <div class="desktop-icon-img">🌐</div>
     <span class="desktop-icon-title">Live Site</span>
   </a>
+
+  <!-- JOKE / VIRUS PRANK ICON -->
+<div class="desktop-icon" onclick="triggerVirusPrank()" title="DO NOT CLICK!">
+  <div class="desktop-icon-img bg-red-950/80 border-red-500/50">☣️</div>
+  <span class="desktop-icon-title text-red-300">DO NOT OPEN.exe</span>
+</div>
 </div>
 
     <!-- WINDOW 1: FEATURED PROJECT -->
@@ -1211,5 +1217,188 @@
   });
 })();
     </script>
+    <!-- PRANK VIRUS OVERLAY -->
+<div id="prankOverlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 99999; overflow: hidden; font-family: 'Tahoma', sans-serif;">
+  
+  <!-- ESCAPE HINT -->
+  <div style="position: absolute; top: 12px; right: 16px; background: rgba(239, 68, 68, 0.9); color: white; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: bold; z-index: 100000; cursor: pointer; border: 1px solid #fca5a5;" onclick="stopVirusPrank()">
+    ⚠️ Press ESC or Click Here to Exit Prank
+  </div>
+
+  <!-- CONTAINER FOR GENERATED ERROR WINDOW FLOOD -->
+  <div id="errorWindowContainer" style="position: absolute; inset: 0; pointer-events: none;"></div>
+</div>
+// VIRUS PRANK SYSTEM WITH WINDOWS XP SOUND EFFECTS
+(function() {
+  let prankInterval = null;
+  let audioCtx = null;
+
+  // Web Audio API Synthesizer for Retro Windows XP Error Chime
+  function playXPErrorSound() {
+    try {
+      if (!audioCtx) {
+        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+      }
+      if (audioCtx.state === 'suspended') {
+        audioCtx.resume();
+      }
+
+      // Windows XP Error Chime tone pair (~150Hz and ~300Hz sharp pulse)
+      const osc1 = audioCtx.createOscillator();
+      const osc2 = audioCtx.createOscillator();
+      const gain = audioCtx.createGain();
+
+      osc1.type = 'sawtooth';
+      osc2.type = 'square';
+
+      // Retro error tone frequencies
+      osc1.frequency.setValueAtTime(150, audioCtx.currentTime);
+      osc2.frequency.setValueAtTime(300, audioCtx.currentTime);
+
+      // Volume envelope for sharp "ding/chord" attack
+      gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+
+      osc1.connect(gain);
+      osc2.connect(gain);
+      gain.connect(audioCtx.destination);
+
+      osc1.start();
+      osc2.start();
+      osc1.stop(audioCtx.currentTime + 0.25);
+      osc2.stop(audioCtx.currentTime + 0.25);
+    } catch (e) {
+      console.warn('Audio playback failed:', e);
+    }
+  }
+
+  window.triggerVirusPrank = function() {
+    const overlay = document.getElementById('prankOverlay');
+    const container = document.getElementById('errorWindowContainer');
+    if (!overlay || !container) return;
+
+    overlay.style.display = 'block';
+    container.innerHTML = '';
+
+    const errorMessages = [
+      'CRITICAL_PROCESS_DIED: 0x0000000A',
+      'System Overload! Memory corrupted.',
+      'Unauthorized access detected from 192.168.1.104',
+      'LimeWire downloading virus_payload.exe...',
+      'WARNING: Hard drive temperature critical!',
+      'Deleting C:\\WINDOWS\\System32...'
+    ];
+
+    let count = 0;
+    const maxWindows = 25;
+
+    // Spawn cascading error windows with sound
+    prankInterval = setInterval(() => {
+      if (count >= maxWindows) {
+        clearInterval(prankInterval);
+        showBSODScreen(container);
+        return;
+      }
+
+      // Play error sound on every error window spawn
+      playXPErrorSound();
+
+      const randomMsg = errorMessages[Math.floor(Math.random() * errorMessages.length)];
+      const posX = Math.random() * (window.innerWidth - 320);
+      const posY = Math.random() * (window.innerHeight - 180);
+
+      const errWin = document.createElement('div');
+      errWin.style.cssText = `
+        position: absolute;
+        left: ${posX}px;
+        top: ${posY}px;
+        width: 320px;
+        background: #ece9d8;
+        border: 3px solid #0055ea;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        pointer-events: auto;
+      `;
+
+      errWin.innerHTML = `
+        <div style="height: 26px; background: linear-gradient(to bottom, #d83b27, #990000); padding: 0 8px; display: flex; align-items: center; justify-content: space-between; color: white; font-weight: bold; font-size: 11px;">
+          <span>⚠️ SYSTEM ERROR - FATAL EXCEPTION</span>
+          <span style="cursor: pointer; padding: 0 4px;" onclick="this.parentElement.parentElement.remove()">✕</span>
+        </div>
+        <div style="padding: 16px; color: #000; font-size: 12px; display: flex; align-items: center; gap: 12px; background: #f5f3e5;">
+          <span style="font-size: 24px;">❌</span>
+          <span>${randomMsg}</span>
+        </div>
+        <div style="padding: 8px; text-align: right; background: #ece9d8; border-top: 1px solid #d4d0c8;">
+          <button onclick="this.parentElement.parentElement.remove()" style="padding: 3px 16px; background: #ece9d8; border: 1px solid #003c74; border-radius: 3px; font-size: 11px; cursor: pointer; font-weight: bold;">OK</button>
+        </div>
+      `;
+
+      container.appendChild(errWin);
+      count++;
+    }, 120);
+  };
+
+  function showBSODScreen(container) {
+    // Play final low-frequency crash tone
+    try {
+      if (audioCtx) {
+        const osc = audioCtx.createOscillator();
+        const gain = audioCtx.createGain();
+        osc.type = 'sawtooth';
+        osc.frequency.setValueAtTime(80, audioCtx.currentTime);
+        gain.gain.setValueAtTime(0.3, audioCtx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.6);
+        osc.connect(gain);
+        gain.connect(audioCtx.destination);
+        osc.start();
+        osc.stop(audioCtx.currentTime + 0.6);
+      }
+    } catch (e) {}
+
+    const bsod = document.createElement('div');
+    bsod.style.cssText = `
+      position: absolute;
+      inset: 0;
+      background: #0000aa;
+      color: #ffffff;
+      font-family: 'Courier New', monospace;
+      padding: 40px;
+      font-size: 14px;
+      line-height: 1.6;
+      z-index: 999999;
+      pointer-events: auto;
+    `;
+    bsod.innerHTML = `
+      <p style="font-size: 16px; font-weight: bold; margin-bottom: 20px;">A problem has been detected and Windows has been shut down to prevent damage to your computer.</p>
+      <p>WHERESGABBIE_SYSTEM_PRANK_EXCEEDED</p>
+      <p style="margin-top: 20px;">If this is the first time you've seen this Stop error screen, restart your computer. If this screen appears again, follow these steps:</p>
+      <p style="margin-top: 15px;">Check to make sure any new hardware or software is properly installed...</p>
+      <p style="margin-top: 30px;">Technical information:</p>
+      <p>*** STOP: 0x0000007E (0xC0000005, 0x804E518E, 0xF78DA200, 0xF78DA008)</p>
+      <br />
+      <p style="color: #ffff55;">--> CLICK ANYWHERE OR PRESS ESC TO RECOVER YOUR SYSTEM <--</p>
+    `;
+
+    bsod.onclick = window.stopVirusPrank;
+    container.appendChild(bsod);
+  }
+
+  window.stopVirusPrank = function() {
+    if (prankInterval) clearInterval(prankInterval);
+    const overlay = document.getElementById('prankOverlay');
+    const container = document.getElementById('errorWindowContainer');
+    if (overlay) overlay.style.display = 'none';
+    if (container) container.innerHTML = '';
+  };
+
+  // Close prank on ESC key press
+  window.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') {
+      window.stopVirusPrank();
+    }
+  });
+})();
   </body>
 </html>
