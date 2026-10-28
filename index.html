@@ -3,606 +3,630 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>WHERESGABBIE</title>
-    <meta name="description" content="Personal creative showcase and design portfolio for Gabriela Salas (WHERESGABBIE)" />
-    
-    <!-- Modern Minimalist Web Fonts -->
+    <title>WHERESGABBIE — Interactive Desktop Portfolio</title>
+    <meta name="description" content="Personal interactive desktop portfolio and creative showcase for Gabriela Salas (WHERESGABBIE)" />
+
+    <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@500;600;700&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet" />
+    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
-    <!-- Standalone SVG Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><defs><linearGradient id='g' x1='0%' y1='0%' x2='100%' y2='100%'><stop offset='0%' stop-color='%23ff5277'/><stop offset='50%' stop-color='%238b5cf6'/><stop offset='100%' stop-color='%2306b6d4'/></linearGradient></defs><rect width='100' height='100' rx='28' fill='url(%23g)'/><text x='50' y='65' font-family='sans-serif' font-size='50' font-weight='bold' fill='white' text-anchor='middle'>G</text></svg>" />
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Main Stylesheet -->
-    <link rel="stylesheet" href="style.css" />
+    <!-- Standalone Monogram SVG Favicon -->
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230c0c0e'/><text x='50' y='68' font-family='monospace' font-size='55' font-weight='bold' fill='%23ffd166' text-anchor='middle'>G</text></svg>" />
 
-    <!-- Custom Theme & Overlay Styles -->
     <style>
-      /* 1. Base Page Background & Text */
-      body {
-        background-color: #0b130e !important;
-        color: #e2f0d9 !important;
-        margin: 0;
+      :root {
+        --bg-color: #08080a;
+        --card-bg: rgba(18, 18, 22, 0.88);
+        --card-border: rgba(255, 255, 255, 0.12);
+        --text-main: #f4f4f5;
+        --text-muted: #a1a1aa;
+        --text-subtle: #71717a;
+        --accent-yellow: #ffd166;
+        --font-mono: 'JetBrains Mono', monospace;
+        --font-sans: 'Plus Jakarta Sans', sans-serif;
       }
 
-      /* 2. Realistic Paper Panels & Cards with Ripped / Torn Paper Edges */
-      .glass-panel, 
-      .profile-card, 
-      .showcase-hero-card,
-      .artwork-frame,
-      nav.navbar {
-        background-color: #faf8f5 !important;
-        color: #1a241e !important;
-        padding: 2.2rem 2rem;
-        position: relative;
-        
-        /* Irregular Jagged Clip-Path for Torn Paper Edge */
-        clip-path: polygon(
-          0% 1.5%, 3% 0%, 7% 1.8%, 12% 0.3%, 17% 1.5%, 22% 0%, 28% 1.2%, 34% 0.2%, 40% 1.6%, 45% 0%, 52% 1.4%, 58% 0.1%, 64% 1.7%, 70% 0.2%, 76% 1.5%, 82% 0%, 88% 1.6%, 94% 0.2%, 100% 1.5%,
-          99.2% 12%, 100% 25%, 98.8% 38%, 100% 50%, 99.1% 63%, 100% 75%, 98.9% 88%, 100% 98.5%,
-          95% 100%, 89% 98.4%, 83% 99.8%, 77% 98.2%, 71% 100%, 65% 98.5%, 59% 99.9%, 53% 98.3%, 47% 100%, 41% 98.6%, 35% 99.8%, 29% 98.3%, 23% 100%, 17% 98.5%, 11% 99.9%, 5% 98.4%, 0% 100%,
-          0.8% 88%, 0% 75%, 1.2% 63%, 0% 50%, 0.9% 38%, 0% 25%, 1.1% 12%
-        ) !important;
-
-        /* Layered paper drop shadows */
-        filter: drop-shadow(0 3px 6px rgba(0, 0, 0, 0.25)) drop-shadow(0 10px 20px rgba(0, 0, 0, 0.35)) !important;
-
-        /* Paper fiber micro-texture */
-        background-image: radial-gradient(rgba(0, 0, 0, 0.035) 1px, transparent 0) !important;
-        background-size: 6px 6px !important;
-        
-        transition: transform 0.25s cubic-bezier(0.2, 0, 0.2, 1), filter 0.25s ease !important;
+      * {
+        box-sizing: border-box;
+        user-select: none;
       }
 
-      /* Hover Lifted Paper Animation */
-      .profile-card:hover,
-      .artwork-frame:hover {
-        transform: translateY(-4px) rotate(-0.5deg) !important;
-        filter: drop-shadow(0 6px 12px rgba(0, 0, 0, 0.3)) drop-shadow(0 16px 32px rgba(0, 0, 0, 0.45)) !important;
-      }
-
-      /* Masking Tape Accent on top left corner */
-      .artwork-frame::before {
-        content: "";
-        position: absolute;
-        top: -8px;
-        left: 18px;
-        width: 65px;
-        height: 20px;
-        background: rgba(235, 225, 205, 0.75);
-        border: 1px solid rgba(0, 0, 0, 0.08);
-        transform: rotate(-3deg);
-        box-shadow: 0 1px 3px rgba(0, 0, 0, 0.15);
-        z-index: 10;
-        pointer-events: none;
-      }
-
-      /* 3. Navbar Layout & Navigation Buttons */
-      nav.navbar {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 1rem 2rem;
-      }
-
-      .nav-buttons-group {
-        display: flex;
-        align-items: center;
-        gap: 0.75rem;
-      }
-
-      .btn-nav {
-        display: inline-block;
-        padding: 0.5rem 1.25rem;
-        background-color: #577ec8;
-        color: #ffffff !important;
-        border-radius: 4px;
-        font-weight: 600;
-        text-decoration: none;
-        transition: background-color 0.2s ease, transform 0.15s ease;
-      }
-
-      .btn-nav:hover {
-        background-color: #4369b1;
-        color: #ffffff !important;
-        transform: translateY(-1px);
-      }
-
-      /* 4. Headings & Main Titles */
-      h1, h2, h3, h4, h5, h6,
-      .hero-title, 
-      .section-title, 
-      .showcase-heading,
-      .profile-heading,
-      .brand-text,
-      .brand-symbol {
-        color: #5c8dda !important;
-      }
-
-      /* 5. Body Paragraphs & Descriptions */
-      p, 
-      .hero-description, 
-      .showcase-text, 
-      .profile-bio,
-      .footer-sub {
-        color: #598cd3 !important;
-      }
-
-      /* 6. Subtitles, Labels, Tags & Small Text */
-      span, 
-      div, 
-      li, 
-      code,
-      .section-label,
-      .eyebrow-chip,
-      .footer-copy {
-        color: #52a0e9 !important;
-      }
-
-      /* 7. Action Links */
-      a, 
-      .btn-primary, 
-      .btn-secondary,
-      .social-btn,
-      .back-to-top {
-        color: #577ec8 !important;
-      }
-
-      a:hover {
-        color: #63a9d1 !important;
-      }
-
-      /* 8. Gradient Text Accent */
-      .gradient-text {
-        background: linear-gradient(135deg, #8ab0ed, #4388d7) !important;
-        -webkit-background-clip: text !important;
-        background-clip: text !important;
-        -webkit-text-fill-color: transparent !important;
-      }
-
-      /* 9. Background Aurora Blobs */
-      .aurora-blob.blob-1 { background: #4790e3 !important; }
-      .aurora-blob.blob-2 { background: #05235b !important; }
-      .aurora-blob.blob-3 { background: #0264ab !important; }
-      .aurora-blob.blob-4 { background: #0510e6 !important; opacity: 0.2 !important; }
-
-      /* 10. Custom Pencil Cursor */
-      body, a, button, input {
+      /* CUSTOM PENCIL CURSOR PRESERVED EXACTLY */
+      body, a, button, input, div {
         cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
       }
 
+      body {
+        background: #008080 url('https://upload.wikimedia.org/wikipedia/en/2/27/Bliss_%28Windows_XP%29.png') no-repeat center center fixed;
+        background-size: cover;
+        color: var(--text-main);
+        font-family: var(--font-sans);
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        height: 100vh;
+        width: 100vw;
+      }
+
+      /* Desktop Grid Lines Overlay - Softened for Wallpaper */
+      .desktop-grid {
+        position: fixed;
+        inset: 0;
+        background-image: 
+          linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+          linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+        background-size: 50px 50px;
+        pointer-events: none;
+        z-index: 1;
+      }
+
+      /* Canvas Layers */
       #trailCanvas {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        top: 0; left: 0; width: 100%; height: 100%;
         pointer-events: none;
         z-index: 9999;
       }
 
       #grassCanvas {
         position: fixed;
-        bottom: 0;
-        left: 0;
-        width: 100%;
-        height: 140px;
+        bottom: 30px; left: 0; width: 100%; height: 130px;
         pointer-events: none;
-        z-index: 9998;
+        z-index: 2;
+        opacity: 0.45;
       }
 
       #birdsCanvas {
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        top: 0; left: 0; width: 100%; height: 100%;
         pointer-events: none;
-        z-index: 9996;
+        z-index: 2;
+        opacity: 0.45;
       }
 
-      /* 11. IN-PAGE SLIDESHOW MODAL STYLES */
+      /* Authentic Windows XP Taskbar */
+      .xp-taskbar {
+        height: 30px;
+        background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #1941a5 92%, #1941a5 100%);
+        border-top: 1px solid #3879e6;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 1000;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
+      }
+
+      /* Classic XP Start Button */
+      .xp-start-btn {
+        height: 100%;
+        padding: 0 14px 0 10px;
+        background: linear-gradient(to bottom, #388238 0%, #5ca75c 10%, #388238 30%, #296029 90%, #1e471e 100%);
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        box-shadow: inset 1px 1px 1px rgba(255,255,255,0.4), 2px 0 6px rgba(0,0,0,0.4);
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        font-family: 'Tahoma', sans-serif;
+        font-weight: bold;
+        font-style: italic;
+        color: #ffffff;
+        font-size: 13px;
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+        cursor: pointer;
+      }
+
+      .xp-start-btn:hover {
+        filter: brightness(1.1);
+      }
+
+      /* XP System Tray */
+      .xp-systray {
+        height: 100%;
+        background: linear-gradient(to bottom, #0972da 0%, #0e93ff 10%, #0972da 30%, #0756a5 90%, #05407c 100%);
+        border-left: 1px solid #105bb5;
+        padding: 0 12px;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        box-shadow: inset 1px 0 2px rgba(0,0,0,0.3);
+      }
+
+      /* Desktop Icons Container */
+      .desktop-icons-grid {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        display: grid;
+        grid-template-columns: repeat(1, minmax(0, 1fr));
+        gap: 1.5rem;
+        z-index: 5;
+      }
+
+      .desktop-icon {
+        width: 86px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 6px 4px;
+        border-radius: 4px;
+        transition: background 0.2s ease;
+      }
+
+      .desktop-icon:hover {
+        background: rgba(11, 93, 227, 0.4);
+        outline: 1px solid rgba(255, 255, 255, 0.4);
+      }
+
+      .desktop-icon-img {
+        width: 44px;
+        height: 44px;
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      .desktop-icon-title {
+        font-family: 'Tahoma', sans-serif;
+        font-size: 0.75rem;
+        color: #ffffff;
+        text-align: center;
+        text-shadow: 1px 1px 3px #000000, 0 0 5px #000000;
+        word-break: break-word;
+        line-height: 1.2;
+      }
+
+      /* OS XP Window Styling */
+      .os-window {
+        position: absolute;
+        background: #ece9d8;
+        border: 3px solid #0055ea;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        min-width: 320px;
+        min-height: 200px;
+        z-index: 10;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .os-window.minimized {
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.8) translateY(100px);
+      }
+
+      .os-window-header {
+        height: 30px;
+        background: linear-gradient(to bottom, #0058ee 0%, #3593ff 4%, #288eff 6%, #0058ee 10%, #003dd7 90%, #0030a6 100%);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0.5rem;
+        cursor: move;
+        color: white;
+        font-family: 'Tahoma', sans-serif;
+        font-weight: bold;
+        text-shadow: 1px 1px 1px #000000;
+      }
+
+      .window-controls {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .win-btn {
+        width: 21px;
+        height: 21px;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+        font-size: 11px;
+        font-weight: bold;
+        color: white;
+        box-shadow: inset 1px 1px 1px rgba(255,255,255,0.6);
+        cursor: pointer;
+      }
+
+      .win-btn-close { background: linear-gradient(to bottom, #f28d7d, #d83b27); border: 1px solid #990000; }
+      .win-btn-min { background: linear-gradient(to bottom, #3b93ff, #0055ea); border: 1px solid #002b80; }
+      .win-btn-max { background: linear-gradient(to bottom, #3b93ff, #0055ea); border: 1px solid #002b80; }
+
+      .os-window-title {
+        font-family: 'Tahoma', sans-serif;
+        font-size: 0.8rem;
+        color: #ffffff;
+      }
+
+      .os-window-body {
+        padding: 1.25rem;
+        overflow-y: auto;
+        flex: 1;
+        user-select: text;
+        background: #0f172a;
+        color: #f8fafc;
+      }
+
+      /* Custom Lightbox Modal Overlay */
       .modal-overlay {
         display: none;
         position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        background-color: rgba(11, 19, 14, 0.85);
-        backdrop-filter: blur(8px);
-        z-index: 10000;
+        inset: 0;
+        background-color: rgba(5, 5, 7, 0.92);
+        backdrop-filter: blur(14px);
+        z-index: 20000;
         align-items: center;
         justify-content: center;
         padding: 1.5rem;
       }
+      .modal-overlay.active { display: flex; }
 
-      .modal-overlay.active {
-        display: flex;
+      /* Scrollbar styling for windows */
+      .os-window-body::-webkit-scrollbar {
+        width: 6px;
       }
-
-      .modal-card {
-        background-color: #faf8f5 !important;
-        color: #1a241e !important;
-        padding: 2.5rem 2rem 2rem 2rem;
-        border-radius: 12px;
-        max-width: 850px;
-        width: 100%;
-        text-align: center;
-        position: relative;
-        box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+      .os-window-body::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.2);
       }
-
-      .modal-close-btn {
-        position: absolute;
-        top: 1rem;
-        right: 1.25rem;
-        background: transparent;
-        border: none;
-        font-size: 1.75rem;
-        color: #1a241e;
-        cursor: pointer;
-        line-height: 1;
-        transition: color 0.2s ease, transform 0.15s ease;
-      }
-
-      .modal-close-btn:hover {
-        color: #ff5277;
-        transform: scale(1.1);
-      }
-
-      .modal-slide-container {
-        position: relative;
-        min-height: 400px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-
-      .modal-slide {
-        display: none;
-        width: 100%;
-      }
-
-      .modal-slide.active {
-        display: block;
-      }
-
-      .modal-slide img {
-        max-width: 100%;
-        max-height: 520px;
-        object-fit: contain;
-        border-radius: 6px;
-      }
-
-      .modal-counter {
-        font-family: var(--font-mono, monospace);
-        font-size: 0.85rem;
-        color: #52a0e9;
-        margin-bottom: 0.75rem;
-        text-transform: uppercase;
-        letter-spacing: 0.05em;
-      }
-
-      .modal-nav-btn {
-        position: absolute;
-        top: 50%;
-        transform: translateY(-50%);
-        background: rgba(0, 0, 0, 0.65);
-        color: #ffffff;
-        border: none;
-        width: 44px;
-        height: 44px;
-        border-radius: 50%;
-        font-size: 1.25rem;
-        cursor: pointer;
-        transition: background 0.2s ease, transform 0.15s ease;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        z-index: 2;
-      }
-
-      .modal-nav-btn:hover {
-        background: rgba(0, 0, 0, 0.9);
-        transform: translateY(-50%) scale(1.05);
-      }
-
-      .modal-nav-btn.prev { left: 8px; }
-      .modal-nav-btn.next { right: 8px; }
-
-      .modal-dots-container {
-        margin-top: 1.25rem;
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-      }
-
-      .modal-dot {
-        width: 10px;
-        height: 10px;
-        background: #ccc;
-        border-radius: 50%;
-        cursor: pointer;
-        transition: background 0.2s ease, transform 0.2s ease;
-      }
-
-      .modal-dot.active {
-        background: #577ec8;
-        transform: scale(1.3);
+      .os-window-body::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 4px;
       }
     </style>
   </head>
   <body>
 
-    <!-- COLORFUL BACKGROUND -->
-    <div class="aurora-background" aria-hidden="true">
-      <div class="aurora-blob blob-1"></div>
-      <div class="aurora-blob blob-2"></div>
-      <div class="aurora-blob blob-3"></div>
-      <div class="aurora-blob blob-4"></div>
-    </div>
-    <div class="geometric-grid-overlay" aria-hidden="true"></div>
-
-    <div class="site-wrapper">
-
-      <!-- NAVBAR -->
-      <header>
-        <nav class="glass-panel navbar" aria-label="Main Navigation">
-          <a href="#" class="brand">
-            <span class="brand-symbol">G</span>
-            <span class="brand-text">WHERESGABBIE</span>
-          </a>
-
-          <!-- TWO NAVIGATION BUTTONS ONLY: PROJECTS & ABOUT -->
-          <div class="nav-buttons-group">
-            <a href="#showcase" class="btn-nav">Projects</a>
-            <a href="#about" class="btn-nav">About</a>
-          </div>
-
-          <div class="badge-tag">
-            <span class="badge-pulse"></span>
-            <span>10C · F26</span>
-          </div>
-        </nav>
-      </header>
-
-      <!-- MAIN CONTENT -->
-      <main>
-        <!-- HERO SECTION -->
-        <section class="glass-panel hero-section">
-          <div class="eyebrow-chip">
-            <span>Santa Monica College</span>
-            <span>•</span>
-            <span>Digital Media</span>
-          </div>
-
-          <h1 class="hero-title">
-          <span class="gradient-text">WheresGabbie 2026.</span>
-          </h1>
-
-          <div class="hero-actions">
-            <a href="#showcase" class="btn-primary">
-              <span>View Projects</span>
-              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
-                <path fill-rule="evenodd" d="M1 8a.5.5 0 0 1 .5-.5h11.793l-3.147-3.146a.5.5 0 0 1 .708-.708l4 4a.5.5 0 0 1 0 .708l-4 4a.5.5 0 0 1-.708-.708L13.293 8.5H1.5A.5.5 0 0 1 1 8z"/>
-              </svg>
-            </a>
-            <a href="#about" class="btn-secondary">
-              <span>About Gabbie</span>
-            </a>
-          </div>
-        </section>
-
-<!-- SHOWCASE SECTION -->
-        <section id="showcase" class="showcase-container" style="margin-top: 0 !important; padding-top: 4 !important;">
-          
-<div class="section-header" style="text-align: center; margin-top: 0 !important; margin-bottom: -2.5rem !important; padding: 4 !important; position: relative; z-index: 5;">            <span class="section-label" style="display: block; margin-bottom: 0 !important; padding: 1 !important; line-height: 1;">Featured Projects</span>
-            <h2 class="section-title" style="display: flex; justify-content: center; align-items: center; margin: 0 auto !important; padding: 0 !important; line-height: 0; height: auto;">
-              <img src="images/Uncanny Title.png" alt="Uncanny Valley" style="max-width: 100%; width: auto; max-height: 800px; height: auto; object-fit: contain; display: block; margin: 0rem auto 0rem auto !important; padding: 0 !important; filter: drop-shadow(0 2px 8px rgba(0,0,0,0.2));" />
-            </h2>
-          </div>
-
-          <!-- FEATURED HERO CARD WITH TRIGGER BUTTON -->
-          <div class="glass-panel showcase-hero-card" style="display: flex; flex-direction: column; align-items: center; text-align: center; gap: 1.5rem; margin-top: 0 !important;">
-            
-            <div class="artwork-frame" style="width: 100%; max-width: 750px; margin: 0 auto; padding: 0rem;">
-              <span class="artwork-badge">PokéBaseMonBall Cards</span>
-             <a href="images/Final 1.png" class="lightbox-trigger" title="Click to view image preview" style="display: block; width: 100%;">
-  <img src="images/Final 1.png" alt="Cards" style="width: 100%; height: auto; max-height: 650px; object-fit: contain; border-radius: 6px;" loading="eager" />
-</a>
-            </div>
-
-            <div class="showcase-info" style="max-width: 600px;">
-              <span class="showcase-tag">Project 01 · Fall 2026</span>
-           
-              <!-- IN-PAGE MODAL TRIGGER BUTTON -->
-              <div style="margin-top: 1.5rem;">
-                <button id="openSlideshowBtn" class="btn-nav" style="cursor: pointer; border: none; padding: 0.75rem 1.75rem; font-size: 1rem; box-shadow: 0 4px 12px rgba(0,0,0,0.2);">
-                  Project Slideshow
-                </button>
-              </div>
-            </div>
-
-          </div>
-        </section>
-
-        <!-- ABOUT SECTION -->
-        <section id="about" style="margin-top: 4rem;">
-          <div class="section-header">
-            <span class="section-label">Identity &amp; Trajectory</span>
-            <h2 class="section-title" style="color: #1b7ed5 !important;">Context &amp; Practice</h2>
-          </div>
-
-          <!-- 2-COLUMN SIDE-BY-SIDE GRID -->
-          <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 1.5rem; width: 100%;">
-            
-            <!-- Panel 1: Context & Practice (Original) -->
-            <div class="glass-panel profile-card">
-              <div>
-                <h3 class="profile-heading">About Gabbie</h3>
-                <p class="profile-bio">
-                  Student, designer, and digital creator working at the intersection of graphic storytelling.
-                </p>
-              </div>
-
-              <div style="margin-top: 1.5rem;">
-                <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; text-transform: uppercase; color: #52a0e9; margin-bottom: 0.6rem; letter-spacing: 0.08em;">
-                  Interests &amp; Disciplines
-                </div>
-                <div class="skill-tags">
-                  <span class="skill-tag">Character Design</span>
-                  <span class="skill-tag">Typography</span>
-                  <span class="skill-tag">Digital Storytelling</span>
-                  <span class="skill-tag">Traditional Art</span>
-                </div>
-              </div>
-            </div>
-
-            <!-- Panel 2: New Panel -->
-            <div class="glass-panel profile-card">
-              <div>
-                <h3 class="profile-heading">Art 10C</h3>
-                <p class="profile-bio">
-                  Exploring advanced digital art and design theory using computer imaging applications and scanning technologies. We apply visual design principles and digital tools to studio projects focused on personal expression, preparing for advanced study in computer arts.
-                </p>
-              </div>
-
-              <div style="margin-top: 1.5rem;">
-                <div style="font-family: var(--font-mono, monospace); font-size: 0.72rem; text-transform: uppercase; color: #52a0e9; margin-bottom: 0.6rem; letter-spacing: 0.08em;">
-                  Software &amp; Skills
-                </div>
-                <div class="skill-tags">
-                  <span class="skill-tag">Adobe Illustrator</span>
-                  <span class="skill-tag">Photoshop</span>
-                  <span class="skill-tag">Blender</span>
-                  <span class="skill-tag">HTML &amp; CSS</span>
-                </div>
-              </div>
-            </div>
-
-          </div>
-        </section>
-      </main>
-
-      <!-- FOOTER -->
-      <footer style="margin-top: 4rem;">
-        <div class="glass-panel footer-panel">
-          <div class="footer-copy">
-            <span class="footer-title">WHERESGABBIE</span>
-          </div>
-
-          <div class="social-links">
-            <a href="https://github.com/SALASRAMOSGABRIELA-stack/salasgabbie" class="social-btn" aria-label="GitHub Repository" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                <path fill="currentColor" d="M12 0C5.37 0 0 5.37 0 12c0 5.31 3.435 9.795 8.205 11.385.6.105.825-.255.825-.57 0-.285-.015-1.23-.015-2.235-3.015.555-3.795-.735-4.035-1.41-.135-.345-.72-1.41-1.23-1.695-.42-.225-1.02-.78-.015-.795.945-.015 1.62.87 1.845 1.23 1.08 1.815 2.805 1.305 3.495.99.105-.78.42-1.305.765-1.605-2.67-.3-5.46-1.335-5.46-5.925 0-1.305.465-2.385 1.23-3.225-.12-.3-.54-1.53.12-3.18 0 0 1.005-.315 3.3 1.23.96-.27 1.98-.405 3-.405s2.04.135 3 .405c2.295-1.56 3.3-1.23 3.3-1.23.66 1.65.24 2.88.12 3.18.765.84 1.23 1.905 1.23 3.225 0 4.605-2.805 5.625-5.475 5.925.435.375.81 1.095.81 2.22 0 1.605-.015 2.895-.015 3.3 0 .315.225.69.825.57A12.02 12.02 0 0 0 24 12c0-6.63-5.37-12-12-12z"/>
-              </svg>
-            </a>
-            <a href="https://salasramosgabriela-stack.github.io/salasgabbie/" class="social-btn" aria-label="GitHub Pages Live Site" target="_blank" rel="noopener noreferrer">
-              <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-                <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
-              </svg>
-            </a>
-            <a href="#top" class="back-to-top">
-              <span>Back to Top ↑</span>
-            </a>
-          </div>
-        </div>
-      </footer>
-    </div>
-
-    <!-- CANVAS ELEMENTS -->
-    <canvas id="grassCanvas"></canvas>
-    <canvas id="birdsCanvas"></canvas>
+    <!-- CANVASES PRESERVED FROM ORIGINAL CODE -->
     <canvas id="trailCanvas"></canvas>
+    <canvas id="birdsCanvas"></canvas>
+    <canvas id="grassCanvas"></canvas>
 
-    <!-- SLIDESHOW OVERLAY MODAL -->
-    <div id="slideshowModal" class="modal-overlay" aria-hidden="true">
-      <div class="modal-card">
-        <button id="closeSlideshowBtn" class="modal-close-btn" aria-label="Close slideshow">&times;</button>
-        <h2 style="color: #5c8dda; margin-bottom: 0.5rem; font-size: 1.5rem;">PokéBaseMonBall Showcase</h2>
+    <!-- DESKTOP GRID OVERLAY -->
+    <div class="desktop-grid" aria-hidden="true"></div>
+
+    <!-- WINDOWS XP TASKBAR -->
+    <header class="xp-taskbar">
+      <div class="flex items-center gap-2 h-full">
+        <div class="xp-start-btn" onclick="openWindow('win-project')">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
+            <path d="M0 2.5L6.5 1.5V7.5H0V2.5ZM7.5 1.4L16 0V7.5H7.5V1.4ZM0 8.5H6.5V14.5L0 13.5V8.5ZM7.5 8.5H16V16L7.5 14.6V8.5Z" fill="#ffffff"/>
+          </svg>
+          <span>start</span>
+        </div>
         
-        <div class="modal-slide-container">
-          <!-- Slide 1 -->
-          <div class="modal-slide active">
-            <div class="modal-counter">Image uno of 5</div>
-            <img src="images/Uncanny Valley.png" alt="Uncanny Valley 1">
-          </div>
-          <!-- Slide 2 -->
-          <div class="modal-slide">
-            <div class="modal-counter">Image dos of 5</div>
-            <img src="images/Uncanny Valley2.png" alt="Uncanny Valley 2">
-          </div>
-          <!-- Slide 3 -->
-          <div class="modal-slide">
-            <div class="modal-counter">Image tres of 5</div>
-            <img src="images/Uncanny Valley3.png" alt="Uncanny Valley 3">
-          </div>
-          <!-- Slide 4 -->
-          <div class="modal-slide">
-            <div class="modal-counter">Image cuatro of 5</div>
-            <img src="images/Uncanny Valley4.png" alt="Uncanny Valley 4">
-          </div>
-          <!-- Slide 5 -->
-          <div class="modal-slide">
-            <div class="modal-counter">Image cinco of 5</div>
-            <img src="images/Uncanny Valley5.png" alt="Uncanny Valley 5">
-          </div>
+        <div class="flex items-center gap-1.5 ml-2">
+          <button onclick="toggleWindow('win-project')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
+            <span>🃏</span>
+            <span class="truncate max-w-[110px]">PokéBaseMon</span>
+          </button>
+          <button onclick="toggleWindow('win-slideshow')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
+            <span>🖼️</span>
+            <span class="truncate max-w-[110px]">Gallery Viewer</span>
+          </button>
+          <button onclick="toggleWindow('win-about')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
+            <span>📂</span>
+            <span class="truncate max-w-[110px]">About Gabbie</span>
+          </button>
+        </div>
+      </div>
 
-          <!-- Navigation Arrow Buttons -->
-          <button class="modal-nav-btn prev" id="prevSlideBtn" aria-label="Previous slide">❮</button>
-          <button class="modal-nav-btn next" id="nextSlideBtn" aria-label="Next slide">❯</button>
+      <div class="xp-systray">
+        <div class="flex items-center gap-2">
+          <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
+          <span class="font-mono text-[11px] text-blue-100">ART 10C</span>
+        </div>
+        <span id="osClock" class="font-mono text-xs text-white font-bold ml-1">00:00:00 AM</span>
+      </div>
+    </header>
+
+    <!-- DESKTOP ICONS GRID -->
+    <div class="desktop-icons-grid">
+      <div class="desktop-icon" onclick="openWindow('win-project')" title="Double click to open project">
+        <div class="desktop-icon-img">🃏</div>
+        <span class="desktop-icon-title">PokéBaseMon Cards</span>
+      </div>
+
+      <div class="desktop-icon" onclick="openWindow('win-slideshow')" title="Double click to open slideshow">
+        <div class="desktop-icon-img">🖼️</div>
+        <span class="desktop-icon-title">Project Gallery</span>
+      </div>
+
+      <div class="desktop-icon" onclick="openWindow('win-about')" title="Double click to open about">
+        <div class="desktop-icon-img">📂</div>
+        <span class="desktop-icon-title">About Gabbie</span>
+      </div>
+
+      <a href="https://github.com/SALASRAMOSGABRIELA-stack/salasgabbie" target="_blank" class="desktop-icon" title="Open GitHub Repository">
+        <div class="desktop-icon-img">💻</div>
+        <span class="desktop-icon-title">GitHub Repo</span>
+      </a>
+
+      <a href="https://salasramosgabriela-stack.github.io/salasgabbie/" target="_blank" class="desktop-icon" title="Open GitHub Pages Live Site">
+        <div class="desktop-icon-img">🌐</div>
+        <span class="desktop-icon-title">Live Site</span>
+      </a>
+    </div>
+
+    <!-- WINDOW 1: FEATURED PROJECT -->
+    <div id="win-project" class="os-window" style="width: 720px; height: 560px; top: 50px; left: 140px;">
+      <div class="os-window-header" onmousedown="dragWindow(event, 'win-project')">
+        <span class="os-window-title">PokéBaseMon Cards - Featured Project</span>
+        <div class="window-controls">
+          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-project')">_</span>
+          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-project')">□</span>
+          <span class="win-btn win-btn-close" onclick="closeWindow('win-project')">✕</span>
+        </div>
+      </div>
+      <div class="os-window-body">
+        <!-- Title Banner -->
+        <div class="text-center mb-6">
+          <span class="font-mono text-xs text-amber-400 tracking-widest uppercase block mb-1">Featured Works · Fall 2026</span>
+          <div class="flex justify-center mb-3">
+            <img src="images/Uncanny Title.png" alt="Uncanny Valley Title" class="max-h-24 object-contain filter drop-shadow" onerror="this.onerror=null; this.src='https://placehold.co/400x100/18181b/ffffff?text=Uncanny+Valley';" />
+          </div>
         </div>
 
-        <!-- Indicator Dots -->
-        <div class="modal-dots-container">
-          <span class="modal-dot active" data-index="0"></span>
-          <span class="modal-dot" data-index="1"></span>
-          <span class="modal-dot" data-index="2"></span>
-          <span class="modal-dot" data-index="3"></span>
-          <span class="modal-dot" data-index="4"></span>
+        <!-- Image Artwork Frame with Lightbox Trigger -->
+        <div class="relative bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-2 mb-6 group">
+          <span class="absolute top-3 left-3 bg-black/80 text-amber-300 font-mono text-[10px] px-2.5 py-1 rounded border border-zinc-700 z-10">PokéBaseMonBall Cards</span>
+          <a href="images/Final 1.png" class="lightbox-trigger block" title="Click to open full view preview">
+            <img src="images/Final 1.png" alt="PokéBaseMonBall Artwork" class="w-full max-h-[340px] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
+          </a>
+        </div>
+
+        <!-- Project Info & Action -->
+        <div class="flex items-center justify-between bg-zinc-900/60 border border-zinc-800 p-4 rounded-xl">
+          <div>
+            <h4 class="font-mono text-sm font-semibold text-white">Project 01 · PokéBaseMonBall Cards</h4>
+            <p class="text-xs text-zinc-400 mt-1">Digital Media Art 10C Studio Showcase</p>
+          </div>
+          <button onclick="openWindow('win-slideshow')" class="bg-amber-400 hover:bg-amber-300 text-black font-mono font-semibold text-xs px-4 py-2.5 rounded-lg transition-colors shadow">
+            Open Project Gallery →
+          </button>
         </div>
       </div>
     </div>
 
-    <!-- SCRIPTS -->
-     <!-- SINGLE IMAGE LIGHTBOX MODAL -->
-<div id="imageModal" class="modal-overlay" aria-hidden="true">
-  <div class="modal-card" style="max-width: 900px; padding: 2rem 1.5rem 1.5rem 1.5rem;">
-    <button id="closeImageModalBtn" class="modal-close-btn" aria-label="Close preview">&times;</button>
-    
-    <div style="display: flex; justify-content: center; align-items: center; min-height: 400px;">
-      <img id="lightboxImage" src="" alt="Full View" style="max-width: 100%; max-height: 80vh; object-fit: contain; border-radius: 8px;" />
+    <!-- WINDOW 2: PROJECT SLIDESHOW GALLERY -->
+    <div id="win-slideshow" class="os-window" style="width: 780px; height: 580px; top: 70px; left: 220px;">
+      <div class="os-window-header" onmousedown="dragWindow(event, 'win-slideshow')">
+        <span class="os-window-title">PokéBaseMon Gallery Viewer</span>
+        <div class="window-controls">
+          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-slideshow')">_</span>
+          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-slideshow')">□</span>
+          <span class="win-btn win-btn-close" onclick="closeWindow('win-slideshow')">✕</span>
+        </div>
+      </div>
+      <div class="os-window-body flex flex-col items-center justify-between text-center">
+        <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">PokéBaseMonBall Gallery Slideshow</h3>
+        
+        <!-- Slide Viewport -->
+        <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/80 border border-zinc-800 rounded-xl p-4 min-h-[380px]">
+          <!-- Slide 1 -->
+          <div class="modal-slide active w-full">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 01 OF 05</div>
+            <img src="images/Uncanny Valley.png" alt="Uncanny Valley 1" class="max-h-[340px] mx-auto object-contain rounded" onerror="this.onerror=null; this.src='https://placehold.co/600x350/18181b/ffffff?text=Slide+1';" />
+          </div>
+          <!-- Slide 2 -->
+          <div class="modal-slide w-full">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 02 OF 05</div>
+            <img src="images/Uncanny Valley2.png" alt="Uncanny Valley 2" class="max-h-[340px] mx-auto object-contain rounded" onerror="this.onerror=null; this.src='https://placehold.co/600x350/18181b/ffffff?text=Slide+2';" />
+          </div>
+          <!-- Slide 3 -->
+          <div class="modal-slide w-full">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 03 OF 05</div>
+            <img src="images/Uncanny Valley3.png" alt="Uncanny Valley 3" class="max-h-[340px] mx-auto object-contain rounded" onerror="this.onerror=null; this.src='https://placehold.co/600x350/18181b/ffffff?text=Slide+3';" />
+          </div>
+          <!-- Slide 4 -->
+          <div class="modal-slide w-full">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 04 OF 05</div>
+            <img src="images/Uncanny Valley4.png" alt="Uncanny Valley 4" class="max-h-[340px] mx-auto object-contain rounded" onerror="this.onerror=null; this.src='https://placehold.co/600x350/18181b/ffffff?text=Slide+4';" />
+          </div>
+          <!-- Slide 5 -->
+          <div class="modal-slide w-full">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 05 OF 05</div>
+            <img src="images/Uncanny Valley5.png" alt="Uncanny Valley 5" class="max-h-[340px] mx-auto object-contain rounded" onerror="this.onerror=null; this.src='https://placehold.co/600x350/18181b/ffffff?text=Slide+5';" />
+          </div>
+
+          <!-- Slide Controls -->
+          <button id="prevSlideBtn" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all">❮</button>
+          <button id="nextSlideBtn" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all">❯</button>
+        </div>
+
+        <!-- Indicator Dots -->
+        <div class="flex justify-center gap-2 mt-4">
+          <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4"></span>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+
+    <!-- WINDOW 3: ABOUT & STUDIO PRACTICE -->
+    <div id="win-about" class="os-window" style="width: 700px; height: 490px; top: 90px; left: 300px;">
+      <div class="os-window-header" onmousedown="dragWindow(event, 'win-about')">
+        <span class="os-window-title">About Gabbie & Art 10C</span>
+        <div class="window-controls">
+          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-about')">_</span>
+          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-about')">□</span>
+          <span class="win-btn win-btn-close" onclick="closeWindow('win-about')">✕</span>
+        </div>
+      </div>
+      <div class="os-window-body">
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <!-- Panel 1 -->
+          <div class="bg-zinc-900/80 border border-zinc-800 p-5 rounded-xl flex flex-col justify-between">
+            <div>
+              <span class="font-mono text-[11px] text-amber-400 uppercase tracking-widest block mb-2">Identity & Trajectory</span>
+              <h3 class="font-bold text-lg text-white mb-2">About Gabbie</h3>
+              <p class="text-xs text-zinc-400 leading-relaxed">
+                Student, designer, and digital creator working at the intersection of graphic storytelling, character design, and modern front-end media.
+              </p>
+            </div>
+            <div class="mt-6">
+              <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-2">Interests & Disciplines</span>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Character Design</span>
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Typography</span>
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Digital Storytelling</span>
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Traditional Art</span>
+              </div>
+            </div>
+          </div>
+
+          <!-- Panel 2 -->
+          <div class="bg-zinc-900/80 border border-zinc-800 p-5 rounded-xl flex flex-col justify-between">
+            <div>
+              <span class="font-mono text-[11px] text-amber-400 uppercase tracking-widest block mb-2">Academic Studio</span>
+              <h3 class="font-bold text-lg text-white mb-2">Art 10C Studio</h3>
+              <p class="text-xs text-zinc-400 leading-relaxed">
+                Exploring advanced digital art and design theory using computer imaging applications and scanning technologies. Applying visual design principles and studio projects focused on personal expression.
+              </p>
+            </div>
+            <div class="mt-6">
+              <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-2">Software & Skills</span>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Adobe Illustrator</span>
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Photoshop</span>
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Blender</span>
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">HTML & CSS</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SINGLE IMAGE LIGHTBOX MODAL -->
+    <div id="imageModal" class="modal-overlay" aria-hidden="true">
+      <div class="relative bg-zinc-900 border border-zinc-700 p-6 rounded-2xl max-w-4xl w-full text-center shadow-2xl">
+        <button id="closeImageModalBtn" class="absolute top-3 right-4 text-zinc-400 hover:text-white text-2xl font-bold">&times;</button>
+        <div class="flex items-center justify-center min-h-[350px]">
+          <img id="lightboxImage" src="" alt="Full View" class="max-w-full max-h-[80vh] object-contain rounded-lg" />
+        </div>
+      </div>
+    </div>
+
+    <!-- BOTTOM TASKBAR / DOCK -->
+    <div class="os-dock">
+      <div class="dock-item dock-item-active" onclick="toggleWindow('win-project')" title="Toggle Featured Project">🃏</div>
+      <div class="dock-item" onclick="toggleWindow('win-slideshow')" title="Toggle Gallery Viewer">🖼️</div>
+      <div class="dock-item" onclick="toggleWindow('win-about')" title="Toggle About Gabbie">📂</div>
+      <div class="h-6 w-[1px] bg-zinc-800 my-auto"></div>
+      <a href="https://github.com/SALASRAMOSGABRIELA-stack/salasgabbie" target="_blank" class="dock-item" title="Open GitHub Repo">💻</a>
+      <a href="https://salasramosgabriela-stack.github.io/salasgabbie/" target="_blank" class="dock-item" title="Open Live Site">🌐</a>
+    </div>
+
+    <!-- JAVASCRIPT CONTROLLERS AND CANVAS LOGIC -->
     <script>
-      // 1. Subtle Cursor Parallax
-      (function() {
-        const blobs = document.querySelectorAll('.aurora-blob');
-        if (!blobs.length || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      // Clock Logic
+      function updateClock() {
+        const now = new Date();
+        document.getElementById('osClock').textContent = now.toLocaleTimeString();
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
 
-        let mouseX = 0, mouseY = 0;
-        let windowWidth = window.innerWidth, windowHeight = window.innerHeight;
+      // Window Management System (Focus, Drag, Minimize, Maximize)
+      let highestZIndex = 10;
 
-        window.addEventListener('resize', () => {
-          windowWidth = window.innerWidth;
-          windowHeight = window.innerHeight;
-        });
+      function bringToFront(winId) {
+        highestZIndex++;
+        const win = document.getElementById(winId);
+        if (win) win.style.zIndex = highestZIndex;
+      }
 
-        window.addEventListener('mousemove', (e) => {
-          mouseX = (e.clientX / windowWidth) - 0.5;
-          mouseY = (e.clientY / windowHeight) - 0.5;
+      function openWindow(winId) {
+        const win = document.getElementById(winId);
+        if (win) {
+          win.classList.remove('minimized');
+          bringToFront(winId);
+        }
+      }
 
-          blobs.forEach((blob, index) => {
-            const factor = (index + 1) * 20;
-            blob.style.transform = `translate(${mouseX * factor}px, ${mouseY * factor}px)`;
-          });
-        });
-      })();
+      function closeWindow(winId) {
+        const win = document.getElementById(winId);
+        if (win) win.classList.add('minimized');
+      }
 
-      // 2. Dragging Ink Trail Effect
+      function minimizeWindow(winId) {
+        closeWindow(winId);
+      }
+
+      function maximizeWindow(winId) {
+        const win = document.getElementById(winId);
+        if (!win) return;
+        if (win.style.width === '100vw') {
+          win.style.width = '700px';
+          win.style.height = '500px';
+          win.style.top = '100px';
+          win.style.left = '150px';
+        } else {
+          win.style.width = '100vw';
+          win.style.height = 'calc(100vh - 38px)';
+          win.style.top = '38px';
+          win.style.left = '0px';
+        }
+      }
+
+      function toggleWindow(winId) {
+        const win = document.getElementById(winId);
+        if (win.classList.contains('minimized')) {
+          openWindow(winId);
+        } else {
+          closeWindow(winId);
+        }
+      }
+
+      // Dragging Controller
+      function dragWindow(e, winId) {
+        const win = document.getElementById(winId);
+        bringToFront(winId);
+        let shiftX = e.clientX - win.getBoundingClientRect().left;
+        let shiftY = e.clientY - win.getBoundingClientRect().top;
+
+        function moveAt(pageX, pageY) {
+          win.style.left = pageX - shiftX + 'px';
+          win.style.top = pageY - shiftY + 'px';
+        }
+
+        function onMouseMove(event) {
+          moveAt(event.clientX, event.clientY);
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+
+        document.onmouseup = function() {
+          document.removeEventListener('mousemove', onMouseMove);
+          document.onmouseup = null;
+        };
+      }
+
+      document.querySelectorAll('.os-window').forEach(win => {
+        win.addEventListener('mousedown', () => bringToFront(win.id));
+      });
+
+      // 1. Dragging Ink Trail Effect Canvas
       (function() {
         const canvas = document.getElementById('trailCanvas');
         if (!canvas) return;
@@ -637,26 +661,24 @@
 
             if (i > 0) {
               const prev = points[i - 1];
-              const opacity = 1 - (p.age / maxAge);
-              const width = (1 - (p.age / maxAge)) * 5 + 1;
+              const opacity = (1 - (p.age / maxAge)) * 0.7;
+              const width = (1 - (p.age / maxAge)) * 4 + 1;
 
               ctx.beginPath();
               ctx.moveTo(prev.x, prev.y);
               ctx.lineTo(p.x, p.y);
-              ctx.strokeStyle = `rgba(30, 30, 30, ${opacity})`;
+              ctx.strokeStyle = `rgba(255, 209, 102, ${opacity})`;
               ctx.lineWidth = width;
               ctx.lineCap = 'round';
               ctx.stroke();
             }
           }
-
           requestAnimationFrame(animate);
         }
-
         animate();
       })();
 
-      // 3. Layered Grass Effect
+      // 2. Layered Grass Canvas
       (function() {
         const canvas = document.getElementById('grassCanvas');
         if (!canvas) return;
@@ -665,32 +687,28 @@
         let width, height;
         function resize() {
           width = canvas.width = window.innerWidth;
-          height = canvas.height = 140;
+          height = canvas.height = 130;
         }
         resize();
         window.addEventListener('resize', resize);
 
         let mouseX = -1000;
-        window.addEventListener('mousemove', (e) => {
-          mouseX = e.clientX;
-        });
+        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; });
 
-        const bgColors = ['#0d2116', '#143121', '#1a3e2b'];
-        const midColors = ['#1b4332', '#2d6a4f', '#2d724f'];
-        const fgColors = ['#40916c', '#52b788', '#70e000', '#9ef01a'];
+        const bgColors = ['#18181b', '#27272a', '#3f3f46'];
+        const fgColors = ['#52525b', '#71717a', '#a1a1aa'];
 
-        const bladeCount = Math.floor(window.innerWidth / 2.5);
+        const bladeCount = Math.floor(window.innerWidth / 3);
         const blades = [];
 
         for (let i = 0; i < bladeCount; i++) {
           const layer = Math.random();
-          let colorSet = layer < 0.35 ? bgColors : layer < 0.75 ? midColors : fgColors;
+          let colorSet = layer < 0.5 ? bgColors : fgColors;
 
           blades.push({
             x: (i / bladeCount) * window.innerWidth + (Math.random() * 8 - 4),
-            height: 45 + layer * 55 + Math.random() * 25,
+            height: 40 + layer * 50 + Math.random() * 20,
             baseWidth: (2 + layer * 3) + Math.random(),
-            tipWidth: 0.5 + Math.random() * 0.5,
             angle: (Math.random() - 0.5) * 0.2,
             targetAngle: 0,
             naturalCurvature: (Math.random() - 0.5) * 0.35,
@@ -701,10 +719,7 @@
           });
         }
 
-        blades.sort((a, b) => a.layer - b.layer);
-
         let time = 0;
-
         function animate() {
           ctx.clearRect(0, 0, width, height);
           time += 0.025;
@@ -721,31 +736,22 @@
             const rootY = height;
             const tipX = rootX + Math.sin(b.angle) * b.height;
             const tipY = rootY - Math.cos(b.angle) * b.height;
-            const midX = rootX + Math.sin(b.angle * 0.5) * (b.height * 0.5) + (b.naturalCurvature * 15);
+            const midX = rootX + Math.sin(b.angle * 0.5) * (b.height * 0.5);
             const midY = rootY - (b.height * 0.5);
-
-            const gradient = ctx.createLinearGradient(rootX, rootY, tipX, tipY);
-            gradient.addColorStop(0, '#06130b');
-            gradient.addColorStop(0.4, b.color);
-            gradient.addColorStop(1, b.layer > 0.6 ? '#adff2f' : b.color);
 
             ctx.beginPath();
             ctx.moveTo(rootX - b.baseWidth / 2, rootY);
-            ctx.quadraticCurveTo(midX - b.baseWidth / 4, midY, tipX, tipY);
-            ctx.quadraticCurveTo(midX + b.baseWidth / 4, midY, rootX + b.baseWidth / 2, rootY);
-            ctx.closePath();
-
-            ctx.fillStyle = gradient;
+            ctx.quadraticCurveTo(midX, midY, tipX, tipY);
+            ctx.quadraticCurveTo(midX, midY, rootX + b.baseWidth / 2, rootY);
+            ctx.fillStyle = b.color;
             ctx.fill();
           });
-
           requestAnimationFrame(animate);
         }
-
         animate();
       })();
 
-      // 4. Flying Birds Silhouette
+      // 3. Flying Birds Canvas
       (function() {
         const canvas = document.getElementById('birdsCanvas');
         if (!canvas) return;
@@ -759,81 +765,44 @@
         resize();
         window.addEventListener('resize', resize);
 
-        const birdCount = 7;
-        const birds = [];
-
-        function createBird(resetFromLeft = false) {
-          const scale = 0.5 + Math.random() * 0.7;
-          return {
-            x: resetFromLeft ? -50 : Math.random() * (window.innerWidth + 100) - 50,
-            y: Math.random() * (window.innerHeight * 0.5) + 30,
-            vx: 1.2 + Math.random() * 1.5,
-            vy: (Math.random() - 0.5) * 0.4,
-            scale: scale,
-            wingPhase: Math.random() * Math.PI * 2,
-            wingSpeed: 0.08 + Math.random() * 0.05,
-            opacity: 0.25 + scale * 0.35
-          };
-        }
-
-        for (let i = 0; i < birdCount; i++) {
-          birds.push(createBird());
-        }
-
-        function drawBirdSilhouette(ctx, b) {
-          ctx.save();
-          ctx.translate(b.x, b.y);
-          ctx.scale(b.scale, b.scale);
-
-          const wingY = Math.sin(b.wingPhase) * 12;
-
-          ctx.beginPath();
-          ctx.moveTo(-12, 0);
-          ctx.quadraticCurveTo(-4, -2, 0, 0);
-          ctx.quadraticCurveTo(8, 2, 14, 0);
-          ctx.quadraticCurveTo(2, wingY - 6, -6, wingY - 14);
-          ctx.quadraticCurveTo(-2, wingY * 0.5, -4, 0);
-          ctx.quadraticCurveTo(2, wingY - 6, 8, wingY - 12);
-          ctx.quadraticCurveTo(4, wingY * 0.5, 2, 0);
-
-          ctx.fillStyle = `rgba(10, 25, 18, ${b.opacity})`;
-          ctx.fill();
-          ctx.restore();
-        }
+        const birds = Array.from({ length: 6 }, () => ({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * (window.innerHeight * 0.4) + 40,
+          vx: 1.2 + Math.random() * 1.5,
+          scale: 0.5 + Math.random() * 0.6,
+          wingPhase: Math.random() * Math.PI * 2
+        }));
 
         function animate() {
           ctx.clearRect(0, 0, width, height);
-
-          birds.forEach((b, index) => {
+          birds.forEach((b) => {
             b.x += b.vx;
-            b.y += b.vy + Math.sin(b.wingPhase * 0.3) * 0.3;
-            b.wingPhase += b.wingSpeed;
+            b.wingPhase += 0.08;
+            if (b.x > width + 50) b.x = -50;
 
-            if (b.x > width + 60) {
-              birds[index] = createBird(true);
-            }
-
-            drawBirdSilhouette(ctx, b);
+            ctx.save();
+            ctx.translate(b.x, b.y);
+            ctx.scale(b.scale, b.scale);
+            const wingY = Math.sin(b.wingPhase) * 10;
+            ctx.beginPath();
+            ctx.moveTo(-10, 0);
+            ctx.quadraticCurveTo(0, wingY - 8, 10, 0);
+            ctx.quadraticCurveTo(0, wingY * 0.5, -10, 0);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+            ctx.fill();
+            ctx.restore();
           });
-
           requestAnimationFrame(animate);
         }
-
         animate();
       })();
 
-      // 5. In-Page Slideshow Modal Logic
+      // 4. Slideshow Logic Inside Window
       (function() {
-        const openBtn = document.getElementById('openSlideshowBtn');
-        const closeBtn = document.getElementById('closeSlideshowBtn');
-        const modal = document.getElementById('slideshowModal');
         const prevBtn = document.getElementById('prevSlideBtn');
         const nextBtn = document.getElementById('nextSlideBtn');
-        const slides = document.querySelectorAll('.modal-slide');
-        const dots = document.querySelectorAll('.modal-dot');
-
-        if (!openBtn || !modal) return;
-
+        const slides = document.querySelectorAll('#win-slideshow .modal-slide');
+        const dots = document.querySelectorAll('#win-slideshow .modal-dot');
         let currentIndex = 0;
 
         function updateSlides(index) {
@@ -843,89 +812,48 @@
 
           slides.forEach((slide, idx) => {
             slide.classList.toggle('active', idx === currentIndex);
+            slide.style.display = idx === currentIndex ? 'block' : 'none';
           });
 
           dots.forEach((dot, idx) => {
             dot.classList.toggle('active', idx === currentIndex);
+            dot.className = idx === currentIndex ? 'modal-dot w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer' : 'modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer';
           });
         }
-
-        openBtn.addEventListener('click', () => {
-          currentIndex = 0;
-          updateSlides(0);
-          modal.classList.add('active');
-          modal.setAttribute('aria-hidden', 'false');
-        });
-
-        function closeModal() {
-          modal.classList.remove('active');
-          modal.setAttribute('aria-hidden', 'true');
-        }
-
-        closeBtn.addEventListener('click', closeModal);
-
-        modal.addEventListener('click', (e) => {
-          if (e.target === modal) closeModal();
-        });
 
         prevBtn.addEventListener('click', () => updateSlides(currentIndex - 1));
         nextBtn.addEventListener('click', () => updateSlides(currentIndex + 1));
+        dots.forEach(dot => {
+          dot.addEventListener('click', () => updateSlides(parseInt(dot.dataset.index)));
+        });
+        updateSlides(0);
+      })();
 
-        dots.forEach((dot) => {
-          dot.addEventListener('click', () => {
-            const idx = parseInt(dot.getAttribute('data-index'), 10);
-            updateSlides(idx);
+      // 5. Lightbox Modal Logic
+      (function() {
+        const imageModal = document.getElementById('imageModal');
+        const lightboxImg = document.getElementById('lightboxImage');
+        const closeBtn = document.getElementById('closeImageModalBtn');
+        const triggers = document.querySelectorAll('.lightbox-trigger');
+
+        triggers.forEach(trigger => {
+          trigger.addEventListener('click', (e) => {
+            e.preventDefault();
+            lightboxImg.src = trigger.getAttribute('href');
+            imageModal.classList.add('active');
           });
         });
 
-        document.addEventListener('keydown', (e) => {
-          if (!modal.classList.contains('active')) return;
-          if (e.key === 'Escape') closeModal();
-          if (e.key === 'ArrowLeft') updateSlides(currentIndex - 1);
-          if (e.key === 'ArrowRight') updateSlides(currentIndex + 1);
+        function closeLightbox() {
+          imageModal.classList.remove('active');
+          lightboxImg.src = '';
+        }
+
+        closeBtn.addEventListener('click', closeLightbox);
+        imageModal.addEventListener('click', (e) => {
+          if (e.target === imageModal) closeLightbox();
         });
       })();
-      // 6. Single Image Lightbox Controller
-(function() {
-  const imageModal = document.getElementById('imageModal');
-  const lightboxImg = document.getElementById('lightboxImage');
-  const closeBtn = document.getElementById('closeImageModalBtn');
-  const triggers = document.querySelectorAll('.lightbox-trigger');
-
-  if (!imageModal || !lightboxImg) return;
-
-  // Open modal on image click
-  triggers.forEach(trigger => {
-    trigger.addEventListener('click', (e) => {
-      e.preventDefault(); // Prevents navigating away or opening a new tab
-      const imageSrc = trigger.getAttribute('href');
-      lightboxImg.setAttribute('src', imageSrc);
-      imageModal.classList.add('active');
-      imageModal.setAttribute('aria-hidden', 'false');
-    });
-  });
-
-  // Close modal functions
-  function closeLightbox() {
-    imageModal.classList.remove('active');
-    imageModal.setAttribute('aria-hidden', 'true');
-    lightboxImg.setAttribute('src', '');
-  }
-
-  if (closeBtn) closeBtn.addEventListener('click', closeLightbox);
-
-  // Close when clicking dark backdrop
-  imageModal.addEventListener('click', (e) => {
-    if (e.target === imageModal) closeLightbox();
-  });
-
-  // Close on Escape key press
-  document.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape' && imageModal.classList.contains('active')) {
-      closeLightbox();
-    }
-  });
-})();
     </script>
   </body>
 </html>
