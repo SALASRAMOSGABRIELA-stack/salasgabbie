@@ -627,7 +627,29 @@
                     <td class="p-2 text-emerald-400">T3 Line (128)</td>
                     <td class="p-2 text-right">
                       <button onclick="playLimeTrack('PokéBaseMon Theme', 0)" class="bg-lime-500/20 hover:bg-lime-500 text-lime-300 hover:text-black border border-lime-500/40 px-2 py-0.5 rounded transition-all">
-                        ▶ Preview
+                        ▶ Preview<!-- Track 1: Pokémon Theme Song -->
+<tr style="border-bottom: 1px solid #1f2937;">
+  <td style="padding: 0.5rem 0.75rem;">🎵 pokebasemon_theme.mp3</td>
+  <td style="padding: 0.5rem 0.75rem; color: #a3e635;">100% (Complete)</td>
+  <td style="padding: 0.5rem 0.75rem;">3.2 MB</td>
+  <td style="padding: 0.5rem 0.75rem; text-align: right;">
+    <button class="lw-play-btn" data-audio="https://ia800300.us.archive.org/28/items/PokemonGottaCatchEmAllOriginalThemeSong_201804/PokemonGottaCatchEmAllOriginalThemeSong-GottaCatchEmAll.mp3" style="background: #22c55e; color: #000; border: none; padding: 0.35rem 0.75rem; border-radius: 4px; font-weight: bold; cursor: pointer;">
+      ▶ Play
+    </button>
+  </td>
+</tr>
+
+<!-- Track 2: LoFi Peaceful Piano -->
+<tr style="border-bottom: 1px solid #1f2937;">
+  <td style="padding: 0.5rem 0.75rem;">🎵 Gabbie_salas_art10c.mp3</td>
+  <td style="padding: 0.5rem 0.75rem; color: #a3e635;">100% (Complete)</td>
+  <td style="padding: 0.5rem 0.75rem;">4.5 MB</td>
+  <td style="padding: 0.5rem 0.75rem; text-align: right;">
+    <button class="lw-play-btn" data-audio="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3" style="background: #22c55e; color: #000; border: none; padding: 0.35rem 0.75rem; border-radius: 4px; font-weight: bold; cursor: pointer;">
+      ▶ Play
+    </button>
+  </td>
+</tr>
                       </button>
                     </td>
                   </tr>
@@ -1096,6 +1118,60 @@
           status.textContent = "Search complete: 4 files found.";
         }, 800);
       }
+      // LimeWire Audio Controller
+(function() {
+  const currentAudio = new Audio();
+  let currentPlayingBtn = null;
+
+  const playButtons = document.querySelectorAll('.lw-play-btn');
+
+  playButtons.forEach((btn) => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const audioSrc = btn.getAttribute('data-audio');
+      if (!audioSrc) return;
+
+      // Toggle Play/Pause if clicking the currently playing song
+      if (currentAudio.src === audioSrc) {
+        if (currentAudio.paused) {
+          currentAudio.play();
+          btn.textContent = '⏸ Pause';
+          btn.style.background = '#eab308';
+        } else {
+          currentAudio.pause();
+          btn.textContent = '▶ Play';
+          btn.style.background = '#22c55e';
+        }
+        return;
+      }
+
+      // Reset previous playing button state
+      if (currentPlayingBtn && currentPlayingBtn !== btn) {
+        currentPlayingBtn.textContent = '▶ Play';
+        currentPlayingBtn.style.background = '#22c55e';
+      }
+
+      // Play new track
+      currentAudio.src = audioSrc;
+      currentAudio.play().then(() => {
+        btn.textContent = '⏸ Pause';
+        btn.style.background = '#eab308';
+        currentPlayingBtn = btn;
+      }).catch(err => {
+        console.error('Audio playback failed:', err);
+      });
+    });
+  });
+
+  // Reset button state when song ends naturally
+  currentAudio.addEventListener('ended', () => {
+    if (currentPlayingBtn) {
+      currentPlayingBtn.textContent = '▶ Play';
+      currentPlayingBtn.style.background = '#22c55e';
+      currentPlayingBtn = null;
+    }
+  });
+})();
     </script>
   </body>
 </html>
