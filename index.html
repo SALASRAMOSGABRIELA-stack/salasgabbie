@@ -425,7 +425,7 @@
     <div class="desktop-icon-img">🌐</div>
     <span class="desktop-icon-title">Live Site</span>
   </a>
-
+  
   <!-- JOKE / VIRUS PRANK ICON -->
 <div class="desktop-icon" onclick="triggerVirusPrank()" title="DO NOT CLICK!">
   <div class="desktop-icon-img bg-red-950/80 border-red-500/50">☣️</div>
@@ -1215,20 +1215,7 @@
       currentPlayingBtn = null;
     }
   });
-})();
-    </script>
-    <!-- PRANK VIRUS OVERLAY -->
-<div id="prankOverlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 99999; overflow: hidden; font-family: 'Tahoma', sans-serif;">
-  
-  <!-- ESCAPE HINT -->
-  <div style="position: absolute; top: 12px; right: 16px; background: rgba(239, 68, 68, 0.9); color: white; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: bold; z-index: 100000; cursor: pointer; border: 1px solid #fca5a5;" onclick="stopVirusPrank()">
-    ⚠️ Press ESC or Click Here to Exit Prank
-  </div>
-
-  <!-- CONTAINER FOR GENERATED ERROR WINDOW FLOOD -->
-  <div id="errorWindowContainer" style="position: absolute; inset: 0; pointer-events: none;"></div>
-</div>
-// VIRUS PRANK SYSTEM WITH WINDOWS XP SOUND EFFECTS
+})();// VIRUS PRANK SYSTEM WITH WINDOWS XP SOUND EFFECTS
 (function() {
   let prankInterval = null;
   let audioCtx = null;
@@ -1400,5 +1387,6 @@
     }
   });
 })();
+    </script>
   </body>
 </html>
