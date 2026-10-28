@@ -54,6 +54,36 @@
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
 }
+/* Fluid Gallery Scaling for Resizable / Maximized Windows */
+#win-slideshow .os-window-body {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+.modal-slide {
+  width: 100%;
+  height: 100%;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.modal-slide.active {
+  display: flex;
+}
+
+/* Forces images to scale cleanly with window expansion without getting cut off or distorted */
+.modal-slide img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+  object-fit: contain;
+  image-rendering: -webkit-optimize-contrast;
+  image-rendering: crisp-edges;
+}
 
       /* Desktop Grid Lines Overlay - Softened for Wallpaper */
 /* Fixed: Prevents grid pattern overlay from creating mini box artifacts */
@@ -423,62 +453,68 @@
       </div>
     </div>
 
-    <!-- WINDOW 2: PROJECT SLIDESHOW GALLERY -->
-    <div id="win-slideshow" class="os-window" style="width: 780px; height: 580px; top: 70px; left: 220px;">
-      <div class="os-window-header" onmousedown="dragWindow(event, 'win-slideshow')">
-        <span class="os-window-title">PokéBaseMon Gallery Viewer</span>
-        <div class="window-controls">
-          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-slideshow')">_</span>
-          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-slideshow')">□</span>
-          <span class="win-btn win-btn-close" onclick="closeWindow('win-slideshow')">✕</span>
-        </div>
-      </div>
-      <div class="os-window-body flex flex-col items-center justify-between text-center">
-        <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">PokéBaseMonBall Gallery Slideshow</h3>
-        
-        <!-- Slide Viewport -->
-        <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/80 border border-zinc-800 rounded-xl p-4 min-h-[380px]">
-          <!-- Slide 1 -->
-          <div class="modal-slide active w-full">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 01 OF 05</div>
-            <img src="images/Uncanny Valley.png" alt="Uncanny Valley 1" class="max-h-[340px] mx-auto object-contain rounded" onerror="this.onerror=null; this.src='https://placehold.co/600x350/18181b/ffffff?text=Slide+1';" />
-          </div>
-          <!-- Slide 2 -->
-          <div class="modal-slide w-full">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 02 OF 05</div>
-            <img src="images/Uncanny Valley2.png" alt="Uncanny Valley 2" class="max-h-[340px] mx-auto object-contain rounded" onerror="this.onerror=null; this.src='https://placehold.co/600x350/18181b/ffffff?text=Slide+2';" />
-          </div>
-          <!-- Slide 3 -->
-          <div class="modal-slide w-full">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 03 OF 05</div>
-            <img src="images/Uncanny Valley3.png" alt="Uncanny Valley 3" class="max-h-[340px] mx-auto object-contain rounded" onerror="this.onerror=null; this.src='https://placehold.co/600x350/18181b/ffffff?text=Slide+3';" />
-          </div>
-          <!-- Slide 4 -->
-          <div class="modal-slide w-full">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 04 OF 05</div>
-            <img src="images/Uncanny Valley4.png" alt="Uncanny Valley 4" class="max-h-[340px] mx-auto object-contain rounded" onerror="this.onerror=null; this.src='https://placehold.co/600x350/18181b/ffffff?text=Slide+4';" />
-          </div>
-          <!-- Slide 5 -->
-          <div class="modal-slide w-full">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 05 OF 05</div>
-            <img src="images/Uncanny Valley5.png" alt="Uncanny Valley 5" class="max-h-[340px] mx-auto object-contain rounded" onerror="this.onerror=null; this.src='https://placehold.co/600x350/18181b/ffffff?text=Slide+5';" />
-          </div>
-
-          <!-- Slide Controls -->
-          <button id="prevSlideBtn" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all">❮</button>
-          <button id="nextSlideBtn" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all">❯</button>
-        </div>
-
-        <!-- Indicator Dots -->
-        <div class="flex justify-center gap-2 mt-4">
-          <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4"></span>
-        </div>
-      </div>
+<!-- WINDOW 2: PROJECT SLIDESHOW GALLERY -->
+<div id="win-slideshow" class="os-window" style="width: 840px; height: 620px; top: 70px; left: 220px;">
+  <div class="os-window-header" onmousedown="dragWindow(event, 'win-slideshow')">
+    <span class="os-window-title">PokéBaseMon Gallery Viewer</span>
+    <div class="window-controls">
+      <span class="win-btn win-btn-min" onclick="minimizeWindow('win-slideshow')">_</span>
+      <span class="win-btn win-btn-max" onclick="maximizeWindow('win-slideshow')">□</span>
+      <span class="win-btn win-btn-close" onclick="closeWindow('win-slideshow')">✕</span>
     </div>
+  </div>
+
+  <div class="os-window-body flex flex-col items-center justify-between text-center p-4">
+    <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">PokéBaseMonBall Gallery Slideshow</h3>
+
+    <!-- Fluid Slide Viewport -->
+    <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
+      
+      <!-- Slide 1 -->
+      <div class="modal-slide active">
+        <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 01 OF 05</div>
+        <img src="images/Uncanny Valley.png" alt="Uncanny Valley 1" class="gallery-img" />
+      </div>
+
+      <!-- Slide 2 -->
+      <div class="modal-slide">
+        <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 02 OF 05</div>
+        <img src="images/Uncanny Valley2.png" alt="Uncanny Valley 2" class="gallery-img" />
+      </div>
+
+      <!-- Slide 3 -->
+      <div class="modal-slide">
+        <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 03 OF 05</div>
+        <img src="images/Uncanny Valley3.png" alt="Uncanny Valley 3" class="gallery-img" />
+      </div>
+
+      <!-- Slide 4 -->
+      <div class="modal-slide">
+        <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 04 OF 05</div>
+        <img src="images/Uncanny Valley4.png" alt="Uncanny Valley 4" class="gallery-img" />
+      </div>
+
+      <!-- Slide 5 -->
+      <div class="modal-slide">
+        <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 05 OF 05</div>
+        <img src="images/Uncanny Valley5.png" alt="Uncanny Valley 5" class="gallery-img" />
+      </div>
+
+      <!-- Controls -->
+      <button id="prevSlideBtn" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20">❮</button>
+      <button id="nextSlideBtn" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20">❯</button>
+    </div>
+
+    <!-- Indicator Dots -->
+    <div class="flex justify-center gap-2 mt-3">
+      <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0"></span>
+      <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1"></span>
+      <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2"></span>
+      <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3"></span>
+      <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4"></span>
+    </div>
+  </div>
+</div>
 
     <!-- WINDOW 3: ABOUT & STUDIO PRACTICE -->
     <div id="win-about" class="os-window" style="width: 700px; height: 490px; top: 90px; left: 300px;">
