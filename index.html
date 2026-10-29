@@ -17,74 +17,10 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
-    <!-- Standalone Monogram SVG Favicon -->
+    <!-- Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230c0c0e'/><text x='50' y='68' font-family='monospace' font-size='55' font-weight='bold' fill='%23ffd166' text-anchor='middle'>G</text></svg>" />
 
     <style>
-      /* MOBILE & TABLET RESPONSIVE OVERRIDES */
-      @media (max-width: 768px) {
-        .desktop-icons-grid {
-          top: 10px !important;
-          left: 10px !important;
-          right: 10px !important;
-          display: flex !important;
-          flex-direction: row !important;
-          flex-wrap: wrap !important;
-          gap: 10px !important;
-          justify-content: flex-start !important;
-          z-index: 20 !important;
-        }
-
-        .desktop-icon {
-          width: 72px !important;
-          padding: 4px !important;
-        }
-
-        .desktop-icon-img {
-          width: 38px !important;
-          height: 38px !important;
-          font-size: 1.25rem !important;
-        }
-
-        .desktop-icon-title {
-          font-size: 0.65rem !important;
-        }
-
-        .os-window {
-          width: calc(100vw - 20px) !important;
-          max-height: calc(100vh - 80px) !important;
-          top: 10px !important;
-          left: 10px !important;
-          right: 10px !important;
-          min-width: unset !important;
-        }
-
-        .xp-taskbar {
-          height: 36px !important;
-          padding-right: 4px !important;
-        }
-
-        .xp-taskbar button {
-          padding: 2px 6px !important;
-        }
-
-        .xp-taskbar button span:last-child {
-          display: none;
-        }
-
-        .xp-systray {
-          padding: 0 6px !important;
-        }
-
-        #osClock {
-          font-size: 10px !important;
-        }
-
-        #trailCanvas {
-          display: none !important;
-        }
-      }
-
       :root {
         --bg-color: #08080a;
         --card-bg: rgba(18, 18, 22, 0.88);
@@ -102,7 +38,6 @@
         user-select: none;
       }
 
-      /* CUSTOM PENCIL CURSOR */
       body, a, button, input, div {
         cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
       }
@@ -118,7 +53,6 @@
         image-rendering: crisp-edges;
       }
 
-      /* Gallery Window Body & Viewport Flex Centering */
       #win-slideshow .os-window-body {
         display: flex !important;
         flex-direction: column !important;
@@ -156,13 +90,14 @@
         display: none !important;
       }
 
-      /* Canvas Layers */
-      #trailCanvas {
+      #trailCanvas, #birdsCanvas {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
         pointer-events: none;
         z-index: 9999;
       }
+
+      #birdsCanvas { z-index: 2; opacity: 0.60; }
 
       #grassCanvas {
         position: fixed;
@@ -172,15 +107,6 @@
         opacity: 0.60;
       }
 
-      #birdsCanvas {
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        pointer-events: none;
-        z-index: 2;
-        opacity: 0.60;
-      }
-
-      /* Authentic Windows XP Taskbar */
       .xp-taskbar {
         height: 30px;
         background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #1941a5 92%, #1941a5 100%);
@@ -213,9 +139,7 @@
         cursor: pointer;
       }
 
-      .xp-start-btn:hover {
-        filter: brightness(1.1);
-      }
+      .xp-start-btn:hover { filter: brightness(1.1); }
 
       .xp-systray {
         height: 100%;
@@ -278,7 +202,6 @@
         line-height: 1.2;
       }
 
-      /* OS XP Window Styling */
       .os-window {
         position: absolute;
         background: #ece9d8;
@@ -315,11 +238,7 @@
         text-shadow: 1px 1px 1px #000000;
       }
 
-      .window-controls {
-        display: flex;
-        align-items: center;
-        gap: 3px;
-      }
+      .window-controls { display: flex; align-items: center; gap: 3px; }
 
       .win-btn {
         width: 21px;
@@ -337,8 +256,7 @@
       }
 
       .win-btn-close { background: linear-gradient(to bottom, #f28d7d, #d83b27); border: 1px solid #990000; }
-      .win-btn-min { background: linear-gradient(to bottom, #3b93ff, #0055ea); border: 1px solid #002b80; }
-      .win-btn-max { background: linear-gradient(to bottom, #3b93ff, #0055ea); border: 1px solid #002b80; }
+      .win-btn-min, .win-btn-max { background: linear-gradient(to bottom, #3b93ff, #0055ea); border: 1px solid #002b80; }
 
       .os-window-title {
         font-family: 'Tahoma', sans-serif;
@@ -368,22 +286,11 @@
       }
       .modal-overlay.active { display: flex; }
 
-      .os-window-body::-webkit-scrollbar {
-        width: 6px;
-      }
-      .os-window-body::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.2);
-      }
-      .os-window-body::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 4px;
-      }
+      .os-window-body::-webkit-scrollbar { width: 6px; }
+      .os-window-body::-webkit-scrollbar-track { background: rgba(0, 0, 0, 0.2); }
+      .os-window-body::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.15); border-radius: 4px; }
 
-      /* Blender 3D Window Viewport Layout Fixes */
-      #win-blender {
-        min-width: 360px;
-        min-height: 380px;
-      }
+      #win-blender { min-width: 360px; min-height: 380px; }
       #win-blender .os-window-body {
         display: flex !important;
         flex-direction: column !important;
@@ -399,6 +306,27 @@
         background-color: #09090b;
         border-radius: 0 0 0.5rem 0.5rem;
         display: block;
+      }
+
+      @media (max-width: 768px) {
+        .desktop-icons-grid {
+          top: 10px !important; left: 10px !important; right: 10px !important;
+          display: flex !important; flex-direction: row !important; flex-wrap: wrap !important;
+          gap: 10px !important; justify-content: flex-start !important; z-index: 20 !important;
+        }
+        .desktop-icon { width: 72px !important; padding: 4px !important; }
+        .desktop-icon-img { width: 38px !important; height: 38px !important; font-size: 1.25rem !important; }
+        .desktop-icon-title { font-size: 0.65rem !important; }
+        .os-window {
+          width: calc(100vw - 20px) !important; max-height: calc(100vh - 80px) !important;
+          top: 10px !important; left: 10px !important; right: 10px !important; min-width: unset !important;
+        }
+        .xp-taskbar { height: 36px !important; padding-right: 4px !important; }
+        .xp-taskbar button { padding: 2px 6px !important; }
+        .xp-taskbar button span:last-child { display: none; }
+        .xp-systray { padding: 0 6px !important; }
+        #osClock { font-size: 10px !important; }
+        #trailCanvas { display: none !important; }
       }
     </style>
   </head>
@@ -469,7 +397,6 @@
         <span class="desktop-icon-title">About Gabbie</span>
       </div>
 
-      <!-- BLENDER 3D MODEL ICON -->
       <div class="desktop-icon" onclick="openWindow('win-blender')" title="Open 3D Viewport">
         <div class="desktop-icon-img bg-orange-950/80 border-orange-500/50">🧊</div>
         <span class="desktop-icon-title text-orange-200">cUbes.glb</span>
@@ -861,17 +788,24 @@
       <div id="errorWindowContainer" style="position: absolute; inset: 0; pointer-events: none;"></div>
     </div>
 
-    <!-- JAVASCRIPT CONTROLLERS AND CANVAS LOGIC -->
+    <!-- JAVASCRIPT SYSTEM ENGINE -->
     <script>
-      // 1. Clock Controller
+      // Global Shared Coordinates for Performance Optimization
+      let globalMouseX = -1000, globalMouseY = -1000;
+      window.addEventListener('mousemove', (e) => {
+        globalMouseX = e.clientX;
+        globalMouseY = e.clientY;
+      }, { passive: true });
+
+      // Clock
       function updateClock() {
-        const now = new Date();
-        document.getElementById('osClock').textContent = now.toLocaleTimeString();
+        const el = document.getElementById('osClock');
+        if (el) el.textContent = new Date().toLocaleTimeString();
       }
       setInterval(updateClock, 1000);
       updateClock();
 
-      // 2. Global Window Management System
+      // Window Management
       let highestZIndex = 10;
 
       function bringToFront(winId) {
@@ -887,11 +821,10 @@
           win.style.display = 'flex';
           bringToFront(winId);
 
-          // Force Model-Viewer resize recalculation when opening 3D Viewport
           if (winId === 'win-blender') {
             const viewer = document.getElementById('blenderViewer');
-            if (viewer) {
-              setTimeout(() => { viewer.requestUpdate(); }, 100);
+            if (viewer && viewer.requestUpdate) {
+              setTimeout(() => viewer.requestUpdate(), 50);
             }
           }
         }
@@ -902,9 +835,7 @@
         if (win) win.classList.add('minimized');
       }
 
-      function minimizeWindow(winId) {
-        closeWindow(winId);
-      }
+      function minimizeWindow(winId) { closeWindow(winId); }
 
       function maximizeWindow(winId) {
         const win = document.getElementById(winId);
@@ -924,7 +855,7 @@
 
       function toggleWindow(winId) {
         const win = document.getElementById(winId);
-        if (win.classList.contains('minimized') || win.style.display === 'none') {
+        if (win && (win.classList.contains('minimized') || win.style.display === 'none')) {
           openWindow(winId);
         } else {
           closeWindow(winId);
@@ -933,21 +864,17 @@
 
       function dragWindow(e, winId) {
         const win = document.getElementById(winId);
+        if (!win) return;
         bringToFront(winId);
         let shiftX = e.clientX - win.getBoundingClientRect().left;
         let shiftY = e.clientY - win.getBoundingClientRect().top;
 
-        function moveAt(pageX, pageY) {
-          win.style.left = pageX - shiftX + 'px';
-          win.style.top = pageY - shiftY + 'px';
-        }
-
         function onMouseMove(event) {
-          moveAt(event.clientX, event.clientY);
+          win.style.left = (event.clientX - shiftX) + 'px';
+          win.style.top = (event.clientY - shiftY) + 'px';
         }
 
         document.addEventListener('mousemove', onMouseMove);
-
         document.onmouseup = function() {
           document.removeEventListener('mousemove', onMouseMove);
           document.onmouseup = null;
@@ -958,26 +885,26 @@
         win.addEventListener('mousedown', () => bringToFront(win.id));
       });
 
-      // 3. Fallback GLB Model Loader Path Strategy
+      // 3D Model Viewport Fallback Path Check
       (function() {
         const viewer = document.getElementById('blenderViewer');
         if (!viewer) return;
-
-        viewer.addEventListener('error', (event) => {
-          console.warn('Primary GLB model load failed. Trying fallback root path...');
-          if (viewer.getAttribute('src') === 'models/cUbes.glb') {
-            viewer.setAttribute('src', 'cUbes.glb');
-          } else {
+        viewer.addEventListener('error', () => {
+          if (viewer.getAttribute('src') === 'cUbes.glb') {
             viewer.setAttribute('src', 'models/cUbes.glb');
+          } else {
+            viewer.setAttribute('src', 'cUbes.glb');
           }
         });
       })();
 
-      // 4. Dragging Ink Trail Effect Canvas
+      // Trail Canvas
       (function() {
         const canvas = document.getElementById('trailCanvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
+        let points = [];
+        const maxAge = 40;
 
         function resizeCanvas() {
           canvas.width = window.innerWidth;
@@ -986,36 +913,30 @@
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
 
-        const points = [];
-        const maxAge = 45;
-
         window.addEventListener('mousemove', (e) => {
-          points.push({ x: e.clientX, y: e.clientY, age: 0 });
-        });
+          if (points.length < 50) {
+            points.push({ x: e.clientX, y: e.clientY, age: 0 });
+          }
+        }, { passive: true });
 
         function animate() {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
-
           for (let i = 0; i < points.length; i++) {
             const p = points[i];
             p.age++;
-
             if (p.age > maxAge) {
               points.splice(i, 1);
               i--;
               continue;
             }
-
             if (i > 0) {
               const prev = points[i - 1];
               const opacity = (1 - (p.age / maxAge)) * 0.7;
-              const width = (1 - (p.age / maxAge)) * 4 + 1;
-
               ctx.beginPath();
               ctx.moveTo(prev.x, prev.y);
               ctx.lineTo(p.x, p.y);
               ctx.strokeStyle = `rgba(255, 209, 102, ${opacity})`;
-              ctx.lineWidth = width;
+              ctx.lineWidth = (1 - (p.age / maxAge)) * 4 + 1;
               ctx.lineCap = 'round';
               ctx.stroke();
             }
@@ -1025,43 +946,36 @@
         animate();
       })();
 
-      // 5. Layered Grass Canvas
+      // Grass Canvas
       (function() {
         const canvas = document.getElementById('grassCanvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = 130;
 
-        let width, height;
-        function resize() {
+        window.addEventListener('resize', () => {
           width = canvas.width = window.innerWidth;
           height = canvas.height = 130;
-        }
-        resize();
-        window.addEventListener('resize', resize);
-
-        let mouseX = -1000;
-        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; });
+        });
 
         const bgColors = ['#18181b', '#27272a', '#3f3f46'];
         const fgColors = ['#52525b', '#71717a', '#a1a1aa'];
-
-        const bladeCount = Math.floor(window.innerWidth / 3);
+        const bladeCount = Math.floor(window.innerWidth / 4);
         const blades = [];
 
         for (let i = 0; i < bladeCount; i++) {
           const layer = Math.random();
-          let colorSet = layer < 0.5 ? bgColors : fgColors;
-
+          const colorSet = layer < 0.5 ? bgColors : fgColors;
           blades.push({
             x: (i / bladeCount) * window.innerWidth + (Math.random() * 8 - 4),
             height: 40 + layer * 50 + Math.random() * 20,
             baseWidth: (2 + layer * 3) + Math.random(),
-            angle: (Math.random() - 0.5) * 0.2,
+            angle: 0,
             targetAngle: 0,
             naturalCurvature: (Math.random() - 0.5) * 0.35,
             stiffness: 0.03 + layer * 0.04,
             color: colorSet[Math.floor(Math.random() * colorSet.length)],
-            layer: layer,
             phase: Math.random() * Math.PI * 2
           });
         }
@@ -1070,12 +984,10 @@
         function animate() {
           ctx.clearRect(0, 0, width, height);
           time += 0.025;
-
           blades.forEach((b) => {
             const windWave = Math.sin(time * 1.5 + b.x * 0.008 + b.phase) * 0.22;
-            const dist = Math.abs(mouseX - b.x);
-            let mouseForce = dist < 100 ? (mouseX < b.x ? 1 : -1) * (1 - dist / 100) * 1.1 : 0;
-
+            const dist = Math.abs(globalMouseX - b.x);
+            const mouseForce = dist < 100 ? (globalMouseX < b.x ? 1 : -1) * (1 - dist / 100) * 1.1 : 0;
             b.targetAngle = b.naturalCurvature + windWave + mouseForce;
             b.angle += (b.targetAngle - b.angle) * b.stiffness;
 
@@ -1098,19 +1010,18 @@
         animate();
       })();
 
-      // 6. Flying Birds Canvas
+      // Birds Canvas
       (function() {
         const canvas = document.getElementById('birdsCanvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
+        let width = canvas.width = window.innerWidth;
+        let height = canvas.height = window.innerHeight;
 
-        let width, height;
-        function resize() {
+        window.addEventListener('resize', () => {
           width = canvas.width = window.innerWidth;
           height = canvas.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener('resize', resize);
+        });
 
         const birds = Array.from({ length: 6 }, () => ({
           x: Math.random() * window.innerWidth,
@@ -1144,7 +1055,7 @@
         animate();
       })();
 
-      // 7. Slideshow Logic Inside Window
+      // Slideshow Gallery Logic
       (function() {
         const prevBtn = document.getElementById('prevSlideBtn');
         const nextBtn = document.getElementById('nextSlideBtn');
@@ -1163,7 +1074,6 @@
           });
 
           dots.forEach((dot, idx) => {
-            dot.classList.toggle('active', idx === currentIndex);
             dot.className = idx === currentIndex ? 'modal-dot w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer' : 'modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer';
           });
         }
@@ -1178,14 +1088,13 @@
         }
       })();
 
-      // 8. Lightbox Modal Logic
+      // Lightbox Modal
       (function() {
         const imageModal = document.getElementById('imageModal');
         const lightboxImg = document.getElementById('lightboxImage');
         const closeBtn = document.getElementById('closeImageModalBtn');
-        const triggers = document.querySelectorAll('.lightbox-trigger');
 
-        triggers.forEach(trigger => {
+        document.querySelectorAll('.lightbox-trigger').forEach(trigger => {
           trigger.addEventListener('click', (e) => {
             e.preventDefault();
             lightboxImg.src = trigger.getAttribute('href');
@@ -1206,7 +1115,7 @@
         }
       })();
 
-      // 9. LimeWire Audio Player Controller
+      // LimeWire Audio System
       let isLimePlaying = false;
       let synthAudio = null;
 
@@ -1237,9 +1146,8 @@
       (function() {
         const currentAudio = new Audio();
         let currentPlayingBtn = null;
-        const playButtons = document.querySelectorAll('.lw-play-btn');
 
-        playButtons.forEach((btn) => {
+        document.querySelectorAll('.lw-play-btn').forEach((btn) => {
           btn.addEventListener('click', (e) => {
             e.stopPropagation();
             const audioSrc = btn.getAttribute('data-audio');
@@ -1268,9 +1176,7 @@
               btn.textContent = '⏸ Pause';
               btn.style.background = '#eab308';
               currentPlayingBtn = btn;
-            }).catch(err => {
-              console.error('Audio playback failed:', err);
-            });
+            }).catch(err => console.error('Audio playback failed:', err));
           });
         });
 
@@ -1283,50 +1189,38 @@
         });
       })();
 
-      // 10. Virus Prank System
+      // Virus Prank Engine with Audio Chime
       (function() {
         let prankInterval = null;
         let audioCtx = null;
 
         function playXPErrorSound() {
           try {
-            if (!audioCtx) {
-              audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-              audioCtx.resume();
-            }
+            if (!audioCtx) audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            if (audioCtx.state === 'suspended') audioCtx.resume();
 
             const osc1 = audioCtx.createOscillator();
             const osc2 = audioCtx.createOscillator();
             const gain = audioCtx.createGain();
 
-            osc1.type = 'sawtooth';
-            osc2.type = 'square';
-
+            osc1.type = 'sawtooth'; osc2.type = 'square';
             osc1.frequency.setValueAtTime(150, audioCtx.currentTime);
             osc2.frequency.setValueAtTime(300, audioCtx.currentTime);
 
             gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
             gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
 
-            osc1.connect(gain);
-            osc2.connect(gain);
+            osc1.connect(gain); osc2.connect(gain);
             gain.connect(audioCtx.destination);
 
-            osc1.start();
-            osc2.start();
-            osc1.stop(audioCtx.currentTime + 0.25);
-            osc2.stop(audioCtx.currentTime + 0.25);
-          } catch (e) {
-            console.warn('Audio playback failed:', e);
-          }
+            osc1.start(); osc2.start();
+            osc1.stop(audioCtx.currentTime + 0.25); osc2.stop(audioCtx.currentTime + 0.25);
+          } catch (e) {}
         }
 
         window.triggerVirusPrank = function() {
           const overlay = document.getElementById('prankOverlay');
           const container = document.getElementById('errorWindowContainer');
-          
           if (!overlay || !container) return;
 
           overlay.style.display = 'block';
@@ -1428,29 +1322,23 @@
         };
 
         window.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-            window.stopVirusPrank();
-          }
+          if (e.key === 'Escape') window.stopVirusPrank();
         });
       })();
 
-      // 11. Mobile Touch Drag Support
+      // Mobile Touch Interaction Mapping
       (function() {
-        let activeTouchWindow = null;
-        let touchOffsetX = 0;
-        let touchOffsetY = 0;
+        let activeTouchWindow = null, touchOffsetX = 0, touchOffsetY = 0;
 
         document.addEventListener('touchstart', function(e) {
           const header = e.target.closest('.os-window-header');
           if (!header) return;
-
           const win = header.closest('.os-window');
           if (!win) return;
 
           activeTouchWindow = win;
           const touch = e.touches[0];
           const rect = win.getBoundingClientRect();
-
           touchOffsetX = touch.clientX - rect.left;
           touchOffsetY = touch.clientY - rect.top;
 
@@ -1460,23 +1348,13 @@
 
         document.addEventListener('touchmove', function(e) {
           if (!activeTouchWindow) return;
-          
           e.preventDefault();
-
           const touch = e.touches[0];
-          let newX = touch.clientX - touchOffsetX;
-          let newY = touch.clientY - touchOffsetY;
-
-          newX = Math.max(0, Math.min(window.innerWidth - activeTouchWindow.offsetWidth, newX));
-          newY = Math.max(0, Math.min(window.innerHeight - activeTouchWindow.offsetHeight - 36, newY));
-
-          activeTouchWindow.style.left = newX + 'px';
-          activeTouchWindow.style.top = newY + 'px';
+          activeTouchWindow.style.left = Math.max(0, Math.min(window.innerWidth - activeTouchWindow.offsetWidth, touch.clientX - touchOffsetX)) + 'px';
+          activeTouchWindow.style.top = Math.max(0, Math.min(window.innerHeight - activeTouchWindow.offsetHeight - 36, touch.clientY - touchOffsetY)) + 'px';
         }, { passive: false });
 
-        document.addEventListener('touchend', function() {
-          activeTouchWindow = null;
-        });
+        document.addEventListener('touchend', () => { activeTouchWindow = null; });
       })();
     </script>
   </body>
