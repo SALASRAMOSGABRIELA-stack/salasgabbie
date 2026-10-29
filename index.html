@@ -6,14 +6,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WHERESGABBIE — Interactive Desktop Portfolio</title>
     <meta name="description" content="Personal interactive desktop portfolio and creative showcase for Gabriela Salas (WHERESGABBIE)" />
+
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
+
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
+
     <!-- Standalone Monogram SVG Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230c0c0e'/><text x='50' y='68' font-family='monospace' font-size='55' font-weight='bold' fill='%23ffd166' text-anchor='middle'>G</text></svg>" />
+
     <style>
       /* MOBILE & TABLET RESPONSIVE OVERRIDES */
       @media (max-width: 768px) {
@@ -28,18 +32,22 @@
           justify-content: flex-start !important;
           z-index: 20 !important;
         }
+
         .desktop-icon {
           width: 72px !important;
           padding: 4px !important;
         }
+
         .desktop-icon-img {
           width: 38px !important;
           height: 38px !important;
           font-size: 1.25rem !important;
         }
+
         .desktop-icon-title {
           font-size: 0.65rem !important;
         }
+
         .os-window {
           width: calc(100vw - 20px) !important;
           max-height: calc(100vh - 80px) !important;
@@ -48,26 +56,33 @@
           right: 10px !important;
           min-width: unset !important;
         }
+
         .xp-taskbar {
           height: 36px !important;
           padding-right: 4px !important;
         }
+
         .xp-taskbar button {
           padding: 2px 6px !important;
         }
+
         .xp-taskbar button span:last-child {
           display: none;
         }
+
         .xp-systray {
           padding: 0 6px !important;
         }
+
         #osClock {
           font-size: 10px !important;
         }
+
         #trailCanvas {
           display: none !important;
         }
       }
+
       :root {
         --bg-color: #08080a;
         --card-bg: rgba(18, 18, 22, 0.88);
@@ -79,13 +94,16 @@
         --font-mono: 'JetBrains Mono', monospace;
         --font-sans: 'Plus Jakarta Sans', sans-serif;
       }
+
       * {
         box-sizing: border-box;
         user-select: none;
       }
+
       body, a, button, input, div {
         cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
       }
+
       body {
         margin: 0;
         padding: 0;
@@ -96,45 +114,52 @@
         image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
       }
+
       #win-slideshow .os-window-body {
-        display: flex !important;
-        flex-direction: column !important;
-        height: 100% !important;
-        padding: 1rem !important;
+        display: flex;
+        flex-direction: column;
+        height: 100%;
+        padding: 1rem;
       }
+
       .modal-slide {
-        width: 100% !important;
-        height: 100% !important;
-        display: none !important;
-        flex-direction: column !important;
-        align-items: center !important;
-        justify-content: center !important;
-        text-align: center !important;
+        width: 100%;
+        height: 100%;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
       }
+
       .modal-slide.active {
-        display: flex !important;
+        display: flex;
       }
+
       .modal-slide img {
-        max-width: 100% !important;
-        max-height: 80% !important;
-        width: auto !important;
-        height: auto !important;
-        object-fit: contain !important;
-        margin: auto !important;
-        display: block !important;
+        max-width: 100%;
+        max-height: 80%;
+        width: auto;
+        height: auto;
+        object-fit: contain;
+        margin: auto;
+        display: block;
         image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
       }
+
       .desktop-grid, 
       .desktop-grid-overlay {
         display: none !important;
       }
+
       #trailCanvas {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
         pointer-events: none;
         z-index: 9999;
       }
+
       #grassCanvas {
         position: fixed;
         bottom: 30px; left: 0; width: 100%; height: 130px;
@@ -142,6 +167,7 @@
         z-index: 2;
         opacity: 0.60;
       }
+
       #birdsCanvas {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
@@ -149,6 +175,7 @@
         z-index: 2;
         opacity: 0.60;
       }
+
       .xp-taskbar {
         height: 30px;
         background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #1941a5 92%, #1941a5 100%);
@@ -161,6 +188,7 @@
         z-index: 1000;
         box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
       }
+
       .xp-start-btn {
         height: 100%;
         padding: 0 14px 0 10px;
@@ -179,9 +207,11 @@
         text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
         cursor: pointer;
       }
+
       .xp-start-btn:hover {
         filter: brightness(1.1);
       }
+
       .xp-systray {
         height: 100%;
         background: linear-gradient(to bottom, #0972da 0%, #0e93ff 10%, #0972da 30%, #0756a5 90%, #05407c 100%);
@@ -192,6 +222,7 @@
         gap: 8px;
         box-shadow: inset 1px 0 2px rgba(0,0,0,0.3);
       }
+
       .desktop-icons-grid {
         position: fixed;
         top: 20px;
@@ -202,6 +233,7 @@
         z-index: 10;
         pointer-events: auto;
       }
+
       .desktop-icon {
         width: 86px;
         display: flex;
@@ -212,10 +244,12 @@
         border-radius: 4px;
         transition: background 0.2s ease;
       }
+
       .desktop-icon:hover {
         background: rgba(11, 93, 227, 0.4);
         outline: 1px solid rgba(255, 255, 255, 0.4);
       }
+
       .desktop-icon-img {
         width: 44px;
         height: 44px;
@@ -228,6 +262,7 @@
         font-size: 1.5rem;
         box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
       }
+
       .desktop-icon-title {
         font-family: 'Tahoma', sans-serif;
         font-size: 0.75rem;
@@ -237,6 +272,7 @@
         word-break: break-word;
         line-height: 1.2;
       }
+
       .os-window {
         position: absolute;
         background: #ece9d8;
@@ -252,11 +288,13 @@
         z-index: 10;
         transition: opacity 0.2s ease, transform 0.2s ease;
       }
+
       .os-window.minimized {
         opacity: 0;
         pointer-events: none;
         transform: scale(0.8) translateY(100px);
       }
+
       .os-window-header {
         height: 30px;
         background: linear-gradient(to bottom, #0058ee 0%, #3593ff 4%, #288eff 6%, #0058ee 10%, #003dd7 90%, #0030a6 100%);
@@ -270,11 +308,13 @@
         font-weight: bold;
         text-shadow: 1px 1px 1px #000000;
       }
+
       .window-controls {
         display: flex;
         align-items: center;
         gap: 3px;
       }
+
       .win-btn {
         width: 21px;
         height: 21px;
@@ -289,14 +329,17 @@
         box-shadow: inset 1px 1px 1px rgba(255,255,255,0.6);
         cursor: pointer;
       }
+
       .win-btn-close { background: linear-gradient(to bottom, #f28d7d, #d83b27); border: 1px solid #990000; }
       .win-btn-min { background: linear-gradient(to bottom, #3b93ff, #0055ea); border: 1px solid #002b80; }
       .win-btn-max { background: linear-gradient(to bottom, #3b93ff, #0055ea); border: 1px solid #002b80; }
+
       .os-window-title {
         font-family: 'Tahoma', sans-serif;
         font-size: 0.8rem;
         color: #ffffff;
       }
+
       .os-window-body {
         padding: 1.25rem;
         overflow-y: auto;
@@ -304,7 +347,9 @@
         user-select: text;
         background: #0f172a;
         color: #f8fafc;
+        position: relative;
       }
+
       .os-window-body::-webkit-scrollbar {
         width: 6px;
       }
@@ -315,6 +360,7 @@
         background: rgba(255, 255, 255, 0.15);
         border-radius: 4px;
       }
+
       .modal-overlay {
         display: none;
         position: fixed;
@@ -330,10 +376,12 @@
     </style>
   </head>
   <body>
+
     <!-- CANVAS LAYERS -->
     <canvas id="trailCanvas"></canvas>
     <canvas id="birdsCanvas"></canvas>
     <canvas id="grassCanvas"></canvas>
+
     <!-- WINDOWS XP TASKBAR -->
     <header class="xp-taskbar">
       <div class="flex items-center gap-2 h-full">
@@ -367,6 +415,7 @@
           </button>
         </div>
       </div>
+
       <div class="xp-systray">
         <div class="flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
@@ -375,33 +424,40 @@
         <span id="osClock" class="font-mono text-xs text-white font-bold ml-1">00:00:00 AM</span>
       </div>
     </header>
+
     <!-- DESKTOP SHORTCUTS -->
     <div class="desktop-icons-grid">
       <div class="desktop-icon" onclick="openWindow('win-project')">
         <div class="desktop-icon-img">📂</div>
         <span class="desktop-icon-title">Uncanny Valley</span>
       </div>
+
       <div class="desktop-icon" onclick="openWindow('win-slideshow')">
         <div class="desktop-icon-img">📂</div>
         <span class="desktop-icon-title">Project Gallery</span>
       </div>
+
       <div class="desktop-icon" onclick="openWindow('win-artifact')">
         <div class="desktop-icon-img">📂</div>
         <span class="desktop-icon-title">3D Artifact Study</span>
       </div>
+
       <div class="desktop-icon" onclick="openWindow('win-about')">
         <div class="desktop-icon-img">📂</div>
         <span class="desktop-icon-title">About Gabbie</span>
       </div>
+
       <div class="desktop-icon" onclick="openWindow('win-limewire')">
         <div class="desktop-icon-img bg-lime-950/90 border-lime-500/50">🍋</div>
         <span class="desktop-icon-title">LimeWire v4.12</span>
       </div>
+
       <div class="desktop-icon" onclick="triggerVirusPrank()" title="DO NOT CLICK!">
         <div class="desktop-icon-img bg-red-950/80 border-red-500/50">☣️</div>
         <span class="desktop-icon-title text-red-300">DO NOT OPEN.exe</span>
       </div>
     </div>
+
     <!-- WINDOW 1: FEATURED PROJECT -->
     <div id="win-project" class="os-window" style="width: 720px; height: 560px; top: 50px; left: 140px;">
       <div class="os-window-header" onmousedown="dragWindow(event, 'win-project')">
@@ -412,6 +468,21 @@
           <span class="win-btn win-btn-close" onclick="closeWindow('win-project')">✕</span>
         </div>
       </div>
+
+      <!-- IN-WINDOW POKÉBASEMONBALL CARDS PREVIEW MODAL -->
+      <div id="projectImagePreview" class="hidden absolute inset-0 top-[30px] bg-black/85 backdrop-blur-sm z-30 flex items-center justify-center p-4">
+        <div class="relative bg-zinc-900 border border-zinc-700 p-3 rounded-xl shadow-2xl max-w-[88%] max-h-[88%] flex flex-col items-center">
+          <!-- "X" Close Button on Top Right -->
+          <button onclick="closeProjectPreview()" class="absolute -top-3 -right-3 w-7 h-7 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full border border-red-300 flex items-center justify-center text-xs shadow-lg cursor-pointer z-40 transition-transform hover:scale-110" title="Close Preview">
+            ✕
+          </button>
+          <img id="projectPreviewImg" src="images/Final 1.png" alt="PokéBaseMonBall Cards Preview" class="max-w-full max-h-[380px] object-contain rounded-lg shadow" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
+          <div class="mt-2 text-center">
+            <span class="font-mono text-[11px] text-amber-300">PokéBaseMonBall Cards · Preview</span>
+          </div>
+        </div>
+      </div>
+
       <div class="os-window-body">
         <div class="text-center mb-6">
           <span class="font-mono text-xs text-amber-400 tracking-widest uppercase block mb-1">Featured Works · Fall 2026</span>
@@ -419,12 +490,14 @@
             <img src="images/Uncanny Title.png" alt="Uncanny Valley Title" class="max-h-24 object-contain filter drop-shadow" onerror="this.onerror=null; this.src='https://placehold.co/400x100/18181b/ffffff?text=Uncanny+Valley';" />
           </div>
         </div>
-        <div class="relative bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-2 mb-6 group">
+
+        <div class="relative bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-2 mb-6 group cursor-pointer" onclick="openProjectPreview('images/Final 1.png')">
           <span class="absolute top-3 left-3 bg-black/80 text-amber-300 font-mono text-[10px] px-2.5 py-1 rounded border border-zinc-700 z-10">PokéBaseMonBall Cards</span>
-          <a href="images/Final 1.png" class="lightbox-trigger block" title="Click to open full view preview">
+          <div class="block" title="Click to open preview within window">
             <img src="images/Final 1.png" alt="PokéBaseMonBall Artwork" class="w-full max-h-[340px] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
-          </a>
+          </div>
         </div>
+
         <div class="flex items-center justify-between bg-zinc-900/60 border border-zinc-800 p-4 rounded-xl">
           <div>
             <h4 class="font-mono text-sm font-semibold text-white">Project 01 · Uncanny Valley</h4>
@@ -436,6 +509,7 @@
         </div>
       </div>
     </div>
+
     <!-- WINDOW 2: PROJECT SLIDESHOW GALLERY -->
     <div id="win-slideshow" class="os-window" style="width: 840px; height: 620px; top: 70px; left: 220px;">
       <div class="os-window-header" onmousedown="dragWindow(event, 'win-slideshow')">
@@ -446,41 +520,51 @@
           <span class="win-btn win-btn-close" onclick="closeWindow('win-slideshow')">✕</span>
         </div>
       </div>
+
       <div class="os-window-body flex flex-col items-center justify-between text-center p-4">
         <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">Project Gallery Slideshow</h3>
+
         <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
           <div class="modal-slide active">
             <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE UNO OF 05</div>
-            <img src="images/Uncanny Valley HiRes.png" alt="Uncanny Valley HiRes" />
+            <img src="images/Uncanny Valley HiRes.png" alt="Uncanny Valley HiRes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+01';" />
           </div>
+
           <div class="modal-slide">
             <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE DOS OF 05</div>
-            <img src="images/Uncanny Valley HIRESS.png" alt="Uncanny Valley HIRESS" />
+            <img src="images/Uncanny Valley HIRESS.png" alt="Uncanny Valley HIRESS" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+02';" />
           </div>
+
           <div class="modal-slide">
             <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE TRES OF 05</div>
-            <img src="images/Uncanny Valley HiRes3.png" alt="Uncanny Valley HiRes3" />
+            <img src="images/Uncanny Valley HiRes3.png" alt="Uncanny Valley HiRes3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+03';" />
           </div>
+
           <div class="modal-slide">
             <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CUATRO OF 05</div>
-            <img src="images/Uncanny Valley HiRes4.png" alt="Uncanny Valley HiRes4" />
+            <img src="images/Uncanny Valley HiRes4.png" alt="Uncanny Valley HiRes4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+04';" />
           </div>
+
           <div class="modal-slide">
             <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CINCO OF 05</div>
-            <img src="images/Uncanny Valley HiRes5.png" alt="Uncanny Valley HiRes5" />
+            <img src="images/Uncanny Valley HiRes5.png" alt="Uncanny Valley HiRes5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+05';" />
           </div>
-          <button id="prevSlideBtn" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20">❮</button>
-          <button id="nextSlideBtn" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20">❯</button>
+
+          <!-- Clickable Navigation Arrows -->
+          <button type="button" id="prevSlideBtn" onclick="prevSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❮</button>
+          <button type="button" id="nextSlideBtn" onclick="nextSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❯</button>
         </div>
+
         <div class="flex justify-center gap-2 mt-3">
-          <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4"></span>
+          <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToSlide(event, 0)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToSlide(event, 1)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToSlide(event, 2)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToSlide(event, 3)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToSlide(event, 4)"></span>
         </div>
       </div>
     </div>
+
     <!-- WINDOW 3: ABOUT & STUDIO PRACTICE -->
     <div id="win-about" class="os-window" style="width: 700px; height: 490px; top: 90px; left: 300px;">
       <div class="os-window-header" onmousedown="dragWindow(event, 'win-about')">
@@ -511,6 +595,7 @@
               </div>
             </div>
           </div>
+
           <div class="bg-zinc-900/80 border border-zinc-800 p-5 rounded-xl flex flex-col justify-between">
             <div>
               <span class="font-mono text-[11px] text-amber-400 uppercase tracking-widest block mb-2">Academic Studio</span>
@@ -532,6 +617,7 @@
         </div>
       </div>
     </div>
+
     <!-- WINDOW 4: 3D ARTIFACT STUDY -->
     <div id="win-artifact" class="os-window minimized" style="width: 740px; height: 560px; top: 80px; left: 240px;">
       <div class="os-window-header" onmousedown="dragWindow(event, 'win-artifact')">
@@ -545,6 +631,7 @@
           <span class="win-btn win-btn-close" onclick="closeWindow('win-artifact')">✕</span>
         </div>
       </div>
+
       <div class="os-window-body flex flex-col p-4 bg-zinc-950 text-zinc-200">
         <!-- Inner Title Header -->
         <div class="flex items-center justify-between mb-3 bg-zinc-900/80 border border-zinc-800 p-3.5 rounded-xl">
@@ -556,6 +643,7 @@
             cUbes.glb
           </span>
         </div>
+
         <!-- 3D Model Viewer Container -->
         <div class="model-container relative flex-1 w-full bg-black border border-zinc-800 rounded-xl overflow-hidden p-2 flex flex-col">
           <model-viewer 
@@ -570,6 +658,7 @@
         </div>
       </div>
     </div>
+
     <!-- WINDOW 5: LIMEWIRE PRO P2P CLIENT -->
     <div id="win-limewire" class="os-window minimized" style="width: 760px; height: 530px; top: 60px; left: 180px;">
       <div class="os-window-header" style="background: linear-gradient(to bottom, #2b5711 0%, #4c991e 8%, #366d15 90%, #1c3b0a 100%); border-bottom: 1px solid #62c427;" onmousedown="dragWindow(event, 'win-limewire')">
@@ -583,6 +672,7 @@
           <span class="win-btn win-btn-close" onclick="closeWindow('win-limewire')">✕</span>
         </div>
       </div>
+
       <div class="os-window-body p-0 flex flex-col bg-zinc-950 text-lime-100 font-mono text-xs">
         <div class="bg-gradient-to-b from-zinc-900 to-zinc-950 border-b border-lime-900/40 p-2.5 flex items-center justify-between">
           <div class="flex items-center gap-2">
@@ -601,6 +691,7 @@
             <span>Ultrapeer Connected (532 hosts)</span>
           </div>
         </div>
+
         <div class="flex-1 flex overflow-hidden">
           <div class="w-56 bg-zinc-900/90 border-r border-lime-900/30 p-3 flex flex-col justify-between">
             <div>
@@ -623,6 +714,7 @@
                 </button>
               </div>
             </div>
+
             <div class="bg-black/80 border border-lime-900/40 p-2.5 rounded text-[10px] space-y-1">
               <div class="flex justify-between text-zinc-400">
                 <span>Down Speed:</span>
@@ -637,6 +729,7 @@
               </div>
             </div>
           </div>
+
           <div class="flex-1 flex flex-col bg-zinc-950 overflow-hidden">
             <div class="overflow-x-auto flex-1">
               <table class="w-full text-left border-collapse text-[11px]">
@@ -658,11 +751,12 @@
                     <td class="p-2 text-lime-400">100% (Complete)</td>
                     <td class="p-2 text-emerald-400">Cable (92)</td>
                     <td class="p-2 text-right">
-                      <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all" data-audio="https://archive.org/download/tvtunes_11549/Pokemon.mp3">
+                      <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all cursor-pointer" data-track="pokebasemon" data-audio="https://archive.org/download/tvtunes_11549/Pokemon.mp3">
                         ▶ Play
                       </button>
                     </td>
                   </tr>
+
                   <tr class="hover:bg-lime-950/30 transition-colors">
                     <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
                       <span>🖼️</span> Uncanny_Valley_FullHD_Set.zip
@@ -676,6 +770,7 @@
                       </button>
                     </td>
                   </tr>
+
                   <tr class="hover:bg-lime-950/30 transition-colors">
                     <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
                       <span>🎵</span> Gabbie_salas_art10c.mp3
@@ -684,11 +779,12 @@
                     <td class="p-2 text-lime-400">100% (Complete)</td>
                     <td class="p-2 text-emerald-400">T3 (120)</td>
                     <td class="p-2 text-right">
-                      <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all" data-audio="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3">
+                      <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all cursor-pointer" data-track="gabbie" data-audio="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3">
                         ▶ Play
                       </button>
                     </td>
                   </tr>
+
                   <tr class="hover:bg-lime-950/30 transition-colors">
                     <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
                       <span>📄</span> Digital_Media_Portfolio_2026.pdf
@@ -705,9 +801,10 @@
                 </tbody>
               </table>
             </div>
+
             <div class="bg-zinc-900 border-t border-lime-900/40 p-2.5 flex items-center justify-between">
               <div class="flex items-center gap-3">
-                <button id="lwPlayBtn" onclick="toggleLimeAudio()" class="w-8 h-8 rounded-full bg-lime-500 hover:bg-lime-400 text-black flex items-center justify-center font-bold text-sm shadow">
+                <button id="lwPlayBtn" onclick="toggleLimeAudio()" class="w-8 h-8 rounded-full bg-lime-500 hover:bg-lime-400 text-black flex items-center justify-center font-bold text-sm shadow cursor-pointer">
                   ▶
                 </button>
                 <div>
@@ -719,27 +816,31 @@
                   </div>
                 </div>
               </div>
-              <div class="flex items-end gap-1 h-6">
-                <span class="w-1 bg-lime-400 rounded-t animate-bounce h-3"></span>
-                <span class="w-1 bg-lime-400 rounded-t animate-bounce h-5" style="animation-delay: 0.15s"></span>
-                <span class="w-1 bg-lime-400 rounded-t animate-bounce h-2" style="animation-delay: 0.3s"></span>
-                <span class="w-1 bg-lime-400 rounded-t animate-bounce h-6" style="animation-delay: 0.45s"></span>
-                <span class="w-1 bg-lime-400 rounded-t animate-bounce h-4" style="animation-delay: 0.2s"></span>
+
+              <!-- Animated Equalizer Bars -->
+              <div id="lwEqualizer" class="flex items-end gap-1 h-6 opacity-40">
+                <span class="w-1 bg-lime-400 rounded-t h-3"></span>
+                <span class="w-1 bg-lime-400 rounded-t h-5"></span>
+                <span class="w-1 bg-lime-400 rounded-t h-2"></span>
+                <span class="w-1 bg-lime-400 rounded-t h-6"></span>
+                <span class="w-1 bg-lime-400 rounded-t h-4"></span>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-    <!-- SINGLE IMAGE LIGHTBOX MODAL -->
+
+    <!-- SINGLE IMAGE LIGHTBOX MODAL (GLOBAL FALLBACK) -->
     <div id="imageModal" class="modal-overlay" aria-hidden="true">
-      <div class="relative bg-zinc-900 border border-zinc-700 p-6 rounded-2xl max-w-4xl w-full text-center shadow-2xl">
-        <button id="closeImageModalBtn" class="absolute top-3 right-4 text-zinc-400 hover:text-white text-2xl font-bold">&times;</button>
-        <div class="flex items-center justify-center min-h-[350px]">
-          <img id="lightboxImage" src="" alt="Full View" class="max-w-full max-h-[80vh] object-contain rounded-lg" />
+      <div class="relative bg-zinc-900 border border-zinc-700 p-4 rounded-xl max-w-3xl w-full text-center shadow-2xl">
+        <button id="closeImageModalBtn" class="absolute top-2 right-3 text-zinc-400 hover:text-white text-2xl font-bold cursor-pointer">&times;</button>
+        <div class="flex items-center justify-center min-h-[300px]">
+          <img id="lightboxImage" src="" alt="Full View" class="max-w-full max-h-[70vh] object-contain rounded-lg" />
         </div>
       </div>
     </div>
+
     <!-- PRANK VIRUS OVERLAY -->
     <div id="prankOverlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 99999; overflow: hidden; font-family: 'Tahoma', sans-serif;">
       <div style="position: absolute; top: 12px; right: 16px; background: rgba(239, 68, 68, 0.9); color: white; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: bold; z-index: 100000; cursor: pointer; border: 1px solid #fca5a5;" onclick="stopVirusPrank()">
@@ -747,7 +848,8 @@
       </div>
       <div id="errorWindowContainer" style="position: absolute; inset: 0; pointer-events: none;"></div>
     </div>
-    <!-- JAVASCRIPT CONTROLLERS AND CANVAS LOGIC -->
+
+    <!-- JAVASCRIPT CONTROLLERS -->
     <script>
       function updateClock() {
         const now = new Date();
@@ -755,12 +857,15 @@
       }
       setInterval(updateClock, 1000);
       updateClock();
+
       let highestZIndex = 10;
+
       function bringToFront(winId) {
         highestZIndex++;
         const win = document.getElementById(winId);
         if (win) win.style.zIndex = highestZIndex;
       }
+
       function openWindow(winId) {
         const win = document.getElementById(winId);
         if (win) {
@@ -768,13 +873,16 @@
           bringToFront(winId);
         }
       }
+
       function closeWindow(winId) {
         const win = document.getElementById(winId);
         if (win) win.classList.add('minimized');
       }
+
       function minimizeWindow(winId) {
         closeWindow(winId);
       }
+
       function maximizeWindow(winId) {
         const win = document.getElementById(winId);
         if (!win) return;
@@ -790,6 +898,7 @@
           win.style.left = '0px';
         }
       }
+
       function toggleWindow(winId) {
         const win = document.getElementById(winId);
         if (win.classList.contains('minimized')) {
@@ -798,64 +907,487 @@
           closeWindow(winId);
         }
       }
-      // Enhanced Drag Controller with Screen Boundary Constraints
+
+      // Drag Controller with Boundary Constraints
       function dragWindow(e, winId) {
         const win = document.getElementById(winId);
         if (!win) return;
         
         bringToFront(winId);
+
         let shiftX = e.clientX - win.getBoundingClientRect().left;
         let shiftY = e.clientY - win.getBoundingClientRect().top;
+
         function moveAt(pageX, pageY) {
           let newX = pageX - shiftX;
           let newY = pageY - shiftY;
-          // Keep top edge below viewport roof and clear of taskbar
+
           const maxX = window.innerWidth - win.offsetWidth;
-          const maxY = window.innerHeight - win.offsetHeight - 30; // 30px Taskbar Offset
+          const maxY = window.innerHeight - win.offsetHeight - 30;
+
           win.style.left = Math.max(0, Math.min(maxX, newX)) + 'px';
           win.style.top = Math.max(0, Math.min(maxY, newY)) + 'px';
         }
+
         function onMouseMove(event) {
           moveAt(event.clientX, event.clientY);
         }
+
         document.addEventListener('mousemove', onMouseMove);
+
         document.onmouseup = function() {
           document.removeEventListener('mousemove', onMouseMove);
           document.onmouseup = null;
         };
       }
+
       document.querySelectorAll('.os-window').forEach(win => {
         win.addEventListener('mousedown', () => bringToFront(win.id));
       });
+
+      // IN-WINDOW IMAGE PREVIEW CONTROLLERS
+      function openProjectPreview(src) {
+        const preview = document.getElementById('projectImagePreview');
+        const img = document.getElementById('projectPreviewImg');
+        if (preview && img) {
+          if (src) img.src = src;
+          preview.classList.remove('hidden');
+          preview.style.display = 'flex';
+        }
+      }
+
+      function closeProjectPreview() {
+        const preview = document.getElementById('projectImagePreview');
+        if (preview) {
+          preview.classList.add('hidden');
+          preview.style.display = 'none';
+        }
+      }
+
+      // PROJECT GALLERY SLIDESHOW CONTROLLER
+      let currentSlideIndex = 0;
+
+      function updateSlides(index) {
+        const slides = document.querySelectorAll('#win-slideshow .modal-slide');
+        const dots = document.querySelectorAll('#win-slideshow .modal-dot');
+        if (!slides || slides.length === 0) return;
+
+        if (index >= slides.length) currentSlideIndex = 0;
+        else if (index < 0) currentSlideIndex = slides.length - 1;
+        else currentSlideIndex = index;
+
+        slides.forEach((slide, idx) => {
+          if (idx === currentSlideIndex) {
+            slide.classList.add('active');
+            slide.style.display = 'flex';
+          } else {
+            slide.classList.remove('active');
+            slide.style.display = 'none';
+          }
+        });
+
+        dots.forEach((dot, idx) => {
+          if (idx === currentSlideIndex) {
+            dot.classList.add('active');
+            dot.className = 'modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer';
+          } else {
+            dot.classList.remove('active');
+            dot.className = 'modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer';
+          }
+        });
+      }
+
+      function nextSlide(e) {
+        if (e) e.stopPropagation();
+        updateSlides(currentSlideIndex + 1);
+      }
+
+      function prevSlide(e) {
+        if (e) e.stopPropagation();
+        updateSlides(currentSlideIndex - 1);
+      }
+
+      function goToSlide(e, idx) {
+        if (e) e.stopPropagation();
+        updateSlides(idx);
+      }
+
+      // Initialize slide
+      updateSlides(0);
+
+      // LIMEWIRE AUDIO ENGINE & RETRO SYNTHESIZER
+      let htmlAudio = new Audio();
+      let activeTrackName = '';
+      let isPlaying = false;
+      let audioTimer = null;
+      let secondsElapsed = 0;
+      let currentPlayBtn = null;
+
+      // Built-in Web Audio API 8-Bit Chiptune Fallback Player
+      let synthCtx = null;
+      let synthInterval = null;
+      let synthNoteIdx = 0;
+
+      const pokemonMelody = [
+        { f: 392.00, d: 240 }, { f: 440.00, d: 240 }, { f: 493.88, d: 240 },
+        { f: 523.25, d: 480 }, { f: 587.33, d: 240 }, { f: 659.25, d: 480 },
+        { f: 523.25, d: 240 }, { f: 587.33, d: 680 }, { f: 392.00, d: 240 },
+        { f: 523.25, d: 480 }, { f: 587.33, d: 240 }, { f: 659.25, d: 480 },
+        { f: 698.46, d: 240 }, { f: 659.25, d: 240 }, { f: 587.33, d: 240 },
+        { f: 523.25, d: 720 }
+      ];
+
+      const gabbieMelody = [
+        { f: 261.63, d: 380 }, { f: 329.63, d: 380 }, { f: 392.00, d: 380 },
+        { f: 493.88, d: 380 }, { f: 440.00, d: 380 }, { f: 349.23, d: 380 },
+        { f: 440.00, d: 380 }, { f: 523.25, d: 580 }, { f: 392.00, d: 380 },
+        { f: 329.63, d: 380 }, { f: 293.66, d: 380 }, { f: 261.63, d: 580 }
+      ];
+
+      function startSynth(trackType) {
+        stopSynth();
+        try {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContext) return;
+          if (!synthCtx) synthCtx = new AudioContext();
+          if (synthCtx.state === 'suspended') synthCtx.resume();
+
+          const notes = (trackType === 'pokebasemon') ? pokemonMelody : gabbieMelody;
+          synthNoteIdx = 0;
+
+          function playNextNote() {
+            if (!isPlaying) return;
+            const current = notes[synthNoteIdx % notes.length];
+            synthNoteIdx++;
+
+            const osc = synthCtx.createOscillator();
+            const gain = synthCtx.createGain();
+
+            osc.type = (trackType === 'pokebasemon') ? 'square' : 'sawtooth';
+            osc.frequency.setValueAtTime(current.f, synthCtx.currentTime);
+
+            gain.gain.setValueAtTime(0.08, synthCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, synthCtx.currentTime + (current.d / 1000));
+
+            osc.connect(gain);
+            gain.connect(synthCtx.destination);
+
+            osc.start();
+            osc.stop(synthCtx.currentTime + (current.d / 1000));
+
+            synthInterval = setTimeout(playNextNote, current.d);
+          }
+          playNextNote();
+        } catch(e) {
+          console.warn("Synth error:", e);
+        }
+      }
+
+      function stopSynth() {
+        if (synthInterval) {
+          clearTimeout(synthInterval);
+          synthInterval = null;
+        }
+      }
+
+      function updateAudioUI(playing, trackTitle) {
+        isPlaying = playing;
+        const playBtn = document.getElementById('lwPlayBtn');
+        const trackLbl = document.getElementById('lwTrackName');
+        const statusLbl = document.getElementById('lwAudioStatus');
+        const eq = document.getElementById('lwEqualizer');
+
+        if (trackTitle) trackLbl.textContent = trackTitle;
+
+        if (playing) {
+          playBtn.textContent = '❚❚';
+          statusLbl.textContent = 'Status: Playing';
+          eq.classList.remove('opacity-40');
+          Array.from(eq.children).forEach(bar => bar.classList.add('animate-bounce'));
+
+          if (!audioTimer) {
+            audioTimer = setInterval(() => {
+              secondsElapsed++;
+              const m = Math.floor(secondsElapsed / 60);
+              const s = String(secondsElapsed % 60).padStart(2, '0');
+              document.getElementById('lwAudioTime').textContent = `${m}:${s} / 2:45`;
+            }, 1000);
+          }
+        } else {
+          playBtn.textContent = '▶';
+          statusLbl.textContent = 'Status: Paused';
+          eq.classList.add('opacity-40');
+          Array.from(eq.children).forEach(bar => bar.classList.remove('animate-bounce'));
+          if (audioTimer) {
+            clearInterval(audioTimer);
+            audioTimer = null;
+          }
+        }
+      }
+
+      function toggleLimeAudio() {
+        if (!activeTrackName) {
+          const firstBtn = document.querySelector('.lw-play-btn');
+          if (firstBtn) firstBtn.click();
+          return;
+        }
+
+        if (isPlaying) {
+          htmlAudio.pause();
+          stopSynth();
+          updateAudioUI(false);
+          if (currentPlayBtn) {
+            currentPlayBtn.textContent = '▶ Play';
+            currentPlayBtn.style.background = '#16a34a';
+          }
+        } else {
+          updateAudioUI(true);
+          if (currentPlayBtn) {
+            currentPlayBtn.textContent = '⏸ Pause';
+            currentPlayBtn.style.background = '#eab308';
+          }
+          const trackType = currentPlayBtn ? currentPlayBtn.getAttribute('data-track') : 'pokebasemon';
+          htmlAudio.play().catch(() => {
+            startSynth(trackType);
+          });
+        }
+      }
+
+      document.querySelectorAll('.lw-play-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const audioSrc = btn.getAttribute('data-audio');
+          const trackType = btn.getAttribute('data-track');
+          const fileName = (trackType === 'pokebasemon') ? 'pokebasemon_theme.mp3' : 'Gabbie_salas_art10c.mp3';
+
+          if (currentPlayBtn === btn && isPlaying) {
+            htmlAudio.pause();
+            stopSynth();
+            updateAudioUI(false);
+            btn.textContent = '▶ Play';
+            btn.style.background = '#16a34a';
+            return;
+          }
+
+          if (currentPlayBtn && currentPlayBtn !== btn) {
+            currentPlayBtn.textContent = '▶ Play';
+            currentPlayBtn.style.background = '#16a34a';
+          }
+
+          currentPlayBtn = btn;
+          btn.textContent = '⏸ Pause';
+          btn.style.background = '#eab308';
+          activeTrackName = fileName;
+          secondsElapsed = 0;
+
+          htmlAudio.pause();
+          stopSynth();
+          updateAudioUI(true, fileName);
+
+          htmlAudio.src = audioSrc;
+          htmlAudio.play().catch(() => {
+            // Auto fallback to high-quality retro chiptune audio if remote server blocks CORS
+            startSynth(trackType);
+          });
+        });
+      });
+
+      htmlAudio.addEventListener('ended', () => {
+        updateAudioUI(false);
+        stopSynth();
+        if (currentPlayBtn) {
+          currentPlayBtn.textContent = '▶ Play';
+          currentPlayBtn.style.background = '#16a34a';
+        }
+      });
+
+      function triggerLWSearch() {
+        const val = document.getElementById('lwSearchInput').value;
+        const status = document.getElementById('lwAudioStatus');
+        status.textContent = "Searching P2P Network for '" + val + "'...";
+        setTimeout(() => {
+          status.textContent = "Search complete: 4 files found.";
+        }, 800);
+      }
+
+      // PRANK VIRUS ENGINE
+      let prankInterval = null;
+      let audioCtx = null;
+
+      function playXPErrorSound() {
+        try {
+          const AudioContext = window.AudioContext || window.webkitAudioContext;
+          if (!AudioContext) return;
+          if (!audioCtx) audioCtx = new AudioContext();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(140, audioCtx.currentTime);
+          gain.gain.setValueAtTime(0.16, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.22);
+
+          osc.connect(gain);
+          gain.connect(audioCtx.destination);
+
+          osc.start();
+          osc.stop(audioCtx.currentTime + 0.22);
+        } catch (e) {}
+      }
+
+      function triggerVirusPrank() {
+        const overlay = document.getElementById('prankOverlay');
+        const container = document.getElementById('errorWindowContainer');
+        if (!overlay || !container) return;
+
+        overlay.style.display = 'block';
+        container.innerHTML = '';
+
+        const errorMessages = [
+          'CRITICAL_PROCESS_DIED: 0x0000000A',
+          'System Overload! Memory corrupted.',
+          'Unauthorized access detected from 192.168.1.104',
+          'LimeWire downloading virus_payload.exe...',
+          'WARNING: Hard drive temperature critical!',
+          'Deleting C:\\WINDOWS\\System32...'
+        ];
+
+        let count = 0;
+        const maxWindows = 25;
+
+        prankInterval = setInterval(() => {
+          if (count >= maxWindows) {
+            clearInterval(prankInterval);
+            showBSODScreen(container);
+            return;
+          }
+
+          playXPErrorSound();
+
+          const randomMsg = errorMessages[Math.floor(Math.random() * errorMessages.length)];
+          const posX = Math.random() * (window.innerWidth - 340);
+          const posY = Math.random() * (window.innerHeight - 200);
+
+          const errWin = document.createElement('div');
+          errWin.style.cssText = `
+            position: absolute;
+            left: ${Math.max(10, posX)}px;
+            top: ${Math.max(10, posY)}px;
+            width: 320px;
+            background: #ece9d8;
+            border: 3px solid #0055ea;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            pointer-events: auto;
+            z-index: ${1000 + count};
+          `;
+
+          errWin.innerHTML = `
+            <div style="height: 26px; background: linear-gradient(to bottom, #d83b27, #990000); padding: 0 8px; display: flex; align-items: center; justify-content: space-between; color: white; font-weight: bold; font-size: 11px;">
+              <span>⚠️ SYSTEM ERROR - FATAL EXCEPTION</span>
+              <span style="cursor: pointer; padding: 0 4px;" onclick="this.parentElement.parentElement.remove()">✕</span>
+            </div>
+            <div style="padding: 16px; color: #000; font-size: 12px; display: flex; align-items: center; gap: 12px; background: #f5f3e5;">
+              <span style="font-size: 24px;">❌</span>
+              <span>${randomMsg}</span>
+            </div>
+            <div style="padding: 8px; text-align: right; background: #ece9d8; border-top: 1px solid #d4d0c8;">
+              <button onclick="this.parentElement.parentElement.remove()" style="padding: 3px 16px; background: #ece9d8; border: 1px solid #003c74; border-radius: 3px; font-size: 11px; cursor: pointer; font-weight: bold;">OK</button>
+            </div>
+          `;
+
+          container.appendChild(errWin);
+          count++;
+        }, 120);
+      }
+
+      function showBSODScreen(container) {
+        const bsod = document.createElement('div');
+        bsod.style.cssText = `
+          position: absolute;
+          inset: 0;
+          background: #0000aa;
+          color: #ffffff;
+          font-family: 'Courier New', monospace;
+          padding: 40px;
+          font-size: 14px;
+          line-height: 1.6;
+          z-index: 999999;
+          pointer-events: auto;
+        `;
+        bsod.innerHTML = `
+          <p style="font-size: 16px; font-weight: bold; margin-bottom: 20px;">A problem has been detected (you) and Windows has been shut down to prevent damage to your computer.</p>
+          <p>SYSTEM_PRANK_EXCEEDED</p>
+          <p style="margin-top: 20px;">If this is the first time getting pranked, restart your computer.</p>
+          <p style="margin-top: 30px;">Technical information:</p>
+          <p>*** STOP CLICKING ON RANDOM STUFF</p>
+          <br />
+          <p style="color: #ffff55;">--> CLICK ANYWHERE OR PRESS ESC TO RECOVER YOUR SYSTEM <--</p>
+        `;
+
+        bsod.onclick = stopVirusPrank;
+        container.appendChild(bsod);
+      }
+
+      function stopVirusPrank() {
+        if (prankInterval) {
+          clearInterval(prankInterval);
+          prankInterval = null;
+        }
+        const overlay = document.getElementById('prankOverlay');
+        const container = document.getElementById('errorWindowContainer');
+        if (overlay) overlay.style.display = 'none';
+        if (container) container.innerHTML = '';
+      }
+
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          stopVirusPrank();
+          closeProjectPreview();
+        }
+      });
+
+      // AMBIENT CANVAS BACKGROUND LOGIC
       (function() {
         const canvas = document.getElementById('trailCanvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
+
         function resizeCanvas() {
           canvas.width = window.innerWidth;
           canvas.height = window.innerHeight;
         }
         resizeCanvas();
         window.addEventListener('resize', resizeCanvas);
+
         const points = [];
         const maxAge = 45;
+
         window.addEventListener('mousemove', (e) => {
           points.push({ x: e.clientX, y: e.clientY, age: 0 });
         });
+
         function animate() {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
+
           for (let i = 0; i < points.length; i++) {
             const p = points[i];
             p.age++;
+
             if (p.age > maxAge) {
               points.splice(i, 1);
               i--;
               continue;
             }
+
             if (i > 0) {
               const prev = points[i - 1];
               const opacity = (1 - (p.age / maxAge)) * 0.7;
               const width = (1 - (p.age / maxAge)) * 4 + 1;
+
               ctx.beginPath();
               ctx.moveTo(prev.x, prev.y);
               ctx.lineTo(p.x, p.y);
@@ -869,10 +1401,12 @@
         }
         animate();
       })();
+
       (function() {
         const canvas = document.getElementById('grassCanvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
+
         let width, height;
         function resize() {
           width = canvas.width = window.innerWidth;
@@ -880,15 +1414,20 @@
         }
         resize();
         window.addEventListener('resize', resize);
+
         let mouseX = -1000;
         window.addEventListener('mousemove', (e) => { mouseX = e.clientX; });
+
         const bgColors = ['#18181b', '#27272a', '#3f3f46'];
         const fgColors = ['#52525b', '#71717a', '#a1a1aa'];
+
         const bladeCount = Math.floor(window.innerWidth / 3);
         const blades = [];
+
         for (let i = 0; i < bladeCount; i++) {
           const layer = Math.random();
           let colorSet = layer < 0.5 ? bgColors : fgColors;
+
           blades.push({
             x: (i / bladeCount) * window.innerWidth + (Math.random() * 8 - 4),
             height: 40 + layer * 50 + Math.random() * 20,
@@ -902,22 +1441,27 @@
             phase: Math.random() * Math.PI * 2
           });
         }
+
         let time = 0;
         function animate() {
-          ctx.clearRect(0, width, height);
+          ctx.clearRect(0, 0, width, height);
           time += 0.025;
+
           blades.forEach((b) => {
             const windWave = Math.sin(time * 1.5 + b.x * 0.008 + b.phase) * 0.22;
             const dist = Math.abs(mouseX - b.x);
             let mouseForce = dist < 100 ? (mouseX < b.x ? 1 : -1) * (1 - dist / 100) * 1.1 : 0;
+
             b.targetAngle = b.naturalCurvature + windWave + mouseForce;
             b.angle += (b.targetAngle - b.angle) * b.stiffness;
+
             const rootX = b.x;
             const rootY = height;
             const tipX = rootX + Math.sin(b.angle) * b.height;
             const tipY = rootY - Math.cos(b.angle) * b.height;
             const midX = rootX + Math.sin(b.angle * 0.5) * (b.height * 0.5);
             const midY = rootY - (b.height * 0.5);
+
             ctx.beginPath();
             ctx.moveTo(rootX - b.baseWidth / 2, rootY);
             ctx.quadraticCurveTo(midX, midY, tipX, tipY);
@@ -929,10 +1473,12 @@
         }
         animate();
       })();
+
       (function() {
         const canvas = document.getElementById('birdsCanvas');
         if (!canvas) return;
         const ctx = canvas.getContext('2d');
+
         let width, height;
         function resize() {
           width = canvas.width = window.innerWidth;
@@ -940,6 +1486,7 @@
         }
         resize();
         window.addEventListener('resize', resize);
+
         const birds = Array.from({ length: 6 }, () => ({
           x: Math.random() * window.innerWidth,
           y: Math.random() * (window.innerHeight * 0.4) + 40,
@@ -947,12 +1494,14 @@
           scale: 0.8 + Math.random() * 1,
           wingPhase: Math.random() * Math.PI * 2
         }));
+
         function animate() {
           ctx.clearRect(0, 0, width, height);
           birds.forEach((b) => {
             b.x += b.vx;
             b.wingPhase += 0.08;
             if (b.x > width + 50) b.x = -50;
+
             ctx.save();
             ctx.translate(b.x, b.y);
             ctx.scale(b.scale, b.scale);
@@ -968,281 +1517,6 @@
           requestAnimationFrame(animate);
         }
         animate();
-      })();
-      (function() {
-        const prevBtn = document.getElementById('prevSlideBtn');
-        const nextBtn = document.getElementById('nextSlideBtn');
-        const slides = document.querySelectorAll('#win-slideshow .modal-slide');
-        const dots = document.querySelectorAll('#win-slideshow .modal-dot');
-        let currentIndex = 0;
-        function updateSlides(index) {
-          if (index >= slides.length) currentIndex = 0;
-          else if (index < 0) currentIndex = slides.length - 1;
-          else currentIndex = index;
-          slides.forEach((slide, idx) => {
-            slide.classList.toggle('active', idx === currentIndex);
-            slide.style.display = idx === currentIndex ? 'block' : 'none';
-          });
-          dots.forEach((dot, idx) => {
-            dot.classList.toggle('active', idx === currentIndex);
-            dot.className = idx === currentIndex ? 'modal-dot w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer' : 'modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer';
-          });
-        }
-        prevBtn.addEventListener('click', () => updateSlides(currentIndex - 1));
-        nextBtn.addEventListener('click', () => updateSlides(currentIndex + 1));
-        dots.forEach(dot => {
-          dot.addEventListener('click', () => updateSlides(parseInt(dot.dataset.index)));
-        });
-        updateSlides(0);
-      })();
-      (function() {
-        const imageModal = document.getElementById('imageModal');
-        const lightboxImg = document.getElementById('lightboxImage');
-        const closeBtn = document.getElementById('closeImageModalBtn');
-        const triggers = document.querySelectorAll('.lightbox-trigger');
-        triggers.forEach(trigger => {
-          trigger.addEventListener('click', (e) => {
-            e.preventDefault();
-            lightboxImg.src = trigger.getAttribute('href');
-            imageModal.classList.add('active');
-          });
-        });
-        function closeLightbox() {
-          imageModal.classList.remove('active');
-          lightboxImg.src = '';
-        }
-        closeBtn.addEventListener('click', closeLightbox);
-        imageModal.addEventListener('click', (e) => {
-          if (e.target === imageModal) closeLightbox();
-        });
-      })();
-      let isLimePlaying = false;
-      let synthAudio = null;
-      function toggleLimeAudio() {
-        const playBtn = document.getElementById('lwPlayBtn');
-        if (isLimePlaying) {
-          isLimePlaying = false;
-          playBtn.textContent = "▶";
-          document.getElementById('lwAudioStatus').textContent = "Status: Paused";
-          if (synthAudio) synthAudio.suspend();
-        } else {
-          isLimePlaying = true;
-          playBtn.textContent = "❚❚";
-          document.getElementById('lwAudioStatus').textContent = "Status: Playing";
-          if (synthAudio) synthAudio.resume();
-        }
-      }
-      function triggerLWSearch() {
-        const val = document.getElementById('lwSearchInput').value;
-        const status = document.getElementById('lwAudioStatus');
-        status.textContent = "Searching P2P Network for '" + val + "'...";
-        setTimeout(() => {
-          status.textContent = "Search complete: 4 files found.";
-        }, 800);
-      }
-      (function() {
-        const currentAudio = new Audio();
-        let currentPlayingBtn = null;
-        const playButtons = document.querySelectorAll('.lw-play-btn');
-        playButtons.forEach((btn) => {
-          btn.addEventListener('click', (e) => {
-            e.stopPropagation();
-            const audioSrc = btn.getAttribute('data-audio');
-            if (!audioSrc) return;
-            if (currentAudio.src === audioSrc) {
-              if (currentAudio.paused) {
-                currentAudio.play();
-                btn.textContent = '⏸ Pause';
-                btn.style.background = '#eab308';
-              } else {
-                currentAudio.pause();
-                btn.textContent = '▶ Play';
-                btn.style.background = '#22c55e';
-              }
-              return;
-            }
-            if (currentPlayingBtn && currentPlayingBtn !== btn) {
-              currentPlayingBtn.textContent = '▶ Play';
-              currentPlayingBtn.style.background = '#22c55e';
-            }
-            currentAudio.src = audioSrc;
-            currentAudio.play().then(() => {
-              btn.textContent = '⏸ Pause';
-              btn.style.background = '#eab308';
-              currentPlayingBtn = btn;
-            }).catch(err => {
-              console.error('Audio playback failed:', err);
-            });
-          });
-        });
-        currentAudio.addEventListener('ended', () => {
-          if (currentPlayingBtn) {
-            currentPlayingBtn.textContent = '▶ Play';
-            currentPlayingBtn.style.background = '#22c55e';
-            currentPlayingBtn = null;
-          }
-        });
-      })();
-      (function() {
-        let prankInterval = null;
-        let audioCtx = null;
-        function playXPErrorSound() {
-          try {
-            if (!audioCtx) {
-              audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-            }
-            if (audioCtx.state === 'suspended') {
-              audioCtx.resume();
-            }
-            const osc1 = audioCtx.createOscillator();
-            const osc2 = audioCtx.createOscillator();
-            const gain = audioCtx.createGain();
-            osc1.type = 'sawtooth';
-            osc2.type = 'square';
-            osc1.frequency.setValueAtTime(150, audioCtx.currentTime);
-            osc2.frequency.setValueAtTime(300, audioCtx.currentTime);
-            gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
-            osc1.connect(gain);
-            osc2.connect(gain);
-            gain.connect(audioCtx.destination);
-            osc1.start();
-            osc2.start();
-            osc1.stop(audioCtx.currentTime + 0.25);
-            osc2.stop(audioCtx.currentTime + 0.25);
-          } catch (e) {
-            console.warn('Audio playback failed:', e);
-          }
-        }
-        window.triggerVirusPrank = function() {
-          const overlay = document.getElementById('prankOverlay');
-          const container = document.getElementById('errorWindowContainer');
-          
-          if (!overlay || !container) return;
-          overlay.style.display = 'block';
-          container.innerHTML = '';
-          const errorMessages = [
-            'CRITICAL_PROCESS_DIED: 0x0000000A',
-            'System Overload! Memory corrupted.',
-            'Unauthorized access detected from 192.168.1.104',
-            'LimeWire downloading virus_payload.exe...',
-            'WARNING: Hard drive temperature critical!',
-            'Deleting C:\\WINDOWS\\System32...'
-          ];
-          let count = 0;
-          const maxWindows = 25;
-          prankInterval = setInterval(() => {
-            if (count >= maxWindows) {
-              clearInterval(prankInterval);
-              showBSODScreen(container);
-              return;
-            }
-            playXPErrorSound();
-            const randomMsg = errorMessages[Math.floor(Math.random() * errorMessages.length)];
-            const posX = Math.random() * (window.innerWidth - 340);
-            const posY = Math.random() * (window.innerHeight - 200);
-            const errWin = document.createElement('div');
-            errWin.style.cssText = `
-              position: absolute;
-              left: ${Math.max(10, posX)}px;
-              top: ${Math.max(10, posY)}px;
-              width: 320px;
-              background: #ece9d8;
-              border: 3px solid #0055ea;
-              border-top-left-radius: 8px;
-              border-top-right-radius: 8px;
-              box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-              pointer-events: auto;
-              z-index: ${1000 + count};
-            `;
-            errWin.innerHTML = `
-              <div style="height: 26px; background: linear-gradient(to bottom, #d83b27, #990000); padding: 0 8px; display: flex; align-items: center; justify-content: space-between; color: white; font-weight: bold; font-size: 11px;">
-                <span>⚠️ SYSTEM ERROR - FATAL EXCEPTION</span>
-                <span style="cursor: pointer; padding: 0 4px;" onclick="this.parentElement.parentElement.remove()">✕</span>
-              </div>
-              <div style="padding: 16px; color: #000; font-size: 12px; display: flex; align-items: center; gap: 12px; background: #f5f3e5;">
-                <span style="font-size: 24px;">❌</span>
-                <span>${randomMsg}</span>
-              </div>
-              <div style="padding: 8px; text-align: right; background: #ece9d8; border-top: 1px solid #d4d0c8;">
-                <button onclick="this.parentElement.parentElement.remove()" style="padding: 3px 16px; background: #ece9d8; border: 1px solid #003c74; border-radius: 3px; font-size: 11px; cursor: pointer; font-weight: bold;">OK</button>
-              </div>
-            `;
-            container.appendChild(errWin);
-            count++;
-          }, 120);
-        };
-        function showBSODScreen(container) {
-          const bsod = document.createElement('div');
-          bsod.style.cssText = `
-            position: absolute;
-            inset: 0;
-            background: #0000aa;
-            color: #ffffff;
-            font-family: 'Courier New', monospace;
-            padding: 40px;
-            font-size: 14px;
-            line-height: 1.6;
-            z-index: 999999;
-            pointer-events: auto;
-          `;
-          bsod.innerHTML = `
-            <p style="font-size: 16px; font-weight: bold; margin-bottom: 20px;">A problem has been detected (you) and Windows has been shut down to prevent damage to your computer.</p>
-            <p>SYSTEM_PRANK_EXCEEDED</p>
-            <p style="margin-top: 20px;">If this is the first time getting pranked, restart your computer.</p>
-            <p style="margin-top: 30px;">Technical information:</p>
-            <p>*** STOP CLICKING ON RANDOM STUFF</p>
-            <br />
-            <p style="color: #ffff55;">--> CLICK ANYWHERE OR PRESS ESC TO RECOVER YOUR SYSTEM <--</p>
-          `;
-          bsod.onclick = window.stopVirusPrank;
-          container.appendChild(bsod);
-        }
-        window.stopVirusPrank = function() {
-          if (prankInterval) clearInterval(prankInterval);
-          const overlay = document.getElementById('prankOverlay');
-          const container = document.getElementById('errorWindowContainer');
-          if (overlay) overlay.style.display = 'none';
-          if (container) container.innerHTML = '';
-        };
-        window.addEventListener('keydown', (e) => {
-          if (e.key === 'Escape') {
-            window.stopVirusPrank();
-          }
-        });
-      })();   
-      (function() {
-        let activeTouchWindow = null;
-        let touchOffsetX = 0;
-        let touchOffsetY = 0;
-        document.addEventListener('touchstart', function(e) {
-          const header = e.target.closest('.os-window-header');
-          if (!header) return;
-          const win = header.closest('.os-window');
-          if (!win) return;
-          activeTouchWindow = win;
-          const touch = e.touches[0];
-          const rect = win.getBoundingClientRect();
-          touchOffsetX = touch.clientX - rect.left;
-          touchOffsetY = touch.clientY - rect.top;
-          document.querySelectorAll('.os-window').forEach(w => w.style.zIndex = '10');
-          win.style.zIndex = '100';
-        }, { passive: false });
-        document.addEventListener('touchmove', function(e) {
-          if (!activeTouchWindow) return;
-          
-          e.preventDefault();
-          const touch = e.touches[0];
-          let newX = touch.clientX - touchOffsetX;
-          let newY = touch.clientY - touchOffsetY;
-          newX = Math.max(0, Math.min(window.innerWidth - activeTouchWindow.offsetWidth, newX));
-          newY = Math.max(0, Math.min(window.innerHeight - activeTouchWindow.offsetHeight - 36, newY));
-          activeTouchWindow.style.left = newX + 'px';
-          activeTouchWindow.style.top = newY + 'px';
-        }, { passive: false });
-        document.addEventListener('touchend', function() {
-          activeTouchWindow = null;
-        });
       })();
     </script>
   </body>
