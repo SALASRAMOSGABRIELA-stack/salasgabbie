@@ -1,6 +1,8 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
+    <!-- Google Model Viewer for .GLB / .GLTF 3D Support -->
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>WHERESGABBIE — Interactive Desktop Portfolio</title>
@@ -413,6 +415,17 @@
         background: rgba(255, 255, 255, 0.15);
         border-radius: 4px;
       }
+      /* Blender 3D Window Fluid Viewport Styling */
+#win-blender .os-window-body {
+  display: flex !important;
+  flex-direction: column !important;
+  height: calc(100% - 30px) !important;
+}
+
+model-viewer {
+  --postfix: unset;
+  border-radius: 0 0 0.5rem 0.5rem;
+}
     </style>
   </head>
   <body>
@@ -478,6 +491,12 @@
     <span class="desktop-icon-title">About Gabbie</span>
   </div>
 
+<!-- BLENDER 3D MODEL ICON -->
+<div class="desktop-icon" onclick="openWindow('win-blender')" title="Open 3D Viewport">
+  <div class="desktop-icon-img bg-orange-950/80 border-orange-500/50">🧊</div>
+  <span class="desktop-icon-title text-orange-200">cUbes.glb</span>
+</div>
+
   <div class="desktop-icon" onclick="openWindow('win-limewire')">
     <div class="desktop-icon-img bg-lime-950/90 border-lime-500/50">🍋</div>
     <span class="desktop-icon-title">LimeWire v4.12</span>
@@ -492,7 +511,47 @@
     <div class="desktop-icon-img">🌐</div>
     <span class="desktop-icon-title">Live Site</span>
   </a>
-  
+  <!-- WINDOW: BLENDER 3D GLB VIEWPORT -->
+<div id="win-blender" class="os-window" style="width: 720px; height: 520px; top: 100px; left: 260px; display: none;">
+  <div class="os-window-header" onmousedown="dragWindow(event, 'win-blender')">
+    <span class="os-window-title">Blender 3D Viewport - [cUbes.glb]</span>
+    <div class="window-controls">
+      <span class="win-btn win-btn-min" onclick="minimizeWindow('win-blender')">_</span>
+      <span class="win-btn win-btn-max" onclick="maximizeWindow('win-blender')">□</span>
+      <span class="win-btn win-btn-close" onclick="closeWindow('win-blender')">✕</span>
+    </div>
+  </div>
+
+  <div class="os-window-body flex flex-col h-full bg-zinc-900 p-3">
+    <!-- Viewport Header Toolbar -->
+    <div class="flex items-center justify-between bg-zinc-800 border border-zinc-700 px-3 py-1.5 rounded-t-lg text-xs font-mono text-zinc-300 mb-2">
+      <span class="text-orange-400 font-bold">MODEL_VIEWER_v2.4</span>
+      <span class="text-zinc-400">Controls: Click + Drag to Rotate | Scroll to Zoom</span>
+    </div>
+
+    <!-- Interactive 3D Model Canvas Wrapper -->
+    <div class="relative w-full flex-1 bg-zinc-950 border border-zinc-800 rounded-b-lg overflow-hidden flex items-center justify-center">
+      
+      <!-- Replace 'models/your-model.glb' with the relative path to your .glb file -->
+      <model-viewer 
+        src="models/cUbes.glb" 
+        alt="A 3D Blender Model"
+        camera-controls 
+        auto-rotate 
+        shadow-intensity="1.5"
+        exposure="1.0"
+        interaction-prompt="auto"
+        style="width: 100%; height: 100%; background-color: #09090b;">
+        
+        <!-- Loading Fallback Placeholder -->
+        <div slot="poster" class="flex items-center justify-center h-full text-zinc-500 font-mono text-xs">
+          Loading cUbes.glb...
+        </div>
+      </model-viewer>
+
+    </div>
+  </div>
+</div>
   <!-- JOKE / VIRUS PRANK ICON -->
 <div class="desktop-icon" onclick="triggerVirusPrank()" title="DO NOT CLICK!">
   <div class="desktop-icon-img bg-red-950/80 border-red-500/50">☣️</div>
