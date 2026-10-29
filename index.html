@@ -403,10 +403,57 @@
             <span>📂</span>
             <span class="truncate max-w-[110px]">About Gabbie</span>
           </button>
+          <!-- WINDOW: 3D ARTIFACT STUDY -->
+<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
+
+<div id="win-artifact" class="os-window minimized" style="width: 760px; height: 580px; top: 85px; left: 240px;">
+  <div class="os-window-header" onmousedown="dragWindow(event, 'win-artifact')">
+    <div class="flex items-center gap-2">
+      <span>📂</span>
+      <span class="os-window-title">3D Artifact Study</span>
+    </div>
+    <div class="window-controls">
+      <span class="win-btn win-btn-min" onclick="minimizeWindow('win-artifact')">_</span>
+      <span class="win-btn win-btn-max" onclick="maximizeWindow('win-artifact')">□</span>
+      <span class="win-btn win-btn-close" onclick="closeWindow('win-artifact')">✕</span>
+    </div>
+  </div>
+
+  <div class="os-window-body flex flex-col p-4 bg-zinc-950 text-zinc-200">
+    <!-- Inner Title Header -->
+    <div class="flex items-center justify-between mb-3 bg-zinc-900/80 border border-zinc-800 p-3.5 rounded-xl">
+      <div>
+        <span class="font-mono text-[10px] text-amber-400 uppercase tracking-widest block mb-0.5">Interactive Digital Media</span>
+        <h3 class="font-bold text-sm text-white">3D Artifact Study</h3>
+      </div>
+      <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2.5 py-1 rounded border border-zinc-700">
+        WebGL / .GLB
+      </span>
+    </div>
+
+    <!-- 3D Model Viewer Container -->
+    <div class="model-container relative flex-1 w-full bg-black border border-zinc-800 rounded-xl overflow-hidden p-2">
+      <model-viewer 
+        src="path/to/your-model.glb" 
+        poster="path/to/poster-image.png"
+        alt="A 3D model of a creative artifact" 
+        shadow-intensity="1" 
+        camera-controls 
+        auto-rotate 
+        ar
+        style="width: 100%; height: 100%; min-height: 400px; background-color: #0c0c0e; border-radius: 8px; --poster-color: transparent;">
+      </model-viewer>
+    </div>
+  </div>
+</div>
           <button onclick="toggleWindow('win-limewire')" class="bg-lime-950/80 hover:bg-lime-900 text-lime-300 font-sans text-xs px-3 py-1 rounded border border-lime-500/40 flex items-center gap-1.5 shadow">
             <span>🍋</span>
             <span class="truncate max-w-[110px]">LimeWire PRO</span>
           </button>
+          <button onclick="toggleWindow('win-artifact')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
+  <span>📂</span>
+  <span class="truncate max-w-[110px]">3D Artifact</span>
+</button>
         </div>
       </div>
 
@@ -430,6 +477,11 @@
         <div class="desktop-icon-img">📂</div>
         <span class="desktop-icon-title">Project Gallery</span>
       </div>
+
+      <div class="desktop-icon" onclick="openWindow('win-artifact')">
+  <div class="desktop-icon-img">📂</div>
+  <span class="desktop-icon-title">3D Artifact Study</span>
+</div>
 
       <div class="desktop-icon" onclick="openWindow('win-about')">
         <div class="desktop-icon-img">📂</div>
