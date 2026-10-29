@@ -394,19 +394,17 @@
         <div class="flex items-center gap-1.5 ml-2">
           <button onclick="toggleWindow('win-project')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
             <span>📂</span>
-            <span class="truncate max-w-[110px]">PokéBaseMon</span>
+            <span class="truncate max-w-[110px]">Uncanny Valley</span>
           </button>
           <button onclick="toggleWindow('win-slideshow')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
             <span>📂</span>
-            <span class="truncate max-w-[110px]">Gallery Viewer</span>
+            <span class="truncate max-w-[110px]">Project Viewer</span>
           </button>
           <button onclick="toggleWindow('win-about')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
             <span>📂</span>
             <span class="truncate max-w-[110px]">About Gabbie</span>
           </button>
           <!-- WINDOW: 3D ARTIFACT STUDY -->
-<script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
-
 <div id="win-artifact" class="os-window minimized" style="width: 740px; height: 560px; top: 60px; left: 160px;">
   <div class="os-window-header" onmousedown="dragWindow(event, 'win-artifact')">
     <div class="flex items-center gap-2">
@@ -435,7 +433,7 @@
     <!-- 3D Model Viewer Container -->
     <div class="model-container relative flex-1 w-full bg-black border border-zinc-800 rounded-xl overflow-hidden p-2">
       <model-viewer 
-        src="images/models/cUbes.glb" 
+        src="images/Models/cUbes.glb" 
         alt="3D Artifact Study - cUbes" 
         shadow-intensity="1" 
         camera-controls 
