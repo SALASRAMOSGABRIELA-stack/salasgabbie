@@ -9,16 +9,17 @@
 
     <!-- Google Web Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
     <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:ital,wght@0,400;0,500;0,700;1,400&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet" />
 
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
     <!-- Standalone Monogram SVG Favicon -->
-    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%230c0c0e'/><text x='50' y='68' font-family='monospace' font-size='55' font-weight='bold' fill='%23ffd166' text-anchor='middle'>G</text></svg>" />
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2318181b'/><text x='50' y='68' font-family='monospace' font-weight='bold' font-size='52' fill='%23fbbf24' text-anchor='middle'>GS</text></svg>" />
 
     <style>
+
       /* MOBILE & TABLET RESPONSIVE OVERRIDES */
       @media (max-width: 768px) {
         .desktop-icons-grid {
@@ -49,13 +50,12 @@
         }
 
         .os-window {
+          width: calc(100vw - 20px) !important;
+          max-height: calc(100vh - 80px) !important;
           top: 10px !important;
           left: 10px !important;
           right: 10px !important;
-          width: calc(100vw - 20px) !important;
-          max-width: calc(100vw - 20px) !important;
-          height: calc(100vh - 80px) !important;
-          max-height: calc(100vh - 80px) !important;
+          min-width: unset !important;
         }
 
         .xp-taskbar {
@@ -98,229 +98,36 @@
 
       * {
         box-sizing: border-box;
-        margin: 0;
-        padding: 0;
+        user-select: none;
+      }
+
+      body, a, button, input, div {
+        cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
       }
 
       body {
-        background-color: var(--bg-color);
-        color: var(--text-main);
-        font-family: var(--font-sans);
+        margin: 0;
+        padding: 0;
         overflow: hidden;
-        height: 100vh;
-        width: 100vw;
-        user-select: none;
-        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24' viewBox='0 0 24 24' fill='%23ffd166'%3E%3Cpath d='M0 0l7 18 3-7 7-3z'/%3E%3C/svg%3E"), default;
-      }
-
-      /* CRT SCANLINES & VIGNETTE EFFECT */
-      .crt-overlay {
-        position: fixed;
-        inset: 0;
-        pointer-events: none;
-        z-index: 9999;
-        background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.01), rgba(0, 0, 255, 0.03));
-        background-size: 100% 3px, 6px 100%;
-        opacity: 0.60;
-      }
-
-      .xp-taskbar {
-        height: 30px;
-        background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #1941a5 92%, #1941a5 100%);
-        border-top: 1px solid #4282f4;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.35);
-        position: fixed;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        z-index: 1000;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding-right: 8px;
-      }
-
-      .xp-start-btn {
-        height: 100%;
-        padding: 0 16px;
-        background: linear-gradient(to bottom, #388238 0%, #5ca75c 10%, #388238 30%, #296029 90%, #1e471e 100%);
-        border-right: 2px solid #1c3d1c;
-        border-top-right-radius: 10px;
-        border-bottom-right-radius: 10px;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.4), 2px 0 4px rgba(0, 0, 0, 0.3);
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        color: white;
-        font-weight: 700;
-        font-style: italic;
-        font-size: 14px;
-        cursor: pointer;
-        text-shadow: 1px 1px 1px black;
-      }
-
-      .xp-systray {
-        height: 80%;
-        background: linear-gradient(to bottom, #0972da 0%, #0e93ff 10%, #0972da 30%, #0756a5 90%, #05407c 100%);
-        border-left: 1px solid #134985;
-        border-top: 1px solid #134985;
-        box-shadow: inset 1px 1px 1px rgba(0, 0, 0, 0.4);
-        padding: 0 12px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .desktop-icons-grid {
-        position: absolute;
-        top: 20px;
-        left: 20px;
-        display: flex;
-        flex-direction: column;
-        gap: 18px;
-        z-index: 10;
-      }
-
-      .desktop-icon {
-        width: 80px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4px;
-        cursor: pointer;
-        padding: 6px;
-        border-radius: 4px;
-        border: 1px solid transparent;
-        transition: background 0.2s ease;
-      }
-
-      .desktop-icon:hover {
-        background: rgba(11, 93, 227, 0.4);
-        border: 1px solid rgba(255, 255, 255, 0.2);
-      }
-
-      .desktop-icon-img {
-        width: 44px;
-        height: 44px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 1.5rem;
-        border-radius: 8px;
-        background: rgba(15, 23, 42, 0.6);
-        border: 1px solid rgba(255, 255, 255, 0.1);
-        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.5);
-      }
-
-      .desktop-icon-title {
-        color: white;
-        font-size: 0.75rem;
-        text-align: center;
-        text-shadow: 1px 1px 2px black;
-        line-height: 1.1;
-      }
-
-      .os-window {
-        position: absolute;
-        background: #ece9d8;
-        border: 3px solid #0055ea;
-        border-top: none;
-        border-radius: 8px 8px 0 0;
-        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.7), 0 8px 10px -6px rgba(0, 0, 0, 0.7);
-        display: flex;
-        flex-direction: column;
-        z-index: 50;
-        overflow: hidden;
-      }
-
-      .os-window.minimized {
-        display: none !important;
-      }
-
-      .os-window-header {
-        background: linear-gradient(to bottom, #0058ee 0%, #3593ff 4%, #288eff 6%, #0058ee 10%, #003dd7 90%, #0030a6 100%);
-        height: 28px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 8px;
-        color: white;
-        font-weight: bold;
-        font-size: 12px;
-        text-shadow: 1px 1px 1px #001f5c;
-        cursor: move;
-      }
-
-      .os-window-controls {
-        display: flex;
-        gap: 3px;
-      }
-
-      .os-btn {
-        width: 18px;
-        height: 18px;
-        border-radius: 3px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 10px;
-        font-family: monospace;
-        cursor: pointer;
-        box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.5);
-      }
-
-      .os-btn-close {
-        background: #d84835;
-        border: 1px solid #941e0f;
-        color: white;
-      }
-
-      .os-window-body {
-        background: #0f1015;
-        color: #f4f4f5;
-        flex: 1;
-        overflow-y: auto;
-        padding: 16px;
-      }
-
-      #birdsCanvas, #grassCanvas, #trailCanvas {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-      }
-
-      #grassCanvas {
-        z-index: 1;
-      }
-
-      #birdsCanvas {
-        z-index: 2;
-      }
-
-      #trailCanvas {
-        z-index: 9998;
-      }
-
-      .slideshow-img {
-        max-height: 380px;
-        width: auto;
-        object-fit: contain;
+        font-family: 'Tahoma', 'Segoe UI', sans-serif;
+        background: url('images/Bliss (Windows XP).png') no-repeat center center fixed;
+        background-size: cover;
+        image-rendering: -webkit-optimize-contrast;
         image-rendering: crisp-edges;
       }
 
       #win-slideshow .os-window-body {
         display: flex;
         flex-direction: column;
-        align-items: center;
-        justify-content: space-between;
+        height: 100%;
         padding: 1rem;
-        background: #0a0a0c;
       }
 
       .modal-slide {
         width: 100%;
         height: 100%;
         display: none;
+        flex-direction: column;
         align-items: center;
         justify-content: center;
         text-align: center;
@@ -336,568 +143,813 @@
         width: auto;
         height: auto;
         object-fit: contain;
-        border-radius: 8px;
-        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+        margin: auto;
+        display: block;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
       }
 
-      /* ===== 2001 WINDOWS PC DESK VIEW STYLES ===== */
-      #deskStage {
-        position: fixed;
-        inset: 0;
-        z-index: 99999;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: radial-gradient(circle at 50% 35%, #2a2c38 0%, #13141a 60%, #08090c 100%);
-        user-select: none;
-        transform-origin: 50% 45%;
-        will-change: transform, opacity;
-        transition: transform 1.5s cubic-bezier(0.7, 0, 0.16, 1), opacity 0.45s cubic-bezier(0.7, 0, 0.16, 1) 1.05s;
-      }
-
-      #deskStage.zooming {
-        pointer-events: none;
-        transform: translate(var(--zoom-x, 0px), var(--zoom-y, 0px)) scale(var(--zoom-scale, 5));
-        opacity: 0;
-      }
-
-      #deskStage.hidden-desk {
+      .desktop-grid, 
+      .desktop-grid-overlay {
         display: none !important;
       }
 
-      .desk-scene {
-        position: relative;
-        width: 100%;
-        max-width: 1100px;
-        height: 94vh;
-        max-height: 840px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: flex-end;
-        padding-bottom: 20px;
+      #trailCanvas {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: 9999;
       }
 
-      .desk-table {
-        position: absolute;
-        bottom: 0;
-        left: 0;
-        right: 0;
-        height: 220px;
-        background: linear-gradient(180deg, #3d2817 0%, #2e1e11 25%, #1f140b 100%);
-        border-top: 5px solid #54371f;
-        box-shadow: 0 -15px 35px rgba(0,0,0,0.8), inset 0 2px 4px rgba(255,255,255,0.1);
-        z-index: 1;
-      }
-      .desk-table::before {
-        content: "";
-        position: absolute;
-        top: 0;
-        left: 0;
-        right: 0;
-        height: 25px;
-        background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 100%);
-      }
-
-      .hardware-rig {
-        position: relative;
+      #grassCanvas {
+        position: fixed;
+        bottom: 30px; left: 0; width: 100%; height: 130px;
+        pointer-events: none;
         z-index: 2;
-        display: flex;
-        align-items: flex-end;
-        justify-content: center;
-        gap: 30px;
-        margin-bottom: 25px;
+        opacity: 0.60;
       }
 
-      .crt-monitor {
-        position: relative;
-        width: min(84vw, 640px);
-        background: linear-gradient(175deg, #dfd8c6 0%, #cec4aa 60%, #b8b19d 100%);
-        border-radius: 28px 28px 18px 18px;
-        padding: 26px 28px 18px 28px;
-        box-shadow: 
-          0 25px 50px rgba(0,0,0,0.7),
-          0 10px 20px rgba(0,0,0,0.4),
-          inset 2px 2px 0 rgba(255,255,255,0.5),
-          inset -3px -3px 0 rgba(0,0,0,0.25);
-        border: 1px solid #ab9f89;
-        cursor: pointer;
-        transition: filter 0.25s ease, transform 0.25s ease;
-      }
-      .crt-monitor:hover {
-        filter: drop-shadow(0 0 25px rgba(96, 165, 250, 0.35));
+      #birdsCanvas {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: 2;
+        opacity: 0.60;
       }
 
-      .crt-top-vents {
-        position: absolute;
-        top: 8px;
-        left: 50%;
-        transform: translateX(-50%);
-        display: flex;
-        gap: 5px;
-      }
-      .crt-vent-slot {
-        width: 22px;
-        height: 3px;
-        background: #7d7564;
-        border-radius: 2px;
-        box-shadow: inset 0 1px 1px rgba(0,0,0,0.6);
-      }
-
-      .crt-inner-frame {
-        position: relative;
-        background: linear-gradient(180deg, #1f2228 0%, #15171b 100%);
-        border-radius: 20px;
-        padding: 10px;
-        box-shadow: 
-          inset 0 4px 10px rgba(0,0,0,0.9),
-          inset 0 1px 2px rgba(0,0,0,0.8),
-          0 1px 0 rgba(255,255,255,0.3);
-        border: 2px solid #575246;
-      }
-
-      .crt-screen-viewport {
-        position: relative;
-        width: 100%;
-        aspect-ratio: 4 / 3;
-        border-radius: 14px;
-        overflow: hidden;
-        background: #000;
-        box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
-        outline: 1px solid rgba(255,255,255,0.05);
-      }
-
-      .mini-xp-desktop {
-        position: absolute;
-        inset: 0;
-        background: url('images/Bliss (Windows XP).png'), linear-gradient(180deg, #1e5799 0%, #207cca 40%, #7db9e8 60%, #299a0b 80%, #1a6d05 100%);
-        background-position: center;
-        background-size: cover;
-        background-repeat: no-repeat;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      }
-
-      .mini-icons-col {
-        padding: 12px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        width: fit-content;
-      }
-      .mini-icon-item {
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        width: 48px;
-        text-align: center;
-        gap: 3px;
-      }
-      .mini-icon-box {
-        width: 24px;
-        height: 24px;
-        border-radius: 4px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-size: 14px;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.4);
-      }
-      .mini-icon-lbl {
-        color: #fff;
-        font-size: 7px;
-        font-weight: 600;
-        text-shadow: 0 1px 2px #000, 0 1px 3px #000;
-        line-height: 1;
-        letter-spacing: -0.2px;
-      }
-
-      .mini-xp-taskbar {
-        height: 24px;
-        background: linear-gradient(180deg, #245edb 0%, #3f8cf3 10%, #245edb 50%, #1541a7 100%);
-        border-top: 1px solid #4a8df8;
+      .xp-taskbar {
+        height: 30px;
+        background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #1941a5 92%, #1941a5 100%);
+        border-top: 1px solid #3879e6;
         display: flex;
         align-items: center;
         justify-content: space-between;
-        padding: 0 4px;
+        position: fixed;
+        bottom: 0; left: 0; right: 0;
+        z-index: 1000;
+        box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
       }
-      .mini-start-btn {
-        height: 20px;
-        background: linear-gradient(180deg, #388e3c 0%, #4caf50 30%, #2e7d32 100%);
-        border-radius: 0 8px 8px 0;
+
+      .xp-start-btn {
+        height: 100%;
+        padding: 0 14px 0 10px;
+        background: linear-gradient(to bottom, #388238 0%, #5ca75c 10%, #388238 30%, #296029 90%, #1e471e 100%);
+        border-top-right-radius: 8px;
+        border-bottom-right-radius: 8px;
+        box-shadow: inset 1px 1px 1px rgba(255,255,255,0.4), 2px 0 6px rgba(0,0,0,0.4);
         display: flex;
         align-items: center;
-        gap: 4px;
-        padding: 0 8px;
-        color: #fff;
-        font-size: 9px;
+        gap: 6px;
+        font-family: 'Tahoma', sans-serif;
         font-weight: bold;
         font-style: italic;
-        box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
-        border: 1px solid #66bb6a;
-      }
-      .mini-systray {
-        height: 20px;
-        background: linear-gradient(180deg, #0e80df 0%, #1997f7 35%, #0b68ba 100%);
-        border-radius: 3px;
-        display: flex;
-        align-items: center;
-        padding: 0 6px;
-        color: #fff;
-        font-size: 8px;
-        font-family: monospace;
-        border: 1px solid #33a3ff;
-      }
-
-      .crt-glass-glare {
-        position: absolute;
-        inset: 0;
-        pointer-events: none;
-        background: 
-          linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 32%, transparent 48%),
-          repeating-linear-gradient(0deg, rgba(0,0,0,0.16) 0px, rgba(0,0,0,0.16) 1px, transparent 1px, transparent 2px),
-          radial-gradient(ellipse at center, transparent 65%, rgba(0,0,0,0.45) 100%);
-      }
-
-      .crt-chin {
-        margin-top: 12px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 8px;
-      }
-      .crt-badge {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-size: 10px;
-        font-weight: bold;
-        color: #575041;
-        letter-spacing: 0.5px;
-      }
-      .xp-flag-mini {
-        display: grid;
-        grid-template-columns: 1fr 1fr;
-        gap: 1.5px;
-        width: 14px;
-        height: 14px;
-      }
-      .xp-flag-mini div:nth-child(1) { background: #ef4444; border-radius: 1px; }
-      .xp-flag-mini div:nth-child(2) { background: #22c55e; border-radius: 1px; }
-      .xp-flag-mini div:nth-child(3) { background: #3b82f6; border-radius: 1px; }
-      .xp-flag-mini div:nth-child(4) { background: #eab308; border-radius: 1px; }
-
-      .crt-controls {
-        display: flex;
-        align-items: center;
-        gap: 12px;
-      }
-      .crt-buttons {
-        display: flex;
-        gap: 5px;
-      }
-      .crt-btn-round {
-        width: 10px;
-        height: 10px;
-        border-radius: 50%;
-        background: #c5bfae;
-        border: 1px solid #8e8877;
-        box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.3);
-      }
-      .crt-power-group {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-      }
-      .crt-power-btn {
-        width: 22px;
-        height: 12px;
-        border-radius: 3px;
-        background: #b5ada0;
-        border: 1px solid #7a7366;
-        box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.3);
-      }
-      .crt-power-led {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: #22c55e;
-        box-shadow: 0 0 6px #22c55e, 0 0 12px rgba(34, 197, 94, 0.8);
-        animation: ledPulse 2s infinite ease-in-out;
-      }
-      @keyframes ledPulse {
-        0%, 100% { opacity: 0.9; transform: scale(1); }
-        50% { opacity: 1; transform: scale(1.1); }
-      }
-
-      .crt-stand {
-        position: absolute;
-        top: 100%;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 220px;
-        height: 24px;
-        background: linear-gradient(180deg, #c7c0ad 0%, #b3ab98 100%);
-        border-radius: 0 0 12px 12px;
-        box-shadow: 0 12px 20px rgba(0,0,0,0.5), inset 0 2px 2px rgba(255,255,255,0.3);
-        border: 1px solid #9c9483;
-        z-index: -1;
-      }
-      .crt-base {
-        position: absolute;
-        top: 18px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 300px;
-        height: 18px;
-        background: linear-gradient(180deg, #dfd8c7 0%, #b8b19e 100%);
-        border-radius: 50%;
-        box-shadow: 0 8px 16px rgba(0,0,0,0.6);
-        border: 1px solid #a69f8e;
-      }
-
-      .pc-tower {
-        position: relative;
-        width: 140px;
-        height: 380px;
-        background: linear-gradient(180deg, #ded8c7 0%, #c9c2b0 100%);
-        border-radius: 12px 12px 4px 4px;
-        border: 1px solid #aba290;
-        box-shadow: 0 20px 40px rgba(0,0,0,0.7), inset 2px 2px 0 rgba(255,255,255,0.4);
-        padding: 16px 12px;
-        display: flex;
-        flex-direction: column;
-        gap: 12px;
-        margin-bottom: 5px;
-      }
-      @media (max-width: 900px) {
-        .pc-tower { display: none; }
-      }
-      .cd-drive {
-        height: 34px;
-        background: #cbc3b1;
-        border-radius: 4px;
-        border: 1px solid #9f9685;
-        padding: 4px 6px;
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-        box-shadow: inset 1px 1px 2px rgba(0,0,0,0.2);
-      }
-      .cd-slot {
-        height: 2px;
-        background: #736b5c;
-        border-radius: 1px;
-      }
-      .cd-controls {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .cd-led {
-        width: 5px;
-        height: 5px;
-        border-radius: 50%;
-        background: #22c55e;
-        box-shadow: 0 0 4px #22c55e;
-      }
-      .cd-btn {
-        width: 14px;
-        height: 7px;
-        background: #b5aca0;
-        border-radius: 2px;
-        border: 1px solid #736b5c;
-      }
-      .floppy-drive {
-        height: 24px;
-        background: #cbc3b1;
-        border-radius: 4px;
-        border: 1px solid #9f9685;
-        padding: 4px 6px;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-      }
-      .floppy-slot {
-        width: 80px;
-        height: 3px;
-        background: #474238;
-        border-radius: 1px;
-      }
-      .floppy-btn {
-        width: 12px;
-        height: 10px;
-        background: #b5aca0;
-        border-radius: 1px;
-        border: 1px solid #736b5c;
-      }
-      .tower-panel {
-        margin-top: auto;
-        display: flex;
-        flex-direction: column;
-        gap: 8px;
-        padding-top: 12px;
-        border-top: 1px solid #b8b09f;
-      }
-      .tower-power-btn {
-        width: 28px;
-        height: 28px;
-        border-radius: 50%;
-        background: linear-gradient(180deg, #d4cdbd 0%, #aaa190 100%);
-        border: 2px solid #827a6c;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.3);
-        margin: 0 auto;
-      }
-      .tower-leds {
-        display: flex;
-        justify-content: center;
-        gap: 8px;
-      }
-      .tower-led-green {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #22c55e;
-        box-shadow: 0 0 5px #22c55e;
-      }
-      .tower-led-orange {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: #f97316;
-        box-shadow: 0 0 5px #f97316;
-        animation: hddBlink 1.5s infinite steps(2, start);
-      }
-      @keyframes hddBlink {
-        0%, 100% { opacity: 0.2; }
-        40% { opacity: 1; }
-        50% { opacity: 0.1; }
-        80% { opacity: 0.9; }
-      }
-
-      .desk-peripherals {
-        position: absolute;
-        bottom: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        z-index: 3;
-        display: flex;
-        align-items: center;
-        gap: 40px;
-      }
-      .beige-keyboard {
-        width: 440px;
-        height: 85px;
-        background: linear-gradient(180deg, #d8d1bf 0%, #bab19c 100%);
-        border-radius: 8px;
-        border: 1px solid #9c9380;
-        box-shadow: 0 10px 20px rgba(0,0,0,0.6), inset 0 2px 0 rgba(255,255,255,0.4);
-        padding: 6px 10px;
-        display: flex;
-        flex-direction: column;
-        gap: 4px;
-      }
-      @media (max-width: 640px) {
-        .desk-peripherals { display: none; }
-      }
-      .kb-row {
-        display: flex;
-        gap: 3px;
-        height: 12px;
-      }
-      .kb-key {
-        flex: 1;
-        background: #c5beac;
-        border-radius: 2px;
-        border: 1px solid #8e8674;
-        box-shadow: 0 1px 0 rgba(0,0,0,0.2);
-      }
-      .kb-space { flex: 5; }
-
-      .mouse-setup {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .mousepad {
-        width: 100px;
-        height: 110px;
-        background: #1e3a8a;
-        border-radius: 8px;
-        border: 1px solid #172554;
-        box-shadow: 0 5px 12px rgba(0,0,0,0.5);
-        display: flex;
-        align-items: center;
-        justify-content: center;
-      }
-      .beige-mouse {
-        width: 45px;
-        height: 70px;
-        background: linear-gradient(180deg, #dfd8c7 0%, #b8b09d 100%);
-        border-radius: 22px 22px 16px 16px;
-        border: 1px solid #9c9482;
-        box-shadow: 0 6px 10px rgba(0,0,0,0.4), inset 0 2px 0 rgba(255,255,255,0.5);
-        position: relative;
-      }
-      .mouse-divider {
-        position: absolute;
-        top: 24px;
-        left: 0;
-        right: 0;
-        height: 1px;
-        background: #877f6f;
-      }
-      .mouse-scroll {
-        position: absolute;
-        top: 12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 6px;
-        height: 14px;
-        background: #736b5c;
-        border-radius: 3px;
-      }
-
-      .enter-prompt {
-        position: relative;
-        z-index: 10;
-        margin-top: 25px;
-        color: #ffd166;
+        color: #ffffff;
         font-size: 13px;
-        font-family: 'JetBrains Mono', monospace;
-        font-weight: bold;
-        letter-spacing: 0.22em;
-        text-transform: uppercase;
-        text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 12px rgba(255,209,102,0.4);
+        text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
+        cursor: pointer;
+      }
+
+      .xp-start-btn:hover {
+        filter: brightness(1.1);
+      }
+
+      .xp-systray {
+        height: 100%;
+        background: linear-gradient(to bottom, #0972da 0%, #0e93ff 10%, #0972da 30%, #0756a5 90%, #05407c 100%);
+        border-left: 1px solid #105bb5;
+        padding: 0 12px;
         display: flex;
         align-items: center;
-        gap: 10px;
-        padding: 8px 22px;
-        background: rgba(18, 18, 24, 0.75);
-        border: 1px solid rgba(255, 209, 102, 0.35);
-        border-radius: 9999px;
-        backdrop-filter: blur(8px);
+        gap: 8px;
+        box-shadow: inset 1px 0 2px rgba(0,0,0,0.3);
+      }
+
+      .desktop-icons-grid {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        z-index: 10;
+        pointer-events: auto;
+      }
+
+      .desktop-icon {
+        width: 86px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 4px;
+        padding: 6px 4px;
+        border-radius: 4px;
+        transition: background 0.2s ease;
+      }
+
+      .desktop-icon:hover {
+        background: rgba(11, 93, 227, 0.4);
+        outline: 1px solid rgba(255, 255, 255, 0.4);
+      }
+
+      .desktop-icon-img {
+        width: 44px;
+        height: 44px;
+        background: rgba(15, 23, 42, 0.6);
+        border: 1px solid rgba(255, 255, 255, 0.2);
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 1.5rem;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+      }
+
+      .desktop-icon-title {
+        font-family: 'Tahoma', sans-serif;
+        font-size: 0.75rem;
+        color: #ffffff;
+        text-align: center;
+        text-shadow: 1px 1px 3px #000000, 0 0 5px #000000;
+        word-break: break-word;
+        line-height: 1.2;
+      }
+
+      .os-window {
+        position: absolute;
+        background: #ece9d8;
+        border: 3px solid #0055ea;
+        border-top-left-radius: 8px;
+        border-top-right-radius: 8px;
+        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        min-width: 320px;
+        min-height: 200px;
+        z-index: 10;
+        transition: opacity 0.2s ease, transform 0.2s ease;
+      }
+
+      .os-window.minimized {
+        opacity: 0;
+        pointer-events: none;
+        transform: scale(0.8) translateY(100px);
+      }
+
+      .os-window-header {
+        height: 30px;
+        background: linear-gradient(to bottom, #0058ee 0%, #3593ff 4%, #288eff 6%, #0058ee 10%, #003dd7 90%, #0030a6 100%);
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 0 0.5rem;
+        cursor: move;
+        color: white;
+        font-family: 'Tahoma', sans-serif;
+        font-weight: bold;
+        text-shadow: 1px 1px 1px #000000;
+      }
+
+      .window-controls {
+        display: flex;
+        align-items: center;
+        gap: 3px;
+      }
+
+      .win-btn {
+        width: 21px;
+        height: 21px;
+        border-radius: 3px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-family: sans-serif;
+        font-size: 11px;
+        font-weight: bold;
+        color: white;
+        box-shadow: inset 1px 1px 1px rgba(255,255,255,0.6);
         cursor: pointer;
-        animation: pulsePrompt 2.2s infinite ease-in-out;
-        transition: transform 0.2s ease, background 0.2s ease;
       }
-      .enter-prompt:hover {
-        transform: scale(1.06);
-        background: rgba(255, 209, 102, 0.18);
-        border-color: #ffd166;
+
+      .win-btn-close { background: linear-gradient(to bottom, #f28d7d, #d83b27); border: 1px solid #990000; }
+      .win-btn-min { background: linear-gradient(to bottom, #3b93ff, #0055ea); border: 1px solid #002b80; }
+      .win-btn-max { background: linear-gradient(to bottom, #3b93ff, #0055ea); border: 1px solid #002b80; }
+
+      .os-window-title {
+        font-family: 'Tahoma', sans-serif;
+        font-size: 0.8rem;
+        color: #ffffff;
       }
-      @keyframes pulsePrompt {
-        0%, 100% { opacity: 0.65; transform: scale(1); }
-        50% { opacity: 1; transform: scale(1.03); }
+
+      .os-window-body {
+        padding: 1.25rem;
+        overflow-y: auto;
+        flex: 1;
+        user-select: text;
+        background: #0f172a;
+        color: #f8fafc;
+        position: relative;
       }
+
+      .os-window-body::-webkit-scrollbar {
+        width: 6px;
+      }
+      .os-window-body::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .os-window-body::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 4px;
+      }
+
+      .modal-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background-color: rgba(5, 5, 7, 0.92);
+        backdrop-filter: blur(14px);
+        z-index: 20000;
+        align-items: center;
+        justify-content: center;
+        padding: 1.5rem;
+      }
+      .modal-overlay.active { display: flex; }
+    
+
+/* ===== 2001 RETRO WINDOWS PC DESK VIEW STYLES ===== */
+
+    
+
+    /* DESK STAGE OVERLAY */
+    #deskStage {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      background: radial-gradient(circle at 50% 35%, #2a2c38 0%, #13141a 60%, #08090c 100%);
+      user-select: none;
+      transform-origin: 50% 45%;
+      will-change: transform, opacity;
+      transition: transform 1.5s cubic-bezier(0.7, 0, 0.16, 1), opacity 0.45s cubic-bezier(0.7, 0, 0.16, 1) 1.1s;
+    }
+
+    #deskStage.zooming {
+      pointer-events: none;
+      transform: scale(var(--zoom-scale, 5)) translate(var(--zoom-x, 0px), var(--zoom-y, 0px));
+      opacity: 0;
+    }
+
+    #deskStage.hidden-desk {
+      display: none !important;
+    }
+
+    /* ROOM & DESK ENVIRONMENT */
+    .desk-scene {
+      position: relative;
+      width: 100%;
+      max-width: 1100px;
+      height: 94vh;
+      max-height: 840px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-end;
+      padding-bottom: 20px;
+    }
+
+    /* WOODEN DESK SURFACE */
+    .desk-table {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      height: 220px;
+      background: linear-gradient(180deg, #3d2817 0%, #2e1e11 25%, #1f140b 100%);
+      border-top: 5px solid #54371f;
+      box-shadow: 0 -15px 35px rgba(0,0,0,0.8), inset 0 2px 4px rgba(255,255,255,0.1);
+      z-index: 1;
+    }
+    .desk-table::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 25px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.08) 0%, transparent 100%);
+    }
+
+    /* WORKSPACE HARDWARE CONTAINER */
+    .hardware-rig {
+      position: relative;
+      z-index: 2;
+      display: flex;
+      align-items: flex-end;
+      justify-content: center;
+      gap: 30px;
+      margin-bottom: 25px;
+    }
+
+    /* 2001 BEIGE CRT MONITOR */
+    .crt-monitor {
+      position: relative;
+      width: min(84vw, 640px);
+      background: linear-gradient(175deg, #dfd8c6 0%, #cec4aa 60%, #b8b19d 100%);
+      border-radius: 28px 28px 18px 18px;
+      padding: 26px 28px 18px 28px;
+      box-shadow: 
+        0 25px 50px rgba(0,0,0,0.7),
+        0 10px 20px rgba(0,0,0,0.4),
+        inset 2px 2px 0 rgba(255,255,255,0.5),
+        inset -3px -3px 0 rgba(0,0,0,0.25);
+      border: 1px solid #ab9f89;
+      cursor: pointer;
+      transition: filter 0.25s ease, transform 0.25s ease;
+    }
+    .crt-monitor:hover {
+      filter: drop-shadow(0 0 25px rgba(96, 165, 250, 0.35));
+    }
+
+    /* TOP VENTS */
+    .crt-top-vents {
+      position: absolute;
+      top: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 5px;
+    }
+    .crt-vent-slot {
+      width: 22px;
+      height: 3px;
+      background: #7d7564;
+      border-radius: 2px;
+      box-shadow: inset 0 1px 1px rgba(0,0,0,0.6);
+    }
+
+    /* CRT BEZEL INNER RECESS */
+    .crt-inner-frame {
+      position: relative;
+      background: linear-gradient(180deg, #1f2228 0%, #15171b 100%);
+      border-radius: 20px;
+      padding: 10px;
+      box-shadow: 
+        inset 0 4px 10px rgba(0,0,0,0.9),
+        inset 0 1px 2px rgba(0,0,0,0.8),
+        0 1px 0 rgba(255,255,255,0.3);
+      border: 2px solid #575246;
+    }
+
+    /* CRT GLASS DISPLAY VIEWPORT (4:3 RATIO) */
+    .crt-screen-viewport {
+      position: relative;
+      width: 100%;
+      aspect-ratio: 4 / 3;
+      border-radius: 14px;
+      overflow: hidden;
+      background: #000;
+      box-shadow: inset 0 0 20px rgba(0,0,0,0.9);
+      outline: 1px solid rgba(255,255,255,0.05);
+    }
+
+    /* MINI LIVE/SIMULATED WINDOWS XP DESKTOP */
+    .mini-xp-desktop {
+      position: absolute;
+      inset: 0;
+      background: #245edb url('https://images.unsplash.com/photo-1506744038136-46273834b3fb?auto=format&fit=crop&w=1200&q=80') center center / cover no-repeat;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    /* MINI ICONS ON SCREEN */
+    .mini-icons-col {
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      width: fit-content;
+    }
+    .mini-icon-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 48px;
+      text-align: center;
+      gap: 3px;
+    }
+    .mini-icon-box {
+      width: 24px;
+      height: 24px;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 14px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.4);
+    }
+    .mini-icon-lbl {
+      color: #fff;
+      font-size: 7px;
+      font-weight: 600;
+      text-shadow: 0 1px 2px #000, 0 1px 3px #000;
+      line-height: 1;
+      letter-spacing: -0.2px;
+    }
+
+    /* MINI XP TASKBAR */
+    .mini-xp-taskbar {
+      height: 24px;
+      background: linear-gradient(180deg, #245edb 0%, #3f8cf3 10%, #245edb 50%, #1541a7 100%);
+      border-top: 1px solid #4a8df8;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px;
+    }
+    .mini-start-btn {
+      height: 20px;
+      background: linear-gradient(180deg, #388e3c 0%, #4caf50 30%, #2e7d32 100%);
+      border-radius: 0 8px 8px 0;
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 0 8px;
+      color: #fff;
+      font-size: 9px;
+      font-weight: bold;
+      font-style: italic;
+      box-shadow: 1px 1px 2px rgba(0,0,0,0.3);
+      border: 1px solid #66bb6a;
+    }
+    .mini-systray {
+      height: 20px;
+      background: linear-gradient(180deg, #0e80df 0%, #1997f7 35%, #0b68ba 100%);
+      border-radius: 3px;
+      display: flex;
+      align-items: center;
+      padding: 0 6px;
+      color: #fff;
+      font-size: 8px;
+      font-family: monospace;
+      border: 1px solid #33a3ff;
+    }
+
+    /* CRT SCANLINES & GLASS GLARE OVERLAY */
+    .crt-glass-glare {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+      background: 
+        linear-gradient(135deg, rgba(255,255,255,0.18) 0%, rgba(255,255,255,0.04) 32%, transparent 48%),
+        repeating-linear-gradient(0deg, rgba(0,0,0,0.16) 0px, rgba(0,0,0,0.16) 1px, transparent 1px, transparent 2px),
+        radial-gradient(ellipse at center, transparent 65%, rgba(0,0,0,0.45) 100%);
+    }
+
+    /* MONITOR CHIN & CONTROLS */
+    .crt-chin {
+      margin-top: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8px;
+    }
+    .crt-badge {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 10px;
+      font-weight: bold;
+      color: #575041;
+      letter-spacing: 0.5px;
+    }
+    .xp-flag-mini {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1.5px;
+      width: 14px;
+      height: 14px;
+    }
+    .xp-flag-mini div:nth-child(1) { background: #ef4444; border-radius: 1px; }
+    .xp-flag-mini div:nth-child(2) { background: #22c55e; border-radius: 1px; }
+    .xp-flag-mini div:nth-child(3) { background: #3b82f6; border-radius: 1px; }
+    .xp-flag-mini div:nth-child(4) { background: #eab308; border-radius: 1px; }
+
+    .crt-controls {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .crt-buttons {
+      display: flex;
+      gap: 5px;
+    }
+    .crt-btn-round {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+      background: #c5bfae;
+      border: 1px solid #8e8877;
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.3);
+    }
+    .crt-power-group {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+    }
+    .crt-power-btn {
+      width: 22px;
+      height: 12px;
+      border-radius: 3px;
+      background: #b5ada0;
+      border: 1px solid #7a7366;
+      box-shadow: inset 1px 1px 0 rgba(255,255,255,0.4), 0 1px 2px rgba(0,0,0,0.3);
+    }
+    .crt-power-led {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 6px #22c55e, 0 0 12px rgba(34, 197, 94, 0.8);
+      animation: ledPulse 2s infinite ease-in-out;
+    }
+    @keyframes ledPulse {
+      0%, 100% { opacity: 0.9; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.1); }
+    }
+
+    /* MONITOR SWIVEL STAND */
+    .crt-stand {
+      position: absolute;
+      top: 100%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 220px;
+      height: 24px;
+      background: linear-gradient(180deg, #c7c0ad 0%, #b3ab98 100%);
+      border-radius: 0 0 12px 12px;
+      box-shadow: 0 12px 20px rgba(0,0,0,0.5), inset 0 2px 2px rgba(255,255,255,0.3);
+      border: 1px solid #9c9483;
+      z-index: -1;
+    }
+    .crt-base {
+      position: absolute;
+      top: 18px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 300px;
+      height: 18px;
+      background: linear-gradient(180deg, #dfd8c7 0%, #b8b19e 100%);
+      border-radius: 50%;
+      box-shadow: 0 8px 16px rgba(0,0,0,0.6);
+      border: 1px solid #a69f8e;
+    }
+
+    /* BEIGE MINI TOWER PC (ON THE RIGHT) */
+    .pc-tower {
+      position: relative;
+      width: 140px;
+      height: 380px;
+      background: linear-gradient(180deg, #ded8c7 0%, #c9c2b0 100%);
+      border-radius: 12px 12px 4px 4px;
+      border: 1px solid #aba290;
+      box-shadow: 0 20px 40px rgba(0,0,0,0.7), inset 2px 2px 0 rgba(255,255,255,0.4);
+      padding: 16px 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 5px;
+    }
+    @media (max-width: 900px) {
+      .pc-tower { display: none; }
+    }
+    .cd-drive {
+      height: 34px;
+      background: #cbc3b1;
+      border-radius: 4px;
+      border: 1px solid #9f9685;
+      padding: 4px 6px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      box-shadow: inset 1px 1px 2px rgba(0,0,0,0.2);
+    }
+    .cd-slot {
+      height: 2px;
+      background: #736b5c;
+      border-radius: 1px;
+    }
+    .cd-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .cd-led {
+      width: 5px;
+      height: 5px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 4px #22c55e;
+    }
+    .cd-btn {
+      width: 14px;
+      height: 7px;
+      background: #b5aca0;
+      border-radius: 2px;
+      border: 1px solid #736b5c;
+    }
+    .floppy-drive {
+      height: 24px;
+      background: #cbc3b1;
+      border-radius: 4px;
+      border: 1px solid #9f9685;
+      padding: 4px 6px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    .floppy-slot {
+      width: 80px;
+      height: 3px;
+      background: #474238;
+      border-radius: 1px;
+    }
+    .floppy-btn {
+      width: 12px;
+      height: 10px;
+      background: #b5aca0;
+      border-radius: 1px;
+      border: 1px solid #736b5c;
+    }
+    .tower-panel {
+      margin-top: auto;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding-top: 12px;
+      border-top: 1px solid #b8b09f;
+    }
+    .tower-power-btn {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      background: linear-gradient(180deg, #d4cdbd 0%, #aaa190 100%);
+      border: 2px solid #827a6c;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.3);
+      margin: 0 auto;
+    }
+    .tower-leds {
+      display: flex;
+      justify-content: center;
+      gap: 8px;
+    }
+    .tower-led-green {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #22c55e;
+      box-shadow: 0 0 5px #22c55e;
+    }
+    .tower-led-orange {
+      width: 6px;
+      height: 6px;
+      border-radius: 50%;
+      background: #f97316;
+      box-shadow: 0 0 5px #f97316;
+      animation: hddBlink 1.5s infinite steps(2, start);
+    }
+    @keyframes hddBlink {
+      0%, 100% { opacity: 0.2; }
+      40% { opacity: 1; }
+      50% { opacity: 0.1; }
+      80% { opacity: 0.9; }
+    }
+
+    /* KEYBOARD & MOUSE ON DESK */
+    .desk-peripherals {
+      position: absolute;
+      bottom: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      z-index: 3;
+      display: flex;
+      align-items: center;
+      gap: 40px;
+    }
+    .beige-keyboard {
+      width: 440px;
+      height: 85px;
+      background: linear-gradient(180deg, #d8d1bf 0%, #bab19c 100%);
+      border-radius: 8px;
+      border: 1px solid #9c9380;
+      box-shadow: 0 10px 20px rgba(0,0,0,0.6), inset 0 2px 0 rgba(255,255,255,0.4);
+      padding: 6px 10px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+    }
+    @media (max-width: 640px) {
+      .desk-peripherals { display: none; }
+    }
+    .kb-row {
+      display: flex;
+      gap: 3px;
+      height: 12px;
+    }
+    .kb-key {
+      flex: 1;
+      background: #c5beac;
+      border-radius: 2px;
+      border: 1px solid #8e8674;
+      box-shadow: 0 1px 0 rgba(0,0,0,0.2);
+    }
+    .kb-space { flex: 5; }
+
+    .mouse-setup {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .mousepad {
+      width: 100px;
+      height: 110px;
+      background: #1e3a8a;
+      border-radius: 8px;
+      border: 1px solid #172554;
+      box-shadow: 0 5px 12px rgba(0,0,0,0.5);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    .beige-mouse {
+      width: 45px;
+      height: 70px;
+      background: linear-gradient(180deg, #dfd8c7 0%, #b8b09d 100%);
+      border-radius: 22px 22px 16px 16px;
+      border: 1px solid #9c9482;
+      box-shadow: 0 6px 10px rgba(0,0,0,0.4), inset 0 2px 0 rgba(255,255,255,0.5);
+      position: relative;
+    }
+    .mouse-divider {
+      position: absolute;
+      top: 24px;
+      left: 0;
+      right: 0;
+      height: 1px;
+      background: #877f6f;
+    }
+    .mouse-scroll {
+      position: absolute;
+      top: 12px;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 6px;
+      height: 14px;
+      background: #736b5c;
+      border-radius: 3px;
+    }
+
+    /* PULSING "CLICK TO ENTER" BANNER (TOMMY BIGLOW STYLE) */
+    .enter-prompt {
+      position: relative;
+      z-index: 10;
+      margin-top: 25px;
+      color: #ffd166;
+      font-size: 13px;
+      font-family: 'JetBrains Mono', monospace;
+      font-weight: bold;
+      letter-spacing: 0.22em;
+      text-transform: uppercase;
+      text-shadow: 0 2px 8px rgba(0,0,0,0.8), 0 0 12px rgba(255,209,102,0.4);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 22px;
+      background: rgba(18, 18, 24, 0.7);
+      border: 1px solid rgba(255, 209, 102, 0.3);
+      border-radius: 9999px;
+      backdrop-filter: blur(8px);
+      cursor: pointer;
+      animation: pulsePrompt 2.2s infinite ease-in-out;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+    .enter-prompt:hover {
+      transform: scale(1.06);
+      background: rgba(255, 209, 102, 0.15);
+      border-color: #ffd166;
+    }
+    @keyframes pulsePrompt {
+      0%, 100% { opacity: 0.65; transform: scale(1); }
+      50% { opacity: 1; transform: scale(1.03); }
+    }
+  
     </style>
   </head>
-  <body class="relative w-screen h-screen overflow-hidden select-none" style="background: url('images/Bliss (Windows XP).png') no-repeat center center fixed; background-size: cover;">
-
-  <!-- 2001 RETRO WINDOWS PC DESK STAGE (LANDING VIEW) -->
-  <div id="deskStage">
+  <body class="theme-day">
+<div id="deskStage">
     <div class="desk-scene">
       <div class="hardware-rig">
         <!-- 2001 CRT MONITOR -->
@@ -918,27 +970,27 @@
                 <!-- MINI ICONS -->
                 <div class="mini-icons-col">
                   <div class="mini-icon-item">
+                    <div class="mini-icon-box bg-amber-500/80">📁</div>
+                    <span class="mini-icon-lbl">Project Gallery</span>
+                  </div>
+                  <div class="mini-icon-item">
                     <div class="mini-icon-box bg-purple-600/80">👁️</div>
                     <span class="mini-icon-lbl">Uncanny Valley</span>
                   </div>
                   <div class="mini-icon-item">
-                    <div class="mini-icon-box bg-amber-500/80">📁</div>
-                    <span class="mini-icon-lbl">Project Gallery</span>
+                    <div class="mini-icon-box bg-blue-600/80">👤</div>
+                    <span class="mini-icon-lbl">About Me</span>
                   </div>
                   <div class="mini-icon-item">
                     <div class="mini-icon-box bg-emerald-600/80">🧊</div>
                     <span class="mini-icon-lbl">3D Artifact</span>
                   </div>
                   <div class="mini-icon-item">
-                    <div class="mini-icon-box bg-blue-600/80">👤</div>
-                    <span class="mini-icon-lbl">About Gabbie</span>
-                  </div>
-                  <div class="mini-icon-item">
-                    <div class="mini-icon-box bg-lime-500/80">🎵</div>
+                    <div class="mini-icon-box bg-lime-500/80">🍋</div>
                     <span class="mini-icon-lbl">LimeWire</span>
                   </div>
                   <div class="mini-icon-item">
-                    <div class="mini-icon-box bg-red-600/80">⚠️</div>
+                    <div class="mini-icon-box bg-red-600/80">☣️</div>
                     <span class="mini-icon-lbl">DO NOT OPEN</span>
                   </div>
                 </div>
@@ -1038,7 +1090,84 @@
     </div>
   </div>
 
-    <!-- CANVAS LAYERS -->
+  <script>
+    function playCRTEnterSound() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        if (ctx.state === 'suspended') ctx.resume();
+
+        // Retro degauss 'thump' + high phosphor coil charge sound
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(140, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(35, ctx.currentTime + 0.35);
+
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.4);
+
+        // High frequency phosphor chime
+        const chime = ctx.createOscillator();
+        const chimeGain = ctx.createGain();
+        chime.type = 'sine';
+        chime.frequency.setValueAtTime(1800, ctx.currentTime + 0.05);
+        chime.frequency.exponentialRampToValueAtTime(3200, ctx.currentTime + 0.3);
+        chimeGain.gain.setValueAtTime(0.08, ctx.currentTime + 0.05);
+        chimeGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+
+        chime.connect(chimeGain);
+        chimeGain.connect(ctx.destination);
+        chime.start(ctx.currentTime + 0.05);
+        chime.stop(ctx.currentTime + 0.35);
+      } catch (e) {
+        console.warn('AudioContext unavailable', e);
+      }
+    }
+
+    function enterDesktop() {
+      const stage = document.getElementById('deskStage');
+      const screen = document.getElementById('crtScreenViewport');
+      if (!stage || !screen || stage.classList.contains('zooming')) return;
+
+      playCRTEnterSound();
+
+      const rect = screen.getBoundingClientRect();
+      const screenCenterX = rect.left + rect.width / 2;
+      const screenCenterY = rect.top + rect.height / 2;
+
+      const scaleX = window.innerWidth / rect.width;
+      const scaleY = window.innerHeight / rect.height;
+      const zoomScale = Math.max(scaleX, scaleY) * 1.12;
+
+      stage.style.setProperty('--zoom-scale', zoomScale);
+      stage.style.transformOrigin = `${screenCenterX}px ${screenCenterY}px`;
+      stage.classList.add('zooming');
+
+      setTimeout(() => {
+        stage.classList.add('hidden-desk');
+      }, 1550);
+    }
+
+    function returnToDesk() {
+      const stage = document.getElementById('deskStage');
+      if (!stage) return;
+      stage.classList.remove('hidden-desk');
+      // trigger reflow
+      void stage.offsetWidth;
+      stage.classList.remove('zooming');
+    }
+  </script>
+</body>
+</html>
+
+<!-- CANVAS LAYERS -->
     <canvas id="trailCanvas"></canvas>
     <canvas id="birdsCanvas"></canvas>
     <canvas id="grassCanvas"></canvas>
@@ -1048,37 +1177,36 @@
       <div class="flex items-center gap-2 h-full">
         <div class="xp-start-btn" onclick="openWindow('win-project')">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-            <path d="M0 2.5L6.5 1.5V7.5H0V2.5ZM7.5 1.4L16 0V7.5H7.5V1.4ZM0 8.5H6.5V14.5L0 13.5V8.5ZM7.5 8.5H16V16L7.5 14.6V8.5Z" fill="#ffffff"></path>
+            <path d="M0 2.5L6.5 1.5V7.5H0V2.5ZM7.5 1.4L16 0V7.5H7.5V1.4ZM0 8.5H6.5V14.5L0 13.5V8.5ZM7.5 8.5H16V16L7.5 14.6V8.5Z" fill="#ffffff"/>
           </svg>
           <span>start</span>
         </div>
         
         <div class="flex items-center gap-1.5 ml-2">
           <button onclick="toggleWindow('win-project')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>📁</span>
+            <span>📂</span>
             <span class="truncate max-w-[110px]">Uncanny Valley</span>
           </button>
           <button onclick="toggleWindow('win-slideshow')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>📁</span>
+            <span>📂</span>
             <span class="truncate max-w-[110px]">Project Viewer</span>
           </button>
-          <button onclick="toggleWindow('win-artifact')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>📁</span>
-            <span class="truncate max-w-[110px]">3D Artifact</span>
-          </button>
           <button onclick="toggleWindow('win-about')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>📁</span>
+            <span>📂</span>
             <span class="truncate max-w-[110px]">About Gabbie</span>
           </button>
-          <button onclick="toggleWindow('win-limewire')" class="bg-lime-900/80 hover:bg-lime-800 text-lime-200 font-sans text-xs px-3 py-1 rounded border border-lime-400/30 flex items-center gap-1.5 shadow">
-            <span>🎵</span>
-            <span class="truncate max-w-[110px]">LimeWire</span>
+          <button onclick="toggleWindow('win-artifact')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
+            <span>📂</span>
+            <span class="truncate max-w-[110px]">3D Artifact</span>
+          </button>
+          <button onclick="toggleWindow('win-limewire')" class="bg-lime-950/80 hover:bg-lime-900 text-lime-300 font-sans text-xs px-3 py-1 rounded border border-lime-500/40 flex items-center gap-1.5 shadow">
+            <span>🍋</span>
+            <span class="truncate max-w-[110px]">LimeWire PRO</span>
           </button>
         </div>
       </div>
 
       <div class="xp-systray">
-        <button id="btnDeskReturn" onclick="returnToDesk()" title="Return to 2001 PC Desk View" class="bg-blue-800/80 hover:bg-blue-700 text-white font-sans text-xs px-2 py-0.5 rounded border border-blue-400/40 flex items-center gap-1 shadow cursor-pointer transition-colors mr-1"><span>🖥️</span><span class="hidden sm:inline">Desk View</span></button>
         <div class="flex items-center gap-2">
           <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
           <span class="font-mono text-[11px] text-blue-100">ART 10C</span>
@@ -1090,147 +1218,192 @@
     <!-- DESKTOP SHORTCUTS -->
     <div class="desktop-icons-grid">
       <div class="desktop-icon" onclick="openWindow('win-project')">
-        <div class="desktop-icon-img">📁</div>
+        <div class="desktop-icon-img">📂</div>
         <span class="desktop-icon-title">Uncanny Valley</span>
       </div>
 
       <div class="desktop-icon" onclick="openWindow('win-slideshow')">
-        <div class="desktop-icon-img">📁</div>
+        <div class="desktop-icon-img">📂</div>
         <span class="desktop-icon-title">Project Gallery</span>
       </div>
 
       <div class="desktop-icon" onclick="openWindow('win-artifact')">
-        <div class="desktop-icon-img">📁</div>
+        <div class="desktop-icon-img">📂</div>
         <span class="desktop-icon-title">3D Artifact Study</span>
       </div>
 
       <div class="desktop-icon" onclick="openWindow('win-about')">
-        <div class="desktop-icon-img">📁</div>
+        <div class="desktop-icon-img">📂</div>
         <span class="desktop-icon-title">About Gabbie</span>
       </div>
 
       <div class="desktop-icon" onclick="openWindow('win-limewire')">
-        <div class="desktop-icon-img bg-lime-950/90 border-lime-500/50">🎵</div>
+        <div class="desktop-icon-img bg-lime-950/90 border-lime-500/50">🍋</div>
         <span class="desktop-icon-title">LimeWire v4.12</span>
       </div>
 
       <div class="desktop-icon" onclick="triggerVirusPrank()" title="DO NOT CLICK!">
-        <div class="desktop-icon-img bg-red-950/80 border-red-500/50">⚠️</div>
+        <div class="desktop-icon-img bg-red-950/80 border-red-500/50">☣️</div>
         <span class="desktop-icon-title text-red-300">DO NOT OPEN.exe</span>
       </div>
     </div>
 
-    <!-- WINDOW 1: UNCANNY VALLEY / ART 10C DOCUMENTATION -->
+    <!-- WINDOW 1: FEATURED PROJECT -->
     <div id="win-project" class="os-window minimized" style="width: 720px; height: 560px; top: 50px; left: 140px;">
-      <div class="os-window-header" onmousedown="initDrag(event, 'win-project')">
-        <div class="flex items-center gap-2">
-          <span>📁</span>
-          <span>Uncannty Valley</span>
+      <div class="os-window-header" onmousedown="dragWindow(event, 'win-project')">
+        <span class="os-window-title">Uncanny Valley - Featured Project</span>
+        <div class="window-controls">
+          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-project')">_</span>
+          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-project')">□</span>
+          <span class="win-btn win-btn-close" onclick="closeWindow('win-project')">✕</span>
         </div>
-        <div class="os-window-controls">
-          <div class="os-btn bg-[#245edb] border border-blue-300 text-white" onclick="toggleWindow('win-project')">_</div>
-          <div class="os-btn os-btn-close" onclick="closeWindow('win-project')">✕</div>
+      </div>
+
+      <!-- IN-WINDOW POKÉBASEMONBALL CARDS PREVIEW MODAL -->
+      <div id="projectImagePreview" class="hidden absolute inset-0 top-[30px] bg-black/85 backdrop-blur-sm z-30 flex items-center justify-center p-4">
+        <div class="relative bg-zinc-900 border border-zinc-700 p-3 rounded-xl shadow-2xl max-w-[88%] max-h-[88%] flex flex-col items-center">
+          <!-- "X" Close Button on Top Right -->
+          <button onclick="closeProjectPreview()" class="absolute -top-3 -right-3 w-7 h-7 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full border border-red-300 flex items-center justify-center text-xs shadow-lg cursor-pointer z-40 transition-transform hover:scale-110" title="Close Preview">
+            ✕
+          </button>
+          <img id="projectPreviewImg" src="images/Final 1.png" alt="PokéBaseMonBall Cards Preview" class="max-w-full max-h-[380px] object-contain rounded-lg shadow" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
+          <div class="mt-2 text-center">
+            <span class="font-mono text-[11px] text-amber-300">PokéBaseMonBall Cards · Preview</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="os-window-body">
+        <div class="text-center mb-6">
+          <span class="font-mono text-xs text-amber-400 tracking-widest uppercase block mb-1">Featured Works · Fall 2026</span>
+          <div class="flex justify-center mb-3">
+            <img src="images/Uncanny Title.png" alt="Uncanny Valley Title" class="max-h-24 object-contain filter drop-shadow" onerror="this.onerror=null; this.src='https://placehold.co/400x100/18181b/ffffff?text=Uncanny+Valley';" />
+          </div>
+        </div>
+
+   <!-- WINDOW 1: FEATURED PROJECT (CARD SECTION) -->
+<div class="relative bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-2 mb-6 group cursor-pointer" onclick="openProjectPreview('images/Final 1.png')">
+  <span class="absolute top-3 left-3 bg-black/80 text-amber-300 font-mono text-[10px] px-2.5 py-1 rounded border border-zinc-700 z-10">PokéBaseMonBall Cards</span>
+  <div class="block" title="Click to enlarge full view">
+    <img src="images/Final 1.png" alt="PokéBaseMonBall Artwork" class="w-full max-h-[340px] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
+  </div>
+</div>
+
+        <div class="flex items-center justify-between bg-zinc-900/60 border border-zinc-800 p-4 rounded-xl">
+          <div>
+            <h4 class="font-mono text-sm font-semibold text-white">Project 01 · Uncanny Valley</h4>
+            <p class="text-xs text-zinc-400 mt-1">Digital Media Art 10C Studio Showcase</p>
+          </div>
+          <button onclick="openWindow('win-slideshow')" class="bg-amber-400 hover:bg-amber-300 text-black font-mono font-semibold text-xs px-4 py-2.5 rounded-lg transition-colors shadow">
+            Open Project Gallery →
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 2: PROJECT SLIDESHOW GALLERY -->
+    <div id="win-slideshow" class="os-window minimized" style="width: 840px; height: 620px; top: 70px; left: 220px;">
+      <div class="os-window-header" onmousedown="dragWindow(event, 'win-slideshow')">
+        <span class="os-window-title">Project Gallery</span>
+        <div class="window-controls">
+          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-slideshow')">_</span>
+          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-slideshow')">□</span>
+          <span class="win-btn win-btn-close" onclick="closeWindow('win-slideshow')">✕</span>
+        </div>
+      </div>
+
+      <div class="os-window-body flex flex-col items-center justify-between text-center p-4">
+        <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">Project Gallery Slideshow</h3>
+
+        <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
+          <div class="modal-slide active">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE UNO OF 05</div>
+            <img src="images/Uncanny Valley HiRes.png" alt="Uncanny Valley HiRes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+01';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE DOS OF 05</div>
+            <img src="images/Uncanny Valley HIRESS.png" alt="Uncanny Valley HIRESS" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+02';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE TRES OF 05</div>
+            <img src="images/Uncanny Valley HiRes3.png" alt="Uncanny Valley HiRes3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+03';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CUATRO OF 05</div>
+            <img src="images/Uncanny Valley HiRes4.png" alt="Uncanny Valley HiRes4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+04';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CINCO OF 05</div>
+            <img src="images/Uncanny Valley HiRes5.png" alt="Uncanny Valley HiRes5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+05';" />
+          </div>
+
+          <!-- Clickable Navigation Arrows -->
+          <button type="button" id="prevSlideBtn" onclick="prevSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❮</button>
+          <button type="button" id="nextSlideBtn" onclick="nextSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❯</button>
+        </div>
+
+        <div class="flex justify-center gap-2 mt-3">
+          <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToSlide(event, 0)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToSlide(event, 1)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToSlide(event, 2)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToSlide(event, 3)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToSlide(event, 4)"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW 3: ABOUT & STUDIO PRACTICE -->
+    <div id="win-about" class="os-window minimized" style="width: 700px; height: 490px; top: 90px; left: 300px;">
+      <div class="os-window-header" onmousedown="dragWindow(event, 'win-about')">
+        <span class="os-window-title">About Gabbie &amp; Art 10C</span>
+        <div class="window-controls">
+          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-about')">_</span>
+          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-about')">□</span>
+          <span class="win-btn win-btn-close" onclick="closeWindow('win-about')">✕</span>
         </div>
       </div>
       <div class="os-window-body">
-        <div class="flex justify-between items-baseline border-b border-zinc-800 pb-3 mb-4">
-          <div>
-            <h1 class="text-xl font-bold text-white tracking-wide">UNCANNY VALLEY</h1>
-            <p class="font-mono text-xs text-amber-300 mt-0.5">ART 10C</p>
-          </div>
-          <div class="text-right font-mono text-[11px] text-zinc-500">
-            <div>TERM: FALL 2026</div>
-          </div>
-        </div>
-
-        <div class="border border-zinc-700 bg-zinc-900/60 rounded-lg overflow-hidden p-2 mb-6 group cursor-pointer" onclick="openProjectPreview('images/Final 1.png')" title="Click to view almost screen size">
-          <div class="flex items-center justify-between px-2 py-1 bg-zinc-800/80 rounded mb-2 text-xs font-mono text-zinc-300">
-            <span>preview_render_01.png</span>
-            <span class="text-amber-400 group-hover:underline">🔍 Click to Expand Outside Window</span>
-          </div>
-          <div class="overflow-hidden rounded flex items-center justify-center bg-black/60">
-            <img src="images/Final 1.png" alt="PokéBaseMonBall Cards" class="w-full h-auto max-h-[300px] object-contain transition-transform duration-300 group-hover:scale-[1.02]" />
-          </div>
-        </div>
-
-        <div class="space-y-4 text-sm text-zinc-300 leading-relaxed font-sans">
-          <div class="bg-zinc-900/40 p-3 rounded-lg border border-zinc-800">
-            <h3 class="font-mono text-xs uppercase tracking-wider text-amber-300 mb-1">PokéBaseMonBall Cards</h3>
-             </div>
-          </div>
-        </div>
-      </div>
-    </div>
-
-    <!-- WINDOW 2: PROJECT GALLERY SLIDESHOW -->
-    <div id="win-slideshow" class="os-window minimized" style="width: 840px; height: 620px; top: 70px; left: 220px;">
-      <div class="os-window-header" onmousedown="initDrag(event, 'win-slideshow')">
-        <div class="flex items-center gap-2">
-          <span>📁</span>
-          <span>Project Gallery Slideshow</span>
-        </div>
-        <div class="os-window-controls">
-          <div class="os-btn bg-[#245edb] border border-blue-300 text-white" onclick="toggleWindow('win-slideshow')">_</div>
-          <div class="os-btn os-btn-close" onclick="closeWindow('win-slideshow')">✕</div>
-        </div>
-      </div>
-      <div class="os-window-body flex flex-col justify-between items-center relative">
-        <div class="w-full flex items-center justify-between pb-2 border-b border-zinc-800 mb-2">
-          <div class="font-mono text-xs text-zinc-400">
-            <span class="text-amber-300 font-bold">SLIDE:</span> <span id="slideCounter">1 / 5</span>
-          </div>
-          <button onclick="openSlideshowPopout()" title="Pop out slideshow to full screen" class="font-mono text-xs bg-amber-400/20 hover:bg-amber-400/30 text-amber-300 border border-amber-400/40 px-2 py-0.5 rounded transition-all flex items-center gap-1 cursor-pointer">
-            <span>⛶</span> Pop Out Fullscreen
-          </button>
-        </div>
-
-        <div class="relative w-full flex-1 flex items-center justify-center overflow-hidden bg-black/40 rounded-lg p-2 border border-zinc-800/80">
-          <div id="galleryContainer" class="w-full h-full flex items-center justify-center">
-            <img id="slideshowImage" src="images/Final 1.png" alt="Project Artifact" class="slideshow-img rounded shadow-2xl transition-all duration-300 cursor-pointer" onclick="openSlideshowPopout()" title="Click to view almost screen size" />
-          </div>
-
-          <!-- NEXT / PREV ARROWS -->
-          <button id="prevBtn" onclick="prevSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/75 hover:bg-amber-400 hover:text-black text-white p-2.5 rounded-full border border-white/20 transition-all cursor-pointer z-20">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"></path></svg>
-          </button>
-          <button id="nextBtn" onclick="nextSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/75 hover:bg-amber-400 hover:text-black text-white p-2.5 rounded-full border border-white/20 transition-all cursor-pointer z-20">
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"></path></svg>
-          </button>
-        </div>
-
-        <div class="w-full mt-3 flex items-center justify-between pt-2 border-t border-zinc-800 font-mono text-xs">
-          <div class="text-zinc-400 truncate max-w-[500px]" id="slideCaption">Final 1.png — High-Precision Card Generation &amp; Surface Texture Mapping</div>
-          <div class="flex gap-1.5" id="slideDots"></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- WINDOW 3: ABOUT ARTIST -->
-    <div id="win-about" class="os-window minimized" style="width: 700px; height: 490px; top: 90px; left: 300px;">
-      <div class="os-window-header" onmousedown="initDrag(event, 'win-about')">
-        <div class="flex items-center gap-2">
-          <span>👤</span>
-          <span>Gabriela Salas</span>
-        </div>
-        <div class="os-window-controls">
-          <div class="os-btn bg-[#245edb] border border-blue-300 text-white" onclick="toggleWindow('win-about')">_</div>
-          <div class="os-btn os-btn-close" onclick="closeWindow('win-about')">✕</div>
-        </div>
-      </div>
-      <div class="os-window-body font-sans">
-        <div class="flex gap-6 items-start">
-          <div class="w-36 shrink-0 text-center">
-            <div class="w-32 h-32 rounded-lg bg-zinc-800 border-2 border-amber-400/40 p-1 mx-auto overflow-hidden shadow-lg">
-              <img src="images/icon.png" alt="Gabriela Salas Monogram" class="w-full h-full object-cover rounded" onerror="this.src='data:image/svg+xml,<svg xmlns=\'http://www.w3.org/2000/svg\' viewBox=\'0 0 100 100\'><rect width=\'100\' height=\'100\' fill=\'%2318181b\'></rect><text x=\'50\' y=\'65\' font-size=\'45\' fill=\'%23ffd166\' text-anchor=\'middle\' font-weight=\'bold\'>GS</text></svg>'" />
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+          <div class="bg-zinc-900/80 border border-zinc-800 p-5 rounded-xl flex flex-col justify-between">
+            <div>
+              <span class="font-mono text-[11px] text-amber-400 uppercase tracking-widest block mb-2">Identity &amp; Trajectory</span>
+              <h3 class="font-bold text-lg text-white mb-2">About Gabbie</h3>
+              <p class="text-xs text-zinc-400 leading-relaxed">
+                Student, designer, and digital creator working at the intersection of graphic storytelling, character design, and modern front-end media.
+              </p>
             </div>
-            <span class="inline-block mt-2 font-mono text-[10px] bg-amber-400/10 text-amber-300 border border-amber-400/30 px-2 py-0.5 rounded">STUDIO ARTIST</span>
+            <div class="mt-6">
+              <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-2">Interests &amp; Disciplines</span>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Character Design</span>
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Typography</span>
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Digital Storytelling</span>
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Traditional Art</span>
+              </div>
+            </div>
           </div>
 
-          <div class="flex-1 space-y-3 text-sm text-zinc-300 leading-relaxed">
-            <h2 class="text-xl font-bold text-white tracking-tight">Gabbie Salas</h2>
-            <p class="font-mono text-xs text-amber-300">Art 10C Fall 2026</p>
-            <p>Student, designer, artist.</p>
-            <div class="pt-2 border-t border-zinc-800 flex gap-4 text-xs font-mono">
+          <div class="bg-zinc-900/80 border border-zinc-800 p-5 rounded-xl flex flex-col justify-between">
+            <div>
+              <span class="font-mono text-[11px] text-amber-400 uppercase tracking-widest block mb-2">Academic Studio</span>
+              <h3 class="font-bold text-lg text-white mb-2">Art 10C Studio</h3>
+              <p class="text-xs text-zinc-400 leading-relaxed">
+                Exploring advanced digital art and design theory using computer imaging applications and scanning technologies. Applying visual design principles and studio projects focused on personal expression.
+              </p>
+            </div>
+            <div class="mt-6">
+              <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-2">Software &amp; Skills</span>
+              <div class="flex flex-wrap gap-1.5">
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Adobe Illustrator</span>
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Photoshop</span>
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Blender</span>
+                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">HTML &amp; CSS</span>
+              </div>
+            </div>
           </div>
         </div>
       </div>
@@ -1238,246 +1411,340 @@
 
     <!-- WINDOW 4: 3D ARTIFACT STUDY -->
     <div id="win-artifact" class="os-window minimized" style="width: 740px; height: 560px; top: 80px; left: 240px;">
-      <div class="os-window-header" onmousedown="initDrag(event, 'win-artifact')">
+      <div class="os-window-header" onmousedown="dragWindow(event, 'win-artifact')">
         <div class="flex items-center gap-2">
-          <span>🧊</span>
-          <span>Interactive 3D Artifact Study — cUbic.glb (Real-time WebGL)</span>
+          <span>📂</span>
+          <span class="os-window-title">3D Artifact Study</span>
         </div>
-        <div class="os-window-controls">
-          <div class="os-btn bg-[#245edb] border border-blue-300 text-white" onclick="toggleWindow('win-artifact')">_</div>
-          <div class="os-btn os-btn-close" onclick="closeWindow('win-artifact')">✕</div>
+        <div class="window-controls">
+          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-artifact')">_</span>
+          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-artifact')">□</span>
+          <span class="win-btn win-btn-close" onclick="closeWindow('win-artifact')">✕</span>
         </div>
       </div>
-      <div class="os-window-body flex flex-col justify-between">
-        <div class="flex justify-between items-center border-b border-zinc-800 pb-2 mb-2 font-mono text-xs">
-          <div class="text-zinc-400">
-            <span class="text-amber-300 font-bold">ASSET:</span> cUbic.glb (3D Mesh Study)
+
+      <div class="os-window-body flex flex-col p-4 bg-zinc-950 text-zinc-200">
+        <!-- Inner Title Header -->
+        <div class="flex items-center justify-between mb-3 bg-zinc-900/80 border border-zinc-800 p-3.5 rounded-xl">
+          <div>
+            <span class="font-mono text-[10px] text-amber-400 uppercase tracking-widest block mb-0.5">Interactive Digital Media</span>
+            <h3 class="font-bold text-sm text-white">3D Artifact Study</h3>
           </div>
-          <div class="flex items-center gap-2">
-            <button id="wireframeToggle" onclick="toggleWireframe()" class="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-2 py-0.5 rounded border border-zinc-700 transition-colors cursor-pointer">
-              Wireframe: OFF
-            </button>
-            <button onclick="resetModelCamera()" class="bg-zinc-800 hover:bg-zinc-700 text-zinc-300 px-2 py-0.5 rounded border border-zinc-700 transition-colors cursor-pointer">
-              Reset Camera
-            </button>
-          </div>
+          <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2.5 py-1 rounded border border-zinc-700">
+            cUbic.glb 
+          </span>
         </div>
 
-        <div class="w-full flex-1 bg-black/60 rounded-lg border border-zinc-800 relative overflow-hidden flex items-center justify-center">
-          <model-viewer
-            id="artifactModel"
-            src="image/Models/cUbic.glb"
-            alt="3D Digital Artifact"
-            camera-controls
-            auto-rotate
-            rotation-per-second="20deg"
-            shadow-intensity="1.5"
-            exposure="1.0"
-            style="width: 100%; height: 100%; min-height: 380px; background: transparent;"
-          >
-            <div slot="poster" class="flex items-center justify-center h-full text-zinc-500 font-mono text-xs">
-              Loading 3D asset (cUbic.glb)...
-            </div>
+        <!-- 3D Model Viewer Container -->
+        <div class="model-container relative flex-1 w-full bg-black border border-zinc-800 rounded-xl overflow-hidden p-2 flex flex-col">
+          <model-viewer 
+            src="images/Models/cUbic.glb" 
+            alt="3D Artifact Study - cUbic" 
+            shadow-intensity="1" 
+            camera-controls 
+            auto-rotate 
+            ar
+            style="width: 100%; height: 100%; min-height: 360px; display: block; background-color: #0c0c0e; border-radius: 8px; --poster-color: transparent;">
           </model-viewer>
-        </div>
-
-        <div class="mt-2 text-[11px] font-mono text-zinc-500 flex justify-between">
-          <span>Use left-click to orbit, scroll to zoom, right-click to pan.</span>
-          <span class="text-amber-400">ART 10C 3D Exploration</span>
         </div>
       </div>
     </div>
 
-    <!-- WINDOW 5: LIMEWIRE MP3 PLAYER -->
+    <!-- WINDOW 5: LIMEWIRE PRO P2P CLIENT -->
     <div id="win-limewire" class="os-window minimized" style="width: 760px; height: 530px; top: 60px; left: 180px;">
-      <div class="os-window-header" style="background: linear-gradient(to bottom, #15803d 0%, #22c55e 10%, #15803d 90%, #14532d 100%);" onmousedown="initDrag(event, 'win-limewire')">
+      <div class="os-window-header" style="background: linear-gradient(to bottom, #2b5711 0%, #4c991e 8%, #366d15 90%, #1c3b0a 100%); border-bottom: 1px solid #62c427;" onmousedown="dragWindow(event, 'win-limewire')">
         <div class="flex items-center gap-2">
-          <span>🎵</span>
-          <span class="font-bold">LimeWire v4.12.3 — P2P Audio Archive</span>
+          <span class="text-sm">🍋</span>
+          <span class="os-window-title font-mono text-lime-200">LimeWire PRO v4.12.6 — Turbo Charged P2P</span>
         </div>
-        <div class="os-window-controls">
-          <div class="os-btn bg-[#15803d] border border-green-300 text-white" onclick="toggleWindow('win-limewire')">_</div>
-          <div class="os-btn os-btn-close" onclick="closeWindow('win-limewire')">✕</div>
+        <div class="window-controls">
+          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-limewire')">_</span>
+          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-limewire')">□</span>
+          <span class="win-btn win-btn-close" onclick="closeWindow('win-limewire')">✕</span>
         </div>
       </div>
-      <div class="os-window-body flex flex-col justify-between bg-zinc-950 font-mono text-xs">
-        <div>
-          <!-- LIMEWIRE SEARCH & STATUS BAR -->
-          <div class="flex items-center gap-3 p-2 bg-zinc-900 border border-zinc-800 rounded mb-3">
-            <span class="text-lime-400 font-bold">Search:</span>
-            <input type="text" value="art10c final soundtrack pokebasemon" readonly class="flex-1 bg-black border border-zinc-700 px-2 py-1 rounded text-white text-xs outline-none" />
-            <span class="text-[11px] text-zinc-400">Network: <strong class="text-lime-400">Ultrapeer Connected</strong></span>
+
+      <div class="os-window-body p-0 flex flex-col bg-zinc-950 text-lime-100 font-mono text-xs">
+        <div class="bg-gradient-to-b from-zinc-900 to-zinc-950 border-b border-lime-900/40 p-2.5 flex items-center justify-between">
+          <div class="flex items-center gap-2">
+            <button class="bg-lime-500/20 hover:bg-lime-500/30 text-lime-300 border border-lime-500/40 px-3 py-1 rounded flex items-center gap-1.5 font-bold">
+              <span>🔍</span> Search
+            </button>
+            <button class="bg-zinc-800/80 hover:bg-zinc-800 text-zinc-400 border border-zinc-700 px-3 py-1 rounded flex items-center gap-1.5">
+              <span>📥</span> Monitor
+            </button>
+            <button class="bg-zinc-800/80 hover:bg-zinc-800 text-zinc-400 border border-zinc-700 px-3 py-1 rounded flex items-center gap-1.5">
+              <span>📻</span> Library
+            </button>
           </div>
-
-          <!-- FILE TABLE -->
-          <div class="border border-zinc-800 rounded overflow-hidden">
-            <table class="w-full text-left border-collapse">
-              <thead>
-                <tr class="bg-zinc-900 text-zinc-400 text-[11px] border-b border-zinc-800">
-                  <th class="p-2">Title</th>
-                  <th class="p-2">Size</th>
-                  <th class="p-2">Status</th>
-                  <th class="p-2">Speed</th>
-                  <th class="p-2 text-right">Action</th>
-                </tr>
-              </thead>
-              <tbody id="lwTableBody" class="divide-y divide-zinc-900 text-zinc-300">
-                <tr class="hover:bg-lime-950/30 transition-colors">
-                  <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
-                    <span>🎵</span> pokebasemon_theme.mp3
-                  </td>
-                  <td class="p-2 text-zinc-400">3.2 MB</td>
-                  <td class="p-2 text-lime-400">100% (Complete)</td>
-                  <td class="p-2 text-emerald-400">Cable (92)</td>
-                  <td class="p-2 text-right">
-                    <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all cursor-pointer" data-track="pokebasemon" data-audio="https://archive.org/download/tvtunes_11549/Pokemon.mp3">
-                      ▶ Play
-                    </button>
-                  </td>
-                </tr>
-
-                <tr class="hover:bg-lime-950/30 transition-colors">
-                  <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
-                    <span>📦</span> Uncanny_Valley_FullHD_Set.zip
-                  </td>
-                  <td class="p-2 text-zinc-400">18.6 MB</td>
-                  <td class="p-2 text-lime-400">Lossless PNG</td>
-                  <td class="p-2 text-emerald-400">Cable (84)</td>
-                  <td class="p-2 text-right">
-                    <button onclick="openWindow('win-slideshow')" class="bg-zinc-800 hover:bg-lime-500 text-zinc-300 hover:text-black border border-zinc-700 px-2 py-0.5 rounded transition-all">
-                      ↗ Open Gallery
-                    </button>
-                  </td>
-                </tr>
-
-                <tr class="hover:bg-lime-950/30 transition-colors">
-                  <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
-                    <span>🎵</span> Gabbie_salas_art10c.mp3
-                  </td>
-                  <td class="p-2 text-zinc-400">4.5 MB</td>
-                  <td class="p-2 text-lime-400">100% (Complete)</td>
-                  <td class="p-2 text-emerald-400">T3 (120)</td>
-                  <td class="p-2 text-right">
-                    <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all cursor-pointer" data-track="gabbie_art10c" data-audio="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3">
-                      ▶ Play
-                    </button>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
+          <div class="flex items-center gap-2 bg-lime-950/60 border border-lime-600/30 px-2.5 py-1 rounded text-[11px] text-lime-400">
+            <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
+            <span>Ultrapeer Connected (532 hosts)</span>
           </div>
         </div>
 
-        <!-- INTEGRATED AUDIO PLAYER DOCK -->
-        <div class="mt-4 p-3 bg-zinc-900 border border-zinc-800 rounded-lg flex flex-col gap-2">
-          <div class="flex justify-between items-center">
-            <div class="flex items-center gap-2">
-              <span id="lwPlayingDot" class="w-2.5 h-2.5 rounded-full bg-zinc-600"></span>
-              <span id="lwCurrentTrackTitle" class="text-lime-300 font-bold text-[11px]">Ready - Select track to preview</span>
+        <div class="flex-1 flex overflow-hidden">
+          <div class="w-56 bg-zinc-900/90 border-r border-lime-900/30 p-3 flex flex-col justify-between">
+            <div>
+              <div class="text-[10px] text-lime-400/80 uppercase tracking-widest font-bold mb-2">P2P File Search</div>
+              <div class="space-y-2.5">
+                <div>
+                  <label class="text-[10px] text-zinc-400 block mb-1">Keywords / Title</label>
+                  <input type="text" id="lwSearchInput" value="WHERESGABBIE 2026 Art" class="w-full bg-black border border-lime-600/40 rounded px-2 py-1 text-lime-300 focus:outline-none focus:border-lime-400" />
+                </div>
+                <div>
+                  <label class="text-[10px] text-zinc-400 block mb-1">Media Type</label>
+                  <select class="w-full bg-black border border-lime-600/40 rounded px-2 py-1 text-lime-300 focus:outline-none">
+                    <option>Audio &amp; Music (.mp3)</option>
+                    <option>Images &amp; Artwork (.png)</option>
+                    <option>Documents (.pdf)</option>
+                  </select>
+                </div>
+                <button onclick="triggerLWSearch()" class="w-full bg-lime-600 hover:bg-lime-500 text-black font-bold py-1.5 rounded shadow transition-colors mt-1">
+                  Start Search
+                </button>
+              </div>
             </div>
-            <div class="text-[10px] text-zinc-400 flex items-center gap-2">
-              <span id="lwTimer">00:00</span>
-              <span>/ 01:30</span>
+
+            <div class="bg-black/80 border border-lime-900/40 p-2.5 rounded text-[10px] space-y-1">
+              <div class="flex justify-between text-zinc-400">
+                <span>Down Speed:</span>
+                <span class="text-lime-400 font-bold">1,240 KB/s</span>
+              </div>
+              <div class="w-full bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                <div class="bg-lime-400 h-full w-[78%] animate-pulse"></div>
+              </div>
+              <div class="flex justify-between text-zinc-400 pt-1">
+                <span>Sharing:</span>
+                <span class="text-amber-400">12 Files</span>
+              </div>
             </div>
           </div>
 
-          <div class="w-full bg-zinc-800 h-2 rounded-full overflow-hidden relative cursor-pointer" id="lwProgressTrack">
-            <div id="lwProgressBar" class="h-full bg-lime-500 rounded-full transition-all duration-100" style="width: 0%;"></div>
-          </div>
+          <div class="flex-1 flex flex-col bg-zinc-950 overflow-hidden">
+            <div class="overflow-x-auto flex-1">
+              <table class="w-full text-left border-collapse text-[11px]">
+                <thead>
+                  <tr class="bg-zinc-900 text-lime-400/90 border-b border-zinc-800 select-none">
+                    <th class="p-2 font-bold">File Name</th>
+                    <th class="p-2 font-bold">Size</th>
+                    <th class="p-2 font-bold">Quality</th>
+                    <th class="p-2 font-bold">Speed</th>
+                    <th class="p-2 font-bold text-right">Action</th>
+                  </tr>
+                </thead>
+                <tbody id="lwTableBody" class="divide-y divide-zinc-900 text-zinc-300">
+                  <tr class="hover:bg-lime-950/30 transition-colors">
+                    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
+                      <span>🎵</span> pokebasemon_theme.mp3
+                    </td>
+                    <td class="p-2 text-zinc-400">3.2 MB</td>
+                    <td class="p-2 text-lime-400">100% (Complete)</td>
+                    <td class="p-2 text-emerald-400">Cable (92)</td>
+                    <td class="p-2 text-right">
+                      <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all cursor-pointer" data-track="pokebasemon" data-audio="https://archive.org/download/tvtunes_11549/Pokemon.mp3">
+                        ▶ Play
+                      </button>
+                    </td>
+                  </tr>
 
-          <div class="flex justify-between items-center text-[10px] text-zinc-500 pt-1">
-            <span>Bitrate: 192kbps MP3 Stereo</span>
-            <div class="flex items-center gap-2">
-              <span>VOL:</span>
-              <input type="range" id="lwVolume" min="0" max="100" value="80" class="w-20 accent-lime-500" />
+                  <tr class="hover:bg-lime-950/30 transition-colors">
+                    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
+                      <span>🖼️</span> Uncanny_Valley_FullHD_Set.zip
+                    </td>
+                    <td class="p-2 text-zinc-400">18.6 MB</td>
+                    <td class="p-2 text-lime-400">Lossless PNG</td>
+                    <td class="p-2 text-emerald-400">Cable (84)</td>
+                    <td class="p-2 text-right">
+                      <button onclick="openWindow('win-slideshow')" class="bg-zinc-800 hover:bg-lime-500 text-zinc-300 hover:text-black border border-zinc-700 px-2 py-0.5 rounded transition-all">
+                        ⬇ Open Gallery
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-lime-950/30 transition-colors">
+                    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
+                      <span>🎵</span> Gabbie_salas_art10c.mp3
+                    </td>
+                    <td class="p-2 text-zinc-400">4.5 MB</td>
+                    <td class="p-2 text-lime-400">100% (Complete)</td>
+                    <td class="p-2 text-emerald-400">T3 (120)</td>
+                    <td class="p-2 text-right">
+                      <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all cursor-pointer" data-track="gabbie" data-audio="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3">
+                        ▶ Play
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-lime-950/30 transition-colors">
+                    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
+                      <span>📄</span> Digital_Media_Portfolio_2026.pdf
+                    </td>
+                    <td class="p-2 text-zinc-400">2.1 MB</td>
+                    <td class="p-2 text-lime-400">Vector Print</td>
+                    <td class="p-2 text-emerald-400">T1 (67)</td>
+                    <td class="p-2 text-right">
+                      <button onclick="openWindow('win-about')" class="bg-zinc-800 hover:bg-lime-500 text-zinc-300 hover:text-black border border-zinc-700 px-2 py-0.5 rounded transition-all">
+                        ⬇ View About
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div class="bg-zinc-900 border-t border-lime-900/40 p-2.5 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <button id="lwPlayBtn" onclick="toggleLimeAudio()" class="w-8 h-8 rounded-full bg-lime-500 hover:bg-lime-400 text-black flex items-center justify-center font-bold text-sm shadow cursor-pointer">
+                  ▶
+                </button>
+                <div>
+                  <div id="lwTrackName" class="text-lime-300 font-bold text-[11px]">Ready - Select track to preview</div>
+                  <div class="text-[10px] text-zinc-400 flex items-center gap-2">
+                    <span id="lwAudioStatus">Status: Idle</span>
+                    <span>•</span>
+                    <span id="lwAudioTime">0:00 / 2:45</span>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Animated Equalizer Bars -->
+              <div id="lwEqualizer" class="flex items-end gap-1 h-6 opacity-40">
+                <span class="w-1 bg-lime-400 rounded-t h-3"></span>
+                <span class="w-1 bg-lime-400 rounded-t h-5"></span>
+                <span class="w-1 bg-lime-400 rounded-t h-2"></span>
+                <span class="w-1 bg-lime-400 rounded-t h-6"></span>
+                <span class="w-1 bg-lime-400 rounded-t h-4"></span>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- SINGLE IMAGE LIGHTBOX MODAL (GLOBAL FALLBACK) -->
+    <div id="imageModal" class="modal-overlay" aria-hidden="true">
+      <div class="relative bg-zinc-900 border border-zinc-700 p-4 rounded-xl max-w-3xl w-full text-center shadow-2xl">
+        <button id="closeImageModalBtn" class="absolute top-2 right-3 text-zinc-400 hover:text-white text-2xl font-bold cursor-pointer">✕</button>
+        <div class="flex items-center justify-center min-h-[300px]">
+          <img id="lightboxImage" src="" alt="Full View" class="max-w-full max-h-[70vh] object-contain rounded-lg" />
         </div>
       </div>
     </div>
 
     <!-- PRANK VIRUS OVERLAY -->
-    <div id="prankOverlay" style="display: none; position: fixed; inset: 0; z-index: 10000; pointer-events: auto;">
-      <div id="prankWindowsContainer" class="w-full h-full relative"></div>
-    </div>
-
-    <!-- FULLSCREEN POKÉBASEMONBALL CARDS PREVIEW MODAL (ALMOST SCREEN SIZE) -->
-    <div id="projectImagePreview" class="fixed inset-0 z-[10000] bg-black/85 backdrop-blur-md flex items-center justify-center p-4" style="display: none;" onclick="closeProjectPreview(event)">
-      <div class="relative max-w-[95vw] max-h-[92vh] flex flex-col items-center justify-center" onclick="event.stopPropagation()">
-        <!-- RED CLOSE 'X' BUTTON -->
-        <button onclick="closeProjectPreview()" class="absolute -top-4 -right-4 md:-top-5 md:-right-5 z-50 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full w-9 h-9 md:w-11 md:h-11 flex items-center justify-center text-lg md:text-xl shadow-2xl border-2 border-white cursor-pointer transition-transform hover:scale-110 active:scale-95" title="Close Preview (Esc)">
-          ✕
-        </button>
-        <div class="bg-zinc-900/90 border-2 border-amber-400/60 rounded-xl p-2 shadow-2xl overflow-hidden flex items-center justify-center">
-          <img id="previewModalImage" src="images/Final 1.png" alt="PokéBaseMonBall Cards Preview" class="max-w-[92vw] max-h-[84vh] w-auto h-auto object-contain rounded-lg" />
-        </div>
+    <div id="prankOverlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 99999; overflow: hidden; font-family: 'Tahoma', sans-serif;">
+      <div style="position: absolute; top: 12px; right: 16px; background: rgba(239, 68, 68, 0.9); color: white; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: bold; z-index: 100000; cursor: pointer; border: 1px solid #fca5a5;" onclick="stopVirusPrank()">
+        ⚠️ Press ESC or Click Here to Exit Prank
       </div>
+      <div id="errorWindowContainer" style="position: absolute; inset: 0; pointer-events: none;"></div>
     </div>
 
-    <!-- FULLSCREEN SLIDESHOW POP-OUT MODAL (ALMOST SCREEN SIZE) -->
-    <div id="slideshowPopoutModal" class="fixed inset-0 z-[10001] bg-black/90 backdrop-blur-md flex items-center justify-center p-4" style="display: none;" onclick="closeSlideshowPopout(event)">
-      <div class="relative w-[96vw] max-w-[1280px] h-[90vh] max-h-[850px] bg-zinc-950/95 border-2 border-amber-400/80 rounded-2xl flex flex-col justify-between p-4 shadow-2xl" onclick="event.stopPropagation()">
-        
-        <!-- RED CLOSE 'X' BUTTON -->
-        <button onclick="closeSlideshowPopout()" class="absolute -top-4 -right-4 md:-top-5 md:-right-5 z-50 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full w-9 h-9 md:w-11 md:h-11 flex items-center justify-center text-lg md:text-xl shadow-2xl border-2 border-white cursor-pointer transition-transform hover:scale-110 active:scale-95" title="Close Fullscreen Slideshow (Esc)">
-          ✕
-        </button>
-
-        <div class="w-full flex items-center justify-between pb-2 border-b border-zinc-800 text-zinc-300 font-mono text-sm">
-          <div>
-            <span class="text-amber-400 font-bold">PROJECT GALLERY FULLSCREEN:</span>
-            <span id="popoutSlideCounter" class="ml-2 text-white">1 / 5</span>
-          </div>
-          <div class="text-zinc-500 text-xs hidden sm:block">Press ESC or click ✕ to close</div>
-        </div>
-
-        <div class="relative flex-1 w-full flex items-center justify-center overflow-hidden my-3 bg-black/50 rounded-xl border border-zinc-800">
-          <div class="modal-slide active" data-index="0">
-            <img src="images/Final 1.png" alt="Final 1" />
-          </div>
-          <div class="modal-slide" data-index="1">
-            <img src="images/Final 2.png" alt="Final 2" />
-          </div>
-          <div class="modal-slide" data-index="2">
-            <img src="images/Final 3.png" alt="Final 3" />
-          </div>
-          <div class="modal-slide" data-index="3">
-            <img src="images/Final 4.png" alt="Final 4" />
-          </div>
-          <div class="modal-slide" data-index="4">
-            <img src="images/Final 5.png" alt="Final 5" />
-          </div>
-
-          <!-- ARROWS FOR POP-OUT SLIDESHOW -->
-          <button onclick="prevPopoutSlide(event)" class="absolute left-4 top-1/2 -translate-y-1/2 bg-black/80 hover:bg-amber-400 hover:text-black text-white p-3 rounded-full border border-white/30 transition-all cursor-pointer z-30 shadow-lg">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M15 18l-6-6 6-6"></path></svg>
-          </button>
-          <button onclick="nextPopoutSlide(event)" class="absolute right-4 top-1/2 -translate-y-1/2 bg-black/80 hover:bg-amber-400 hover:text-black text-white p-3 rounded-full border border-white/30 transition-all cursor-pointer z-30 shadow-lg">
-            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M9 18l6-6-6-6"></path></svg>
-          </button>
-        </div>
-
-        <div class="w-full flex items-center justify-between pt-2 border-t border-zinc-800 font-mono text-xs">
-          <div id="popoutCaption" class="text-zinc-300 truncate max-w-[70%]">Final 1.png — High-Precision Card Generation &amp; Surface Texture Mapping</div>
-          <div id="popoutDots" class="flex gap-2"></div>
-        </div>
-      </div>
+    <!-- JAVASCRIPT CONTROLLERS -->
+     <!-- FULLSCREEN POKÉBASEMONBALL CARDS PREVIEW MODAL -->
+<div id="projectImagePreview" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-[25000] flex items-center justify-center p-4 md:p-8" onclick="if(event.target === this) closeProjectPreview()">
+  <div class="relative bg-zinc-900 border border-zinc-700 p-3 sm:p-4 rounded-2xl shadow-2xl max-w-5xl max-h-[92vh] flex flex-col items-center">
+    <!-- Red "✕" Close Button on Top Right -->
+    <button onclick="closeProjectPreview()" class="absolute -top-3 -right-3 sm:-top-3.5 sm:-right-3.5 w-8 h-8 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full border-2 border-red-200 flex items-center justify-center text-sm shadow-xl cursor-pointer z-50 transition-transform hover:scale-110" title="Close Preview">
+      ✕
+    </button>
+    <img id="projectPreviewImg" src="images/Final 1.png" alt="PokéBaseMonBall Cards Preview" class="max-w-full max-h-[78vh] object-contain rounded-xl shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
+    <div class="mt-2 text-center">
+      <span class="font-mono text-xs text-amber-300 font-semibold tracking-wide">PokéBaseMonBall Cards · Full Preview</span>
     </div>
+  </div>
+</div>
 
     <script>
-      /* =========================================================
-         WINDOW MANAGEMENT SYSTEM
-         ========================================================= */
-      let highestZ = 100;
-      let activeDrag = null;
-      let dragOffset = { x: 0, y: 0 };
+
+    function playCRTEnterSound() {
+      try {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (!AudioContext) return;
+        const ctx = new AudioContext();
+        if (ctx.state === 'suspended') ctx.resume();
+
+        // Retro degauss 'thump' + high phosphor coil charge sound
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.type = 'triangle';
+        osc.frequency.setValueAtTime(140, ctx.currentTime);
+        osc.frequency.exponentialRampToValueAtTime(35, ctx.currentTime + 0.35);
+
+        gain.gain.setValueAtTime(0.3, ctx.currentTime);
+        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+        osc.start();
+        osc.stop(ctx.currentTime + 0.4);
+
+        // High frequency phosphor chime
+        const chime = ctx.createOscillator();
+        const chimeGain = ctx.createGain();
+        chime.type = 'sine';
+        chime.frequency.setValueAtTime(1800, ctx.currentTime + 0.05);
+        chime.frequency.exponentialRampToValueAtTime(3200, ctx.currentTime + 0.3);
+        chimeGain.gain.setValueAtTime(0.08, ctx.currentTime + 0.05);
+        chimeGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+
+        chime.connect(chimeGain);
+        chimeGain.connect(ctx.destination);
+        chime.start(ctx.currentTime + 0.05);
+        chime.stop(ctx.currentTime + 0.35);
+      } catch (e) {
+        console.warn('AudioContext unavailable', e);
+      }
+    }
+
+    function enterDesktop() {
+      const stage = document.getElementById('deskStage');
+      const screen = document.getElementById('crtScreenViewport');
+      if (!stage || !screen || stage.classList.contains('zooming')) return;
+
+      playCRTEnterSound();
+
+      const rect = screen.getBoundingClientRect();
+      const screenCenterX = rect.left + rect.width / 2;
+      const screenCenterY = rect.top + rect.height / 2;
+
+      const scaleX = window.innerWidth / rect.width;
+      const scaleY = window.innerHeight / rect.height;
+      const zoomScale = Math.max(scaleX, scaleY) * 1.12;
+
+      stage.style.setProperty('--zoom-scale', zoomScale);
+      stage.style.transformOrigin = `${screenCenterX}px ${screenCenterY}px`;
+      stage.classList.add('zooming');
+
+      setTimeout(() => {
+        stage.classList.add('hidden-desk');
+      }, 1550);
+    }
+
+    function returnToDesk() {
+      const stage = document.getElementById('deskStage');
+      if (!stage) return;
+      stage.classList.remove('hidden-desk');
+      // trigger reflow
+      void stage.offsetWidth;
+      stage.classList.remove('zooming');
+    }
+  
+
+
+      function updateClock() {
+        const now = new Date();
+        document.getElementById('osClock').textContent = now.toLocaleTimeString();
+      }
+      setInterval(updateClock, 1000);
+      updateClock();
+
+      let highestZIndex = 10;
 
       function bringToFront(winId) {
-        highestZ += 2;
+        highestZIndex++;
         const win = document.getElementById(winId);
-        if (win) {
-          win.style.zIndex = highestZ;
-        }
+        if (win) win.style.zIndex = highestZIndex;
       }
 
       function openWindow(winId) {
@@ -1490,289 +1757,280 @@
 
       function closeWindow(winId) {
         const win = document.getElementById(winId);
-        if (win) {
-          win.classList.add('minimized');
+        if (win) win.classList.add('minimized');
+      }
+
+      function minimizeWindow(winId) {
+        closeWindow(winId);
+      }
+
+      function maximizeWindow(winId) {
+        const win = document.getElementById(winId);
+        if (!win) return;
+        if (win.style.width === '100vw') {
+          win.style.width = '700px';
+          win.style.height = '500px';
+          win.style.top = '100px';
+          win.style.left = '150px';
+        } else {
+          win.style.width = '100vw';
+          win.style.height = 'calc(100vh - 38px)';
+          win.style.top = '38px';
+          win.style.left = '0px';
         }
       }
 
       function toggleWindow(winId) {
         const win = document.getElementById(winId);
-        if (win) {
-          if (win.classList.contains('minimized')) {
-            openWindow(winId);
-          } else {
-            closeWindow(winId);
-          }
+        if (win.classList.contains('minimized')) {
+          openWindow(winId);
+        } else {
+          closeWindow(winId);
         }
       }
 
-      function initDrag(e, winId) {
-        activeDrag = document.getElementById(winId);
+      // Drag Controller with Boundary Constraints
+      function dragWindow(e, winId) {
+        const win = document.getElementById(winId);
+        if (!win) return;
+        
         bringToFront(winId);
-        const rect = activeDrag.getBoundingClientRect();
-        dragOffset.x = e.clientX - rect.left;
-        dragOffset.y = e.clientY - rect.top;
-        document.addEventListener('mousemove', handleDrag);
-        document.addEventListener('mouseup', stopDrag);
+
+        let shiftX = e.clientX - win.getBoundingClientRect().left;
+        let shiftY = e.clientY - win.getBoundingClientRect().top;
+
+        function moveAt(pageX, pageY) {
+          let newX = pageX - shiftX;
+          let newY = pageY - shiftY;
+
+          const maxX = window.innerWidth - win.offsetWidth;
+          const maxY = window.innerHeight - win.offsetHeight - 30;
+
+          win.style.left = Math.max(0, Math.min(maxX, newX)) + 'px';
+          win.style.top = Math.max(0, Math.min(maxY, newY)) + 'px';
+        }
+
+        function onMouseMove(event) {
+          moveAt(event.clientX, event.clientY);
+        }
+
+        document.addEventListener('mousemove', onMouseMove);
+
+        document.onmouseup = function() {
+          document.removeEventListener('mousemove', onMouseMove);
+          document.onmouseup = null;
+        };
       }
 
-      function handleDrag(e) {
-        if (!activeDrag) return;
-        let newX = e.clientX - dragOffset.x;
-        let newY = e.clientY - dragOffset.y;
-        newY = Math.max(0, Math.min(window.innerHeight - 60, newY));
-        newX = Math.max(-100, Math.min(window.innerWidth - 100, newX));
-        activeDrag.style.left = `${newX}px`;
-        activeDrag.style.top = `${newY}px`;
-      }
+      document.querySelectorAll('.os-window').forEach(win => {
+        win.addEventListener('mousedown', () => bringToFront(win.id));
+      });
 
-      function stopDrag() {
-        activeDrag = null;
-        document.removeEventListener('mousemove', handleDrag);
-        document.removeEventListener('mouseup', stopDrag);
-      }
-
-      /* =========================================================
-         FULLSCREEN POKÉBASEMONBALL CARDS PREVIEW
-         ========================================================= */
-      function openProjectPreview(imgSrc) {
-        const modal = document.getElementById('projectImagePreview');
-        const img = document.getElementById('previewModalImage');
-        if (modal && img) {
-          img.src = imgSrc;
-          modal.style.display = 'flex';
+      // IN-WINDOW IMAGE PREVIEW CONTROLLERS
+      function openProjectPreview(src) {
+        const preview = document.getElementById('projectImagePreview');
+        const img = document.getElementById('projectPreviewImg');
+        if (preview && img) {
+          if (src) img.src = src;
+          preview.classList.remove('hidden');
+          preview.style.display = 'flex';
         }
       }
 
-      function closeProjectPreview(e) {
-        if (e && e.target !== e.currentTarget && e.target.tagName !== 'BUTTON') return;
-        const modal = document.getElementById('projectImagePreview');
-        if (modal) modal.style.display = 'none';
+      function closeProjectPreview() {
+        const preview = document.getElementById('projectImagePreview');
+        if (preview) {
+          preview.classList.add('hidden');
+          preview.style.display = 'none';
+        }
       }
 
-      /* =========================================================
-         PROJECT GALLERY SLIDESHOW LOGIC + FULLSCREEN POP-OUT
-         ========================================================= */
-      const slides = [
-        { file: 'images/Final 1.png', caption: 'Final 1.png — High-Precision Card Generation & Surface Texture Mapping' },
-        { file: 'images/Final 2.png', caption: 'Final 2.png — Holographic Specular Foil Layer & Micro-Emboss Analysis' },
-        { file: 'images/Final 3.png', caption: 'Final 3.png — Synthetic Biology & Speculative Character Evolution' },
-        { file: 'images/Final 4.png', caption: 'Final 4.png — Spatial Card Matrix & Typographic Composition Study' },
-        { file: 'images/Final 5.png', caption: 'Final 5.png — Exhibition Print Edition & Collector Capsule View' }
-      ];
+      // PROJECT GALLERY SLIDESHOW CONTROLLER
+      let currentSlideIndex = 0;
 
-      let currentSlide = 0;
+      function updateSlides(index) {
+        const slides = document.querySelectorAll('#win-slideshow .modal-slide');
+        const dots = document.querySelectorAll('#win-slideshow .modal-dot');
+        if (!slides || slides.length === 0) return;
 
-      function renderSlideshow() {
-        const img = document.getElementById('slideshowImage');
-        const counter = document.getElementById('slideCounter');
-        const caption = document.getElementById('slideCaption');
-        const dotsContainer = document.getElementById('slideDots');
+        if (index >= slides.length) currentSlideIndex = 0;
+        else if (index < 0) currentSlideIndex = slides.length - 1;
+        else currentSlideIndex = index;
 
-        if (img) img.src = slides[currentSlide].file;
-        if (counter) counter.textContent = `${currentSlide + 1} / ${slides.length}`;
-        if (caption) caption.textContent = slides[currentSlide].caption;
+        slides.forEach((slide, idx) => {
+          if (idx === currentSlideIndex) {
+            slide.classList.add('active');
+            slide.style.display = 'flex';
+          } else {
+            slide.classList.remove('active');
+            slide.style.display = 'none';
+          }
+        });
 
-        if (dotsContainer) {
-          dotsContainer.innerHTML = '';
-          slides.forEach((_, idx) => {
-            const dot = document.createElement('span');
-            dot.className = `w-2 h-2 rounded-full cursor-pointer transition-all ${idx === currentSlide ? 'bg-amber-400 w-4' : 'bg-zinc-700'}`;
-            dot.onclick = (e) => { e.stopPropagation(); goToSlide(idx); };
-            dotsContainer.appendChild(dot);
-          });
-        }
+        dots.forEach((dot, idx) => {
+          if (idx === currentSlideIndex) {
+            dot.classList.add('active');
+            dot.className = 'modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer';
+          } else {
+            dot.classList.remove('active');
+            dot.className = 'modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer';
+          }
+        });
       }
 
       function nextSlide(e) {
         if (e) e.stopPropagation();
-        currentSlide = (currentSlide + 1) % slides.length;
-        renderSlideshow();
-        syncPopoutSlide();
+        updateSlides(currentSlideIndex + 1);
       }
 
       function prevSlide(e) {
         if (e) e.stopPropagation();
-        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
-        renderSlideshow();
-        syncPopoutSlide();
+        updateSlides(currentSlideIndex - 1);
       }
 
-      function goToSlide(idx) {
-        currentSlide = idx;
-        renderSlideshow();
-        syncPopoutSlide();
-      }
-
-      function openSlideshowPopout() {
-        const modal = document.getElementById('slideshowPopoutModal');
-        if (modal) {
-          modal.style.display = 'flex';
-          syncPopoutSlide();
-        }
-      }
-
-      function closeSlideshowPopout(e) {
-        if (e && e.target !== e.currentTarget && e.target.tagName !== 'BUTTON') return;
-        const modal = document.getElementById('slideshowPopoutModal');
-        if (modal) modal.style.display = 'none';
-      }
-
-      function syncPopoutSlide() {
-        const popoutSlides = document.querySelectorAll('.modal-slide');
-        popoutSlides.forEach((slide, idx) => {
-          if (idx === currentSlide) {
-            slide.classList.add('active');
-          } else {
-            slide.classList.remove('active');
-          }
-        });
-
-        const popCounter = document.getElementById('popoutSlideCounter');
-        const popCaption = document.getElementById('popoutCaption');
-        const popDots = document.getElementById('popoutDots');
-
-        if (popCounter) popCounter.textContent = `${currentSlide + 1} / ${slides.length}`;
-        if (popCaption) popCaption.textContent = slides[currentSlide].caption;
-
-        if (popDots) {
-          popDots.innerHTML = '';
-          slides.forEach((_, idx) => {
-            const dot = document.createElement('span');
-            dot.className = `w-2.5 h-2.5 rounded-full cursor-pointer transition-all ${idx === currentSlide ? 'bg-amber-400 w-6' : 'bg-zinc-700'}`;
-            dot.onclick = () => goToSlide(idx);
-            popDots.appendChild(dot);
-          });
-        }
-      }
-
-      function nextPopoutSlide(e) {
+      function goToSlide(e, idx) {
         if (e) e.stopPropagation();
-        nextSlide(e);
+        updateSlides(idx);
       }
 
-      function prevPopoutSlide(e) {
-        if (e) e.stopPropagation();
-        prevSlide(e);
-      }
+      // Initialize slide
+      updateSlides(0);
 
-      renderSlideshow();
-
-      window.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-          closeProjectPreview();
-          closeSlideshowPopout();
-        } else if (e.key === 'ArrowRight') {
-          const popModal = document.getElementById('slideshowPopoutModal');
-          if (popModal && popModal.style.display === 'flex') {
-            nextSlide();
-          }
-        } else if (e.key === 'ArrowLeft') {
-          const popModal = document.getElementById('slideshowPopoutModal');
-          if (popModal && popModal.style.display === 'flex') {
-            prevSlide();
-          }
-        }
-      });
-
-      /* =========================================================
-         LIMEWIRE AUDIO ENGINE: DUAL HTML5 + 8-BIT RETRO SYNTH
-         ========================================================= */
-      const htmlAudio = new Audio();
-      let currentPlayBtn = null;
-      let isPlaying = false;
+      // LIMEWIRE AUDIO ENGINE & RETRO SYNTHESIZER
+      let htmlAudio = new Audio();
       let activeTrackName = '';
+      let isPlaying = false;
       let audioTimer = null;
       let secondsElapsed = 0;
+      let currentPlayBtn = null;
 
+      // Built-in Web Audio API 8-Bit Chiptune Fallback Player
       let synthCtx = null;
       let synthInterval = null;
+      let synthNoteIdx = 0;
+
+      const pokemonMelody = [
+        { f: 392.00, d: 240 }, { f: 440.00, d: 240 }, { f: 493.88, d: 240 },
+        { f: 523.25, d: 480 }, { f: 587.33, d: 240 }, { f: 659.25, d: 480 },
+        { f: 523.25, d: 240 }, { f: 587.33, d: 680 }, { f: 392.00, d: 240 },
+        { f: 523.25, d: 480 }, { f: 587.33, d: 240 }, { f: 659.25, d: 480 },
+        { f: 698.46, d: 240 }, { f: 659.25, d: 240 }, { f: 587.33, d: 240 },
+        { f: 523.25, d: 720 }
+      ];
+
+      const gabbieMelody = [
+        { f: 261.63, d: 380 }, { f: 329.63, d: 380 }, { f: 392.00, d: 380 },
+        { f: 493.88, d: 380 }, { f: 440.00, d: 380 }, { f: 349.23, d: 380 },
+        { f: 440.00, d: 380 }, { f: 523.25, d: 580 }, { f: 392.00, d: 380 },
+        { f: 329.63, d: 380 }, { f: 293.66, d: 380 }, { f: 261.63, d: 580 }
+      ];
 
       function startSynth(trackType) {
         stopSynth();
         try {
           const AudioContext = window.AudioContext || window.webkitAudioContext;
-          synthCtx = new AudioContext();
+          if (!AudioContext) return;
+          if (!synthCtx) synthCtx = new AudioContext();
+          if (synthCtx.state === 'suspended') synthCtx.resume();
 
-          let notes = [];
-          if (trackType === 'pokebasemon') {
-            notes = [
-              261.63, 293.66, 329.63, 392.00, 329.63, 392.00, 523.25, 493.88,
-              392.00, 329.63, 293.66, 261.63, 329.63, 293.66, 261.63, 196.00
-            ];
-          } else {
-            notes = [
-              440.00, 493.88, 523.25, 587.33, 659.25, 587.33, 523.25, 493.88,
-              392.00, 440.00, 493.88, 392.00, 329.63, 392.00, 440.00, 329.63
-            ];
-          }
+          const notes = (trackType === 'pokebasemon') ? pokemonMelody : gabbieMelody;
+          synthNoteIdx = 0;
 
-          let noteIndex = 0;
-          synthInterval = setInterval(() => {
-            if (!synthCtx) return;
+          function playNextNote() {
+            if (!isPlaying) return;
+            const current = notes[synthNoteIdx % notes.length];
+            synthNoteIdx++;
+
             const osc = synthCtx.createOscillator();
             const gain = synthCtx.createGain();
-            osc.type = (noteIndex % 2 === 0) ? 'square' : 'sawtooth';
-            osc.frequency.setValueAtTime(notes[noteIndex % notes.length], synthCtx.currentTime);
+
+            osc.type = (trackType === 'pokebasemon') ? 'square' : 'sawtooth';
+            osc.frequency.setValueAtTime(current.f, synthCtx.currentTime);
 
             gain.gain.setValueAtTime(0.08, synthCtx.currentTime);
-            gain.gain.exponentialRampToValueAtTime(0.001, synthCtx.currentTime + 0.18);
+            gain.gain.exponentialRampToValueAtTime(0.001, synthCtx.currentTime + (current.d / 1000));
 
             osc.connect(gain);
             gain.connect(synthCtx.destination);
-            osc.start();
-            osc.stop(synthCtx.currentTime + 0.2);
 
-            noteIndex++;
-          }, 180);
-        } catch (e) {
-          console.warn('Web Audio Synth failed to start', e);
+            osc.start();
+            osc.stop(synthCtx.currentTime + (current.d / 1000));
+
+            synthInterval = setTimeout(playNextNote, current.d);
+          }
+          playNextNote();
+        } catch(e) {
+          console.warn("Synth error:", e);
         }
       }
 
       function stopSynth() {
         if (synthInterval) {
-          clearInterval(synthInterval);
+          clearTimeout(synthInterval);
           synthInterval = null;
-        }
-        if (synthCtx) {
-          synthCtx.close().catch(() => {});
-          synthCtx = null;
         }
       }
 
-      function updateAudioUI(playing, title = '') {
+      function updateAudioUI(playing, trackTitle) {
         isPlaying = playing;
-        const dot = document.getElementById('lwPlayingDot');
-        const titleEl = document.getElementById('lwCurrentTrackTitle');
-        const timerEl = document.getElementById('lwTimer');
-        const pbar = document.getElementById('lwProgressBar');
+        const playBtn = document.getElementById('lwPlayBtn');
+        const trackLbl = document.getElementById('lwTrackName');
+        const statusLbl = document.getElementById('lwAudioStatus');
+        const eq = document.getElementById('lwEqualizer');
 
-        if (dot) {
-          dot.className = playing ? 'w-2.5 h-2.5 rounded-full bg-lime-400 animate-pulse' : 'w-2.5 h-2.5 rounded-full bg-zinc-600';
-        }
-
-        if (titleEl && title) {
-          titleEl.textContent = playing ? `Playing: ${title}` : `Stopped: ${title}`;
-        }
+        if (trackTitle) trackLbl.textContent = trackTitle;
 
         if (playing) {
-          if (audioTimer) clearInterval(audioTimer);
-          audioTimer = setInterval(() => {
-            secondsElapsed++;
-            const mins = String(Math.floor(secondsElapsed / 60)).padStart(2, '0');
-            const secs = String(secondsElapsed % 60).padStart(2, '0');
-            if (timerEl) timerEl.textContent = `${mins}:${secs}`;
-            if (pbar) {
-              const pct = Math.min(100, (secondsElapsed / 90) * 100);
-              pbar.style.width = `${pct}%`;
-            }
-          }, 1000);
+          playBtn.textContent = '❚❚';
+          statusLbl.textContent = 'Status: Playing';
+          eq.classList.remove('opacity-40');
+          Array.from(eq.children).forEach(bar => bar.classList.add('animate-bounce'));
+
+          if (!audioTimer) {
+            audioTimer = setInterval(() => {
+              secondsElapsed++;
+              const m = Math.floor(secondsElapsed / 60);
+              const s = String(secondsElapsed % 60).padStart(2, '0');
+              document.getElementById('lwAudioTime').textContent = `${m}:${s} / 2:45`;
+            }, 1000);
+          }
         } else {
-          if (audioTimer) clearInterval(audioTimer);
-          secondsElapsed = 0;
-          if (timerEl) timerEl.textContent = '00:00';
-          if (pbar) pbar.style.width = '0%';
+          playBtn.textContent = '▶';
+          statusLbl.textContent = 'Status: Paused';
+          eq.classList.add('opacity-40');
+          Array.from(eq.children).forEach(bar => bar.classList.remove('animate-bounce'));
+          if (audioTimer) {
+            clearInterval(audioTimer);
+            audioTimer = null;
+          }
+        }
+      }
+
+      function toggleLimeAudio() {
+        if (!activeTrackName) {
+          const firstBtn = document.querySelector('.lw-play-btn');
+          if (firstBtn) firstBtn.click();
+          return;
+        }
+
+        if (isPlaying) {
+          htmlAudio.pause();
+          stopSynth();
+          updateAudioUI(false);
+          if (currentPlayBtn) {
+            currentPlayBtn.textContent = '▶ Play';
+            currentPlayBtn.style.background = '#16a34a';
+          }
+        } else {
+          updateAudioUI(true);
+          if (currentPlayBtn) {
+            currentPlayBtn.textContent = '⏸ Pause';
+            currentPlayBtn.style.background = '#eab308';
+          }
+          const trackType = currentPlayBtn ? currentPlayBtn.getAttribute('data-track') : 'pokebasemon';
+          htmlAudio.play().catch(() => {
+            startSynth(trackType);
+          });
         }
       }
 
@@ -1809,6 +2067,7 @@
 
           htmlAudio.src = audioSrc;
           htmlAudio.play().catch(() => {
+            // Auto fallback to high-quality retro chiptune audio if remote server blocks CORS
             startSynth(trackType);
           });
         });
@@ -1823,77 +2082,64 @@
         }
       });
 
-      const volControl = document.getElementById('lwVolume');
-      if (volControl) {
-        volControl.addEventListener('input', (e) => {
-          htmlAudio.volume = e.target.value / 100;
-        });
+      function triggerLWSearch() {
+        const val = document.getElementById('lwSearchInput').value;
+        const status = document.getElementById('lwAudioStatus');
+        status.textContent = "Searching P2P Network for '" + val + "'...";
+        setTimeout(() => {
+          status.textContent = "Search complete: 4 files found.";
+        }, 800);
       }
 
-      /* =========================================================
-         3D MODEL VIEWER WIREFRAME & CONTROLS
-         ========================================================= */
-      let wireframeEnabled = false;
-      function toggleWireframe() {
-        const viewer = document.getElementById('artifactModel');
-        const btn = document.getElementById('wireframeToggle');
-        wireframeEnabled = !wireframeEnabled;
-        if (btn) btn.textContent = `Wireframe: ${wireframeEnabled ? 'ON' : 'OFF'}`;
-        if (viewer && viewer.model && viewer.model.materials) {
-          viewer.model.materials.forEach(mat => {
-            if (mat.wireframe !== undefined) {
-              mat.wireframe = wireframeEnabled;
-            }
-          });
-        }
-      }
-
-      function resetModelCamera() {
-        const viewer = document.getElementById('artifactModel');
-        if (viewer) {
-          viewer.cameraOrbit = '0deg 75deg 105%';
-        }
-      }
-
-      /* =========================================================
-         DO NOT OPEN.exe VIRUS PRANK & BSOD
-         ========================================================= */
-      let prankActive = false;
+      // PRANK VIRUS ENGINE
       let prankInterval = null;
+      let audioCtx = null;
 
       function playXPErrorSound() {
         try {
           const AudioContext = window.AudioContext || window.webkitAudioContext;
           if (!AudioContext) return;
-          const ctx = new AudioContext();
-          const osc = ctx.createOscillator();
-          const gain = ctx.createGain();
+          if (!audioCtx) audioCtx = new AudioContext();
+          if (audioCtx.state === 'suspended') audioCtx.resume();
+
+          const osc = audioCtx.createOscillator();
+          const gain = audioCtx.createGain();
+
           osc.type = 'sawtooth';
-          osc.frequency.setValueAtTime(150, ctx.currentTime);
-          osc.frequency.exponentialRampToValueAtTime(60, ctx.currentTime + 0.25);
-          gain.gain.setValueAtTime(0.2, ctx.currentTime);
-          gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.25);
+          osc.frequency.setValueAtTime(140, audioCtx.currentTime);
+          gain.gain.setValueAtTime(0.16, audioCtx.currentTime);
+          gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.22);
+
           osc.connect(gain);
-          gain.connect(ctx.destination);
+          gain.connect(audioCtx.destination);
+
           osc.start();
-          osc.stop(ctx.currentTime + 0.25);
+          osc.stop(audioCtx.currentTime + 0.22);
         } catch (e) {}
       }
 
       function triggerVirusPrank() {
-        if (prankActive) return;
-        prankActive = true;
-
         const overlay = document.getElementById('prankOverlay');
-        const container = document.getElementById('prankWindowsContainer');
+        const container = document.getElementById('errorWindowContainer');
+        if (!overlay || !container) return;
+
         overlay.style.display = 'block';
         container.innerHTML = '';
 
+        const errorMessages = [
+          'CRITICAL_PROCESS_DIED: 0x0000000A',
+          'System Overload! Memory corrupted.',
+          'Unauthorized access detected from 192.168.1.104',
+          'LimeWire downloading virus_payload.exe...',
+          'WARNING: Hard drive temperature critical!',
+          'Deleting C:\\WINDOWS\\System32...'
+        ];
+
         let count = 0;
-        const maxPopups = 18;
+        const maxWindows = 25;
 
         prankInterval = setInterval(() => {
-          if (count >= maxPopups) {
+          if (count >= maxWindows) {
             clearInterval(prankInterval);
             showBSODScreen(container);
             return;
@@ -1901,35 +2147,40 @@
 
           playXPErrorSound();
 
-          const box = document.createElement('div');
-          box.className = 'absolute bg-[#ece9d8] border-2 border-red-600 rounded shadow-2xl p-3 select-none flex flex-col justify-between';
-          box.style.width = '320px';
-          box.style.height = '160px';
-          box.style.zIndex = 10000 + count;
+          const randomMsg = errorMessages[Math.floor(Math.random() * errorMessages.length)];
+          const posX = Math.random() * (window.innerWidth - 340);
+          const posY = Math.random() * (window.innerHeight - 200);
 
-          const maxX = window.innerWidth - 340;
-          const maxY = window.innerHeight - 200;
-          const randX = Math.max(10, Math.floor(Math.random() * maxX));
-          const randY = Math.max(10, Math.floor(Math.random() * maxY));
+          const errWin = document.createElement('div');
+          errWin.style.cssText = `
+            position: absolute;
+            left: ${Math.max(10, posX)}px;
+            top: ${Math.max(10, posY)}px;
+            width: 320px;
+            background: #ece9d8;
+            border: 3px solid #0055ea;
+            border-top-left-radius: 8px;
+            border-top-right-radius: 8px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+            pointer-events: auto;
+            z-index: ${1000 + count};
+          `;
 
-          box.style.left = `${randX}px`;
-          box.style.top = `${randY}px`;
-
-          box.innerHTML = `
-            <div class="bg-red-700 text-white text-xs font-bold px-2 py-1 flex justify-between items-center -m-3 mb-2 rounded-t">
-              <span>⚠️ CRITICAL SYSTEM THREAT</span>
-              <span class="cursor-pointer" onclick="this.parentElement.parentElement.remove()">✕</span>
+          errWin.innerHTML = `
+            <div style="height: 26px; background: linear-gradient(to bottom, #d83b27, #990000); padding: 0 8px; display: flex; align-items: center; justify-content: space-between; color: white; font-weight: bold; font-size: 11px;">
+              <span>⚠️ SYSTEM ERROR - FATAL EXCEPTION</span>
+              <span style="cursor: pointer; padding: 0 4px;" onclick="this.parentElement.parentElement.remove()">✕</span>
             </div>
-            <div class="flex items-center gap-3 my-auto">
-              <span class="text-3xl">☣️</span>
-              <p class="text-xs text-black font-mono">CRITICAL ERROR: Trojan.Win32.Art10c infected kernel memory at 0x000${count}F8A!</p>
+            <div style="padding: 16px; color: #000; font-size: 12px; display: flex; align-items: center; gap: 12px; background: #f5f3e5;">
+              <span style="font-size: 24px;">❌</span>
+              <span>${randomMsg}</span>
             </div>
-            <div class="flex justify-end gap-2 mt-2">
-              <button onclick="triggerVirusPrank()" class="px-3 py-1 bg-zinc-200 border border-zinc-700 text-black text-xs font-mono font-bold hover:bg-zinc-300">OK</button>
+            <div style="padding: 8px; text-align: right; background: #ece9d8; border-top: 1px solid #d4d0c8;">
+              <button onclick="this.parentElement.parentElement.remove()" style="padding: 3px 16px; background: #ece9d8; border: 1px solid #003c74; border-radius: 3px; font-size: 11px; cursor: pointer; font-weight: bold;">OK</button>
             </div>
           `;
 
-          container.appendChild(box);
+          container.appendChild(errWin);
           count++;
         }, 120);
       }
@@ -1937,248 +2188,218 @@
       function showBSODScreen(container) {
         const bsod = document.createElement('div');
         bsod.style.cssText = `
-          position: fixed;
+          position: absolute;
           inset: 0;
           background: #0000aa;
           color: #ffffff;
-          font-family: monospace;
+          font-family: 'Courier New', monospace;
           padding: 40px;
           font-size: 14px;
           line-height: 1.6;
-          z-index: 20000;
-          display: flex;
-          flex-direction: column;
-          justify-content: center;
+          z-index: 999999;
+          pointer-events: auto;
         `;
         bsod.innerHTML = `
-          <div class="max-w-3xl mx-auto space-y-4">
-            <div class="bg-white text-[#0000aa] inline-block px-2 font-bold">WINDOWS XP</div>
-            <p>A fatal exception 0E has occurred at 0028:C0011E36 in VXD VMM(01) + 00010E36.</p>
-            <p>The current application will be terminated.</p>
-            <ul class="list-disc pl-6 space-y-1 text-sm text-blue-200">
-              <li>Press any key to restart your computer.</li>
-              <li>Press CTRL+ALT+DEL again to restart your computer. You will lose any unsaved information in all applications.</li>
-            </ul>
-            <div class="pt-6">
-              <button id="bsodRestartBtn" class="bg-white text-blue-900 font-bold px-4 py-2 rounded text-xs uppercase hover:bg-yellow-300 cursor-pointer">
-                Click to Restart Desktop
-              </button>
-            </div>
-          </div>
+          <p style="font-size: 16px; font-weight: bold; margin-bottom: 20px;">A problem has been detected (you) and Windows has been shut down to prevent damage to your computer.</p>
+          <p>SYSTEM_PRANK_EXCEEDED</p>
+          <p style="margin-top: 20px;">If this is the first time getting pranked, restart your computer.</p>
+          <p style="margin-top: 30px;">Technical information:</p>
+          <p>*** STOP CLICKING ON RANDOM STUFF</p>
+          <br />
+          <p style="color: #ffff55;">[ CLICK ANYWHERE OR PRESS ESC TO RECOVER YOUR SYSTEM ]</p>
         `;
+
+        bsod.onclick = stopVirusPrank;
         container.appendChild(bsod);
-
-        const restart = () => {
-          prankActive = false;
-          document.getElementById('prankOverlay').style.display = 'none';
-          container.innerHTML = '';
-          window.removeEventListener('keydown', restart);
-        };
-
-        document.getElementById('bsodRestartBtn').addEventListener('click', restart);
-        window.addEventListener('keydown', restart);
       }
 
-      /* =========================================================
-         CLOCK & SYSTEM TRAY
-         ========================================================= */
-      function updateClock() {
-        const clockEl = document.getElementById('osClock');
-        if (!clockEl) return;
-        const now = new Date();
-        clockEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+      function stopVirusPrank() {
+        if (prankInterval) {
+          clearInterval(prankInterval);
+          prankInterval = null;
+        }
+        const overlay = document.getElementById('prankOverlay');
+        const container = document.getElementById('errorWindowContainer');
+        if (overlay) overlay.style.display = 'none';
+        if (container) container.innerHTML = '';
       }
-      setInterval(updateClock, 1000);
-      updateClock();
 
-      /* =========================================================
-         BACKGROUND CANVASES: MOUSE TRAIL, MOVING GRASS, BIRDS
-         ========================================================= */
-      (function initCanvases() {
-        const trailCanvas = document.getElementById('trailCanvas');
-        const birdsCanvas = document.getElementById('birdsCanvas');
-        const grassCanvas = document.getElementById('grassCanvas');
-
-        function resize() {
-          const w = window.innerWidth;
-          const h = window.innerHeight;
-          if (trailCanvas) { trailCanvas.width = w; trailCanvas.height = h; }
-          if (birdsCanvas) { birdsCanvas.width = w; birdsCanvas.height = h; }
-          if (grassCanvas) { grassCanvas.width = w; grassCanvas.height = h; }
+      window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+          stopVirusPrank();
+          closeProjectPreview();
         }
-        window.addEventListener('resize', resize);
-        resize();
+      });
 
-        // 1. Mouse Trail
-        if (trailCanvas) {
-          const ctx = trailCanvas.getContext('2d');
-          let points = [];
-          window.addEventListener('mousemove', (e) => {
-            points.push({ x: e.clientX, y: e.clientY, age: 0 });
-          });
-          function drawTrail() {
-            ctx.clearRect(0, 0, trailCanvas.width, trailCanvas.height);
-            for (let i = 0; i < points.length; i++) {
-              const p = points[i];
-              p.age++;
-              const alpha = Math.max(0, 1 - p.age / 24);
-              ctx.beginPath();
-              ctx.arc(p.x, p.y, (1 - p.age / 24) * 3, 0, Math.PI * 2);
-              ctx.fillStyle = `rgba(255, 209, 102, ${alpha * 0.45})`;
-              ctx.fill();
+      // AMBIENT CANVAS BACKGROUND LOGIC
+      (function() {
+        const canvas = document.getElementById('trailCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
+
+        function resizeCanvas() {
+          canvas.width = window.innerWidth;
+          canvas.height = window.innerHeight;
+        }
+        resizeCanvas();
+        window.addEventListener('resize', resizeCanvas);
+
+        const points = [];
+        const maxAge = 45;
+
+        window.addEventListener('mousemove', (e) => {
+          points.push({ x: e.clientX, y: e.clientY, age: 0 });
+        });
+
+        function animate() {
+          ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+          for (let i = 0; i < points.length; i++) {
+            const p = points[i];
+            p.age++;
+
+            if (p.age > maxAge) {
+              points.splice(i, 1);
+              i--;
+              continue;
             }
-            points = points.filter(p => p.age < 24);
-            requestAnimationFrame(drawTrail);
-          }
-          drawTrail();
-        }
 
-        // 2. Animated Grass at Bottom
-        if (grassCanvas) {
-          const ctx = grassCanvas.getContext('2d');
-          let time = 0;
-          function drawGrass() {
-            ctx.clearRect(0, 0, grassCanvas.width, grassCanvas.height);
-            const baseY = grassCanvas.height - 30;
-            const count = Math.floor(grassCanvas.width / 8);
-            ctx.fillStyle = 'rgba(74, 222, 128, 0.20)';
+            if (i > 0) {
+              const prev = points[i - 1];
+              const opacity = (1 - (p.age / maxAge)) * 0.7;
+              const width = (1 - (p.age / maxAge)) * 4 + 1;
 
-            for (let i = 0; i < count; i++) {
-              const x = i * 8;
-              const sway = Math.sin(time + i * 0.2) * 6;
               ctx.beginPath();
-              ctx.moveTo(x, baseY);
-              ctx.quadraticCurveTo(x + sway, baseY - 20, x + sway * 1.5, baseY - 35);
-              ctx.lineTo(x + 3, baseY);
-              ctx.fill();
+              ctx.moveTo(prev.x, prev.y);
+              ctx.lineTo(p.x, p.y);
+              ctx.strokeStyle = `rgba(255, 209, 102, ${opacity})`;
+              ctx.lineWidth = width;
+              ctx.lineCap = 'round';
+              ctx.stroke();
             }
-            time += 0.04;
-            requestAnimationFrame(drawGrass);
           }
-          drawGrass();
+          requestAnimationFrame(animate);
         }
-
-        // 3. Ambient Flying Birds
-        if (birdsCanvas) {
-          const ctx = birdsCanvas.getContext('2d');
-          const birds = [
-            { x: -20, y: 80, vx: 1.4, scale: 0.7, wingPhase: 0 },
-            { x: -80, y: 130, vx: 1.8, scale: 0.9, wingPhase: 1.5 },
-            { x: -140, y: 95, vx: 1.1, scale: 0.5, wingPhase: 3.0 }
-          ];
-
-          function drawBirds() {
-            ctx.clearRect(0, 0, birdsCanvas.width, birdsCanvas.height);
-            birds.forEach(b => {
-              b.x += b.vx;
-              b.wingPhase += 0.08;
-              if (b.x > birdsCanvas.width + 60) b.x = -60;
-
-              ctx.save();
-              ctx.translate(b.x, b.y);
-              ctx.scale(b.scale, b.scale);
-              const wingY = Math.sin(b.wingPhase) * 10;
-              ctx.beginPath();
-              ctx.moveTo(-10, 0);
-              ctx.quadraticCurveTo(0, wingY - 8, 10, 0);
-              ctx.quadraticCurveTo(0, wingY * 0.5, -10, 0);
-              ctx.fillStyle = 'rgba(255, 255, 255, 0.28)';
-              ctx.fill();
-              ctx.restore();
-            });
-            requestAnimationFrame(drawBirds);
-          }
-          drawBirds();
-        }
+        animate();
       })();
 
-    /* ===== 2001 WINDOWS PC DESK ZOOM CONTROLLER ===== */
-    function playCRTEnterSound() {
-      try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContext) return;
-        const ctx = new AudioContext();
-        if (ctx.state === 'suspended') ctx.resume();
+      (function() {
+        const canvas = document.getElementById('grassCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
 
-        // Retro degauss 'thump' + phosphor coil charge
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(140, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(35, ctx.currentTime + 0.35);
+        let width, height;
+        function resize() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = 130;
+        }
+        resize();
+        window.addEventListener('resize', resize);
 
-        gain.gain.setValueAtTime(0.35, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
+        let mouseX = -1000;
+        window.addEventListener('mousemove', (e) => { mouseX = e.clientX; });
 
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.4);
+        const bgColors = ['#18181b', '#27272a', '#3f3f46'];
+        const fgColors = ['#52525b', '#71717a', '#a1a1aa'];
 
-        // High frequency phosphor chime
-        const chime = ctx.createOscillator();
-        const chimeGain = ctx.createGain();
-        chime.type = 'sine';
-        chime.frequency.setValueAtTime(1800, ctx.currentTime + 0.05);
-        chime.frequency.exponentialRampToValueAtTime(3200, ctx.currentTime + 0.3);
-        chimeGain.gain.setValueAtTime(0.09, ctx.currentTime + 0.05);
-        chimeGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
+        const bladeCount = Math.floor(window.innerWidth / 3);
+        const blades = [];
 
-        chime.connect(chimeGain);
-        chimeGain.connect(ctx.destination);
-        chime.start(ctx.currentTime + 0.05);
-        chime.stop(ctx.currentTime + 0.35);
-      } catch (e) {
-        console.warn('AudioContext not permitted or supported', e);
-      }
-    }
+        for (let i = 0; i < bladeCount; i++) {
+          const layer = Math.random();
+          let colorSet = layer < 0.5 ? bgColors : fgColors;
 
-    function enterDesktop() {
-      const stage = document.getElementById('deskStage');
-      const screen = document.getElementById('crtScreenViewport');
-      if (!stage || !screen || stage.classList.contains('zooming')) return;
+          blades.push({
+            x: (i / bladeCount) * window.innerWidth + (Math.random() * 8 - 4),
+            height: 40 + layer * 50 + Math.random() * 20,
+            baseWidth: (2 + layer * 3) + Math.random(),
+            angle: (Math.random() - 0.5) * 0.2,
+            targetAngle: 0,
+            naturalCurvature: (Math.random() - 0.5) * 0.35,
+            stiffness: 0.03 + layer * 0.04,
+            color: colorSet[Math.floor(Math.random() * colorSet.length)],
+            layer: layer,
+            phase: Math.random() * Math.PI * 2
+          });
+        }
 
-      playCRTEnterSound();
+        let time = 0;
+        function animate() {
+          ctx.clearRect(0, 0, width, height);
+          time += 0.025;
 
-      const rect = screen.getBoundingClientRect();
-      const screenCenterX = rect.left + rect.width / 2;
-      const screenCenterY = rect.top + rect.height / 2;
+          blades.forEach((b) => {
+            const windWave = Math.sin(time * 1.5 + b.x * 0.008 + b.phase) * 0.22;
+            const dist = Math.abs(mouseX - b.x);
+            let mouseForce = dist < 100 ? (mouseX < b.x ? 1 : -1) * (1 - dist / 100) * 1.1 : 0;
 
-      const f = window.innerWidth;
-      const h = window.innerHeight;
-      const dx = f / 2 - screenCenterX;
-      const dy = h / 2 - screenCenterY;
+            b.targetAngle = b.naturalCurvature + windWave + mouseForce;
+            b.angle += (b.targetAngle - b.angle) * b.stiffness;
 
-      const scaleX = f / rect.width;
-      const scaleY = h / rect.height;
-      const isMobile = f < 768;
-      const multiplier = isMobile ? 1.45 : 1.15;
-      const zoomScale = Math.max(scaleX, scaleY) * multiplier;
+            const rootX = b.x;
+            const rootY = height;
+            const tipX = rootX + Math.sin(b.angle) * b.height;
+            const tipY = rootY - Math.cos(b.angle) * b.height;
+            const midX = rootX + Math.sin(b.angle * 0.5) * (b.height * 0.5);
+            const midY = rootY - (b.height * 0.5);
 
-      stage.style.setProperty('--zoom-x', `${dx}px`);
-      stage.style.setProperty('--zoom-y', `${dy}px`);
-      stage.style.setProperty('--zoom-scale', zoomScale);
-      stage.style.transformOrigin = `${screenCenterX}px ${screenCenterY}px`;
-      stage.classList.add('zooming');
+            ctx.beginPath();
+            ctx.moveTo(rootX - b.baseWidth / 2, rootY);
+            ctx.quadraticCurveTo(midX, midY, tipX, tipY);
+            ctx.quadraticCurveTo(midX, midY, rootX + b.baseWidth / 2, rootY);
+            ctx.fillStyle = b.color;
+            ctx.fill();
+          });
+          requestAnimationFrame(animate);
+        }
+        animate();
+      })();
 
-      setTimeout(() => {
-        stage.classList.add('hidden-desk');
-      }, 1550);
-    }
+      (function() {
+        const canvas = document.getElementById('birdsCanvas');
+        if (!canvas) return;
+        const ctx = canvas.getContext('2d');
 
-    function returnToDesk() {
-      const stage = document.getElementById('deskStage');
-      if (!stage) return;
-      stage.classList.remove('hidden-desk');
-      stage.style.transition = 'none';
-      stage.classList.add('zooming');
-      void stage.offsetWidth; // force reflow
-      stage.style.transition = 'transform 1.3s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-      stage.classList.remove('zooming');
-      setTimeout(() => {
-        stage.style.transition = '';
-      }, 1400);
-    }
+        let width, height;
+        function resize() {
+          width = canvas.width = window.innerWidth;
+          height = canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        const birds = Array.from({ length: 6 }, () => ({
+          x: Math.random() * window.innerWidth,
+          y: Math.random() * (window.innerHeight * 0.4) + 40,
+          vx: 1.2 + Math.random() * 1.5,
+          scale: 0.8 + Math.random() * 1,
+          wingPhase: Math.random() * Math.PI * 2
+        }));
+
+        function animate() {
+          ctx.clearRect(0, 0, width, height);
+          birds.forEach((b) => {
+            b.x += b.vx;
+            b.wingPhase += 0.08;
+            if (b.x > width + 50) b.x = -50;
+
+            ctx.save();
+            ctx.translate(b.x, b.y);
+            ctx.scale(b.scale, b.scale);
+            const wingY = Math.sin(b.wingPhase) * 10;
+            ctx.beginPath();
+            ctx.moveTo(-10, 0);
+            ctx.quadraticCurveTo(0, wingY - 8, 10, 0);
+            ctx.quadraticCurveTo(0, wingY * 0.5, -10, 0);
+            ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
+            ctx.fill();
+            ctx.restore();
+          });
+          requestAnimationFrame(animate);
+        }
+        animate();
+      })();
+    
     </script>
   </body>
 </html>
