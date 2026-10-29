@@ -1090,83 +1090,6 @@
     </div>
   </div>
 
-  <script>
-    function playCRTEnterSound() {
-      try {
-        const AudioContext = window.AudioContext || window.webkitAudioContext;
-        if (!AudioContext) return;
-        const ctx = new AudioContext();
-        if (ctx.state === 'suspended') ctx.resume();
-
-        // Retro degauss 'thump' + high phosphor coil charge sound
-        const osc = ctx.createOscillator();
-        const gain = ctx.createGain();
-        osc.type = 'triangle';
-        osc.frequency.setValueAtTime(140, ctx.currentTime);
-        osc.frequency.exponentialRampToValueAtTime(35, ctx.currentTime + 0.35);
-
-        gain.gain.setValueAtTime(0.3, ctx.currentTime);
-        gain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.4);
-
-        osc.connect(gain);
-        gain.connect(ctx.destination);
-        osc.start();
-        osc.stop(ctx.currentTime + 0.4);
-
-        // High frequency phosphor chime
-        const chime = ctx.createOscillator();
-        const chimeGain = ctx.createGain();
-        chime.type = 'sine';
-        chime.frequency.setValueAtTime(1800, ctx.currentTime + 0.05);
-        chime.frequency.exponentialRampToValueAtTime(3200, ctx.currentTime + 0.3);
-        chimeGain.gain.setValueAtTime(0.08, ctx.currentTime + 0.05);
-        chimeGain.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.35);
-
-        chime.connect(chimeGain);
-        chimeGain.connect(ctx.destination);
-        chime.start(ctx.currentTime + 0.05);
-        chime.stop(ctx.currentTime + 0.35);
-      } catch (e) {
-        console.warn('AudioContext unavailable', e);
-      }
-    }
-
-    function enterDesktop() {
-      const stage = document.getElementById('deskStage');
-      const screen = document.getElementById('crtScreenViewport');
-      if (!stage || !screen || stage.classList.contains('zooming')) return;
-
-      playCRTEnterSound();
-
-      const rect = screen.getBoundingClientRect();
-      const screenCenterX = rect.left + rect.width / 2;
-      const screenCenterY = rect.top + rect.height / 2;
-
-      const scaleX = window.innerWidth / rect.width;
-      const scaleY = window.innerHeight / rect.height;
-      const zoomScale = Math.max(scaleX, scaleY) * 1.12;
-
-      stage.style.setProperty('--zoom-scale', zoomScale);
-      stage.style.transformOrigin = `${screenCenterX}px ${screenCenterY}px`;
-      stage.classList.add('zooming');
-
-      setTimeout(() => {
-        stage.classList.add('hidden-desk');
-      }, 1550);
-    }
-
-    function returnToDesk() {
-      const stage = document.getElementById('deskStage');
-      if (!stage) return;
-      stage.classList.remove('hidden-desk');
-      // trigger reflow
-      void stage.offsetWidth;
-      stage.classList.remove('zooming');
-    }
-  </script>
-</body>
-</html>
-
 <!-- CANVAS LAYERS -->
     <canvas id="trailCanvas"></canvas>
     <canvas id="birdsCanvas"></canvas>
@@ -1183,6 +1106,17 @@
         </div>
         
         <div class="flex items-center gap-1.5 ml-2">
+          <!-- Return to 2001 Computer Desk View -->
+          <button onclick="returnToDesk()" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-sans text-xs px-3 py-1 rounded border border-amber-400/40 flex items-center gap-1.5 shadow transition-colors cursor-pointer" title="Return to 2001 Computer Desk View">
+            <span>🖥️</span>
+            <span class="font-bold">Desk View</span>
+          </button>
+
+          <!-- Show Desktop (Minimize all windows) -->
+          <button onclick="minimizeAllWindows()" class="bg-blue-900/60 hover:bg-blue-800 text-white font-sans text-xs px-2.5 py-1 rounded border border-blue-400/30 flex items-center gap-1 shadow transition-colors cursor-pointer" title="Show Desktop (Minimize all windows)">
+            <span>🗔</span>
+            <span>Desktop</span>
+          </button>
           <button onclick="toggleWindow('win-project')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
             <span>📂</span>
             <span class="truncate max-w-[110px]">Uncanny Valley</span>
@@ -1729,7 +1663,13 @@
       void stage.offsetWidth;
       stage.classList.remove('zooming');
     }
-  
+
+    function minimizeAllWindows() {
+      document.querySelectorAll('.os-window').forEach(win => {
+        win.classList.add('minimized');
+      });
+    }
+
 
 
       function updateClock() {
