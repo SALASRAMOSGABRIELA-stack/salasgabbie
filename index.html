@@ -19,72 +19,69 @@
 
     <style>
       /* MOBILE & TABLET RESPONSIVE OVERRIDES */
-@media (max-width: 768px) {
-  /* 1. Transform desktop icons into a multi-column wrap grid */
-  .desktop-icons-grid {
-    top: 10px !important;
-    left: 10px !important;
-    right: 10px !important;
-    display: flex !important;
-    flex-direction: row !important;
-    flex-wrap: wrap !important;
-    gap: 10px !important;
-    justify-content: flex-start !important;
-    z-index: 20 !important;
-  }
+      @media (max-width: 768px) {
+        .desktop-icons-grid {
+          top: 10px !important;
+          left: 10px !important;
+          right: 10px !important;
+          display: flex !important;
+          flex-direction: row !important;
+          flex-wrap: wrap !important;
+          gap: 10px !important;
+          justify-content: flex-start !important;
+          z-index: 20 !important;
+        }
 
-  .desktop-icon {
-    width: 72px !important;
-    padding: 4px !important;
-  }
+        .desktop-icon {
+          width: 72px !important;
+          padding: 4px !important;
+        }
 
-  .desktop-icon-img {
-    width: 38px !important;
-    height: 38px !important;
-    font-size: 1.25rem !important;
-  }
+        .desktop-icon-img {
+          width: 38px !important;
+          height: 38px !important;
+          font-size: 1.25rem !important;
+        }
 
-  .desktop-icon-title {
-    font-size: 0.65rem !important;
-  }
+        .desktop-icon-title {
+          font-size: 0.65rem !important;
+        }
 
-  /* 2. Fit XP windows cleanly within mobile screens */
-  .os-window {
-    width: calc(100vw - 20px) !important;
-    max-height: calc(100vh - 80px) !important;
-    top: 10px !important;
-    left: 10px !important;
-    right: 10px !important;
-    min-width: unset !important;
-  }
+        .os-window {
+          width: calc(100vw - 20px) !important;
+          max-height: calc(100vh - 80px) !important;
+          top: 10px !important;
+          left: 10px !important;
+          right: 10px !important;
+          min-width: unset !important;
+        }
 
-  /* 3. Adjust Taskbar layout for smaller screens */
-  .xp-taskbar {
-    height: 36px !important;
-    padding-right: 4px !important;
-  }
+        .xp-taskbar {
+          height: 36px !important;
+          padding-right: 4px !important;
+        }
 
-  .xp-taskbar button {
-    padding: 2px 6px !important;
-  }
+        .xp-taskbar button {
+          padding: 2px 6px !important;
+        }
 
-  .xp-taskbar button span:last-child {
-    display: none; /* Hide taskbar titles on mobile, keep emojis */
-  }
+        .xp-taskbar button span:last-child {
+          display: none;
+        }
 
-  .xp-systray {
-    padding: 0 6px !important;
-  }
+        .xp-systray {
+          padding: 0 6px !important;
+        }
 
-  #osClock {
-    font-size: 10px !important;
-  }
+        #osClock {
+          font-size: 10px !important;
+        }
 
-  /* 4. Disable heavy trail canvas effects on touch devices for performance */
-  #trailCanvas {
-    display: none !important;
-  }
-}
+        #trailCanvas {
+          display: none !important;
+        }
+      }
+
       :root {
         --bg-color: #08080a;
         --card-bg: rgba(18, 18, 22, 0.88);
@@ -102,85 +99,59 @@
         user-select: none;
       }
 
-      /* CUSTOM PENCIL CURSOR PRESERVED EXACTLY */
       body, a, button, input, div {
         cursor: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="%23ffd166" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M17 3a2.828 2.828 0 1 1 4 4L7.5 20.5 2 22l1.5-5.5L17 3z"></path></svg>') 0 24, auto !important;
       }
 
-    body {
-  margin: 0;
-  padding: 0;
-  overflow: hidden;
-  font-family: 'Tahoma', 'Segoe UI', sans-serif;
-  
-  /* High-Res Cover Settings */
-  background: url('images/Bliss (Windows XP).png') no-repeat center center fixed;
-  background-size: cover;
-  
-  /* Prevents blurriness on modern high-DPI displays */
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-}
-/* Gallery Window Body & Viewport Flex Centering */
-#win-slideshow .os-window-body {
-  display: flex !important;
-  flex-direction: column !important;
-  height: 100% !important;
-  padding: 1rem !important;
-}
-
-/* Slide Container Centering */
-.modal-slide {
-  width: 100% !important;
-  height: 100% !important;
-  display: none !important;
-  flex-direction: column !important;
-  align-items: center !important;     /* Centers horizontally */
-  justify-content: center !important;  /* Centers vertically */
-  text-align: center !important;
-}
-
-.modal-slide.active {
-  display: flex !important;
-}
-
-/* Image Centering & Fluid Scaling */
-.modal-slide img {
-  max-width: 100% !important;
-  max-height: 80% !important;          /* Leaves room for the slide counter label */
-  width: auto !important;
-  height: auto !important;
-  object-fit: contain !important;
-  margin: auto !important;             /* Guarantees dead-center alignment */
-  display: block !important;
-}
-
-/* Forces images to scale cleanly with window expansion without getting cut off or distorted */
-.modal-slide img {
-  max-width: 100%;
-  max-height: 100%;
-  width: auto;
-  height: auto;
-  object-fit: contain;
-  image-rendering: -webkit-optimize-contrast;
-  image-rendering: crisp-edges;
-}
-
-      /* Desktop Grid Lines Overlay - Softened for Wallpaper */
-/* Fixed: Prevents grid pattern overlay from creating mini box artifacts */
-.desktop-grid-overlay {
-  display: none !important;
-        position: fixed;
-        inset: 0;
-        background-image: 
-          linear-gradient(to right, rgba(255, 255, 255, 0.03) 1px, transparent 1px),
-          linear-gradient(to bottom, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
-        background-size: 50px 50px;
-        pointer-events: none;
-        z-index: 1;
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-family: 'Tahoma', 'Segoe UI', sans-serif;
+        background: url('images/Bliss (Windows XP).png') no-repeat center center fixed;
+        background-size: cover;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
       }
 
-      /* Canvas Layers */
+      #win-slideshow .os-window-body {
+        display: flex !important;
+        flex-direction: column !important;
+        height: 100% !important;
+        padding: 1rem !important;
+      }
+
+      .modal-slide {
+        width: 100% !important;
+        height: 100% !important;
+        display: none !important;
+        flex-direction: column !important;
+        align-items: center !important;
+        justify-content: center !important;
+        text-align: center !important;
+      }
+
+      .modal-slide.active {
+        display: flex !important;
+      }
+
+      .modal-slide img {
+        max-width: 100% !important;
+        max-height: 80% !important;
+        width: auto !important;
+        height: auto !important;
+        object-fit: contain !important;
+        margin: auto !important;
+        display: block !important;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+      }
+
+      .desktop-grid, 
+      .desktop-grid-overlay {
+        display: none !important;
+      }
+
       #trailCanvas {
         position: fixed;
         top: 0; left: 0; width: 100%; height: 100%;
@@ -204,7 +175,6 @@
         opacity: 0.60;
       }
 
-      /* Authentic Windows XP Taskbar */
       .xp-taskbar {
         height: 30px;
         background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #1941a5 92%, #1941a5 100%);
@@ -218,7 +188,6 @@
         box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
       }
 
-      /* Classic XP Start Button */
       .xp-start-btn {
         height: 100%;
         padding: 0 14px 0 10px;
@@ -242,7 +211,6 @@
         filter: brightness(1.1);
       }
 
-      /* XP System Tray */
       .xp-systray {
         height: 100%;
         background: linear-gradient(to bottom, #0972da 0%, #0e93ff 10%, #0972da 30%, #0756a5 90%, #05407c 100%);
@@ -254,23 +222,16 @@
         box-shadow: inset 1px 0 2px rgba(0,0,0,0.3);
       }
 
-/* DESKTOP ICON CONTAINER - CLEAN FIXED LAYOUT */
-.desktop-icons-grid {
-  position: fixed;
-  top: 20px;
-  left: 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-  z-index: 10;
-  pointer-events: auto;
-}
-
-/* Ensure desktop grid overlay doesn't render mini boxes */
-.desktop-grid, 
-.desktop-grid-overlay {
-  display: none !important;
-}
+      .desktop-icons-grid {
+        position: fixed;
+        top: 20px;
+        left: 20px;
+        display: flex;
+        flex-direction: column;
+        gap: 16px;
+        z-index: 10;
+        pointer-events: auto;
+      }
 
       .desktop-icon {
         width: 86px;
@@ -311,7 +272,6 @@
         line-height: 1.2;
       }
 
-      /* OS XP Window Styling */
       .os-window {
         position: absolute;
         background: #ece9d8;
@@ -388,7 +348,17 @@
         color: #f8fafc;
       }
 
-      /* Custom Lightbox Modal Overlay */
+      .os-window-body::-webkit-scrollbar {
+        width: 6px;
+      }
+      .os-window-body::-webkit-scrollbar-track {
+        background: rgba(0, 0, 0, 0.2);
+      }
+      .os-window-body::-webkit-scrollbar-thumb {
+        background: rgba(255, 255, 255, 0.15);
+        border-radius: 4px;
+      }
+
       .modal-overlay {
         display: none;
         position: fixed;
@@ -401,23 +371,11 @@
         padding: 1.5rem;
       }
       .modal-overlay.active { display: flex; }
-
-      /* Scrollbar styling for windows */
-      .os-window-body::-webkit-scrollbar {
-        width: 6px;
-      }
-      .os-window-body::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.2);
-      }
-      .os-window-body::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 4px;
-      }
     </style>
   </head>
   <body>
 
-    <!-- CANVASES PRESERVED FROM ORIGINAL CODE -->
+    <!-- CANVAS LAYERS -->
     <canvas id="trailCanvas"></canvas>
     <canvas id="birdsCanvas"></canvas>
     <canvas id="grassCanvas"></canvas>
@@ -461,32 +419,33 @@
       </div>
     </header>
 
-<!-- CLEAN DESKTOP SHORTCUTS -->
-<div class="desktop-icons-grid">
-  <div class="desktop-icon" onclick="openWindow('win-project')">
-    <div class="desktop-icon-img">📂</div>
-    <span class="desktop-icon-title">Uncanny Valley</span>
-  </div>
+    <!-- DESKTOP SHORTCUTS -->
+    <div class="desktop-icons-grid">
+      <div class="desktop-icon" onclick="openWindow('win-project')">
+        <div class="desktop-icon-img">📂</div>
+        <span class="desktop-icon-title">Uncanny Valley</span>
+      </div>
 
-  <div class="desktop-icon" onclick="openWindow('win-slideshow')">
-    <div class="desktop-icon-img">📂</div>
-    <span class="desktop-icon-title">Project Gallery</span>
-  </div>
+      <div class="desktop-icon" onclick="openWindow('win-slideshow')">
+        <div class="desktop-icon-img">📂</div>
+        <span class="desktop-icon-title">Project Gallery</span>
+      </div>
 
-  <div class="desktop-icon" onclick="openWindow('win-about')">
-    <div class="desktop-icon-img">📂</div>
-    <span class="desktop-icon-title">About Gabbie</span>
-  </div>
+      <div class="desktop-icon" onclick="openWindow('win-about')">
+        <div class="desktop-icon-img">📂</div>
+        <span class="desktop-icon-title">About Gabbie</span>
+      </div>
 
-  <div class="desktop-icon" onclick="openWindow('win-limewire')">
-    <div class="desktop-icon-img bg-lime-950/90 border-lime-500/50">🍋</div>
-    <span class="desktop-icon-title">LimeWire v4.12</span>
-  </div>
-  <!-- JOKE / VIRUS PRANK ICON -->
-<div class="desktop-icon" onclick="triggerVirusPrank()" title="DO NOT CLICK!">
-  <div class="desktop-icon-img bg-red-950/80 border-red-500/50">☣️</div>
-  <span class="desktop-icon-title text-red-300">DO NOT OPEN.exe</span>
-</div>
+      <div class="desktop-icon" onclick="openWindow('win-limewire')">
+        <div class="desktop-icon-img bg-lime-950/90 border-lime-500/50">🍋</div>
+        <span class="desktop-icon-title">LimeWire v4.12</span>
+      </div>
+
+      <div class="desktop-icon" onclick="triggerVirusPrank()" title="DO NOT CLICK!">
+        <div class="desktop-icon-img bg-red-950/80 border-red-500/50">☣️</div>
+        <span class="desktop-icon-title text-red-300">DO NOT OPEN.exe</span>
+      </div>
+    </div>
 
     <!-- WINDOW 1: FEATURED PROJECT -->
     <div id="win-project" class="os-window" style="width: 720px; height: 560px; top: 50px; left: 140px;">
@@ -499,7 +458,6 @@
         </div>
       </div>
       <div class="os-window-body">
-        <!-- Title Banner -->
         <div class="text-center mb-6">
           <span class="font-mono text-xs text-amber-400 tracking-widest uppercase block mb-1">Featured Works · Fall 2026</span>
           <div class="flex justify-center mb-3">
@@ -507,7 +465,6 @@
           </div>
         </div>
 
-        <!-- Image Artwork Frame with Lightbox Trigger -->
         <div class="relative bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-2 mb-6 group">
           <span class="absolute top-3 left-3 bg-black/80 text-amber-300 font-mono text-[10px] px-2.5 py-1 rounded border border-zinc-700 z-10">PokéBaseMonBall Cards</span>
           <a href="images/Final 1.png" class="lightbox-trigger block" title="Click to open full view preview">
@@ -515,7 +472,6 @@
           </a>
         </div>
 
-        <!-- Project Info & Action -->
         <div class="flex items-center justify-between bg-zinc-900/60 border border-zinc-800 p-4 rounded-xl">
           <div>
             <h4 class="font-mono text-sm font-semibold text-white">Project 01 · Uncanny Valley</h4>
@@ -528,68 +484,59 @@
       </div>
     </div>
 
-<!-- WINDOW 2: PROJECT SLIDESHOW GALLERY -->
-<div id="win-slideshow" class="os-window" style="width: 840px; height: 620px; top: 70px; left: 220px;">
-  <div class="os-window-header" onmousedown="dragWindow(event, 'win-slideshow')">
-    <span class="os-window-title">Project Gallery</span>
-    <div class="window-controls">
-      <span class="win-btn win-btn-min" onclick="minimizeWindow('win-slideshow')">_</span>
-      <span class="win-btn win-btn-max" onclick="maximizeWindow('win-slideshow')">□</span>
-      <span class="win-btn win-btn-close" onclick="closeWindow('win-slideshow')">✕</span>
+    <!-- WINDOW 2: PROJECT SLIDESHOW GALLERY -->
+    <div id="win-slideshow" class="os-window" style="width: 840px; height: 620px; top: 70px; left: 220px;">
+      <div class="os-window-header" onmousedown="dragWindow(event, 'win-slideshow')">
+        <span class="os-window-title">Project Gallery</span>
+        <div class="window-controls">
+          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-slideshow')">_</span>
+          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-slideshow')">□</span>
+          <span class="win-btn win-btn-close" onclick="closeWindow('win-slideshow')">✕</span>
+        </div>
+      </div>
+
+      <div class="os-window-body flex flex-col items-center justify-between text-center p-4">
+        <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">Project Gallery Slideshow</h3>
+
+        <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
+          <div class="modal-slide active">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE UNO OF 05</div>
+            <img src="images/Uncanny Valley HiRes.png" alt="Uncanny Valley HiRes" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE DOS OF 05</div>
+            <img src="images/Uncanny Valley HIRESS.png" alt="Uncanny Valley HIRESS" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE TRES OF 05</div>
+            <img src="images/Uncanny Valley HiRes3.png" alt="Uncanny Valley HiRes3" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CUATRO OF 05</div>
+            <img src="images/Uncanny Valley HiRes4.png" alt="Uncanny Valley HiRes4" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CINCO OF 05</div>
+            <img src="images/Uncanny Valley HiRes5.png" alt="Uncanny Valley HiRes5" />
+          </div>
+
+          <button id="prevSlideBtn" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20">❮</button>
+          <button id="nextSlideBtn" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20">❯</button>
+        </div>
+
+        <div class="flex justify-center gap-2 mt-3">
+          <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4"></span>
+        </div>
+      </div>
     </div>
-  </div>
-
-  <div class="os-window-body flex flex-col items-center justify-between text-center p-4">
-    <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">Project Gallery Slideshow</h3>
-
-    <!-- Centered Slide Viewport -->
-    <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
-      
-      <!-- Slide 1 -->
-      <div class="modal-slide active">
-        <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE UNO OF 05</div>
-        <img src="images/Uncanny Valley HiRes.png" alt="Uncanny Valley HiRes" />
-      </div>
-
-      <!-- Slide 2 -->
-      <div class="modal-slide">
-        <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE DOS OF 05</div>
-        <img src="images/Uncanny Valley HIRESS.png" alt="Uncanny Valley HIRESS" />
-      </div>
-
-      <!-- Slide 3 -->
-      <div class="modal-slide">
-        <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE TRES OF 05</div>
-        <img src="images/Uncanny Valley HiRes3.png" alt="Uncanny Valley HiRes3" />
-      </div>
-
-      <!-- Slide 4 -->
-      <div class="modal-slide">
-        <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CUATRO OF 05</div>
-        <img src="images/Uncanny Valley HiRes4.png" alt="Uncanny Valley HiRes4" />
-      </div>
-
-      <!-- Slide 5 -->
-      <div class="modal-slide">
-        <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CINCO OF 05</div>
-        <img src="images/Uncanny Valley HiRes5.png" alt="Uncanny Valley HiRes5" />
-      </div>
-
-      <!-- Slide Navigation Controls -->
-      <button id="prevSlideBtn" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20">❮</button>
-      <button id="nextSlideBtn" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20">❯</button>
-    </div>
-
-    <!-- Indicator Dots -->
-    <div class="flex justify-center gap-2 mt-3">
-      <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0"></span>
-      <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1"></span>
-      <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2"></span>
-      <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3"></span>
-      <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4"></span>
-    </div>
-  </div>
-</div>
 
     <!-- WINDOW 3: ABOUT & STUDIO PRACTICE -->
     <div id="win-about" class="os-window" style="width: 700px; height: 490px; top: 90px; left: 300px;">
@@ -603,7 +550,6 @@
       </div>
       <div class="os-window-body">
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <!-- Panel 1 -->
           <div class="bg-zinc-900/80 border border-zinc-800 p-5 rounded-xl flex flex-col justify-between">
             <div>
               <span class="font-mono text-[11px] text-amber-400 uppercase tracking-widest block mb-2">Identity & Trajectory</span>
@@ -623,7 +569,6 @@
             </div>
           </div>
 
-          <!-- Panel 2 -->
           <div class="bg-zinc-900/80 border border-zinc-800 p-5 rounded-xl flex flex-col justify-between">
             <div>
               <span class="font-mono text-[11px] text-amber-400 uppercase tracking-widest block mb-2">Academic Studio</span>
@@ -661,7 +606,6 @@
       </div>
 
       <div class="os-window-body p-0 flex flex-col bg-zinc-950 text-lime-100 font-mono text-xs">
-        <!-- LimeWire Top Navigation Toolbar -->
         <div class="bg-gradient-to-b from-zinc-900 to-zinc-950 border-b border-lime-900/40 p-2.5 flex items-center justify-between">
           <div class="flex items-center gap-2">
             <button class="bg-lime-500/20 hover:bg-lime-500/30 text-lime-300 border border-lime-500/40 px-3 py-1 rounded flex items-center gap-1.5 font-bold">
@@ -680,9 +624,7 @@
           </div>
         </div>
 
-        <!-- LimeWire Main Area (Sidebar Search + Table) -->
         <div class="flex-1 flex overflow-hidden">
-          <!-- Left Search Controls Sidebar -->
           <div class="w-56 bg-zinc-900/90 border-r border-lime-900/30 p-3 flex flex-col justify-between">
             <div>
               <div class="text-[10px] text-lime-400/80 uppercase tracking-widest font-bold mb-2">P2P File Search</div>
@@ -705,7 +647,6 @@
               </div>
             </div>
 
-            <!-- Fake Bandwidth Monitor -->
             <div class="bg-black/80 border border-lime-900/40 p-2.5 rounded text-[10px] space-y-1">
               <div class="flex justify-between text-zinc-400">
                 <span>Down Speed:</span>
@@ -721,7 +662,6 @@
             </div>
           </div>
 
-          <!-- Right File Search Results Table -->
           <div class="flex-1 flex flex-col bg-zinc-950 overflow-hidden">
             <div class="overflow-x-auto flex-1">
               <table class="w-full text-left border-collapse text-[11px]">
@@ -734,71 +674,66 @@
                     <th class="p-2 font-bold text-right">Action</th>
                   </tr>
                 </thead>
-<tbody id="lwTableBody" class="divide-y divide-zinc-900 text-zinc-300">
-  <!-- Track 1: Pokémon Theme Song -->
-  <tr class="hover:bg-lime-950/30 transition-colors">
-    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
-      <span>🎵</span> pokebasemon_theme.mp3
-    </td>
-    <td class="p-2 text-zinc-400">3.2 MB</td>
-    <td class="p-2 text-lime-400">100% (Complete)</td>
-    <td class="p-2 text-emerald-400">Cable (92)</td>
-    <td class="p-2 text-right">
-      <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all" data-audio="https://archive.org/download/tvtunes_11549/Pokemon.mp3">
-        ▶ Play
-      </button>
-    </td>
-  </tr>
+                <tbody id="lwTableBody" class="divide-y divide-zinc-900 text-zinc-300">
+                  <tr class="hover:bg-lime-950/30 transition-colors">
+                    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
+                      <span>🎵</span> pokebasemon_theme.mp3
+                    </td>
+                    <td class="p-2 text-zinc-400">3.2 MB</td>
+                    <td class="p-2 text-lime-400">100% (Complete)</td>
+                    <td class="p-2 text-emerald-400">Cable (92)</td>
+                    <td class="p-2 text-right">
+                      <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all" data-audio="https://archive.org/download/tvtunes_11549/Pokemon.mp3">
+                        ▶ Play
+                      </button>
+                    </td>
+                  </tr>
 
-  <!-- Track 2: Uncanny Valley Gallery -->
-  <tr class="hover:bg-lime-950/30 transition-colors">
-    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
-      <span>🖼️</span> Uncanny_Valley_FullHD_Set.zip
-    </td>
-    <td class="p-2 text-zinc-400">18.6 MB</td>
-    <td class="p-2 text-lime-400">Lossless PNG</td>
-    <td class="p-2 text-emerald-400">Cable (84)</td>
-    <td class="p-2 text-right">
-      <button onclick="openWindow('win-slideshow')" class="bg-zinc-800 hover:bg-lime-500 text-zinc-300 hover:text-black border border-zinc-700 px-2 py-0.5 rounded transition-all">
-        ⬇ Open Gallery
-      </button>
-    </td>
-  </tr>
+                  <tr class="hover:bg-lime-950/30 transition-colors">
+                    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
+                      <span>🖼️</span> Uncanny_Valley_FullHD_Set.zip
+                    </td>
+                    <td class="p-2 text-zinc-400">18.6 MB</td>
+                    <td class="p-2 text-lime-400">Lossless PNG</td>
+                    <td class="p-2 text-emerald-400">Cable (84)</td>
+                    <td class="p-2 text-right">
+                      <button onclick="openWindow('win-slideshow')" class="bg-zinc-800 hover:bg-lime-500 text-zinc-300 hover:text-black border border-zinc-700 px-2 py-0.5 rounded transition-all">
+                        ⬇ Open Gallery
+                      </button>
+                    </td>
+                  </tr>
 
-  <!-- Track 3: LoFi Peaceful Piano -->
-  <tr class="hover:bg-lime-950/30 transition-colors">
-    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
-      <span>🎵</span> Gabbie_salas_art10c.mp3
-    </td>
-    <td class="p-2 text-zinc-400">4.5 MB</td>
-    <td class="p-2 text-lime-400">100% (Complete)</td>
-    <td class="p-2 text-emerald-400">T3 (120)</td>
-    <td class="p-2 text-right">
-      <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all" data-audio="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3">
-        ▶ Play
-      </button>
-    </td>
-  </tr>
+                  <tr class="hover:bg-lime-950/30 transition-colors">
+                    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
+                      <span>🎵</span> Gabbie_salas_art10c.mp3
+                    </td>
+                    <td class="p-2 text-zinc-400">4.5 MB</td>
+                    <td class="p-2 text-lime-400">100% (Complete)</td>
+                    <td class="p-2 text-emerald-400">T3 (120)</td>
+                    <td class="p-2 text-right">
+                      <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all" data-audio="https://cdn.pixabay.com/download/audio/2022/05/27/audio_1808fbf07a.mp3">
+                        ▶ Play
+                      </button>
+                    </td>
+                  </tr>
 
-  <!-- Track 4: Digital Media Portfolio PDF -->
-  <tr class="hover:bg-lime-950/30 transition-colors">
-    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
-      <span>📄</span> Digital_Media_Portfolio_2026.pdf
-    </td>
-    <td class="p-2 text-zinc-400">2.1 MB</td>
-    <td class="p-2 text-lime-400">Vector Print</td>
-    <td class="p-2 text-emerald-400">T1 (67)</td>
-    <td class="p-2 text-right">
-      <button onclick="openWindow('win-about')" class="bg-zinc-800 hover:bg-lime-500 text-zinc-300 hover:text-black border border-zinc-700 px-2 py-0.5 rounded transition-all">
-        ⬇ View About
-      </button>
-    </td>
-  </tr>
-</tbody>
+                  <tr class="hover:bg-lime-950/30 transition-colors">
+                    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
+                      <span>📄</span> Digital_Media_Portfolio_2026.pdf
+                    </td>
+                    <td class="p-2 text-zinc-400">2.1 MB</td>
+                    <td class="p-2 text-lime-400">Vector Print</td>
+                    <td class="p-2 text-emerald-400">T1 (67)</td>
+                    <td class="p-2 text-right">
+                      <button onclick="openWindow('win-about')" class="bg-zinc-800 hover:bg-lime-500 text-zinc-300 hover:text-black border border-zinc-700 px-2 py-0.5 rounded transition-all">
+                        ⬇ View About
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
               </table>
             </div>
 
-            <!-- Bottom Built-in Media Player Bar -->
             <div class="bg-zinc-900 border-t border-lime-900/40 p-2.5 flex items-center justify-between">
               <div class="flex items-center gap-3">
                 <button id="lwPlayBtn" onclick="toggleLimeAudio()" class="w-8 h-8 rounded-full bg-lime-500 hover:bg-lime-400 text-black flex items-center justify-center font-bold text-sm shadow">
@@ -814,7 +749,6 @@
                 </div>
               </div>
 
-              <!-- Equalizer animation visualizer -->
               <div class="flex items-end gap-1 h-6">
                 <span class="w-1 bg-lime-400 rounded-t animate-bounce h-3"></span>
                 <span class="w-1 bg-lime-400 rounded-t animate-bounce h-5" style="animation-delay: 0.15s"></span>
@@ -838,16 +772,16 @@
       </div>
     </div>
 
-<!-- PRANK VIRUS OVERLAY -->
-<div id="prankOverlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 99999; overflow: hidden; font-family: 'Tahoma', sans-serif;">
-  <div style="position: absolute; top: 12px; right: 16px; background: rgba(239, 68, 68, 0.9); color: white; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: bold; z-index: 100000; cursor: pointer; border: 1px solid #fca5a5;" onclick="stopVirusPrank()">
-    ⚠️ Press ESC or Click Here to Exit Prank
-  </div>
-  <div id="errorWindowContainer" style="position: absolute; inset: 0; pointer-events: none;"></div>
-</div>
+    <!-- PRANK VIRUS OVERLAY -->
+    <div id="prankOverlay" style="display: none; position: fixed; inset: 0; background: rgba(0,0,0,0.85); z-index: 99999; overflow: hidden; font-family: 'Tahoma', sans-serif;">
+      <div style="position: absolute; top: 12px; right: 16px; background: rgba(239, 68, 68, 0.9); color: white; padding: 6px 14px; border-radius: 6px; font-size: 12px; font-weight: bold; z-index: 100000; cursor: pointer; border: 1px solid #fca5a5;" onclick="stopVirusPrank()">
+        ⚠️ Press ESC or Click Here to Exit Prank
+      </div>
+      <div id="errorWindowContainer" style="position: absolute; inset: 0; pointer-events: none;"></div>
+    </div>
+
     <!-- JAVASCRIPT CONTROLLERS AND CANVAS LOGIC -->
     <script>
-      // Clock Logic
       function updateClock() {
         const now = new Date();
         document.getElementById('osClock').textContent = now.toLocaleTimeString();
@@ -855,7 +789,6 @@
       setInterval(updateClock, 1000);
       updateClock();
 
-      // Window Management System (Focus, Drag, Minimize, Maximize)
       let highestZIndex = 10;
 
       function bringToFront(winId) {
@@ -906,7 +839,6 @@
         }
       }
 
-      // Dragging Controller
       function dragWindow(e, winId) {
         const win = document.getElementById(winId);
         bringToFront(winId);
@@ -934,7 +866,6 @@
         win.addEventListener('mousedown', () => bringToFront(win.id));
       });
 
-      // 1. Dragging Ink Trail Effect Canvas
       (function() {
         const canvas = document.getElementById('trailCanvas');
         if (!canvas) return;
@@ -986,7 +917,6 @@
         animate();
       })();
 
-      // 2. Layered Grass Canvas
       (function() {
         const canvas = document.getElementById('grassCanvas');
         if (!canvas) return;
@@ -1059,7 +989,6 @@
         animate();
       })();
 
-      // 3. Flying Birds Canvas
       (function() {
         const canvas = document.getElementById('birdsCanvas');
         if (!canvas) return;
@@ -1105,7 +1034,6 @@
         animate();
       })();
 
-      // 4. Slideshow Logic Inside Window
       (function() {
         const prevBtn = document.getElementById('prevSlideBtn');
         const nextBtn = document.getElementById('nextSlideBtn');
@@ -1137,7 +1065,6 @@
         updateSlides(0);
       })();
 
-      // 5. Lightbox Modal Logic
       (function() {
         const imageModal = document.getElementById('imageModal');
         const lightboxImg = document.getElementById('lightboxImage');
@@ -1163,33 +1090,8 @@
         });
       })();
 
-      // 6. LimeWire Audio Preview & Search Controller
       let isLimePlaying = false;
       let synthAudio = null;
-
-      function playLimeTrack(trackName, typeIndex) {
-        document.getElementById('lwTrackName').textContent = "Playing: " + trackName;
-        document.getElementById('lwAudioStatus').textContent = "Status: Streaming (320 kbps)";
-        document.getElementById('lwPlayBtn').textContent = "❚❚";
-        isLimePlaying = true;
-        
-        // Synthesize a retro preview audio tone using Web Audio API
-        try {
-          if (synthAudio) synthAudio.close();
-          const AudioContext = window.AudioContext || window.webkitAudioContext;
-          synthAudio = new AudioContext();
-          const osc = synthAudio.createOscillator();
-          const gain = synthAudio.createGain();
-          osc.type = typeIndex === 0 ? 'sine' : 'triangle';
-          osc.frequency.setValueAtTime(440 + typeIndex * 110, synthAudio.currentTime);
-          gain.gain.setValueAtTime(0.08, synthAudio.currentTime);
-          osc.connect(gain);
-          gain.connect(synthAudio.destination);
-          osc.start();
-        } catch(e) {
-          console.log("Web Audio API initiated.");
-        }
-      }
 
       function toggleLimeAudio() {
         const playBtn = document.getElementById('lwPlayBtn');
@@ -1214,262 +1116,250 @@
           status.textContent = "Search complete: 4 files found.";
         }, 800);
       }
-      // LimeWire Audio Controller
-(function() {
-  const currentAudio = new Audio();
-  let currentPlayingBtn = null;
 
-  const playButtons = document.querySelectorAll('.lw-play-btn');
+      (function() {
+        const currentAudio = new Audio();
+        let currentPlayingBtn = null;
 
-  playButtons.forEach((btn) => {
-    btn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      const audioSrc = btn.getAttribute('data-audio');
-      if (!audioSrc) return;
+        const playButtons = document.querySelectorAll('.lw-play-btn');
 
-      // Toggle Play/Pause if clicking the currently playing song
-      if (currentAudio.src === audioSrc) {
-        if (currentAudio.paused) {
-          currentAudio.play();
-          btn.textContent = '⏸ Pause';
-          btn.style.background = '#eab308';
-        } else {
-          currentAudio.pause();
-          btn.textContent = '▶ Play';
-          btn.style.background = '#22c55e';
+        playButtons.forEach((btn) => {
+          btn.addEventListener('click', (e) => {
+            e.stopPropagation();
+            const audioSrc = btn.getAttribute('data-audio');
+            if (!audioSrc) return;
+
+            if (currentAudio.src === audioSrc) {
+              if (currentAudio.paused) {
+                currentAudio.play();
+                btn.textContent = '⏸ Pause';
+                btn.style.background = '#eab308';
+              } else {
+                currentAudio.pause();
+                btn.textContent = '▶ Play';
+                btn.style.background = '#22c55e';
+              }
+              return;
+            }
+
+            if (currentPlayingBtn && currentPlayingBtn !== btn) {
+              currentPlayingBtn.textContent = '▶ Play';
+              currentPlayingBtn.style.background = '#22c55e';
+            }
+
+            currentAudio.src = audioSrc;
+            currentAudio.play().then(() => {
+              btn.textContent = '⏸ Pause';
+              btn.style.background = '#eab308';
+              currentPlayingBtn = btn;
+            }).catch(err => {
+              console.error('Audio playback failed:', err);
+            });
+          });
+        });
+
+        currentAudio.addEventListener('ended', () => {
+          if (currentPlayingBtn) {
+            currentPlayingBtn.textContent = '▶ Play';
+            currentPlayingBtn.style.background = '#22c55e';
+            currentPlayingBtn = null;
+          }
+        });
+      })();
+
+      (function() {
+        let prankInterval = null;
+        let audioCtx = null;
+
+        function playXPErrorSound() {
+          try {
+            if (!audioCtx) {
+              audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+            }
+            if (audioCtx.state === 'suspended') {
+              audioCtx.resume();
+            }
+
+            const osc1 = audioCtx.createOscillator();
+            const osc2 = audioCtx.createOscillator();
+            const gain = audioCtx.createGain();
+
+            osc1.type = 'sawtooth';
+            osc2.type = 'square';
+
+            osc1.frequency.setValueAtTime(150, audioCtx.currentTime);
+            osc2.frequency.setValueAtTime(300, audioCtx.currentTime);
+
+            gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
+            gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+
+            osc1.connect(gain);
+            osc2.connect(gain);
+            gain.connect(audioCtx.destination);
+
+            osc1.start();
+            osc2.start();
+            osc1.stop(audioCtx.currentTime + 0.25);
+            osc2.stop(audioCtx.currentTime + 0.25);
+          } catch (e) {
+            console.warn('Audio playback failed:', e);
+          }
         }
-        return;
-      }
 
-      // Reset previous playing button state
-      if (currentPlayingBtn && currentPlayingBtn !== btn) {
-        currentPlayingBtn.textContent = '▶ Play';
-        currentPlayingBtn.style.background = '#22c55e';
-      }
+        window.triggerVirusPrank = function() {
+          const overlay = document.getElementById('prankOverlay');
+          const container = document.getElementById('errorWindowContainer');
+          
+          if (!overlay || !container) return;
 
-      // Play new track
-      currentAudio.src = audioSrc;
-      currentAudio.play().then(() => {
-        btn.textContent = '⏸ Pause';
-        btn.style.background = '#eab308';
-        currentPlayingBtn = btn;
-      }).catch(err => {
-        console.error('Audio playback failed:', err);
-      });
-    });
-  });
+          overlay.style.display = 'block';
+          container.innerHTML = '';
 
-  // Reset button state when song ends naturally
-  currentAudio.addEventListener('ended', () => {
-    if (currentPlayingBtn) {
-      currentPlayingBtn.textContent = '▶ Play';
-      currentPlayingBtn.style.background = '#22c55e';
-      currentPlayingBtn = null;
-    }
-  });
-})();
-// VIRUS PRANK CONTROLLER (EXPLICIT WINDOW BINDING)
-(function() {
-  let prankInterval = null;
-  let audioCtx = null;
+          const errorMessages = [
+            'CRITICAL_PROCESS_DIED: 0x0000000A',
+            'System Overload! Memory corrupted.',
+            'Unauthorized access detected from 192.168.1.104',
+            'LimeWire downloading virus_payload.exe...',
+            'WARNING: Hard drive temperature critical!',
+            'Deleting C:\\WINDOWS\\System32...'
+          ];
 
-  function playXPErrorSound() {
-    try {
-      if (!audioCtx) {
-        audioCtx = new (window.AudioContext || window.webkitAudioContext)();
-      }
-      if (audioCtx.state === 'suspended') {
-        audioCtx.resume();
-      }
+          let count = 0;
+          const maxWindows = 25;
 
-      const osc1 = audioCtx.createOscillator();
-      const osc2 = audioCtx.createOscillator();
-      const gain = audioCtx.createGain();
+          prankInterval = setInterval(() => {
+            if (count >= maxWindows) {
+              clearInterval(prankInterval);
+              showBSODScreen(container);
+              return;
+            }
 
-      osc1.type = 'sawtooth';
-      osc2.type = 'square';
+            playXPErrorSound();
 
-      osc1.frequency.setValueAtTime(150, audioCtx.currentTime);
-      osc2.frequency.setValueAtTime(300, audioCtx.currentTime);
+            const randomMsg = errorMessages[Math.floor(Math.random() * errorMessages.length)];
+            const posX = Math.random() * (window.innerWidth - 340);
+            const posY = Math.random() * (window.innerHeight - 200);
 
-      gain.gain.setValueAtTime(0.18, audioCtx.currentTime);
-      gain.gain.exponentialRampToValueAtTime(0.001, audioCtx.currentTime + 0.25);
+            const errWin = document.createElement('div');
+            errWin.style.cssText = `
+              position: absolute;
+              left: ${Math.max(10, posX)}px;
+              top: ${Math.max(10, posY)}px;
+              width: 320px;
+              background: #ece9d8;
+              border: 3px solid #0055ea;
+              border-top-left-radius: 8px;
+              border-top-right-radius: 8px;
+              box-shadow: 0 10px 30px rgba(0,0,0,0.6);
+              pointer-events: auto;
+              z-index: ${1000 + count};
+            `;
 
-      osc1.connect(gain);
-      osc2.connect(gain);
-      gain.connect(audioCtx.destination);
+            errWin.innerHTML = `
+              <div style="height: 26px; background: linear-gradient(to bottom, #d83b27, #990000); padding: 0 8px; display: flex; align-items: center; justify-content: space-between; color: white; font-weight: bold; font-size: 11px;">
+                <span>⚠️ SYSTEM ERROR - FATAL EXCEPTION</span>
+                <span style="cursor: pointer; padding: 0 4px;" onclick="this.parentElement.parentElement.remove()">✕</span>
+              </div>
+              <div style="padding: 16px; color: #000; font-size: 12px; display: flex; align-items: center; gap: 12px; background: #f5f3e5;">
+                <span style="font-size: 24px;">❌</span>
+                <span>${randomMsg}</span>
+              </div>
+              <div style="padding: 8px; text-align: right; background: #ece9d8; border-top: 1px solid #d4d0c8;">
+                <button onclick="this.parentElement.parentElement.remove()" style="padding: 3px 16px; background: #ece9d8; border: 1px solid #003c74; border-radius: 3px; font-size: 11px; cursor: pointer; font-weight: bold;">OK</button>
+              </div>
+            `;
 
-      osc1.start();
-      osc2.start();
-      osc1.stop(audioCtx.currentTime + 0.25);
-      osc2.stop(audioCtx.currentTime + 0.25);
-    } catch (e) {
-      console.warn('Audio playback failed:', e);
-    }
-  }
+            container.appendChild(errWin);
+            count++;
+          }, 120);
+        };
 
-  // EXPLICIT GLOBAL WINDOW BINDING
-  window.triggerVirusPrank = function() {
-    console.log('Virus prank triggered!'); // Debug log
-    const overlay = document.getElementById('prankOverlay');
-    const container = document.getElementById('errorWindowContainer');
-    
-    if (!overlay || !container) {
-      console.error('Missing prankOverlay or errorWindowContainer element!');
-      return;
-    }
+        function showBSODScreen(container) {
+          const bsod = document.createElement('div');
+          bsod.style.cssText = `
+            position: absolute;
+            inset: 0;
+            background: #0000aa;
+            color: #ffffff;
+            font-family: 'Courier New', monospace;
+            padding: 40px;
+            font-size: 14px;
+            line-height: 1.6;
+            z-index: 999999;
+            pointer-events: auto;
+          `;
+          bsod.innerHTML = `
+            <p style="font-size: 16px; font-weight: bold; margin-bottom: 20px;">A problem has been detected (you) and Windows has been shut down to prevent damage to your computer.</p>
+            <p>SYSTEM_PRANK_EXCEEDED</p>
+            <p style="margin-top: 20px;">If this is the first time getting pranked, restart your computer.</p>
+            <p style="margin-top: 30px;">Technical information:</p>
+            <p>*** STOP CLICKING ON RANDOM STUFF</p>
+            <br />
+            <p style="color: #ffff55;">--> CLICK ANYWHERE OR PRESS ESC TO RECOVER YOUR SYSTEM <--</p>
+          `;
 
-    overlay.style.display = 'block';
-    container.innerHTML = '';
+          bsod.onclick = window.stopVirusPrank;
+          container.appendChild(bsod);
+        }
 
-    const errorMessages = [
-      'CRITICAL_PROCESS_DIED: 0x0000000A',
-      'System Overload! Memory corrupted.',
-      'Unauthorized access detected from 192.168.1.104',
-      'LimeWire downloading virus_payload.exe...',
-      'WARNING: Hard drive temperature critical!',
-      'Deleting C:\\WINDOWS\\System32...'
-    ];
+        window.stopVirusPrank = function() {
+          if (prankInterval) clearInterval(prankInterval);
+          const overlay = document.getElementById('prankOverlay');
+          const container = document.getElementById('errorWindowContainer');
+          if (overlay) overlay.style.display = 'none';
+          if (container) container.innerHTML = '';
+        };
 
-    let count = 0;
-    const maxWindows = 25;
+        window.addEventListener('keydown', (e) => {
+          if (e.key === 'Escape') {
+            window.stopVirusPrank();
+          }
+        });
+      })();   
 
-    prankInterval = setInterval(() => {
-      if (count >= maxWindows) {
-        clearInterval(prankInterval);
-        showBSODScreen(container);
-        return;
-      }
+      (function() {
+        let activeTouchWindow = null;
+        let touchOffsetX = 0;
+        let touchOffsetY = 0;
 
-      playXPErrorSound();
+        document.addEventListener('touchstart', function(e) {
+          const header = e.target.closest('.os-window-header');
+          if (!header) return;
 
-      const randomMsg = errorMessages[Math.floor(Math.random() * errorMessages.length)];
-      const posX = Math.random() * (window.innerWidth - 340);
-      const posY = Math.random() * (window.innerHeight - 200);
+          const win = header.closest('.os-window');
+          if (!win) return;
 
-      const errWin = document.createElement('div');
-      errWin.style.cssText = `
-        position: absolute;
-        left: ${Math.max(10, posX)}px;
-        top: ${Math.max(10, posY)}px;
-        width: 320px;
-        background: #ece9d8;
-        border: 3px solid #0055ea;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        box-shadow: 0 10px 30px rgba(0,0,0,0.6);
-        pointer-events: auto;
-        z-index: ${1000 + count};
-      `;
+          activeTouchWindow = win;
+          const touch = e.touches[0];
+          const rect = win.getBoundingClientRect();
 
-      errWin.innerHTML = `
-        <div style="height: 26px; background: linear-gradient(to bottom, #d83b27, #990000); padding: 0 8px; display: flex; align-items: center; justify-content: space-between; color: white; font-weight: bold; font-size: 11px;">
-          <span>⚠️ SYSTEM ERROR - FATAL EXCEPTION</span>
-          <span style="cursor: pointer; padding: 0 4px;" onclick="this.parentElement.parentElement.remove()">✕</span>
-        </div>
-        <div style="padding: 16px; color: #000; font-size: 12px; display: flex; align-items: center; gap: 12px; background: #f5f3e5;">
-          <span style="font-size: 24px;">❌</span>
-          <span>${randomMsg}</span>
-        </div>
-        <div style="padding: 8px; text-align: right; background: #ece9d8; border-top: 1px solid #d4d0c8;">
-          <button onclick="this.parentElement.parentElement.remove()" style="padding: 3px 16px; background: #ece9d8; border: 1px solid #003c74; border-radius: 3px; font-size: 11px; cursor: pointer; font-weight: bold;">OK</button>
-        </div>
-      `;
+          touchOffsetX = touch.clientX - rect.left;
+          touchOffsetY = touch.clientY - rect.top;
 
-      container.appendChild(errWin);
-      count++;
-    }, 120);
-  };
+          document.querySelectorAll('.os-window').forEach(w => w.style.zIndex = '10');
+          win.style.zIndex = '100';
+        }, { passive: false });
 
-  function showBSODScreen(container) {
-    const bsod = document.createElement('div');
-    bsod.style.cssText = `
-      position: absolute;
-      inset: 0;
-      background: #0000aa;
-      color: #ffffff;
-      font-family: 'Courier New', monospace;
-      padding: 40px;
-      font-size: 14px;
-      line-height: 1.6;
-      z-index: 999999;
-      pointer-events: auto;
-    `;
-    bsod.innerHTML = `
-      <p style="font-size: 16px; font-weight: bold; margin-bottom: 20px;">A problem has been detected (you) and Windows has been shut down to prevent damage to your computer.</p>
-      <p>SYSTEM_PRANK_EXCEEDED</p>
-      <p style="margin-top: 20px;">If this is the first time getting pranked, restart your computer.</p>
-      <p style="margin-top: 30px;">Technical information:</p>
-      <p>*** STOP CLICKING ON RANDOM STUFF</p>
-      <br />
-      <p style="color: #ffff55;">--> CLICK ANYWHERE OR PRESS ESC TO RECOVER YOUR SYSTEM <--</p>
-    `;
+        document.addEventListener('touchmove', function(e) {
+          if (!activeTouchWindow) return;
+          
+          e.preventDefault();
 
-    bsod.onclick = window.stopVirusPrank;
-    container.appendChild(bsod);
-  }
+          const touch = e.touches[0];
+          let newX = touch.clientX - touchOffsetX;
+          let newY = touch.clientY - touchOffsetY;
 
-  window.stopVirusPrank = function() {
-    if (prankInterval) clearInterval(prankInterval);
-    const overlay = document.getElementById('prankOverlay');
-    const container = document.getElementById('errorWindowContainer');
-    if (overlay) overlay.style.display = 'none';
-    if (container) container.innerHTML = '';
-  };
+          newX = Math.max(0, Math.min(window.innerWidth - activeTouchWindow.offsetWidth, newX));
+          newY = Math.max(0, Math.min(window.innerHeight - activeTouchWindow.offsetHeight - 36, newY));
 
-  window.addEventListener('keydown', (e) => {
-    if (e.key === 'Escape') {
-      window.stopVirusPrank();
-    }
-  });
-})();   
-// MOBILE TOUCH DRAG SUPPORT
-(function() {
-  let activeTouchWindow = null;
-  let touchOffsetX = 0;
-  let touchOffsetY = 0;
+          activeTouchWindow.style.left = newX + 'px';
+          activeTouchWindow.style.top = newY + 'px';
+        }, { passive: false });
 
-  document.addEventListener('touchstart', function(e) {
-    const header = e.target.closest('.os-window-header');
-    if (!header) return;
-
-    const win = header.closest('.os-window');
-    if (!win) return;
-
-    activeTouchWindow = win;
-    const touch = e.touches[0];
-    const rect = win.getBoundingClientRect();
-
-    touchOffsetX = touch.clientX - rect.left;
-    touchOffsetY = touch.clientY - rect.top;
-
-    // Bring clicked window to top
-    document.querySelectorAll('.os-window').forEach(w => w.style.zIndex = '10');
-    win.style.zIndex = '100';
-  }, { passive: false });
-
-  document.addEventListener('touchmove', function(e) {
-    if (!activeTouchWindow) return;
-    
-    // Prevent screen pull-down refresh while dragging window
-    e.preventDefault();
-
-    const touch = e.touches[0];
-    let newX = touch.clientX - touchOffsetX;
-    let newY = touch.clientY - touchOffsetY;
-
-    // Keep window inside visible bounds
-    newX = Math.max(0, Math.min(window.innerWidth - activeTouchWindow.offsetWidth, newX));
-    newY = Math.max(0, Math.min(window.innerHeight - activeTouchWindow.offsetHeight - 36, newY));
-
-    activeTouchWindow.style.left = newX + 'px';
-    activeTouchWindow.style.top = newY + 'px';
-  }, { passive: false });
-
-  document.addEventListener('touchend', function() {
-    activeTouchWindow = null;
-  });
-})();
-</script>
+        document.addEventListener('touchend', function() {
+          activeTouchWindow = null;
+        });
+      })();
+    </script>
   </body>
 </html>
