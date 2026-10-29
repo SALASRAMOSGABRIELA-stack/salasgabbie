@@ -469,20 +469,6 @@
         </div>
       </div>
 
-      <!-- IN-WINDOW POKÉBASEMONBALL CARDS PREVIEW MODAL -->
-      <div id="projectImagePreview" class="hidden absolute inset-0 top-[30px] bg-black/85 backdrop-blur-sm z-30 flex items-center justify-center p-4">
-        <div class="relative bg-zinc-900 border border-zinc-700 p-3 rounded-xl shadow-2xl max-w-[88%] max-h-[88%] flex flex-col items-center">
-          <!-- "X" Close Button on Top Right -->
-          <button onclick="closeProjectPreview()" class="absolute -top-3 -right-3 w-7 h-7 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full border border-red-300 flex items-center justify-center text-xs shadow-lg cursor-pointer z-40 transition-transform hover:scale-110" title="Close Preview">
-            ✕
-          </button>
-          <img id="projectPreviewImg" src="images/Final 1.png" alt="PokéBaseMonBall Cards Preview" class="max-w-full max-h-[380px] object-contain rounded-lg shadow" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
-          <div class="mt-2 text-center">
-            <span class="font-mono text-[11px] text-amber-300">PokéBaseMonBall Cards · Preview</span>
-          </div>
-        </div>
-      </div>
-
       <div class="os-window-body">
         <div class="text-center mb-6">
           <span class="font-mono text-xs text-amber-400 tracking-widest uppercase block mb-1">Featured Works · Fall 2026</span>
@@ -491,13 +477,13 @@
           </div>
         </div>
 
-   <!-- WINDOW 1: FEATURED PROJECT (CARD SECTION) -->
-<div class="relative bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-2 mb-6 group cursor-pointer" onclick="openProjectPreview('images/Final 1.png')">
-  <span class="absolute top-3 left-3 bg-black/80 text-amber-300 font-mono text-[10px] px-2.5 py-1 rounded border border-zinc-700 z-10">PokéBaseMonBall Cards</span>
-  <div class="block" title="Click to enlarge full view">
-    <img src="images/Final 1.png" alt="PokéBaseMonBall Artwork" class="w-full max-h-[340px] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
-  </div>
-</div>
+        <!-- CARD SECTION: Click to open full-screen pop-out -->
+        <div class="relative bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-2 mb-6 group cursor-pointer" onclick="openProjectPreview('images/Final 1.png')" title="Click to view almost screen size">
+          <span class="absolute top-3 left-3 bg-black/80 text-amber-300 font-mono text-[10px] px-2.5 py-1 rounded border border-zinc-700 z-10">PokéBaseMonBall Cards</span>
+          <div class="block">
+            <img src="images/Final 1.png" alt="PokéBaseMonBall Artwork" class="w-full max-h-[340px] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
+          </div>
+        </div>
 
         <div class="flex items-center justify-between bg-zinc-900/60 border border-zinc-800 p-4 rounded-xl">
           <div>
@@ -523,31 +509,39 @@
       </div>
 
       <div class="os-window-body flex flex-col items-center justify-between text-center p-4">
-        <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">Project Gallery Slideshow</h3>
+        <!-- Top Title Bar with Pop Out Button -->
+        <div class="w-full flex items-center justify-between mb-2">
+          <span class="w-6"></span>
+          <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider">Project Gallery Slideshow</h3>
+          <button onclick="openSlideshowPopout()" class="bg-zinc-800 hover:bg-amber-400 hover:text-black text-zinc-300 border border-zinc-700 px-2.5 py-1 rounded text-xs font-mono flex items-center gap-1.5 shadow transition-colors cursor-pointer" title="Pop out slideshow to almost screen size">
+            <span>⤢</span> Pop Out
+          </button>
+        </div>
 
-        <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
-          <div class="modal-slide active">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE UNO OF 05</div>
+        <!-- Slideshow Container: Click image to pop out -->
+        <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden group">
+          <div class="modal-slide active cursor-pointer" onclick="openSlideshowPopout()" title="Click to pop out full screen">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE UNO OF 05 · <span class="text-amber-400">Click to pop out ⤢</span></div>
             <img src="images/Uncanny Valley HiRes.png" alt="Uncanny Valley HiRes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+01';" />
           </div>
 
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE DOS OF 05</div>
+          <div class="modal-slide cursor-pointer" onclick="openSlideshowPopout()" title="Click to pop out full screen">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE DOS OF 05 · <span class="text-amber-400">Click to pop out ⤢</span></div>
             <img src="images/Uncanny Valley HIRESS.png" alt="Uncanny Valley HIRESS" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+02';" />
           </div>
 
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE TRES OF 05</div>
+          <div class="modal-slide cursor-pointer" onclick="openSlideshowPopout()" title="Click to pop out full screen">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE TRES OF 05 · <span class="text-amber-400">Click to pop out ⤢</span></div>
             <img src="images/Uncanny Valley HiRes3.png" alt="Uncanny Valley HiRes3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+03';" />
           </div>
 
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CUATRO OF 05</div>
+          <div class="modal-slide cursor-pointer" onclick="openSlideshowPopout()" title="Click to pop out full screen">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CUATRO OF 05 · <span class="text-amber-400">Click to pop out ⤢</span></div>
             <img src="images/Uncanny Valley HiRes4.png" alt="Uncanny Valley HiRes4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+04';" />
           </div>
 
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CINCO OF 05</div>
+          <div class="modal-slide cursor-pointer" onclick="openSlideshowPopout()" title="Click to pop out full screen">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CINCO OF 05 · <span class="text-amber-400">Click to pop out ⤢</span></div>
             <img src="images/Uncanny Valley HiRes5.png" alt="Uncanny Valley HiRes5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+05';" />
           </div>
 
@@ -850,20 +844,60 @@
       <div id="errorWindowContainer" style="position: absolute; inset: 0; pointer-events: none;"></div>
     </div>
 
-    <!-- JAVASCRIPT CONTROLLERS -->
-     <!-- FULLSCREEN POKÉBASEMONBALL CARDS PREVIEW MODAL -->
-<div id="projectImagePreview" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-[25000] flex items-center justify-center p-4 md:p-8" onclick="if(event.target === this) closeProjectPreview()">
-  <div class="relative bg-zinc-900 border border-zinc-700 p-3 sm:p-4 rounded-2xl shadow-2xl max-w-5xl max-h-[92vh] flex flex-col items-center">
-    <!-- Red "✕" Close Button on Top Right -->
-    <button onclick="closeProjectPreview()" class="absolute -top-3 -right-3 sm:-top-3.5 sm:-right-3.5 w-8 h-8 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full border-2 border-red-200 flex items-center justify-center text-sm shadow-xl cursor-pointer z-50 transition-transform hover:scale-110" title="Close Preview">
-      ✕
-    </button>
-    <img id="projectPreviewImg" src="images/Final 1.png" alt="PokéBaseMonBall Cards Preview" class="max-w-full max-h-[78vh] object-contain rounded-xl shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
-    <div class="mt-2 text-center">
-      <span class="font-mono text-xs text-amber-300 font-semibold tracking-wide">PokéBaseMonBall Cards · Full Preview</span>
+    <!-- FULLSCREEN POKÉBASEMONBALL CARDS PREVIEW MODAL (ALMOST SCREEN SIZE) -->
+    <div id="projectImagePreview" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-[25000] flex items-center justify-center p-2 sm:p-4 md:p-6" onclick="if(event.target === this) closeProjectPreview()">
+      <div class="relative bg-zinc-900 border border-zinc-700 p-2 sm:p-4 rounded-2xl shadow-2xl max-w-[96vw] max-h-[96vh] flex flex-col items-center">
+        <!-- Red "✕" Close Button on Top Right -->
+        <button onclick="closeProjectPreview()" class="absolute -top-3 -right-3 sm:-top-3.5 sm:-right-3.5 w-9 h-9 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full border-2 border-red-200 flex items-center justify-center text-sm shadow-2xl cursor-pointer z-50 transition-transform hover:scale-110" title="Close Preview">
+          ✕
+        </button>
+        <img id="projectPreviewImg" src="images/Final 1.png" alt="PokéBaseMonBall Cards Preview" class="max-w-[92vw] max-h-[88vh] object-contain rounded-xl shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/1200x800/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
+        <div class="mt-2 text-center">
+          <span class="font-mono text-xs sm:text-sm text-amber-300 font-semibold tracking-wide">PokéBaseMonBall Cards · Full Preview</span>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+
+    <!-- FULLSCREEN POP-OUT PROJECT GALLERY SLIDESHOW MODAL (ALMOST SCREEN SIZE) -->
+    <div id="slideshowPopoutModal" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-[25000] flex items-center justify-center p-2 sm:p-4 md:p-6" onclick="if(event.target === this) closeSlideshowPopout()">
+      <div class="relative bg-zinc-900 border border-zinc-700 p-2 sm:p-4 rounded-2xl shadow-2xl max-w-[96vw] max-h-[96vh] flex flex-col items-center justify-between">
+        <!-- Red "✕" Close Button on Top Right -->
+        <button onclick="closeSlideshowPopout()" class="absolute -top-3 -right-3 sm:-top-3.5 sm:-right-3.5 w-9 h-9 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full border-2 border-red-200 flex items-center justify-center text-sm shadow-2xl cursor-pointer z-50 transition-transform hover:scale-110" title="Close Slideshow">
+          ✕
+        </button>
+
+        <!-- Top Counter Header -->
+        <div id="popoutCounter" class="font-mono text-xs sm:text-sm text-amber-300 font-semibold mb-2">
+          IMAGE UNO OF 05
+        </div>
+
+        <!-- Image Display Container with Left & Right Arrows -->
+        <div class="relative w-full flex-1 flex items-center justify-center overflow-hidden">
+          <img id="popoutSlideImg" src="images/Uncanny Valley HiRes.png" alt="Slideshow Full View" class="max-w-[92vw] max-h-[80vh] object-contain rounded-xl shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/1200x800/18181b/ffffff?text=Gallery+Slide';" />
+
+          <!-- Left Arrow -->
+          <button type="button" onclick="prevSlide(event)" class="absolute left-2 sm:left-4 top-1/2 -translate-y-1/2 bg-black/75 hover:bg-amber-400 hover:text-black text-white border border-zinc-600 w-11 h-11 sm:w-12 sm:h-12 rounded-full font-bold transition-all z-40 cursor-pointer flex items-center justify-center text-lg sm:text-xl shadow-2xl">
+            ❮
+          </button>
+
+          <!-- Right Arrow -->
+          <button type="button" onclick="nextSlide(event)" class="absolute right-2 sm:right-4 top-1/2 -translate-y-1/2 bg-black/75 hover:bg-amber-400 hover:text-black text-white border border-zinc-600 w-11 h-11 sm:w-12 sm:h-12 rounded-full font-bold transition-all z-40 cursor-pointer flex items-center justify-center text-lg sm:text-xl shadow-2xl">
+            ❯
+          </button>
+        </div>
+
+        <!-- Bottom Indicator Dots -->
+        <div class="flex justify-center gap-2.5 mt-3">
+          <span class="popout-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" onclick="goToSlide(event, 0)"></span>
+          <span class="popout-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" onclick="goToSlide(event, 1)"></span>
+          <span class="popout-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" onclick="goToSlide(event, 2)"></span>
+          <span class="popout-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" onclick="goToSlide(event, 3)"></span>
+          <span class="popout-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" onclick="goToSlide(event, 4)"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- JAVASCRIPT CONTROLLERS -->
     <script>
       function updateClock() {
         const now = new Date();
@@ -959,7 +993,7 @@
         win.addEventListener('mousedown', () => bringToFront(win.id));
       });
 
-      // IN-WINDOW IMAGE PREVIEW CONTROLLERS
+      // FULLSCREEN IMAGE PREVIEW CONTROLLERS
       function openProjectPreview(src) {
         const preview = document.getElementById('projectImagePreview');
         const img = document.getElementById('projectPreviewImg');
@@ -978,7 +1012,15 @@
         }
       }
 
-      // PROJECT GALLERY SLIDESHOW CONTROLLER
+      // SLIDESHOW CONTROLLERS & DATA
+      const slideData = [
+        { src: 'images/Uncanny Valley HiRes.png', counter: 'IMAGE UNO OF 05' },
+        { src: 'images/Uncanny Valley HIRESS.png', counter: 'IMAGE DOS OF 05' },
+        { src: 'images/Uncanny Valley HiRes3.png', counter: 'IMAGE TRES OF 05' },
+        { src: 'images/Uncanny Valley HiRes4.png', counter: 'IMAGE CUATRO OF 05' },
+        { src: 'images/Uncanny Valley HiRes5.png', counter: 'IMAGE CINCO OF 05' }
+      ];
+
       let currentSlideIndex = 0;
 
       function updateSlides(index) {
@@ -990,6 +1032,7 @@
         else if (index < 0) currentSlideIndex = slides.length - 1;
         else currentSlideIndex = index;
 
+        // In-Window Slides
         slides.forEach((slide, idx) => {
           if (idx === currentSlideIndex) {
             slide.classList.add('active');
@@ -1000,6 +1043,7 @@
           }
         });
 
+        // In-Window Dots
         dots.forEach((dot, idx) => {
           if (idx === currentSlideIndex) {
             dot.classList.add('active');
@@ -1009,6 +1053,27 @@
             dot.className = 'modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer';
           }
         });
+
+        // Sync with Pop-Out Fullscreen Modal
+        const popoutImg = document.getElementById('popoutSlideImg');
+        const popoutCounter = document.getElementById('popoutCounter');
+        const popoutDots = document.querySelectorAll('.popout-dot');
+
+        if (popoutImg && slideData[currentSlideIndex]) {
+          popoutImg.src = slideData[currentSlideIndex].src;
+        }
+        if (popoutCounter && slideData[currentSlideIndex]) {
+          popoutCounter.textContent = slideData[currentSlideIndex].counter;
+        }
+        if (popoutDots) {
+          popoutDots.forEach((dot, idx) => {
+            if (idx === currentSlideIndex) {
+              dot.className = 'popout-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer';
+            } else {
+              dot.className = 'popout-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer';
+            }
+          });
+        }
       }
 
       function nextSlide(e) {
@@ -1026,6 +1091,23 @@
         updateSlides(idx);
       }
 
+      function openSlideshowPopout() {
+        const modal = document.getElementById('slideshowPopoutModal');
+        if (modal) {
+          modal.classList.remove('hidden');
+          modal.style.display = 'flex';
+          updateSlides(currentSlideIndex);
+        }
+      }
+
+      function closeSlideshowPopout() {
+        const modal = document.getElementById('slideshowPopoutModal');
+        if (modal) {
+          modal.classList.add('hidden');
+          modal.style.display = 'none';
+        }
+      }
+
       // Initialize slide
       updateSlides(0);
 
@@ -1037,7 +1119,6 @@
       let secondsElapsed = 0;
       let currentPlayBtn = null;
 
-      // Built-in Web Audio API 8-Bit Chiptune Fallback Player
       let synthCtx = null;
       let synthInterval = null;
       let synthNoteIdx = 0;
@@ -1200,7 +1281,6 @@
 
           htmlAudio.src = audioSrc;
           htmlAudio.play().catch(() => {
-            // Auto fallback to high-quality retro chiptune audio if remote server blocks CORS
             startSynth(trackType);
           });
         });
@@ -1361,6 +1441,7 @@
         if (e.key === 'Escape') {
           stopVirusPrank();
           closeProjectPreview();
+          closeSlideshowPopout();
         }
       });
 
