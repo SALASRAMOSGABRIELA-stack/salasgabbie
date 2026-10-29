@@ -491,12 +491,13 @@
           </div>
         </div>
 
-        <div class="relative bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-2 mb-6 group cursor-pointer" onclick="openProjectPreview('images/Final 1.png')">
-          <span class="absolute top-3 left-3 bg-black/80 text-amber-300 font-mono text-[10px] px-2.5 py-1 rounded border border-zinc-700 z-10">PokéBaseMonBall Cards</span>
-          <div class="block" title="Click to open preview within window">
-            <img src="images/Final 1.png" alt="PokéBaseMonBall Artwork" class="w-full max-h-[340px] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
-          </div>
-        </div>
+   <!-- WINDOW 1: FEATURED PROJECT (CARD SECTION) -->
+<div class="relative bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-2 mb-6 group cursor-pointer" onclick="openProjectPreview('images/Final 1.png')">
+  <span class="absolute top-3 left-3 bg-black/80 text-amber-300 font-mono text-[10px] px-2.5 py-1 rounded border border-zinc-700 z-10">PokéBaseMonBall Cards</span>
+  <div class="block" title="Click to enlarge full view">
+    <img src="images/Final 1.png" alt="PokéBaseMonBall Artwork" class="w-full max-h-[340px] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
+  </div>
+</div>
 
         <div class="flex items-center justify-between bg-zinc-900/60 border border-zinc-800 p-4 rounded-xl">
           <div>
@@ -850,6 +851,19 @@
     </div>
 
     <!-- JAVASCRIPT CONTROLLERS -->
+     <!-- FULLSCREEN POKÉBASEMONBALL CARDS PREVIEW MODAL -->
+<div id="projectImagePreview" class="hidden fixed inset-0 bg-black/85 backdrop-blur-md z-[25000] flex items-center justify-center p-4 md:p-8" onclick="if(event.target === this) closeProjectPreview()">
+  <div class="relative bg-zinc-900 border border-zinc-700 p-3 sm:p-4 rounded-2xl shadow-2xl max-w-5xl max-h-[92vh] flex flex-col items-center">
+    <!-- Red "✕" Close Button on Top Right -->
+    <button onclick="closeProjectPreview()" class="absolute -top-3 -right-3 sm:-top-3.5 sm:-right-3.5 w-8 h-8 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full border-2 border-red-200 flex items-center justify-center text-sm shadow-xl cursor-pointer z-50 transition-transform hover:scale-110" title="Close Preview">
+      ✕
+    </button>
+    <img id="projectPreviewImg" src="images/Final 1.png" alt="PokéBaseMonBall Cards Preview" class="max-w-full max-h-[78vh] object-contain rounded-xl shadow-lg" onerror="this.onerror=null; this.src='https://placehold.co/800x600/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
+    <div class="mt-2 text-center">
+      <span class="font-mono text-xs text-amber-300 font-semibold tracking-wide">PokéBaseMonBall Cards · Full Preview</span>
+    </div>
+  </div>
+</div>
     <script>
       function updateClock() {
         const now = new Date();
