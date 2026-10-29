@@ -1055,20 +1055,20 @@
         
         <div class="flex items-center gap-1.5 ml-2">
           <button onclick="toggleWindow('win-project')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>👁️</span>
+            <span>📁</span>
             <span class="truncate max-w-[110px]">Uncanny Valley</span>
           </button>
           <button onclick="toggleWindow('win-slideshow')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
             <span>📁</span>
             <span class="truncate max-w-[110px]">Project Viewer</span>
           </button>
-          <button onclick="toggleWindow('win-about')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>👤</span>
-            <span class="truncate max-w-[110px]">About Gabbie</span>
-          </button>
           <button onclick="toggleWindow('win-artifact')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>🧊</span>
+            <span>📁</span>
             <span class="truncate max-w-[110px]">3D Artifact</span>
+          </button>
+          <button onclick="toggleWindow('win-about')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
+            <span>📁</span>
+            <span class="truncate max-w-[110px]">About Gabbie</span>
           </button>
           <button onclick="toggleWindow('win-limewire')" class="bg-lime-900/80 hover:bg-lime-800 text-lime-200 font-sans text-xs px-3 py-1 rounded border border-lime-400/30 flex items-center gap-1.5 shadow">
             <span>🎵</span>
@@ -1090,7 +1090,7 @@
     <!-- DESKTOP SHORTCUTS -->
     <div class="desktop-icons-grid">
       <div class="desktop-icon" onclick="openWindow('win-project')">
-        <div class="desktop-icon-img">👁️</div>
+        <div class="desktop-icon-img">📁</div>
         <span class="desktop-icon-title">Uncanny Valley</span>
       </div>
 
@@ -1100,12 +1100,12 @@
       </div>
 
       <div class="desktop-icon" onclick="openWindow('win-artifact')">
-        <div class="desktop-icon-img">🧊</div>
+        <div class="desktop-icon-img">📁</div>
         <span class="desktop-icon-title">3D Artifact Study</span>
       </div>
 
       <div class="desktop-icon" onclick="openWindow('win-about')">
-        <div class="desktop-icon-img">👤</div>
+        <div class="desktop-icon-img">📁</div>
         <span class="desktop-icon-title">About Gabbie</span>
       </div>
 
@@ -1124,8 +1124,8 @@
     <div id="win-project" class="os-window minimized" style="width: 720px; height: 560px; top: 50px; left: 140px;">
       <div class="os-window-header" onmousedown="initDrag(event, 'win-project')">
         <div class="flex items-center gap-2">
-          <span>👁️</span>
-          <span>ART 10C Research: Uncanny Valley, Speculative Interfaces &amp; Artificial Realism</span>
+          <span>📁</span>
+          <span>Uncannty Valley</span>
         </div>
         <div class="os-window-controls">
           <div class="os-btn bg-[#245edb] border border-blue-300 text-white" onclick="toggleWindow('win-project')">_</div>
@@ -1135,12 +1135,11 @@
       <div class="os-window-body">
         <div class="flex justify-between items-baseline border-b border-zinc-800 pb-3 mb-4">
           <div>
-            <h1 class="text-xl font-bold text-white tracking-wide">UNCANNY VALLEY: THE HYPER-REAL REPLICA</h1>
-            <p class="font-mono text-xs text-amber-300 mt-0.5">ART 10C Final Creative Research &amp; Production</p>
+            <h1 class="text-xl font-bold text-white tracking-wide">UNCANNY VALLEY</h1>
+            <p class="font-mono text-xs text-amber-300 mt-0.5">ART 10C</p>
           </div>
           <div class="text-right font-mono text-[11px] text-zinc-500">
             <div>TERM: FALL 2026</div>
-            <div>STATUS: EXHIBITED</div>
           </div>
         </div>
 
@@ -1156,19 +1155,8 @@
 
         <div class="space-y-4 text-sm text-zinc-300 leading-relaxed font-sans">
           <div class="bg-zinc-900/40 p-3 rounded-lg border border-zinc-800">
-            <h3 class="font-mono text-xs uppercase tracking-wider text-amber-300 mb-1">Project Abstract &amp; Intent</h3>
-            <p>This creative portfolio explores the philosophical tension between tactile physical memories and digital simulacra. Drawing aesthetic references from 1990s desktop operating systems, nostalgic P2P networks, and late-90s trading card culture, the project confronts the viewer with the synthetic familiarity of the Uncanny Valley.</p>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3 font-mono text-xs">
-            <div class="p-3 bg-zinc-900/40 rounded-lg border border-zinc-800">
-              <span class="text-zinc-500 block mb-1">MEDIUM</span>
-              <span class="text-zinc-200">Mixed Realities, WebGL, 3D Scan Data, Custom GLTF Shader</span>
-            </div>
-            <div class="p-3 bg-zinc-900/40 rounded-lg border border-zinc-800">
-              <span class="text-zinc-500 block mb-1">THEORETICAL FOCUS</span>
-              <span class="text-zinc-200">Baudrillard's Simulacra, Masahiro Mori's Robotic Continuum</span>
-            </div>
+            <h3 class="font-mono text-xs uppercase tracking-wider text-amber-300 mb-1">PokéBaseMonBall Cards</h3>
+             </div>
           </div>
         </div>
       </div>
@@ -1179,7 +1167,7 @@
       <div class="os-window-header" onmousedown="initDrag(event, 'win-slideshow')">
         <div class="flex items-center gap-2">
           <span>📁</span>
-          <span>Project Gallery Slideshow — High Resolution Artifact Documentation</span>
+          <span>Project Gallery Slideshow</span>
         </div>
         <div class="os-window-controls">
           <div class="os-btn bg-[#245edb] border border-blue-300 text-white" onclick="toggleWindow('win-slideshow')">_</div>
@@ -1222,7 +1210,7 @@
       <div class="os-window-header" onmousedown="initDrag(event, 'win-about')">
         <div class="flex items-center gap-2">
           <span>👤</span>
-          <span>Gabriela Salas — Creative Profile &amp; Statement</span>
+          <span>Gabriela Salas</span>
         </div>
         <div class="os-window-controls">
           <div class="os-btn bg-[#245edb] border border-blue-300 text-white" onclick="toggleWindow('win-about')">_</div>
@@ -1239,13 +1227,10 @@
           </div>
 
           <div class="flex-1 space-y-3 text-sm text-zinc-300 leading-relaxed">
-            <h2 class="text-xl font-bold text-white tracking-tight">Gabriela Salas (WHERESGABBIE)</h2>
-            <p class="font-mono text-xs text-amber-300">Interdisciplinary Artist &amp; Creative Technologist</p>
-            <p>Gabriela Salas investigates retro-futurism, consumer hardware evolution, and digital ephemera. Her interactive installations examine the emotional weight of outdated computing environments, exploring how simulated user interfaces construct alternate temporalities and sentimental connections.</p>
+            <h2 class="text-xl font-bold text-white tracking-tight">Gabbie Salas</h2>
+            <p class="font-mono text-xs text-amber-300">Art 10C Fall 2026</p>
+            <p>Student, designer, artist.</p>
             <div class="pt-2 border-t border-zinc-800 flex gap-4 text-xs font-mono">
-              <div><span class="text-zinc-500">PORTFOLIO:</span> <a href="#" class="text-amber-400 hover:underline">wheresgabbie.art</a></div>
-              <div><span class="text-zinc-500">CONTACT:</span> <span class="text-zinc-300">gsalas@ucsc.edu</span></div>
-            </div>
           </div>
         </div>
       </div>
@@ -1281,7 +1266,7 @@
         <div class="w-full flex-1 bg-black/60 rounded-lg border border-zinc-800 relative overflow-hidden flex items-center justify-center">
           <model-viewer
             id="artifactModel"
-            src="cUbic.glb"
+            src="image/Models/cUbic.glb"
             alt="3D Digital Artifact"
             camera-controls
             auto-rotate
