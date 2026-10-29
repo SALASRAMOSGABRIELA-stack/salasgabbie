@@ -407,7 +407,7 @@
           <!-- WINDOW: 3D ARTIFACT STUDY -->
 <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
 
-<div id="win-artifact" class="os-window minimized" style="width: 760px; height: 580px; top: 85px; left: 240px;">
+<div id="win-artifact" class="os-window minimized" style="width: 740px; height: 560px; top: 60px; left: 160px;">
   <div class="os-window-header" onmousedown="dragWindow(event, 'win-artifact')">
     <div class="flex items-center gap-2">
       <span>📂</span>
@@ -441,34 +441,7 @@
         camera-controls 
         auto-rotate 
         ar
-        style="width: 100%; height: 100%; min-height: 400px; background-color: #0c0c0e; border-radius: 8px; --poster-color: transparent;">
-      </model-viewer>
-    </div>
-  </div>
-</div>
-  <div class="os-window-body flex flex-col p-4 bg-zinc-950 text-zinc-200">
-    <!-- Inner Title Header -->
-    <div class="flex items-center justify-between mb-3 bg-zinc-900/80 border border-zinc-800 p-3.5 rounded-xl">
-      <div>
-        <span class="font-mono text-[10px] text-amber-400 uppercase tracking-widest block mb-0.5">Interactive Digital Media</span>
-        <h3 class="font-bold text-sm text-white">3D Artifact Study</h3>
-      </div>
-      <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2.5 py-1 rounded border border-zinc-700">
-        WebGL / .GLB
-      </span>
-    </div>
-
-    <!-- 3D Model Viewer Container -->
-    <div class="model-container relative flex-1 w-full bg-black border border-zinc-800 rounded-xl overflow-hidden p-2">
-      <model-viewer 
-        src="images/Models/cUbes.glb" 
-        poster="path/to/poster-image.png"
-        alt="A 3D model of a creative artifact" 
-        shadow-intensity="1" 
-        camera-controls 
-        auto-rotate 
-        ar
-        style="width: 100%; height: 100%; min-height: 400px; background-color: #0c0c0e; border-radius: 8px; --poster-color: transparent;">
+        style="width: 100%; height: 100%; min-height: 360px; background-color: #0c0c0e; border-radius: 8px; --poster-color: transparent;">
       </model-viewer>
     </div>
   </div>
@@ -918,28 +891,39 @@
         }
       }
 
-      function dragWindow(e, winId) {
-        const win = document.getElementById(winId);
-        bringToFront(winId);
-        let shiftX = e.clientX - win.getBoundingClientRect().left;
-        let shiftY = e.clientY - win.getBoundingClientRect().top;
+// Enhanced Drag Controller with Screen Boundary Constraints
+function dragWindow(e, winId) {
+  const win = document.getElementById(winId);
+  if (!win) return;
+  
+  bringToFront(winId);
 
-        function moveAt(pageX, pageY) {
-          win.style.left = pageX - shiftX + 'px';
-          win.style.top = pageY - shiftY + 'px';
-        }
+  let shiftX = e.clientX - win.getBoundingClientRect().left;
+  let shiftY = e.clientY - win.getBoundingClientRect().top;
 
-        function onMouseMove(event) {
-          moveAt(event.clientX, event.clientY);
-        }
+  function moveAt(pageX, pageY) {
+    let newX = pageX - shiftX;
+    let newY = pageY - shiftY;
 
-        document.addEventListener('mousemove', onMouseMove);
+    // Keep top edge below viewport roof and clear of taskbar
+    const maxX = window.innerWidth - win.offsetWidth;
+    const maxY = window.innerHeight - win.offsetHeight - 30; // 30px Taskbar Offset
 
-        document.onmouseup = function() {
-          document.removeEventListener('mousemove', onMouseMove);
-          document.onmouseup = null;
-        };
-      }
+    win.style.left = Math.max(0, Math.min(maxX, newX)) + 'px';
+    win.style.top = Math.max(0, Math.min(maxY, newY)) + 'px';
+  }
+
+  function onMouseMove(event) {
+    moveAt(event.clientX, event.clientY);
+  }
+
+  document.addEventListener('mousemove', onMouseMove);
+
+  document.onmouseup = function() {
+    document.removeEventListener('mousemove', onMouseMove);
+    document.onmouseup = null;
+  };
+}
 
       document.querySelectorAll('.os-window').forEach(win => {
         win.addEventListener('mousedown', () => bringToFront(win.id));
