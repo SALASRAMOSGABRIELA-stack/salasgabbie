@@ -117,7 +117,8 @@
         image-rendering: crisp-edges;
       }
 
-      #win-slideshow .os-window-body {
+      #win-slideshow .os-window-body,
+      #win-demos .os-window-body {
         display: flex;
         flex-direction: column;
         height: 100%;
@@ -983,6 +984,10 @@
                     <span class="mini-icon-lbl">Project Gallery</span>
                   </div>
                   <div class="mini-icon-item">
+                    <div class="mini-icon-box bg-indigo-500/80">📁</div>
+                    <span class="mini-icon-lbl">Class Demos</span>
+                  </div>
+                  <div class="mini-icon-item">
                     <div class="mini-icon-box bg-blue-600/80">👤</div>
                     <span class="mini-icon-lbl">About Gabbie</span>
                   </div>
@@ -1126,6 +1131,10 @@
             <span>📂</span>
             <span class="truncate max-w-[110px]">Project Gallery</span>
           </button>
+          <button onclick="toggleWindow('win-demos')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
+            <span>📁</span>
+            <span class="truncate max-w-[110px]">Class Demos</span>
+          </button>
           <button onclick="toggleWindow('win-about')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
             <span>📂</span>
             <span class="truncate max-w-[110px]">About Gabbie</span>
@@ -1161,6 +1170,11 @@
       <div class="desktop-icon" onclick="openWindow('win-slideshow')">
         <div class="desktop-icon-img">📂</div>
         <span class="desktop-icon-title">Project Gallery</span>
+      </div>
+
+      <div class="desktop-icon" onclick="openWindow('win-demos')">
+        <div class="desktop-icon-img">📁</div>
+        <span class="desktop-icon-title">Class Demos</span>
       </div>
 
       <div class="desktop-icon" onclick="openWindow('win-about')">
@@ -1248,28 +1262,58 @@
 
         <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
           <div class="modal-slide active">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE UNO OF 05</div>
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 01 OF 11</div>
             <img src="images/Uncanny Valley HiRes.png" alt="Uncanny Valley HiRes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+01';" />
           </div>
-F
+
           <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE DOS OF 05</div>
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 02 OF 11</div>
             <img src="images/Uncanny Valley HIRESS.png" alt="Uncanny Valley HIRESS" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+02';" />
           </div>
 
           <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE TRES OF 05</div>
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 03 OF 11</div>
             <img src="images/Uncanny Valley HiRes3.png" alt="Uncanny Valley HiRes3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+03';" />
           </div>
 
           <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CUATRO OF 05</div>
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 04 OF 11</div>
             <img src="images/Uncanny Valley HiRes4.png" alt="Uncanny Valley HiRes4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+04';" />
           </div>
 
           <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE CINCO OF 05</div>
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">IMAGE 05 OF 11</div>
             <img src="images/Uncanny Valley HiRes5.png" alt="Uncanny Valley HiRes5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+05';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">FINAL SLIDE 01 OF 11</div>
+            <img src="images/Final slide 1.png" alt="Final slide 1" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+1';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">FINAL SLIDE 02 OF 11</div>
+            <img src="images/Final slide 2.png" alt="Final slide 2" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+2';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">FINAL SLIDE 03 OF 11</div>
+            <img src="images/Final slide 3.png" alt="Final slide 3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+3';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">FINAL SLIDE 04 OF 11</div>
+            <img src="images/Final slide 4.png" alt="Final slide 4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+4';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">FINAL SLIDE 05 OF 11</div>
+            <img src="images/Final slide 5.png" alt="Final slide 5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+5';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">FINAL SLIDE 06 OF 11</div>
+            <img src="images/Final slide 6.png" alt="Final slide 6" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+6';" />
           </div>
 
           <!-- Clickable Navigation Arrows -->
@@ -1277,12 +1321,97 @@ F
           <button type="button" id="nextSlideBtn" onclick="nextSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❯</button>
         </div>
 
-        <div class="flex justify-center gap-2 mt-3">
+        <div class="flex justify-center gap-2 mt-3 flex-wrap">
           <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToSlide(event, 0)"></span>
           <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToSlide(event, 1)"></span>
           <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToSlide(event, 2)"></span>
           <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToSlide(event, 3)"></span>
           <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToSlide(event, 4)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="5" onclick="goToSlide(event, 5)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="6" onclick="goToSlide(event, 6)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="7" onclick="goToSlide(event, 7)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="8" onclick="goToSlide(event, 8)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="9" onclick="goToSlide(event, 9)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="10" onclick="goToSlide(event, 10)"></span>
+        </div>
+      </div>
+    </div>
+
+    <!-- WINDOW: CLASS DEMOS SLIDESHOW -->
+    <div id="win-demos" class="os-window minimized" style="width: 840px; height: 620px; top: 75px; left: 240px;">
+      <div class="os-window-header" onmousedown="dragWindow(event, 'win-demos')">
+        <span class="os-window-title">Class Demos</span>
+        <div class="window-controls">
+          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-demos')">_</span>
+          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-demos')">□</span>
+          <span class="win-btn win-btn-close" onclick="closeWindow('win-demos')">✕</span>
+        </div>
+      </div>
+
+      <div class="os-window-body flex flex-col items-center justify-between text-center p-4">
+        <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">Class Demos Slideshow</h3>
+
+        <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
+          <div class="modal-slide active">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DEMO 01 OF 09 — CATS</div>
+            <img src="images/cAts.png" alt="cAts" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=cAts';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DEMO 02 OF 09 — CUBES</div>
+            <img src="images/cUbes.png" alt="cUbes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=cUbes';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DEMO 03 OF 09 — FURBALL</div>
+            <img src="images/FuRbaLL.png" alt="FuRbaLL" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=FuRbaLL';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DEMO 04 OF 09 — LINCOLN</div>
+            <img src="images/LiNCOLN.png" alt="LiNCOLN" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=LiNCOLN';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DEMO 05 OF 09 — PAWN</div>
+            <img src="images/pAwn.png" alt="pAwn" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=pAwn';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DEMO 06 OF 09 — PHOTOSHOP 2</div>
+            <img src="images/PS 2.png" alt="PS 2" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PS+2';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DEMO 07 OF 09 — PHOTOSHOP 3</div>
+            <img src="images/PS 3.png" alt="PS 3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PS+3';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DEMO 08 OF 09 — PHOTOSHOP 1</div>
+            <img src="images/PS1.png" alt="PS1" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PS1';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DEMO 09 OF 09 — SPACE</div>
+            <img src="images/SPaCE.png" alt="SPaCE" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=SPaCE';" />
+          </div>
+
+          <!-- Navigation Arrows -->
+          <button type="button" id="prevDemoSlideBtn" onclick="prevDemoSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❮</button>
+          <button type="button" id="nextDemoSlideBtn" onclick="nextDemoSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❯</button>
+        </div>
+
+        <div class="flex justify-center gap-2 mt-3 flex-wrap">
+          <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToDemoSlide(event, 0)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToDemoSlide(event, 1)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToDemoSlide(event, 2)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToDemoSlide(event, 3)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToDemoSlide(event, 4)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="5" onclick="goToDemoSlide(event, 5)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="6" onclick="goToDemoSlide(event, 6)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="7" onclick="goToDemoSlide(event, 7)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="8" onclick="goToDemoSlide(event, 8)"></span>
         </div>
       </div>
     </div>
@@ -1474,6 +1603,20 @@ F
                     <td class="p-2 text-emerald-400">Cable (92)</td>
                     <td class="p-2 text-right">
                       <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all cursor-pointer" data-track="pokebasemon" data-audio="https://archive.org/download/tvtunes_11549/Pokemon.mp3">
+                        ▶ Play
+                      </button>
+                    </td>
+                  </tr>
+
+                  <tr class="hover:bg-lime-950/30 transition-colors">
+                    <td class="p-2 flex items-center gap-1.5 font-bold text-lime-300">
+                      <span>🎵</span> Quasi_object.mp3
+                    </td>
+                    <td class="p-2 text-zinc-400">5.7 MB</td>
+                    <td class="p-2 text-lime-400">100% (Complete)</td>
+                    <td class="p-2 text-emerald-400">T3 (128)</td>
+                    <td class="p-2 text-right">
+                      <button class="lw-play-btn bg-lime-600 hover:bg-lime-500 text-black font-bold px-2.5 py-0.5 rounded transition-all cursor-pointer" data-track="gravityfalls" data-audio="https://archive.org/download/tvtunes_31573/Gravity%20Falls%20-%20Main.mp3">
                         ▶ Play
                       </button>
                     </td>
@@ -1833,6 +1976,56 @@ F
       // Initialize slide
       updateSlides(0);
 
+      // CLASS DEMOS SLIDESHOW CONTROLLER
+      let currentDemoSlideIndex = 0;
+
+      function updateDemoSlides(index) {
+        const slides = document.querySelectorAll('#win-demos .modal-slide');
+        const dots = document.querySelectorAll('#win-demos .modal-dot');
+        if (!slides || slides.length === 0) return;
+
+        if (index >= slides.length) currentDemoSlideIndex = 0;
+        else if (index < 0) currentDemoSlideIndex = slides.length - 1;
+        else currentDemoSlideIndex = index;
+
+        slides.forEach((slide, idx) => {
+          if (idx === currentDemoSlideIndex) {
+            slide.classList.add('active');
+            slide.style.display = 'flex';
+          } else {
+            slide.classList.remove('active');
+            slide.style.display = 'none';
+          }
+        });
+
+        dots.forEach((dot, idx) => {
+          if (idx === currentDemoSlideIndex) {
+            dot.classList.add('active');
+            dot.className = 'modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer';
+          } else {
+            dot.classList.remove('active');
+            dot.className = 'modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer';
+          }
+        });
+      }
+
+      function nextDemoSlide(e) {
+        if (e) e.stopPropagation();
+        updateDemoSlides(currentDemoSlideIndex + 1);
+      }
+
+      function prevDemoSlide(e) {
+        if (e) e.stopPropagation();
+        updateDemoSlides(currentDemoSlideIndex - 1);
+      }
+
+      function goToDemoSlide(e, idx) {
+        if (e) e.stopPropagation();
+        updateDemoSlides(idx);
+      }
+
+      updateDemoSlides(0);
+
       // LIMEWIRE AUDIO ENGINE & RETRO SYNTHESIZER
       let htmlAudio = new Audio();
       let activeTrackName = '';
@@ -1862,6 +2055,16 @@ F
         { f: 329.63, d: 380 }, { f: 293.66, d: 380 }, { f: 261.63, d: 580 }
       ];
 
+      // Gravity Falls Main Title Theme by Brad Breeck
+      const gravityFallsMelody = [
+        { f: 293.66, d: 180 }, { f: 349.23, d: 180 }, { f: 440.00, d: 180 }, { f: 587.33, d: 360 },
+        { f: 523.25, d: 180 }, { f: 440.00, d: 180 }, { f: 349.23, d: 180 }, { f: 329.63, d: 360 },
+        { f: 293.66, d: 180 }, { f: 349.23, d: 180 }, { f: 440.00, d: 180 }, { f: 587.33, d: 360 },
+        { f: 523.25, d: 180 }, { f: 440.00, d: 180 }, { f: 392.00, d: 180 }, { f: 440.00, d: 540 },
+        { f: 587.33, d: 180 }, { f: 659.25, d: 180 }, { f: 698.46, d: 360 }, { f: 659.25, d: 180 },
+        { f: 587.33, d: 180 }, { f: 554.37, d: 360 }, { f: 440.00, d: 360 }, { f: 293.66, d: 720 }
+      ];
+
       function startSynth(trackType) {
         stopSynth();
         try {
@@ -1870,7 +2073,9 @@ F
           if (!synthCtx) synthCtx = new AudioContext();
           if (synthCtx.state === 'suspended') synthCtx.resume();
 
-          const notes = (trackType === 'pokebasemon') ? pokemonMelody : gabbieMelody;
+          let notes = pokemonMelody;
+          if (trackType === 'gabbie') notes = gabbieMelody;
+          else if (trackType === 'gravityfalls') notes = gravityFallsMelody;
           synthNoteIdx = 0;
 
           function playNextNote() {
@@ -1881,7 +2086,7 @@ F
             const osc = synthCtx.createOscillator();
             const gain = synthCtx.createGain();
 
-            osc.type = (trackType === 'pokebasemon') ? 'square' : 'sawtooth';
+            osc.type = (trackType === 'pokebasemon') ? 'square' : ((trackType === 'gravityfalls') ? 'triangle' : 'sawtooth');
             osc.frequency.setValueAtTime(current.f, synthCtx.currentTime);
 
             gain.gain.setValueAtTime(0.08, synthCtx.currentTime);
@@ -1976,7 +2181,10 @@ F
           e.stopPropagation();
           const audioSrc = btn.getAttribute('data-audio');
           const trackType = btn.getAttribute('data-track');
-          const fileName = (trackType === 'pokebasemon') ? 'pokebasemon_theme.mp3' : 'Gabbie_salas_art10c.mp3';
+          let fileName = 'track.mp3';
+          if (trackType === 'pokebasemon') fileName = 'pokebasemon_theme.mp3';
+          else if (trackType === 'gabbie') fileName = 'Gabbie_salas_art10c.mp3';
+          else if (trackType === 'gravityfalls') fileName = 'Quasi_object.mp3';
 
           if (currentPlayBtn === btn && isPlaying) {
             htmlAudio.pause();
