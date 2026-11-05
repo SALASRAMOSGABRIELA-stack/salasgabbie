@@ -970,21 +970,21 @@
               <div class="mini-xp-desktop">
                 <!-- MINI ICONS -->
                 <div class="mini-icons-col">
+                     <div class="mini-icon-item">
+                    <div class="mini-icon-box bg-purple-600/80">👁️</div>
+                    <span class="mini-icon-lbl">Uncanny Valley</span>
+                  </div>
+                   <div class="mini-icon-item">
+                    <div class="mini-icon-box bg-emerald-600/80">🧊</div>
+                    <span class="mini-icon-lbl">Quasi Object</span>
+                  </div>
                   <div class="mini-icon-item">
                     <div class="mini-icon-box bg-amber-500/80">📁</div>
                     <span class="mini-icon-lbl">Project Gallery</span>
                   </div>
                   <div class="mini-icon-item">
-                    <div class="mini-icon-box bg-purple-600/80">👁️</div>
-                    <span class="mini-icon-lbl">Uncanny Valley</span>
-                  </div>
-                  <div class="mini-icon-item">
                     <div class="mini-icon-box bg-blue-600/80">👤</div>
-                    <span class="mini-icon-lbl">About Me</span>
-                  </div>
-                  <div class="mini-icon-item">
-                    <div class="mini-icon-box bg-emerald-600/80">🧊</div>
-                    <span class="mini-icon-lbl">Quasi Object</span>
+                    <span class="mini-icon-lbl">About Gabbie</span>
                   </div>
                   <div class="mini-icon-item">
                     <div class="mini-icon-box bg-lime-500/80">🍋</div>
@@ -1118,17 +1118,17 @@
             <span>📂</span>
             <span class="truncate max-w-[110px]">Uncanny Valley</span>
           </button>
+           <button onclick="toggleWindow('win-artifact')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
+            <span>📂</span>
+            <span class="truncate max-w-[110px]">Quasi Object</span>
+          </button>
           <button onclick="toggleWindow('win-slideshow')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
             <span>📂</span>
-            <span class="truncate max-w-[110px]">Project Viewer</span>
+            <span class="truncate max-w-[110px]">Project Gallery</span>
           </button>
           <button onclick="toggleWindow('win-about')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
             <span>📂</span>
             <span class="truncate max-w-[110px]">About Gabbie</span>
-          </button>
-          <button onclick="toggleWindow('win-artifact')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>📂</span>
-            <span class="truncate max-w-[110px]">Quasi Object</span>
           </button>
           <button onclick="toggleWindow('win-limewire')" class="bg-lime-950/80 hover:bg-lime-900 text-lime-300 font-sans text-xs px-3 py-1 rounded border border-lime-500/40 flex items-center gap-1.5 shadow">
             <span>🍋</span>
@@ -1153,14 +1153,14 @@
         <span class="desktop-icon-title">Uncanny Valley</span>
       </div>
 
-      <div class="desktop-icon" onclick="openWindow('win-slideshow')">
-        <div class="desktop-icon-img">📂</div>
-        <span class="desktop-icon-title">Project Gallery</span>
-      </div>
-
       <div class="desktop-icon" onclick="openWindow('win-artifact')">
         <div class="desktop-icon-img">📂</div>
         <span class="desktop-icon-title">Quasi Object</span>
+      </div>
+
+      <div class="desktop-icon" onclick="openWindow('win-slideshow')">
+        <div class="desktop-icon-img">📂</div>
+        <span class="desktop-icon-title">Project Gallery</span>
       </div>
 
       <div class="desktop-icon" onclick="openWindow('win-about')">
