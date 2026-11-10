@@ -117,6 +117,7 @@
         image-rendering: crisp-edges;
       }
 
+      #win-project .os-window-body,
       #win-slideshow .os-window-body,
       #win-demos .os-window-body {
         display: flex;
@@ -1206,10 +1207,10 @@
       </div>
     </div>
 
-    <!-- WINDOW 1: FEATURED PROJECT -->
-    <div id="win-project" class="os-window minimized" style="width: 720px; height: 560px; top: 50px; left: 140px;">
+    <!-- WINDOW 1: UNCANNY VALLEY SLIDESHOW -->
+    <div id="win-project" class="os-window minimized" style="width: 840px; height: 620px; top: 50px; left: 140px;">
       <div class="os-window-header" onmousedown="dragWindow(event, 'win-project')">
-        <span class="os-window-title">Uncanny Valley - Featured Project</span>
+        <span class="os-window-title">Uncanny Valley</span>
         <div class="window-controls">
           <span class="win-btn win-btn-min" onclick="minimizeWindow('win-project')">_</span>
           <span class="win-btn win-btn-max" onclick="maximizeWindow('win-project')">□</span>
@@ -1217,44 +1218,46 @@
         </div>
       </div>
 
-      <!-- IN-WINDOW POKÉBASEMONBALL CARDS PREVIEW MODAL -->
-      <div id="projectImagePreview" class="hidden absolute inset-0 top-[30px] bg-black/85 backdrop-blur-sm z-30 flex items-center justify-center p-4">
-        <div class="relative bg-zinc-900 border border-zinc-700 p-3 rounded-xl shadow-2xl max-w-[88%] max-h-[88%] flex flex-col items-center">
-          <!-- "X" Close Button on Top Right -->
-          <button onclick="closeProjectPreview()" class="absolute -top-3 -right-3 w-7 h-7 bg-red-600 hover:bg-red-500 text-white font-bold rounded-full border border-red-300 flex items-center justify-center text-xs shadow-lg cursor-pointer z-40 transition-transform hover:scale-110" title="Close Preview">
-            ✕
-          </button>
-          <img id="projectPreviewImg" src="images/Final 1.png" alt="PokéBaseMonBall Cards Preview" class="max-w-full max-h-[380px] object-contain rounded-lg shadow" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
-          <div class="mt-2 text-center">
-            <span class="font-mono text-[11px] text-amber-300">PokéBaseMonBall Cards · Preview</span>
+      <div class="os-window-body flex flex-col items-center justify-between text-center p-4">
+        <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">Uncanny Valley Slideshow</h3>
+
+        <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
+          <div class="modal-slide active">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">UNO OF 05</div>
+            <img src="images/Uncanny Valley HiRes.png" alt="Uncanny Valley HiRes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+01';" />
           </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DOS OF 05</div>
+            <img src="images/Uncanny Valley HIRESS.png" alt="Uncanny Valley HIRESS" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+02';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">TRES OF 05</div>
+            <img src="images/Uncanny Valley HiRes3.png" alt="Uncanny Valley HiRes3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+03';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CUATRO OF 05</div>
+            <img src="images/Uncanny Valley HiRes4.png" alt="Uncanny Valley HiRes4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+04';" />
+          </div>
+
+          <div class="modal-slide">
+            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CINCO OF 05</div>
+            <img src="images/Uncanny Valley HiRes5.png" alt="Uncanny Valley HiRes5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+05';" />
+          </div>
+
+          <!-- Clickable Navigation Arrows -->
+          <button type="button" id="prevProjectSlideBtn" onclick="prevProjectSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❮</button>
+          <button type="button" id="nextProjectSlideBtn" onclick="nextProjectSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❯</button>
         </div>
-      </div>
 
-      <div class="os-window-body">
-        <div class="text-center mb-6">
-          <span class="font-mono text-xs text-amber-400 tracking-widest uppercase block mb-1">Featured Works · Fall 2026</span>
-          <div class="flex justify-center mb-3">
-            <img src="images/Uncanny Title.png" alt="Uncanny Valley Title" class="max-h-24 object-contain filter drop-shadow" onerror="this.onerror=null; this.src='https://placehold.co/400x100/18181b/ffffff?text=Uncanny+Valley';" />
-          </div>
-        </div>
-
-   <!-- WINDOW 1: FEATURED PROJECT (CARD SECTION) -->
-<div class="relative bg-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-2 mb-6 group cursor-pointer" onclick="openProjectPreview('images/Final 1.png')">
-  <span class="absolute top-3 left-3 bg-black/80 text-amber-300 font-mono text-[10px] px-2.5 py-1 rounded border border-zinc-700 z-10">PokéBaseMonBall Cards</span>
-  <div class="block" title="Click to enlarge full view">
-    <img src="images/Final 1.png" alt="PokéBaseMonBall Artwork" class="w-full max-h-[340px] object-contain rounded-lg transition-transform duration-300 group-hover:scale-[1.01]" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PokéBaseMonBall+Cards';" />
-  </div>
-</div>
-
-        <div class="flex items-center justify-between bg-zinc-900/60 border border-zinc-800 p-4 rounded-xl">
-          <div>
-            <h4 class="font-mono text-sm font-semibold text-white">Project 01 · Uncanny Valley</h4>
-            <p class="text-xs text-zinc-400 mt-1">Digital Media Art 10C Studio Showcase</p>
-          </div>
-          <button onclick="openWindow('win-slideshow')" class="bg-amber-400 hover:bg-amber-300 text-black font-mono font-semibold text-xs px-4 py-2.5 rounded-lg transition-colors shadow">
-            Open Project Gallery →
-          </button>
+        <div class="flex justify-center gap-2 mt-3 flex-wrap">
+          <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToProjectSlide(event, 0)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToProjectSlide(event, 1)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToProjectSlide(event, 2)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToProjectSlide(event, 3)"></span>
+          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToProjectSlide(event, 4)"></span>
         </div>
       </div>
     </div>
@@ -2018,6 +2021,56 @@
           preview.style.display = 'none';
         }
       }
+
+      // UNCANNY VALLEY SLIDESHOW CONTROLLER
+      let currentProjectSlideIndex = 0;
+
+      function updateProjectSlides(index) {
+        const slides = document.querySelectorAll('#win-project .modal-slide');
+        const dots = document.querySelectorAll('#win-project .modal-dot');
+        if (!slides || slides.length === 0) return;
+
+        if (index >= slides.length) currentProjectSlideIndex = 0;
+        else if (index < 0) currentProjectSlideIndex = slides.length - 1;
+        else currentProjectSlideIndex = index;
+
+        slides.forEach((slide, idx) => {
+          if (idx === currentProjectSlideIndex) {
+            slide.classList.add('active');
+            slide.style.display = 'flex';
+          } else {
+            slide.classList.remove('active');
+            slide.style.display = 'none';
+          }
+        });
+
+        dots.forEach((dot, idx) => {
+          if (idx === currentProjectSlideIndex) {
+            dot.classList.add('active');
+            dot.className = 'modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer';
+          } else {
+            dot.classList.remove('active');
+            dot.className = 'modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer';
+          }
+        });
+      }
+
+      function nextProjectSlide(e) {
+        if (e) e.stopPropagation();
+        updateProjectSlides(currentProjectSlideIndex + 1);
+      }
+
+      function prevProjectSlide(e) {
+        if (e) e.stopPropagation();
+        updateProjectSlides(currentProjectSlideIndex - 1);
+      }
+
+      function goToProjectSlide(e, idx) {
+        if (e) e.stopPropagation();
+        updateProjectSlides(idx);
+      }
+
+      updateProjectSlides(0);
 
       // PROJECT GALLERY SLIDESHOW CONTROLLER
       let currentSlideIndex = 0;
