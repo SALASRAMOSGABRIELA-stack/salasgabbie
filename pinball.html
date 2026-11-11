@@ -1,0 +1,203 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>3D Pinball for Windows - Space Cadet</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    html, body {
+      width: 100%;
+      height: 100%;
+      overflow: hidden;
+      background: #000000;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      font-family: 'MS Sans Serif', Tahoma, sans-serif;
+    }
+    .game-window {
+      display: flex;
+      flex-direction: column;
+      background: #c0c0c0;
+      border: 2px solid;
+      border-color: #ffffff #000000 #000000 #ffffff;
+      box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+      position: relative;
+    }
+    .game-titlebar {
+      height: 22px;
+      background: linear-gradient(90deg, #000080, #1084d0);
+      color: #ffffff;
+      font-weight: bold;
+      font-size: 11px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 4px 0 6px;
+      user-select: none;
+      cursor: default;
+    }
+    .titlebar-buttons {
+      display: flex;
+      gap: 2px;
+    }
+    .tbtn {
+      width: 16px;
+      height: 14px;
+      background: #c0c0c0;
+      border: 1px solid;
+      border-color: #ffffff #000000 #000000 #ffffff;
+      font-size: 9px;
+      font-weight: bold;
+      line-height: 12px;
+      text-align: center;
+      cursor: pointer;
+      color: #000000;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      user-select: none;
+    }
+    .tbtn:active {
+      border-color: #000000 #ffffff #ffffff #000000;
+    }
+    .canvas-wrap {
+      flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: #000000;
+      overflow: hidden;
+      position: relative;
+    }
+    canvas#canvas {
+      display: block;
+      image-rendering: pixelated;
+    }
+    #status {
+      position: absolute;
+      color: #38bdf8;
+      font-family: monospace;
+      font-size: 14px;
+      font-weight: bold;
+      z-index: 10;
+      text-align: center;
+      padding: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div class="game-window" id="gameWindow">
+    <div class="game-titlebar" ondblclick="triggerParentMaximize()">
+      <span>3D Pinball for Windows - Space Cadet</span>
+      <div class="titlebar-buttons">
+        <div class="tbtn" onclick="triggerParentMinimize()" title="Minimize">_</div>
+        <div class="tbtn" id="gameMaxBtn" onclick="triggerParentMaximize()" title="Maximize">□</div>
+        <div class="tbtn" onclick="triggerParentClose()" title="Close">✕</div>
+      </div>
+    </div>
+    <div class="canvas-wrap" id="canvasWrap">
+      <div id="status">Loading Space Cadet...</div>
+      <canvas id="canvas" oncontextmenu="event.preventDefault()" tabindex="-1"></canvas>
+    </div>
+  </div>
+
+  <script>
+    function triggerParentMaximize() {
+      try {
+        if (window.parent && typeof window.parent.maximizeWindow === 'function') {
+          window.parent.maximizeWindow('win-games');
+          setTimeout(updateMaxBtnState, 50);
+          setTimeout(adjustCanvasSize, 60);
+        }
+      } catch (e) {}
+    }
+    function triggerParentMinimize() {
+      try {
+        if (window.parent && typeof window.parent.minimizeWindow === 'function') {
+          window.parent.minimizeWindow('win-games');
+        }
+      } catch (e) {}
+    }
+    function triggerParentClose() {
+      try {
+        if (window.parent && typeof window.parent.backToGamesFolder === 'function') {
+          window.parent.backToGamesFolder();
+        }
+      } catch (e) {}
+    }
+
+    function updateMaxBtnState() {
+      try {
+        if (window.parent && window.parent.document) {
+          var pWin = window.parent.document.getElementById('win-games');
+          var isMax = pWin && pWin.dataset.maximized === 'true';
+          var btn = document.getElementById('gameMaxBtn');
+          if (btn) btn.innerHTML = isMax ? '&#10697;' : '&#9633;';
+        }
+      } catch (e) {}
+    }
+
+    var statusEl = document.getElementById('status');
+    var Module = {
+      preRun: [],
+      postRun: [function() {
+        adjustCanvasSize();
+        var canvas = document.getElementById('canvas');
+        if (canvas) canvas.focus();
+      }],
+      locateFile: function(path, prefix) {
+        return 'https://pinball.alula.me/' + path;
+      },
+      canvas: (function() {
+        var c = document.getElementById('canvas');
+        return c;
+      })(),
+      setStatus: function(text) {
+        if (!text) {
+          if (statusEl) statusEl.style.display = 'none';
+        } else {
+          if (statusEl) {
+            statusEl.style.display = 'block';
+            statusEl.textContent = text;
+          }
+        }
+      },
+      totalDependencies: 0
+    };
+
+    function adjustCanvasSize() {
+      var wrap = document.getElementById('canvasWrap');
+      var canvas = document.getElementById('canvas');
+      var win = document.getElementById('gameWindow');
+      if (!wrap || !canvas || !win) return;
+      var availW = window.innerWidth;
+      var availH = window.innerHeight;
+
+      // Titlebar is 22px + borders (26px total overhead)
+      var maxH = Math.max(180, availH - 26);
+      var maxW = Math.max(260, availW - 6);
+
+      // Space Cadet table native resolution is 600 x 416
+      var scale = Math.min(maxW / 600, maxH / 416);
+      var targetW = Math.floor(600 * scale);
+      var targetH = Math.floor(416 * scale);
+
+      win.style.width = (targetW + 4) + 'px';
+      win.style.height = (targetH + 26) + 'px';
+      canvas.style.width = targetW + 'px';
+      canvas.style.height = targetH + 'px';
+      updateMaxBtnState();
+    }
+
+    window.addEventListener('resize', adjustCanvasSize);
+    window.addEventListener('load', function() {
+      adjustCanvasSize();
+      setTimeout(adjustCanvasSize, 300);
+      setTimeout(adjustCanvasSize, 1000);
+    });
+  </script>
+  <script async src="https://pinball.alula.me/SpaceCadetPinball.js"></script>
+</body>
+</html>
