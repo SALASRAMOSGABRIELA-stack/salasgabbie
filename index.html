@@ -19,10 +19,73 @@
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2318181b'/><text x='50' y='68' font-family='monospace' font-weight='bold' font-size='52' fill='%23fbbf24' text-anchor='middle'>GS</text></svg>" />
 
     <style>
+      :root {
+        --face: #c0c0c0;
+        --hi: #ffffff;
+        --sh: #808080;
+        --dksh: #000000;
+        --lt: #dfdfdf;
+        --title: #000082;
+        --title2: #1084d0;
+        --teal: #008080;
+        --sel: #000082;
+        --ui: Tahoma, "MS Sans Serif", Geneva, Verdana, sans-serif;
+        --font-mono: 'JetBrains Mono', monospace;
+      }
 
-      /* MOBILE & TABLET RESPONSIVE OVERRIDES */
-      @media (max-width: 768px) {
-        .desktop-icons-grid {
+      * {
+        box-sizing: border-box;
+        user-select: none;
+      }
+
+      /* Win95 3D Bevel Utilities (matching robbyyeager.com) */
+      .out {
+        border: 2px solid !important;
+        border-color: #ffffff #000000 #000000 #ffffff !important;
+        box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080 !important;
+      }
+
+      .in {
+        border: 2px solid !important;
+        border-color: #808080 #ffffff #ffffff #808080 !important;
+        box-shadow: inset 1px 1px #000000, inset -1px -1px #dfdfdf !important;
+      }
+
+      /* Windows 95 Pixel Arrow Cursor (mimicking robbyyeager.com) */
+      *, *::before, *::after, html, body, div, span, p, h1, h2, h3, h4, canvas, header {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='34' viewBox='0 0 11 17' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='4' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='4' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='4' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='4' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='5' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='5' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='5' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='5' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='5' y='5' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='6' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='6' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='6' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='6' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='6' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='5' y='6' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='7' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='7' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='7' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='7' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='5' y='7' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='7' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='7' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='8' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='5' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='8' y='8' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='9' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='5' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='8' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='9' y='9' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='10' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='10' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='10' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='10' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='5' y='10' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='7' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='8' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='9' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='10' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='11' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='11' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='11' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='11' width='1' height='1' fill='%23000000'/%3E%3Crect x='4' y='11' width='1' height='1' fill='%23000000'/%3E%3Crect x='5' y='11' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='11' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='11' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='12' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='12' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='12' width='1' height='1' fill='%23000000'/%3E%3Crect x='4' y='12' width='1' height='1' fill='%23000000'/%3E%3Crect x='5' y='12' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='12' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='12' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='13' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='13' width='1' height='1' fill='%23000000'/%3E%3Crect x='4' y='13' width='1' height='1' fill='%23000000'/%3E%3Crect x='5' y='13' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='13' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='13' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='14' width='1' height='1' fill='%23000000'/%3E%3Crect x='5' y='14' width='1' height='1' fill='%23000000'/%3E%3Crect x='6' y='14' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='14' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='8' y='14' width='1' height='1' fill='%23000000'/%3E%3Crect x='5' y='15' width='1' height='1' fill='%23000000'/%3E%3Crect x='6' y='15' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='15' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='8' y='15' width='1' height='1' fill='%23000000'/%3E%3Crect x='6' y='16' width='1' height='1' fill='%23000000'/%3E%3Crect x='7' y='16' width='1' height='1' fill='%23000000'/%3E%3C/svg%3E") 1 1, default !important;
+      }
+
+      /* Windows 95 Pixel Pointer Hand (mimicking robbyyeager.com) */
+      a, button, input, label, select, .desktop-icon, .desktop-icon *, #start, #start *, .win95-btn, .win95-btn *, .taskbtn, .taskbtn *, .tbtn, .tbtn *, .win-btn, .fitem, .fitem * {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='28' viewBox='0 0 26 28'%3E%3Cpath d='M9 3 c-.9 0-1.6 .7-1.6 1.6 V13 L5.6 11.2 c-.7-.7-1.8-.7-2.5 0 -.6 .7-.6 1.7 0 2.4 l4.6 5.6 c.7 .9 1.7 1.4 2.8 1.4 H16 c1.9 0 3.4-1.5 3.4-3.4 V11 c0-.9-.7-1.6-1.6-1.6 -.4 0-.7 .1-1 .3 -.2-.7-.8-1.2-1.6-1.2 -.4 0-.8 .2-1.1 .4 -.2-.7-.8-1.1-1.5-1.1 -.3 0-.6 .1-.9 .2 V4.6 C10.6 3.7 9.9 3 9 3 z' fill='%23ffffff' stroke='%23000000' stroke-width='1.3' stroke-linejoin='round'/%3E%3C/svg%3E") 8 3, pointer !important;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+        overflow: hidden;
+        font-family: var(--ui);
+        background: #008080 url('images/screen.jpeg') no-repeat center center fixed;
+        background-size: cover;
+        image-rendering: -webkit-optimize-contrast;
+        image-rendering: crisp-edges;
+      }
+
+      /* Trail and Background Canvases */
+      #trailCanvas {
+        position: fixed;
+        top: 0; left: 0; width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: 9999;
+      }
+
+      #grassCanvas, #birdsCanvas {
+        display: none !important;
+      }
+
+      /* DESKTOP ICONS (WINDOWS 95 STYLE) */
+      .desktop-icons-grid {
         position: fixed;
         top: 16px;
         left: 16px;
@@ -30,7 +93,7 @@
         flex-direction: column;
         flex-wrap: wrap;
         gap: 16px 12px;
-        max-height: calc(100vh - 60px);
+        max-height: calc(100vh - 56px);
         z-index: 10;
         pointer-events: auto;
       }
@@ -76,7 +139,7 @@
       }
 
       .desktop-icon-title {
-        font-family: Tahoma, 'MS Sans Serif', Geneva, Verdana, sans-serif;
+        font-family: var(--ui);
         font-size: 11px;
         color: #ffffff;
         text-align: center;
@@ -97,88 +160,264 @@
         text-shadow: none !important;
       }
 
-        .os-window {
-          width: calc(100vw - 20px) !important;
-          max-height: calc(100vh - 80px) !important;
-          top: 10px !important;
-          left: 10px !important;
-          right: 10px !important;
-          min-width: unset !important;
-        }
-
-        .xp-taskbar {
-          height: 36px !important;
-          padding-right: 4px !important;
-        }
-
-        .xp-taskbar button {
-          padding: 2px 6px !important;
-        }
-
-        .xp-taskbar button span:last-child {
-          display: none;
-        }
-
-        .xp-systray {
-          padding: 0 6px !important;
-        }
-
-        #osClock {
-          font-size: 10px !important;
-        }
-
-        #trailCanvas {
-          display: none !important;
-        }
+      /* WINDOWS 95 WINDOW STYLING (ROBBYYEAGER STYLE) */
+      .os-window {
+        position: absolute;
+        min-width: 300px;
+        background: var(--face) !important;
+        border-radius: 0 !important;
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        z-index: 10;
+        border: 2px solid;
+        border-color: #ffffff #000000 #000000 #ffffff !important;
+        box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080, 2px 2px 0 rgba(0, 0, 0, 0.45) !important;
       }
 
-      :root {
-        --bg-color: #08080a;
-        --card-bg: rgba(18, 18, 22, 0.88);
-        --card-border: rgba(255, 255, 255, 0.12);
-        --text-main: #f4f4f5;
-        --text-muted: #a1a1aa;
-        --text-subtle: #71717a;
-        --accent-yellow: #ffd166;
-        --font-mono: 'JetBrains Mono', monospace;
-        --font-sans: 'Plus Jakarta Sans', sans-serif;
+      .os-window.minimized {
+        display: none !important;
       }
 
-      * {
-        box-sizing: border-box;
+      .os-window-header, .titlebar {
+        display: flex !important;
+        align-items: center !important;
+        justify-content: space-between !important;
+        gap: 6px !important;
+        padding: 3px 4px 3px 6px !important;
+        cursor: move !important;
+        background: linear-gradient(90deg, var(--title), var(--title2)) !important;
+        color: #ffffff !important;
+        font-family: var(--ui) !important;
+        font-size: 12px !important;
+        font-weight: bold !important;
+        letter-spacing: 0.02em !important;
+        height: 24px !important;
+        border-radius: 0 !important;
+        user-select: none !important;
+      }
+
+      .os-window.blur .os-window-header,
+      .os-window.blur .titlebar {
+        background: linear-gradient(90deg, #7a7a7a, #a6a6a6) !important;
+        color: #d0d0d0 !important;
+      }
+
+      .os-window-title, .titlebar .ti {
+        flex: 1 !important;
+        white-space: nowrap !important;
+        overflow: hidden !important;
+        text-overflow: ellipsis !important;
+        font-size: 12px !important;
+        font-weight: bold !important;
+      }
+
+      /* Win95 Window Controls Buttons */
+      .tbtn, .win-btn {
+        width: 18px !important;
+        height: 16px !important;
+        background: var(--face) !important;
+        font-family: var(--ui) !important;
+        font-size: 10px !important;
+        font-weight: bold !important;
+        line-height: 12px !important;
+        display: inline-flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        cursor: pointer !important;
+        color: #000000 !important;
+        border-radius: 0 !important;
+        padding: 0 !important;
+        margin: 0 !important;
+        border: 2px solid !important;
+        border-color: #ffffff #000000 #000000 #ffffff !important;
+        box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080 !important;
+        user-select: none !important;
+      }
+
+      .tbtn:active, .win-btn:active {
+        border-color: #808080 #ffffff #ffffff #808080 !important;
+        box-shadow: inset 1px 1px #000000 !important;
+      }
+
+      /* Win95 Menubar */
+      .win95-menubar {
+        display: flex;
+        align-items: center;
+        gap: 12px;
+        padding: 2px 8px;
+        background: var(--face);
+        font-family: var(--ui);
+        font-size: 11px;
+        color: #000000;
+        border-bottom: 1px solid #808080;
         user-select: none;
       }
 
-                  /* Windows 95 Pixel Arrow Cursor (mimicking robbyyeager.com) */
-      *, *::before, *::after, html, body, div, span, p, h1, h2, h3, h4, canvas, header {
-        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='22' height='34' viewBox='0 0 11 17' shape-rendering='crispEdges'%3E%3Crect x='0' y='0' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='1' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='1' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='2' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='2' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='2' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='3' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='3' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='3' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='3' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='4' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='4' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='4' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='4' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='4' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='5' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='5' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='5' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='5' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='5' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='5' y='5' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='6' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='6' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='6' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='6' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='6' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='5' y='6' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='6' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='7' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='7' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='7' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='7' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='7' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='5' y='7' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='7' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='7' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='8' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='5' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='8' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='8' y='8' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='9' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='5' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='8' y='9' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='9' y='9' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='10' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='10' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='10' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='4' y='10' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='5' y='10' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='7' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='8' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='9' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='10' y='10' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='11' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='11' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='11' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='3' y='11' width='1' height='1' fill='%23000000'/%3E%3Crect x='4' y='11' width='1' height='1' fill='%23000000'/%3E%3Crect x='5' y='11' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='11' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='11' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='12' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='12' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='2' y='12' width='1' height='1' fill='%23000000'/%3E%3Crect x='4' y='12' width='1' height='1' fill='%23000000'/%3E%3Crect x='5' y='12' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='12' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='12' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='13' width='1' height='1' fill='%23000000'/%3E%3Crect x='1' y='13' width='1' height='1' fill='%23000000'/%3E%3Crect x='4' y='13' width='1' height='1' fill='%23000000'/%3E%3Crect x='5' y='13' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='6' y='13' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='13' width='1' height='1' fill='%23000000'/%3E%3Crect x='0' y='14' width='1' height='1' fill='%23000000'/%3E%3Crect x='5' y='14' width='1' height='1' fill='%23000000'/%3E%3Crect x='6' y='14' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='14' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='8' y='14' width='1' height='1' fill='%23000000'/%3E%3Crect x='5' y='15' width='1' height='1' fill='%23000000'/%3E%3Crect x='6' y='15' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='7' y='15' width='1' height='1' fill='%23ffffff'/%3E%3Crect x='8' y='15' width='1' height='1' fill='%23000000'/%3E%3Crect x='6' y='16' width='1' height='1' fill='%23000000'/%3E%3Crect x='7' y='16' width='1' height='1' fill='%23000000'/%3E%3C/svg%3E") 1 1, default !important;
+      .win95-menubar span {
+        cursor: pointer;
+        padding: 1px 4px;
       }
 
-      /* Windows 95 Pixel Pointer Hand (mimicking robbyyeager.com) */
-      a, button, input, label, select, .desktop-icon, .desktop-icon *, .xp-start-btn, .xp-start-btn *, .xp-taskbar button, .xp-taskbar button *, .modal-nav-btn, .os-window-btn {
-        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='26' height='28' viewBox='0 0 26 28'%3E%3Cpath d='M9 3 c-.9 0-1.6 .7-1.6 1.6 V13 L5.6 11.2 c-.7-.7-1.8-.7-2.5 0 -.6 .7-.6 1.7 0 2.4 l4.6 5.6 c.7 .9 1.7 1.4 2.8 1.4 H16 c1.9 0 3.4-1.5 3.4-3.4 V11 c0-.9-.7-1.6-1.6-1.6 -.4 0-.7 .1-1 .3 -.2-.7-.8-1.2-1.6-1.2 -.4 0-.8 .2-1.1 .4 -.2-.7-.8-1.1-1.5-1.1 -.3 0-.6 .1-.9 .2 V4.6 C10.6 3.7 9.9 3 9 3 z' fill='%23ffffff' stroke='%23000000' stroke-width='1.3' stroke-linejoin='round'/%3E%3C/svg%3E") 8 3, pointer !important;
+      .win95-menubar span:hover {
+        background: #000082;
+        color: #ffffff;
       }
 
-      body {
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        font-family: 'Tahoma', 'Segoe UI', sans-serif;
-        background: #008080 url('images/screen.jpeg') no-repeat center center fixed;
-        background-size: cover;
-        image-rendering: -webkit-optimize-contrast;
-        image-rendering: crisp-edges;
+      /* Win95 Toolbar & Address Bar */
+      .win95-toolbar {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        padding: 3px 6px;
+        background: var(--face);
+        border-bottom: 1px solid #808080;
+        user-select: none;
       }
 
-      #win-project .os-window-body,
-      #win-slideshow .os-window-body,
-      #win-demos .os-window-body {
+      .win95-tbtn {
+        height: 22px;
+        padding: 0 8px;
+        background: var(--face);
+        font-family: var(--ui);
+        font-size: 11px;
+        font-weight: bold;
+        color: #000000;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        cursor: pointer;
+        border-radius: 0;
+        border: 2px solid;
+        border-color: #ffffff #000000 #000000 #ffffff;
+        box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+      }
+
+      .win95-tbtn:disabled {
+        opacity: 0.45;
+        cursor: default;
+      }
+
+      .win95-tbtn:not(:disabled):active {
+        border-color: #808080 #ffffff #ffffff #808080;
+        box-shadow: inset 1px 1px #000000;
+      }
+
+      .win95-address {
+        flex: 1;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        background: #ffffff;
+        padding: 1px 6px;
+        height: 22px;
+        font-family: var(--ui);
+        font-size: 11px;
+      }
+
+      .win95-address input {
+        flex: 1;
+        border: none;
+        outline: none;
+        background: transparent;
+        font-family: var(--ui);
+        font-size: 11px;
+        color: #000000;
+      }
+
+      /* Win95 Window Body */
+      .os-window-body {
+        margin: 2px 3px 3px 3px !important;
+        background: #ffffff !important;
+        flex: 1 !important;
+        overflow: auto !important;
+        display: flex !important;
+        flex-direction: column !important;
+        padding: 0 !important;
+        border-radius: 0 !important;
+      }
+
+      /* Windows 95 Explorer Folder View */
+      .win-folder-view {
+        flex: 1;
         display: flex;
         flex-direction: column;
-        height: 100%;
+        justify-content: space-between;
+        background: #ffffff;
+        min-height: 240px;
+      }
+
+      .folder {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(96px, 1fr));
+        gap: 16px 8px;
+        padding: 18px;
+        background: #ffffff;
+        overflow: auto;
+        align-content: flex-start;
+      }
+
+      .fitem {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 6px;
+        cursor: pointer;
+        text-align: center;
+        padding: 6px 4px;
+        border: 1px dotted transparent;
+        user-select: none;
+      }
+
+      .fitem:hover {
+        background: #000082;
+        color: #ffffff !important;
+        border-color: #ffffff;
+      }
+
+      .fitem:hover .lb {
+        color: #ffffff !important;
+      }
+
+      .fitem .g {
+        font-size: 36px;
+        line-height: 1;
+        filter: drop-shadow(1px 1px 0 rgba(0,0,0,0.35));
+        transition: transform 0.15s ease;
+      }
+
+      .fitem:hover .g {
+        transform: scale(1.08);
+      }
+
+      .fitem .lb {
+        color: #000000;
+        font-family: var(--ui);
+        font-size: 11px;
+        line-height: 1.2;
+        word-break: break-word;
+      }
+
+      .win95-statusbar {
+        padding: 3px 8px;
+        background: var(--face);
+        border-top: 1px solid #808080;
+        font-family: var(--ui);
+        font-size: 11px;
+        color: #444444;
+      }
+
+      .win-content-view {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        background: #0f172a;
+        color: #ffffff;
+        overflow: auto;
         padding: 1rem;
       }
 
+      /* Slide & Lightbox Rules */
       .modal-slide {
         width: 100%;
         height: 100%;
@@ -205,245 +444,6 @@
         image-rendering: crisp-edges;
       }
 
-      .desktop-grid, 
-      .desktop-grid-overlay {
-        display: none !important;
-      }
-
-      #trailCanvas {
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        pointer-events: none;
-        z-index: 9999;
-      }
-
-      #grassCanvas {
-        display: none !important;
-        position: fixed;
-        bottom: 30px; left: 0; width: 100%; height: 130px;
-        pointer-events: none;
-        z-index: 2;
-        opacity: 0.60;
-      }
-
-      #birdsCanvas {
-        position: fixed;
-        top: 0; left: 0; width: 100%; height: 100%;
-        pointer-events: none;
-        z-index: 2;
-        opacity: 0.60;
-      }
-
-      .xp-taskbar {
-        height: 30px;
-        background: linear-gradient(to bottom, #245edb 0%, #3f8cf3 9%, #245edb 18%, #1941a5 92%, #1941a5 100%);
-        border-top: 1px solid #3879e6;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        position: fixed;
-        bottom: 0; left: 0; right: 0;
-        z-index: 1000;
-        box-shadow: 0 -2px 10px rgba(0,0,0,0.5);
-      }
-
-      .xp-start-btn {
-        height: 100%;
-        padding: 0 14px 0 10px;
-        background: linear-gradient(to bottom, #388238 0%, #5ca75c 10%, #388238 30%, #296029 90%, #1e471e 100%);
-        border-top-right-radius: 8px;
-        border-bottom-right-radius: 8px;
-        box-shadow: inset 1px 1px 1px rgba(255,255,255,0.4), 2px 0 6px rgba(0,0,0,0.4);
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        font-family: 'Tahoma', sans-serif;
-        font-weight: bold;
-        font-style: italic;
-        color: #ffffff;
-        font-size: 13px;
-        text-shadow: 1px 1px 1px rgba(0,0,0,0.6);
-        cursor: pointer;
-      }
-
-      .xp-start-btn:hover {
-        filter: brightness(1.1);
-      }
-
-      .xp-systray {
-        height: 100%;
-        background: linear-gradient(to bottom, #0972da 0%, #0e93ff 10%, #0972da 30%, #0756a5 90%, #05407c 100%);
-        border-left: 1px solid #105bb5;
-        padding: 0 12px;
-        display: flex;
-        align-items: center;
-        gap: 8px;
-        box-shadow: inset 1px 0 2px rgba(0,0,0,0.3);
-      }
-
-      .desktop-icons-grid {
-        position: fixed;
-        top: 16px;
-        left: 16px;
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        gap: 16px 12px;
-        max-height: calc(100vh - 60px);
-        z-index: 10;
-        pointer-events: auto;
-      }
-
-      .desktop-icon {
-        width: 82px;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        gap: 4px;
-        padding: 4px 2px;
-        background: transparent !important;
-        border: 1px dotted transparent !important;
-        border-radius: 0 !important;
-        outline: none !important;
-        cursor: inherit;
-        text-align: center;
-        user-select: none;
-      }
-
-      .desktop-icon-img {
-        width: 44px;
-        height: 44px;
-        background: transparent !important;
-        border: none !important;
-        border-radius: 0 !important;
-        box-shadow: none !important;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.6));
-        transition: transform 0.12s ease, filter 0.12s ease;
-      }
-
-      .desktop-icon:hover .desktop-icon-img,
-      .desktop-icon.selected .desktop-icon-img {
-        transform: scale(1.06);
-        filter: drop-shadow(1px 2px 2px rgba(0, 0, 0, 0.8)) brightness(1.08);
-      }
-
-      .desktop-icon:active .desktop-icon-img {
-        transform: scale(0.96);
-      }
-
-      .desktop-icon-title {
-        font-family: Tahoma, 'MS Sans Serif', Geneva, Verdana, sans-serif;
-        font-size: 11px;
-        color: #ffffff;
-        text-align: center;
-        text-shadow: 1px 1px 0 #000000;
-        word-break: break-word;
-        line-height: 1.2;
-        padding: 2px 4px;
-        border-radius: 0;
-        border: 1px dotted transparent;
-      }
-
-      .desktop-icon:hover .desktop-icon-title,
-      .desktop-icon:focus .desktop-icon-title,
-      .desktop-icon.selected .desktop-icon-title {
-        background: #000080 !important;
-        border: 1px dotted #ffffff !important;
-        color: #ffffff !important;
-        text-shadow: none !important;
-      }
-
-      .os-window {
-        position: absolute;
-        background: #ece9d8;
-        border: 3px solid #0055ea;
-        border-top-left-radius: 8px;
-        border-top-right-radius: 8px;
-        box-shadow: 0 20px 50px rgba(0, 0, 0, 0.8);
-        display: flex;
-        flex-direction: column;
-        overflow: hidden;
-        min-width: 320px;
-        min-height: 200px;
-        z-index: 10;
-        transition: opacity 0.2s ease, transform 0.2s ease;
-      }
-
-      .os-window.minimized {
-        opacity: 0;
-        pointer-events: none;
-        transform: scale(0.8) translateY(100px);
-      }
-
-      .os-window-header {
-        height: 30px;
-        background: linear-gradient(to bottom, #0058ee 0%, #3593ff 4%, #288eff 6%, #0058ee 10%, #003dd7 90%, #0030a6 100%);
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 0 0.5rem;
-        cursor: move;
-        color: white;
-        font-family: 'Tahoma', sans-serif;
-        font-weight: bold;
-        text-shadow: 1px 1px 1px #000000;
-      }
-
-      .window-controls {
-        display: flex;
-        align-items: center;
-        gap: 3px;
-      }
-
-      .win-btn {
-        width: 21px;
-        height: 21px;
-        border-radius: 3px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        font-family: sans-serif;
-        font-size: 11px;
-        font-weight: bold;
-        color: white;
-        box-shadow: inset 1px 1px 1px rgba(255,255,255,0.6);
-        cursor: pointer;
-      }
-
-      .win-btn-close { background: linear-gradient(to bottom, #f28d7d, #d83b27); border: 1px solid #990000; }
-      .win-btn-min { background: linear-gradient(to bottom, #3b93ff, #0055ea); border: 1px solid #002b80; }
-      .win-btn-max { background: linear-gradient(to bottom, #3b93ff, #0055ea); border: 1px solid #002b80; }
-
-      .os-window-title {
-        font-family: 'Tahoma', sans-serif;
-        font-size: 0.8rem;
-        color: #ffffff;
-      }
-
-      .os-window-body {
-        padding: 1.25rem;
-        overflow-y: auto;
-        flex: 1;
-        user-select: text;
-        background: #0f172a;
-        color: #f8fafc;
-        position: relative;
-      }
-
-      .os-window-body::-webkit-scrollbar {
-        width: 6px;
-      }
-      .os-window-body::-webkit-scrollbar-track {
-        background: rgba(0, 0, 0, 0.2);
-      }
-      .os-window-body::-webkit-scrollbar-thumb {
-        background: rgba(255, 255, 255, 0.15);
-        border-radius: 4px;
-      }
-
       .modal-overlay {
         display: none;
         position: fixed;
@@ -456,8 +456,180 @@
         padding: 1.5rem;
       }
       .modal-overlay.active { display: flex; }
-    
 
+      /* WINDOWS 95 TASKBAR (ROBBYYEAGER STYLE) */
+      #taskbar, .xp-taskbar {
+        position: fixed !important;
+        left: 0 !important;
+        right: 0 !important;
+        bottom: 0 !important;
+        height: 32px !important;
+        z-index: 4000 !important;
+        background: var(--face) !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 4px !important;
+        padding: 2px 4px !important;
+        border-top: 2px solid #ffffff !important;
+        box-shadow: inset 0 1px 0 #dfdfdf !important;
+        border-radius: 0 !important;
+      }
+
+      #start, .xp-start-btn {
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        padding: 2px 8px !important;
+        font-weight: bold !important;
+        font-family: var(--ui) !important;
+        font-size: 12px !important;
+        height: 26px !important;
+        cursor: pointer !important;
+        background: var(--face) !important;
+        color: #000000 !important;
+        border: 2px solid !important;
+        border-color: #ffffff #000000 #000000 #ffffff !important;
+        box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080 !important;
+        border-radius: 0 !important;
+        font-style: normal !important;
+        text-shadow: none !important;
+      }
+
+      #start:active, #start.on {
+        border-color: #808080 #ffffff #ffffff #808080 !important;
+        box-shadow: inset 1px 1px #000000 !important;
+        background: #d8d8d8 !important;
+      }
+
+      .win95-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 2px 8px;
+        font-family: var(--ui);
+        font-size: 11px;
+        height: 26px;
+        cursor: pointer;
+        background: var(--face);
+        color: #000000;
+        border-radius: 0;
+      }
+
+      .tasks {
+        flex: 1;
+        display: flex;
+        gap: 4px;
+        overflow-x: auto;
+        align-items: center;
+        scrollbar-width: none;
+      }
+      .tasks::-webkit-scrollbar { display: none; }
+
+      .taskbtn {
+        max-width: 170px;
+        min-width: 90px;
+        height: 26px;
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        padding: 0 8px;
+        font-size: 11px;
+        font-family: var(--ui);
+        cursor: pointer;
+        background: var(--face);
+        color: #000000;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        border: 2px solid;
+        border-color: #ffffff #000000 #000000 #ffffff;
+        box-shadow: inset 1px 1px #dfdfdf, inset -1px -1px #808080;
+        border-radius: 0;
+        user-select: none;
+      }
+
+      .taskbtn.active {
+        border-color: #808080 #ffffff #ffffff #808080 !important;
+        box-shadow: inset 1px 1px #000000, inset -1px -1px #dfdfdf !important;
+        background: #dcdcdc !important;
+        font-weight: bold;
+      }
+
+      #systray, .xp-systray {
+        height: 26px !important;
+        display: flex !important;
+        align-items: center !important;
+        gap: 6px !important;
+        padding: 0 10px !important;
+        background: var(--face) !important;
+        border: 2px solid !important;
+        border-color: #808080 #ffffff #ffffff #808080 !important;
+        box-shadow: inset 1px 1px #000000, inset -1px -1px #dfdfdf !important;
+        border-radius: 0 !important;
+        font-family: var(--ui) !important;
+        font-size: 11px !important;
+        color: #000000 !important;
+      }
+
+      #osClock {
+        color: #000000 !important;
+        font-size: 11px !important;
+        font-weight: normal !important;
+      }
+
+      /* MOBILE OVERRIDES */
+      @media (max-width: 768px) {
+        .desktop-icons-grid {
+          top: 10px !important;
+          left: 10px !important;
+          right: 10px !important;
+          display: flex !important;
+          flex-direction: row !important;
+          flex-wrap: wrap !important;
+          gap: 12px 10px !important;
+          justify-content: flex-start !important;
+          max-height: none !important;
+          z-index: 20 !important;
+        }
+
+        .desktop-icon {
+          width: 70px !important;
+          padding: 2px !important;
+        }
+
+        .desktop-icon-img {
+          width: 36px !important;
+          height: 36px !important;
+        }
+
+        .desktop-icon-title {
+          font-size: 10px !important;
+        }
+
+        .os-window {
+          width: calc(100vw - 12px) !important;
+          max-height: calc(100vh - 46px) !important;
+          top: 6px !important;
+          left: 6px !important;
+          right: 6px !important;
+          min-width: unset !important;
+        }
+
+        #taskbar {
+          height: 36px !important;
+        }
+
+        .taskbtn {
+          max-width: 36vw !important;
+          min-width: 60px !important;
+          font-size: 10px !important;
+          padding: 0 4px !important;
+        }
+
+        #trailCanvas {
+          display: none !important;
+        }
+      }
 /* ===== 2001 RETRO WINDOWS PC DESK VIEW STYLES ===== */
 
     
@@ -594,68 +766,74 @@
     </button>
   </div>
 
-  <!-- CANVAS LAYERS -->
+    <!-- CANVAS LAYERS -->
     <canvas id="trailCanvas"></canvas>
-    <canvas id="birdsCanvas"></canvas>
     <canvas id="grassCanvas"></canvas>
 
-    <!-- WINDOWS XP TASKBAR -->
-    <header class="xp-taskbar">
-      <div class="flex items-center gap-2 h-full">
-        <div class="xp-start-btn" onclick="openWindow('win-project')">
-          <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor">
-            <path d="M0 2.5L6.5 1.5V7.5H0V2.5ZM7.5 1.4L16 0V7.5H7.5V1.4ZM0 8.5H6.5V14.5L0 13.5V8.5ZM7.5 8.5H16V16L7.5 14.6V8.5Z" fill="#ffffff"/>
-          </svg>
-          <span>start</span>
-        </div>
-        
-        <div class="flex items-center gap-1.5 ml-2">
-          <!-- Return to 2001 Computer Desk View -->
-          <button onclick="returnToDesk()" class="bg-amber-500/20 hover:bg-amber-500/30 text-amber-300 font-sans text-xs px-3 py-1 rounded border border-amber-400/40 flex items-center gap-1.5 shadow transition-colors cursor-pointer" title="Return to 2001 Computer Desk View">
-            <span>🖥️</span>
-            <span class="font-bold">Desk View</span>
-          </button>
-
-          <!-- Show Desktop (Minimize all windows) -->
-          <button onclick="toggleWindow('win-project')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>📂</span>
-            <span class="truncate max-w-[110px]">Uncanny Valley</span>
-          </button>
-           <button onclick="toggleWindow('win-artifact')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>📂</span>
-            <span class="truncate max-w-[110px]">Quasi Object</span>
-          </button>
-          <button onclick="toggleWindow('win-video')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>🎬</span>
-            <span class="truncate max-w-[110px]">Video Project</span>
-          </button>
-          <button onclick="toggleWindow('win-slideshow')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>📂</span>
-            <span class="truncate max-w-[110px]">Project Gallery</span>
-          </button>
-          <button onclick="toggleWindow('win-demos')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>📁</span>
-            <span class="truncate max-w-[110px]">Class Demos</span>
-          </button>
-          <button onclick="toggleWindow('win-about')" class="bg-blue-900/80 hover:bg-blue-800 text-white font-sans text-xs px-3 py-1 rounded border border-blue-400/30 flex items-center gap-1.5 shadow">
-            <span>📂</span>
-            <span class="truncate max-w-[110px]">About Gabbie</span>
-          </button>
-          <button onclick="toggleWindow('win-limewire')" class="bg-lime-950/80 hover:bg-lime-900 text-lime-300 font-sans text-xs px-3 py-1 rounded border border-lime-500/40 flex items-center gap-1.5 shadow">
-            <span>🍋</span>
-            <span class="truncate max-w-[110px]">LimeWire PRO</span>
-          </button>
-        </div>
+    <!-- WINDOWS 95 TASKBAR (ROBBYYEAGER STYLE) -->
+    <div id="taskbar">
+      <!-- Start Button -->
+      <div id="start" class="out" onclick="toggleStartMenu(event)">
+        <svg width="16" height="16" viewBox="0 0 16 16" style="shape-rendering: crispEdges;">
+          <rect x="1" y="2" width="6" height="5" fill="#f25022"/>
+          <rect x="8" y="2" width="6" height="5" fill="#7fba00"/>
+          <rect x="1" y="8" width="6" height="5" fill="#00a4ef"/>
+          <rect x="8" y="8" width="6" height="5" fill="#ffb900"/>
+        </svg>
+        <span style="font-weight:bold; font-size:12px; margin-left:3px;">Start</span>
       </div>
 
-      <div class="xp-systray">
-        <div class="flex items-center gap-2">
-          <span class="w-2 h-2 rounded-full bg-lime-400 animate-pulse"></span>
-          <span class="font-mono text-[11px] text-blue-100">ART 10C</span>
-        </div>
-        <span id="osClock" class="font-mono text-xs text-white font-bold ml-1">00:00:00 AM</span>
+      <!-- Desk View Button (Only static action button per user instruction) -->
+      <button id="deskViewBtn" onclick="returnToDesk()" class="win95-btn out" title="Return to 2001 Computer Desk View">
+        <span style="font-size:13px;">&#128421;&#65039;</span>
+        <span style="font-weight:bold; font-size:11px;">Desk View</span>
+      </button>
+
+      <!-- Active Running Window Tasks Container -->
+      <div class="tasks" id="tasks"></div>
+
+      <!-- Windows 95 Inset Systray with Clock -->
+      <div id="systray" class="in">
+        <span style="font-size: 13px;">&#128266;</span>
+        <span id="osClock">12:00:00 PM</span>
       </div>
-    </header>
+    </div>
+
+    <!-- Windows 95 Start Menu Popup -->
+    <div id="startmenu" class="out" style="display:none; position:fixed; left:4px; bottom:36px; width:220px; z-index:5000; background:#c0c0c0; box-shadow: 2px 2px 0 #000;">
+      <div style="position:absolute; left:0; top:0; bottom:0; width:26px; background:linear-gradient(#000082, #1084d0); writing-mode:vertical-rl; transform:rotate(180deg); color:#fff; font-family:'MS Sans Serif', Tahoma, sans-serif; font-size:14px; font-weight:bold; text-align:center; padding:10px 0; user-select:none;">
+        Windows<span style="color:#ffd147;">95</span>
+      </div>
+      <ul style="list-style:none; margin-left:28px; padding:3px; margin-top:0; margin-bottom:0; font-family: Tahoma, 'MS Sans Serif', sans-serif; font-size:12px;">
+        <li onclick="returnToDesk(); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
+          <span>&#128421;&#65039;</span> <span>Desk View</span>
+        </li>
+        <li onclick="openWindow('win-project'); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
+          <span>&#128193;</span> <span>Uncanny Valley</span>
+        </li>
+        <li onclick="openWindow('win-artifact'); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
+          <span>&#128193;</span> <span>Quasi Object</span>
+        </li>
+        <li onclick="openWindow('win-video'); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
+          <span>&#127916;</span> <span>Video Project</span>
+        </li>
+        <li onclick="openWindow('win-slideshow'); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
+          <span>&#128193;</span> <span>Project Gallery</span>
+        </li>
+        <li onclick="openWindow('win-demos'); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
+          <span>&#128193;</span> <span>Class Demos</span>
+        </li>
+        <li onclick="openWindow('win-about'); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
+          <span>&#128196;</span> <span>About Gabbie</span>
+        </li>
+        <li onclick="openWindow('win-limewire'); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
+          <span>&#127819;</span> <span>LimeWire v4.12</span>
+        </li>
+        <li onclick="triggerVirusPrank(); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer; border-top:1px solid #808080; margin-top:4px;">
+          <span>&#9888;&#65039;</span> <span>DO NOT OPEN.exe</span>
+        </li>
+      </ul>
+    </div>
 
     <!-- DESKTOP SHORTCUTS (WINDOWS 95 STYLE) -->
     <div class="desktop-icons-grid">
@@ -823,276 +1001,459 @@
     </div>
 
         <!-- WINDOW 1: UNCANNY VALLEY SLIDESHOW -->
-    <div id="win-project" class="os-window minimized" style="width: 840px; height: 620px; top: 50px; left: 140px;">
-      <div class="os-window-header" onmousedown="dragWindow(event, 'win-project')">
-        <span class="os-window-title">Uncanny Valley</span>
-        <div class="window-controls">
-          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-project')">_</span>
-          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-project')">□</span>
-          <span class="win-btn win-btn-close" onclick="closeWindow('win-project')">✕</span>
+    <div id="win-project" class="os-window minimized out" style="width: 840px; height: 620px; top: 50px; left: 140px;">
+      <div class="os-window-header titlebar" onmousedown="dragWindow(event, 'win-project')">
+        <div class="flex items-center gap-1.5 overflow-hidden">
+          <span style="font-size: 13px;">&#128193;</span>
+          <span class="os-window-title ti">Uncanny Valley</span>
+        </div>
+        <div class="window-controls flex items-center gap-1">
+          <span class="tbtn out" onclick="minimizeWindow('win-project')" title="Minimize">_</span>
+          <span class="tbtn out" onclick="maximizeWindow('win-project')" title="Maximize">&#9633;</span>
+          <span class="tbtn out" onclick="closeWindow('win-project')" title="Close">&#10005;</span>
         </div>
       </div>
 
-      <div class="os-window-body flex flex-col items-center justify-between text-center p-4">
-        <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">Uncanny Valley Slideshow</h3>
+      <div class="win95-menubar">
+        <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+      </div>
 
-        <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
-          <div class="modal-slide active">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">UNO OF 05</div>
-            <img src="images/Uncanny Valley HiRes.png" alt="Uncanny Valley HiRes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+01';" />
+      <div class="win95-toolbar">
+        <button class="win95-tbtn out" id="backBtn-win-project" onclick="backToFolder('win-project')" disabled title="Back to Folder">
+          <span>&larr;</span> Back
+        </button>
+        <div class="win95-address in">
+          <span style="color:#555; font-weight:bold; font-size:11px;">Address</span>
+          <input type="text" readonly id="address-win-project" value="C:\Desktop\Uncanny Valley" />
+        </div>
+      </div>
+
+      <div class="os-window-body in">
+        <!-- FOLDER EXPLORER VIEW (INITIAL) -->
+        <div id="folder-win-project" class="win-folder-view">
+          <div class="folder">
+            <div class="fitem" onclick="openWindowContent('win-project')" title="Click to open Uncanny Valley">
+              <div class="g">
+                <svg width="44" height="44" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                  <rect x="2" y="7" width="10" height="2" fill="#000"/>
+                  <rect x="3" y="8" width="8" height="2" fill="#e6a100"/>
+                  <rect x="2" y="9" width="28" height="15" fill="#000"/>
+                  <rect x="3" y="10" width="26" height="13" fill="#c68200"/>
+                  <rect x="6" y="5" width="18" height="9" fill="#000"/>
+                  <rect x="7" y="6" width="16" height="7" fill="#fff"/>
+                  <rect x="10" y="7" width="10" height="5" fill="#3b82f6"/>
+                  <circle cx="15" cy="9.5" r="1.5" fill="#fff"/>
+                  <polygon points="1,25 3,13 29,13 31,25" fill="#000"/>
+                  <polygon points="2,24 4,14 28,14 30,24" fill="#ffd147"/>
+                  <line x1="4" y1="14" x2="28" y2="14" stroke="#fff8b8" stroke-width="1"/>
+                  <line x1="2" y1="24" x2="30" y2="24" stroke="#8a5a00" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="lb">Uncanny Valley</div>
+            </div>
           </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DOS OF 05</div>
-            <img src="images/Uncanny Valley HIRESS.png" alt="Uncanny Valley HIRESS" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+02';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">TRES OF 05</div>
-            <img src="images/Uncanny Valley HiRes3.png" alt="Uncanny Valley HiRes3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+03';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CUATRO OF 05</div>
-            <img src="images/Uncanny Valley HiRes4.png" alt="Uncanny Valley HiRes4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+04';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CINCO OF 05</div>
-            <img src="images/Uncanny Valley HiRes5.png" alt="Uncanny Valley HiRes5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+05';" />
-          </div>
-
-          <!-- Clickable Navigation Arrows -->
-          <button type="button" id="prevProjectSlideBtn" onclick="prevProjectSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❮</button>
-          <button type="button" id="nextProjectSlideBtn" onclick="nextProjectSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❯</button>
+          <div class="win95-statusbar">1 object(s) (5 slides)</div>
         </div>
 
-        <div class="flex justify-center gap-2 mt-3 flex-wrap">
-          <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToProjectSlide(event, 0)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToProjectSlide(event, 1)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToProjectSlide(event, 2)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToProjectSlide(event, 3)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToProjectSlide(event, 4)"></span>
+        <!-- PROJECT CONTENT VIEW (SLIDESHOW) -->
+        <div id="content-win-project" class="win-content-view" style="display: none; height: 100%; flex-direction: column;">
+          <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2 text-center">Uncanny Valley Slideshow</h3>
+
+          <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
+            <div class="modal-slide active">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">UNO OF 05</div>
+              <img src="images/Uncanny Valley HiRes.png" alt="Uncanny Valley HiRes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+01';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DOS OF 05</div>
+              <img src="images/Uncanny Valley HIRESS.png" alt="Uncanny Valley HIRESS" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+02';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">TRES OF 05</div>
+              <img src="images/Uncanny Valley HiRes3.png" alt="Uncanny Valley HiRes3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+03';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CUATRO OF 05</div>
+              <img src="images/Uncanny Valley HiRes4.png" alt="Uncanny Valley HiRes4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+04';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CINCO OF 05</div>
+              <img src="images/Uncanny Valley HiRes5.png" alt="Uncanny Valley HiRes5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+05';" />
+            </div>
+
+            <!-- Clickable Navigation Arrows -->
+            <button type="button" id="prevProjectSlideBtn" onclick="prevProjectSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">&#10094;</button>
+            <button type="button" id="nextProjectSlideBtn" onclick="nextProjectSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">&#10095;</button>
+          </div>
+
+          <div class="flex justify-center gap-2 mt-3 flex-wrap">
+            <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToProjectSlide(event, 0)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToProjectSlide(event, 1)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToProjectSlide(event, 2)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToProjectSlide(event, 3)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToProjectSlide(event, 4)"></span>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- WINDOW 2: PROJECT SLIDESHOW GALLERY -->
-    <div id="win-slideshow" class="os-window minimized" style="width: 840px; height: 620px; top: 70px; left: 220px;">
-      <div class="os-window-header" onmousedown="dragWindow(event, 'win-slideshow')">
-        <span class="os-window-title">Project Gallery</span>
-        <div class="window-controls">
-          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-slideshow')">_</span>
-          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-slideshow')">□</span>
-          <span class="win-btn win-btn-close" onclick="closeWindow('win-slideshow')">✕</span>
+    <div id="win-slideshow" class="os-window minimized out" style="width: 840px; height: 620px; top: 70px; left: 220px;">
+      <div class="os-window-header titlebar" onmousedown="dragWindow(event, 'win-slideshow')">
+        <div class="flex items-center gap-1.5 overflow-hidden">
+          <span style="font-size: 13px;">&#128193;</span>
+          <span class="os-window-title ti">Project Gallery</span>
+        </div>
+        <div class="window-controls flex items-center gap-1">
+          <span class="tbtn out" onclick="minimizeWindow('win-slideshow')" title="Minimize">_</span>
+          <span class="tbtn out" onclick="maximizeWindow('win-slideshow')" title="Maximize">&#9633;</span>
+          <span class="tbtn out" onclick="closeWindow('win-slideshow')" title="Close">&#10005;</span>
         </div>
       </div>
 
-      <div class="os-window-body flex flex-col items-center justify-between text-center p-4">
-        <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">Project Gallery Slideshow</h3>
+      <div class="win95-menubar">
+        <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+      </div>
 
-        <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
-          <div class="modal-slide active">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">UNO OF 11</div>
-            <img src="images/Uncanny Valley HiRes.png" alt="Uncanny Valley HiRes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+01';" />
+      <div class="win95-toolbar">
+        <button class="win95-tbtn out" id="backBtn-win-slideshow" onclick="backToFolder('win-slideshow')" disabled title="Back to Folder">
+          <span>&larr;</span> Back
+        </button>
+        <div class="win95-address in">
+          <span style="color:#555; font-weight:bold; font-size:11px;">Address</span>
+          <input type="text" readonly id="address-win-slideshow" value="C:\Desktop\Project Gallery" />
+        </div>
+      </div>
+
+      <div class="os-window-body in">
+        <!-- FOLDER EXPLORER VIEW (INITIAL) -->
+        <div id="folder-win-slideshow" class="win-folder-view">
+          <div class="folder">
+            <div class="fitem" onclick="openWindowContent('win-slideshow')" title="Click to open Project Gallery">
+              <div class="g">
+                <svg width="44" height="44" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                  <rect x="2" y="7" width="10" height="2" fill="#000"/>
+                  <rect x="3" y="8" width="8" height="2" fill="#e6a100"/>
+                  <rect x="2" y="9" width="28" height="15" fill="#000"/>
+                  <rect x="3" y="10" width="26" height="13" fill="#c68200"/>
+                  <rect x="5" y="4" width="14" height="10" fill="#000"/>
+                  <rect x="6" y="5" width="12" height="8" fill="#fff"/>
+                  <rect x="8" y="6" width="8" height="4" fill="#f59e0b"/>
+                  <rect x="12" y="3" width="14" height="10" fill="#000"/>
+                  <rect x="13" y="4" width="12" height="8" fill="#fff"/>
+                  <rect x="15" y="5" width="8" height="4" fill="#3b82f6"/>
+                  <polygon points="1,25 3,13 29,13 31,25" fill="#000"/>
+                  <polygon points="2,24 4,14 28,14 30,24" fill="#ffd147"/>
+                  <line x1="4" y1="14" x2="28" y2="14" stroke="#fff8b8" stroke-width="1"/>
+                  <line x1="2" y1="24" x2="30" y2="24" stroke="#8a5a00" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="lb">Project Gallery</div>
+            </div>
           </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DOS OF 11</div>
-            <img src="images/Uncanny Valley HIRESS.png" alt="Uncanny Valley HIRESS" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+02';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">TRES OF 11</div>
-            <img src="images/Uncanny Valley HiRes3.png" alt="Uncanny Valley HiRes3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+03';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CUATRO OF 11</div>
-            <img src="images/Uncanny Valley HiRes4.png" alt="Uncanny Valley HiRes4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+04';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CINCO OF 11</div>
-            <img src="images/Uncanny Valley HiRes5.png" alt="Uncanny Valley HiRes5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+05';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">SEIS OF 11</div>
-            <img src="images/Final slide 1.png" alt="Final slide 1" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+1';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">SIETE OF 11</div>
-            <img src="images/Final slide 2.png" alt="Final slide 2" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+2';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">OCHO OF 11</div>
-            <img src="images/Final slide 3.png" alt="Final slide 3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+3';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">NUEVE OF 11</div>
-            <img src="images/Final slide 4.png" alt="Final slide 4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+4';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DIEZ OF 11</div>
-            <img src="images/Final slide 5.png" alt="Final slide 5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+5';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">ONCE OF 11</div>
-            <img src="images/Final slide 6.png" alt="Final slide 6" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+6';" />
-          </div>
-
-          <!-- Clickable Navigation Arrows -->
-          <button type="button" id="prevSlideBtn" onclick="prevSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❮</button>
-          <button type="button" id="nextSlideBtn" onclick="nextSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❯</button>
+          <div class="win95-statusbar">1 object(s) (11 slides)</div>
         </div>
 
-        <div class="flex justify-center gap-2 mt-3 flex-wrap">
-          <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToSlide(event, 0)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToSlide(event, 1)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToSlide(event, 2)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToSlide(event, 3)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToSlide(event, 4)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="5" onclick="goToSlide(event, 5)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="6" onclick="goToSlide(event, 6)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="7" onclick="goToSlide(event, 7)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="8" onclick="goToSlide(event, 8)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="9" onclick="goToSlide(event, 9)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="10" onclick="goToSlide(event, 10)"></span>
+        <!-- PROJECT CONTENT VIEW (SLIDESHOW) -->
+        <div id="content-win-slideshow" class="win-content-view" style="display: none; height: 100%; flex-direction: column;">
+          <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2 text-center">Project Gallery Slideshow</h3>
+
+          <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
+            <div class="modal-slide active">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">UNO OF 11</div>
+              <img src="images/Uncanny Valley HiRes.png" alt="Uncanny Valley HiRes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+01';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DOS OF 11</div>
+              <img src="images/Uncanny Valley HIRESS.png" alt="Uncanny Valley HIRESS" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+02';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">TRES OF 11</div>
+              <img src="images/Uncanny Valley HiRes3.png" alt="Uncanny Valley HiRes3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+03';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CUATRO OF 11</div>
+              <img src="images/Uncanny Valley HiRes4.png" alt="Uncanny Valley HiRes4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+04';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CINCO OF 11</div>
+              <img src="images/Uncanny Valley HiRes5.png" alt="Uncanny Valley HiRes5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+05';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">SEIS OF 11</div>
+              <img src="images/Final slide 1.png" alt="Final slide 1" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+1';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">SIETE OF 11</div>
+              <img src="images/Final slide 2.png" alt="Final slide 2" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+2';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">OCHO OF 11</div>
+              <img src="images/Final slide 3.png" alt="Final slide 3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+3';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">NUEVE OF 11</div>
+              <img src="images/Final slide 4.png" alt="Final slide 4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+4';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DIEZ OF 11</div>
+              <img src="images/Final slide 5.png" alt="Final slide 5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+5';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">ONCE OF 11</div>
+              <img src="images/Final slide 6.png" alt="Final slide 6" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+6';" />
+            </div>
+
+            <!-- Clickable Navigation Arrows -->
+            <button type="button" id="prevSlideBtn" onclick="prevSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">&#10094;</button>
+            <button type="button" id="nextSlideBtn" onclick="nextSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">&#10095;</button>
+          </div>
+
+          <div class="flex justify-center gap-2 mt-3 flex-wrap">
+            <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToSlide(event, 0)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToSlide(event, 1)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToSlide(event, 2)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToSlide(event, 3)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToSlide(event, 4)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="5" onclick="goToSlide(event, 5)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="6" onclick="goToSlide(event, 6)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="7" onclick="goToSlide(event, 7)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="8" onclick="goToSlide(event, 8)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="9" onclick="goToSlide(event, 9)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="10" onclick="goToSlide(event, 10)"></span>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- WINDOW: CLASS DEMOS SLIDESHOW -->
-    <div id="win-demos" class="os-window minimized" style="width: 840px; height: 620px; top: 75px; left: 240px;">
-      <div class="os-window-header" onmousedown="dragWindow(event, 'win-demos')">
-        <span class="os-window-title">Class Demos</span>
-        <div class="window-controls">
-          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-demos')">_</span>
-          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-demos')">□</span>
-          <span class="win-btn win-btn-close" onclick="closeWindow('win-demos')">✕</span>
+    <div id="win-demos" class="os-window minimized out" style="width: 840px; height: 620px; top: 75px; left: 240px;">
+      <div class="os-window-header titlebar" onmousedown="dragWindow(event, 'win-demos')">
+        <div class="flex items-center gap-1.5 overflow-hidden">
+          <span style="font-size: 13px;">&#128193;</span>
+          <span class="os-window-title ti">Class Demos</span>
+        </div>
+        <div class="window-controls flex items-center gap-1">
+          <span class="tbtn out" onclick="minimizeWindow('win-demos')" title="Minimize">_</span>
+          <span class="tbtn out" onclick="maximizeWindow('win-demos')" title="Maximize">&#9633;</span>
+          <span class="tbtn out" onclick="closeWindow('win-demos')" title="Close">&#10005;</span>
         </div>
       </div>
 
-      <div class="os-window-body flex flex-col items-center justify-between text-center p-4">
-        <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2">Class Demos Slideshow</h3>
+      <div class="win95-menubar">
+        <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+      </div>
 
-        <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
-          <div class="modal-slide active">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">UNO OF 09 — CATS</div>
-            <img src="images/cAts.png" alt="cAts" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=cAts';" />
+      <div class="win95-toolbar">
+        <button class="win95-tbtn out" id="backBtn-win-demos" onclick="backToFolder('win-demos')" disabled title="Back to Folder">
+          <span>&larr;</span> Back
+        </button>
+        <div class="win95-address in">
+          <span style="color:#555; font-weight:bold; font-size:11px;">Address</span>
+          <input type="text" readonly id="address-win-demos" value="C:\Desktop\Class Demos" />
+        </div>
+      </div>
+
+      <div class="os-window-body in">
+        <!-- FOLDER EXPLORER VIEW (INITIAL) -->
+        <div id="folder-win-demos" class="win-folder-view">
+          <div class="folder">
+            <div class="fitem" onclick="openWindowContent('win-demos')" title="Click to open Class Demos">
+              <div class="g">
+                <svg width="44" height="44" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                  <rect x="2" y="7" width="10" height="2" fill="#000"/>
+                  <rect x="3" y="8" width="8" height="2" fill="#e6a100"/>
+                  <rect x="2" y="9" width="28" height="15" fill="#000"/>
+                  <rect x="3" y="10" width="26" height="13" fill="#c68200"/>
+                  <rect x="6" y="4" width="18" height="10" fill="#000"/>
+                  <rect x="7" y="5" width="16" height="8" fill="#fff"/>
+                  <rect x="9" y="7" width="8" height="1" fill="#6366f1"/>
+                  <rect x="9" y="9" width="12" height="1" fill="#808080"/>
+                  <rect x="9" y="11" width="10" height="1" fill="#808080"/>
+                  <polygon points="1,25 3,13 29,13 31,25" fill="#000"/>
+                  <polygon points="2,24 4,14 28,14 30,24" fill="#ffd147"/>
+                  <line x1="4" y1="14" x2="28" y2="14" stroke="#fff8b8" stroke-width="1"/>
+                  <line x1="2" y1="24" x2="30" y2="24" stroke="#8a5a00" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="lb">Class Demos</div>
+            </div>
           </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DOS OF 09 — CUBES</div>
-            <img src="images/cUbes.png" alt="cUbes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=cUbes';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">TRES OF 09 — FURBALL</div>
-            <img src="images/FuRbaLL.png" alt="FuRbaLL" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=FuRbaLL';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CUATRO OF 09 — LINCOLN</div>
-            <img src="images/LiNCOLN.png" alt="LiNCOLN" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=LiNCOLN';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CINCO OF 09 — PAWN</div>
-            <img src="images/pAwn.png" alt="pAwn" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=pAwn';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">SEIS OF 09 — PHOTOSHOP 2</div>
-            <img src="images/PS 2.png" alt="PS 2" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PS+2';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">SIETE OF 09 — PHOTOSHOP 3</div>
-            <img src="images/PS 3.png" alt="PS 3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PS+3';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">OCHO OF 09 — PHOTOSHOP 1</div>
-            <img src="images/PS1.png" alt="PS1" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PS1';" />
-          </div>
-
-          <div class="modal-slide">
-            <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">NUEVE OF 09 — SPACE</div>
-            <img src="images/SPaCE.png" alt="SPaCE" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=SPaCE';" />
-          </div>
-
-          <!-- Navigation Arrows -->
-          <button type="button" id="prevDemoSlideBtn" onclick="prevDemoSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❮</button>
-          <button type="button" id="nextDemoSlideBtn" onclick="nextDemoSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">❯</button>
+          <div class="win95-statusbar">1 object(s) (9 slides)</div>
         </div>
 
-        <div class="flex justify-center gap-2 mt-3 flex-wrap">
-          <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToDemoSlide(event, 0)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToDemoSlide(event, 1)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToDemoSlide(event, 2)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToDemoSlide(event, 3)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToDemoSlide(event, 4)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="5" onclick="goToDemoSlide(event, 5)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="6" onclick="goToDemoSlide(event, 6)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="7" onclick="goToDemoSlide(event, 7)"></span>
-          <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="8" onclick="goToDemoSlide(event, 8)"></span>
+        <!-- PROJECT CONTENT VIEW (SLIDESHOW) -->
+        <div id="content-win-demos" class="win-content-view" style="display: none; height: 100%; flex-direction: column;">
+          <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2 text-center">Class Demos Slideshow</h3>
+
+          <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
+            <div class="modal-slide active">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">UNO OF 09 &mdash; CATS</div>
+              <img src="images/cAts.png" alt="cAts" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=cAts';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DOS OF 09 &mdash; CUBES</div>
+              <img src="images/cUbes.png" alt="cUbes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=cUbes';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">TRES OF 09 &mdash; FURBALL</div>
+              <img src="images/FuRbaLL.png" alt="FuRbaLL" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=FuRbaLL';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CUATRO OF 09 &mdash; LINCOLN</div>
+              <img src="images/LiNCOLN.png" alt="LiNCOLN" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=LiNCOLN';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CINCO OF 09 &mdash; PAWN</div>
+              <img src="images/pAwn.png" alt="pAwn" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=pAwn';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">SEIS OF 09 &mdash; PHOTOSHOP 2</div>
+              <img src="images/PS 2.png" alt="PS 2" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PS+2';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">SIETE OF 09 &mdash; PHOTOSHOP 3</div>
+              <img src="images/PS 3.png" alt="PS 3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PS+3';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">OCHO OF 09 &mdash; PHOTOSHOP 1</div>
+              <img src="images/PS1.png" alt="PS1" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PS1';" />
+            </div>
+
+            <div class="modal-slide">
+              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">NUEVE OF 09 &mdash; SPACE</div>
+              <img src="images/SPaCE.png" alt="SPaCE" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=SPaCE';" />
+            </div>
+
+            <!-- Navigation Arrows -->
+            <button type="button" id="prevDemoSlideBtn" onclick="prevDemoSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">&#10094;</button>
+            <button type="button" id="nextDemoSlideBtn" onclick="nextDemoSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">&#10095;</button>
+          </div>
+
+          <div class="flex justify-center gap-2 mt-3 flex-wrap">
+            <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToDemoSlide(event, 0)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToDemoSlide(event, 1)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToDemoSlide(event, 2)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToDemoSlide(event, 3)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToDemoSlide(event, 4)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="5" onclick="goToDemoSlide(event, 5)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="6" onclick="goToDemoSlide(event, 6)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="7" onclick="goToDemoSlide(event, 7)"></span>
+            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="8" onclick="goToDemoSlide(event, 8)"></span>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- WINDOW 3: ABOUT & STUDIO PRACTICE -->
-    <div id="win-about" class="os-window minimized" style="width: 700px; height: 490px; top: 90px; left: 300px;">
-      <div class="os-window-header" onmousedown="dragWindow(event, 'win-about')">
-        <span class="os-window-title">About Gabbie &amp; Art 10C</span>
-        <div class="window-controls">
-          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-about')">_</span>
-          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-about')">□</span>
-          <span class="win-btn win-btn-close" onclick="closeWindow('win-about')">✕</span>
+    <div id="win-about" class="os-window minimized out" style="width: 740px; height: 530px; top: 90px; left: 300px;">
+      <div class="os-window-header titlebar" onmousedown="dragWindow(event, 'win-about')">
+        <div class="flex items-center gap-1.5 overflow-hidden">
+          <span style="font-size: 13px;">&#128196;</span>
+          <span class="os-window-title ti">About Gabbie &amp; Art 10C</span>
+        </div>
+        <div class="window-controls flex items-center gap-1">
+          <span class="tbtn out" onclick="minimizeWindow('win-about')" title="Minimize">_</span>
+          <span class="tbtn out" onclick="maximizeWindow('win-about')" title="Maximize">&#9633;</span>
+          <span class="tbtn out" onclick="closeWindow('win-about')" title="Close">&#10005;</span>
         </div>
       </div>
-      <div class="os-window-body">
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-          <div class="bg-zinc-900/80 border border-zinc-800 p-5 rounded-xl flex flex-col justify-between">
-            <div>
-              <span class="font-mono text-[11px] text-amber-400 uppercase tracking-widest block mb-2">Identity &amp; Trajectory</span>
-              <h3 class="font-bold text-lg text-white mb-2">About Gabbie</h3>
-              <p class="text-xs text-zinc-400 leading-relaxed">
-                Student, designer, and digital creator working at the intersection of graphic storytelling, character design, and modern front-end media.
-              </p>
-            </div>
-            <div class="mt-6">
-              <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-2">Interests &amp; Disciplines</span>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Character Design</span>
-                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Typography</span>
-                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Digital Storytelling</span>
-                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Traditional Art</span>
+
+      <div class="win95-menubar">
+        <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+      </div>
+
+      <div class="win95-toolbar">
+        <button class="win95-tbtn out" id="backBtn-win-about" onclick="backToFolder('win-about')" disabled title="Back to Folder">
+          <span>&larr;</span> Back
+        </button>
+        <div class="win95-address in">
+          <span style="color:#555; font-weight:bold; font-size:11px;">Address</span>
+          <input type="text" readonly id="address-win-about" value="C:\Desktop\About Gabbie" />
+        </div>
+      </div>
+
+      <div class="os-window-body in">
+        <!-- FOLDER EXPLORER VIEW (INITIAL) -->
+        <div id="folder-win-about" class="win-folder-view">
+          <div class="folder">
+            <div class="fitem" onclick="openWindowContent('win-about')" title="Click to view About Gabbie text">
+              <div class="g">
+                <svg width="44" height="44" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                  <rect x="5" y="3" width="22" height="26" fill="#000"/>
+                  <rect x="6" y="4" width="20" height="24" fill="#ffffff"/>
+                  <line x1="9" y1="8" x2="23" y2="8" stroke="#000082" stroke-width="1.5"/>
+                  <line x1="9" y1="12" x2="23" y2="12" stroke="#808080" stroke-width="1"/>
+                  <line x1="9" y1="16" x2="23" y2="16" stroke="#808080" stroke-width="1"/>
+                  <line x1="9" y1="20" x2="20" y2="20" stroke="#808080" stroke-width="1"/>
+                  <line x1="9" y1="24" x2="16" y2="24" stroke="#808080" stroke-width="1"/>
+                </svg>
               </div>
+              <div class="lb">About_Gabbie.txt</div>
             </div>
           </div>
+          <div class="win95-statusbar">1 object(s) (1.2 KB)</div>
+        </div>
 
-          <div class="bg-zinc-900/80 border border-zinc-800 p-5 rounded-xl flex flex-col justify-between">
-            <div>
-              <span class="font-mono text-[11px] text-amber-400 uppercase tracking-widest block mb-2">Academic Studio</span>
-              <h3 class="font-bold text-lg text-white mb-2">Art 10C Studio</h3>
-              <p class="text-xs text-zinc-400 leading-relaxed">
-                Exploring advanced digital art and design theory using computer imaging applications and scanning technologies. Applying visual design principles and studio projects focused on personal expression.
-              </p>
+        <!-- PROJECT CONTENT VIEW (NOTEPAD / BIO) -->
+        <div id="content-win-about" class="win-content-view" style="display: none; height: 100%; flex-direction: column;">
+          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div class="bg-zinc-900/80 border border-zinc-800 p-5 rounded-xl flex flex-col justify-between">
+              <div>
+                <span class="font-mono text-[11px] text-amber-400 uppercase tracking-widest block mb-2">Identity &amp; Trajectory</span>
+                <h3 class="font-bold text-lg text-white mb-2">About Gabbie</h3>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  Student, designer, and digital creator working at the intersection of graphic storytelling, character design, and modern front-end media.
+                </p>
+              </div>
+              <div class="mt-6">
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-2">Interests &amp; Disciplines</span>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Character Design</span>
+                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Typography</span>
+                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Digital Storytelling</span>
+                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Traditional Art</span>
+                </div>
+              </div>
             </div>
-            <div class="mt-6">
-              <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-2">Software &amp; Skills</span>
-              <div class="flex flex-wrap gap-1.5">
-                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Adobe Illustrator</span>
-                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Photoshop</span>
-                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Blender</span>
-                <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">HTML &amp; CSS</span>
+
+            <div class="bg-zinc-900/80 border border-zinc-800 p-5 rounded-xl flex flex-col justify-between">
+              <div>
+                <span class="font-mono text-[11px] text-amber-400 uppercase tracking-widest block mb-2">Academic Studio</span>
+                <h3 class="font-bold text-lg text-white mb-2">Art 10C Studio</h3>
+                <p class="text-xs text-zinc-400 leading-relaxed">
+                  Exploring advanced digital art and design theory using computer imaging applications and scanning technologies. Applying visual design principles and studio projects focused on personal expression.
+                </p>
+              </div>
+              <div class="mt-6">
+                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-2">Software &amp; Skills</span>
+                <div class="flex flex-wrap gap-1.5">
+                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Adobe Illustrator</span>
+                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Photoshop</span>
+                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Blender</span>
+                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">HTML &amp; CSS</span>
+                </div>
               </div>
             </div>
           </div>
@@ -1101,139 +1462,219 @@
     </div>
 
     <!-- WINDOW 4: 3D ARTIFACT STUDY -->
-    <div id="win-artifact" class="os-window minimized" style="width: 740px; height: 560px; top: 80px; left: 240px;">
-      <div class="os-window-header" onmousedown="dragWindow(event, 'win-artifact')">
-        <div class="flex items-center gap-2">
-          <span>📂</span>
-          <span class="os-window-title">Quasi Object</span>
+    <div id="win-artifact" class="os-window minimized out" style="width: 740px; height: 560px; top: 80px; left: 240px;">
+      <div class="os-window-header titlebar" onmousedown="dragWindow(event, 'win-artifact')">
+        <div class="flex items-center gap-1.5 overflow-hidden">
+          <span style="font-size: 13px;">&#128193;</span>
+          <span class="os-window-title ti">Quasi Object</span>
         </div>
-        <div class="window-controls">
-          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-artifact')">_</span>
-          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-artifact')">□</span>
-          <span class="win-btn win-btn-close" onclick="closeWindow('win-artifact')">✕</span>
+        <div class="window-controls flex items-center gap-1">
+          <span class="tbtn out" onclick="minimizeWindow('win-artifact')" title="Minimize">_</span>
+          <span class="tbtn out" onclick="maximizeWindow('win-artifact')" title="Maximize">&#9633;</span>
+          <span class="tbtn out" onclick="closeWindow('win-artifact')" title="Close">&#10005;</span>
         </div>
       </div>
 
-      <div class="os-window-body flex flex-col p-4 bg-zinc-950 text-zinc-200">
-        <!-- Inner Title Header -->
-        <div class="flex items-center justify-between mb-3 bg-zinc-900/80 border border-zinc-800 p-3.5 rounded-xl">
-          <div>
-            <span class="font-mono text-[10px] text-amber-400 uppercase tracking-widest block mb-0.5">Interactive Digital Media</span>
-            <h3 class="font-bold text-sm text-white">Quasi Object</h3>
+      <div class="win95-menubar">
+        <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+      </div>
+
+      <div class="win95-toolbar">
+        <button class="win95-tbtn out" id="backBtn-win-artifact" onclick="backToFolder('win-artifact')" disabled title="Back to Folder">
+          <span>&larr;</span> Back
+        </button>
+        <div class="win95-address in">
+          <span style="color:#555; font-weight:bold; font-size:11px;">Address</span>
+          <input type="text" readonly id="address-win-artifact" value="C:\Desktop\Quasi Object" />
+        </div>
+      </div>
+
+      <div class="os-window-body in">
+        <!-- FOLDER EXPLORER VIEW (INITIAL) -->
+        <div id="folder-win-artifact" class="win-folder-view">
+          <div class="folder">
+            <div class="fitem" onclick="openWindowContent('win-artifact')" title="Click to inspect 3D Quasi Object">
+              <div class="g">
+                <svg width="44" height="44" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                  <rect x="2" y="7" width="10" height="2" fill="#000"/>
+                  <rect x="3" y="8" width="8" height="2" fill="#e6a100"/>
+                  <rect x="2" y="9" width="28" height="15" fill="#000"/>
+                  <rect x="3" y="10" width="26" height="13" fill="#c68200"/>
+                  <rect x="6" y="5" width="18" height="9" fill="#000"/>
+                  <rect x="7" y="6" width="16" height="7" fill="#fff"/>
+                  <polygon points="15,6.5 19,8.5 15,10.5 11,8.5" fill="#10b981"/>
+                  <polygon points="1,25 3,13 29,13 31,25" fill="#000"/>
+                  <polygon points="2,24 4,14 28,14 30,24" fill="#ffd147"/>
+                  <line x1="4" y1="14" x2="28" y2="14" stroke="#fff8b8" stroke-width="1"/>
+                  <line x1="2" y1="24" x2="30" y2="24" stroke="#8a5a00" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="lb">Quasi Object</div>
+            </div>
           </div>
-          <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2.5 py-1 rounded border border-zinc-700">
-            GsTan.glb 
-          </span>
+          <div class="win95-statusbar">1 object(s) (GsTan.glb)</div>
         </div>
 
-        <!-- 3D Model Viewer Container -->
-        <div class="model-container relative flex-1 w-full bg-black border border-zinc-800 rounded-xl overflow-hidden p-2 flex flex-col">
-          <model-viewer 
-            src="images/Models/GsTan.glb" 
-            alt="Quasi Object - GsTan" 
-            shadow-intensity="1" 
-            camera-controls 
-            auto-rotate 
-            ar
-            style="width: 100%; height: 100%; min-height: 360px; display: block; background-color: #0c0c0e; border-radius: 8px; --poster-color: transparent;">
-          </model-viewer>
+        <!-- PROJECT CONTENT VIEW (3D MODEL VIEWER) -->
+        <div id="content-win-artifact" class="win-content-view" style="display: none; height: 100%; flex-direction: column;">
+          <div class="flex items-center justify-between mb-3 bg-zinc-900/80 border border-zinc-800 p-3.5 rounded-xl">
+            <div>
+              <span class="font-mono text-[10px] text-amber-400 uppercase tracking-widest block mb-0.5">Interactive Digital Media</span>
+              <h3 class="font-bold text-sm text-white">Quasi Object</h3>
+            </div>
+            <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2.5 py-1 rounded border border-zinc-700">
+              GsTan.glb 
+            </span>
+          </div>
+
+          <div class="model-container relative flex-1 w-full bg-black border border-zinc-800 rounded-xl overflow-hidden p-2 flex flex-col">
+            <model-viewer 
+              src="images/Models/GsTan.glb" 
+              alt="Quasi Object - GsTan" 
+              shadow-intensity="1" 
+              camera-controls 
+              auto-rotate 
+              ar
+              style="width: 100%; height: 100%; min-height: 360px; display: block; background-color: #0c0c0e; border-radius: 8px; --poster-color: transparent;">
+            </model-viewer>
+          </div>
         </div>
       </div>
     </div>
 
     <!-- WINDOW: PROJECT 3 - VIDEO PROJECT -->
-    <div id="win-video" class="os-window minimized" style="width: 740px; height: 560px; top: 85px; left: 260px;">
-      <div class="os-window-header" onmousedown="dragWindow(event, 'win-video')">
-        <div class="flex items-center gap-2">
-          <span>🎬</span>
-          <span class="os-window-title">Project 3 — Video Project</span>
+    <div id="win-video" class="os-window minimized out" style="width: 740px; height: 560px; top: 85px; left: 260px;">
+      <div class="os-window-header titlebar" onmousedown="dragWindow(event, 'win-video')">
+        <div class="flex items-center gap-1.5 overflow-hidden">
+          <span style="font-size: 13px;">&#127916;</span>
+          <span class="os-window-title ti">Video Project</span>
         </div>
-        <div class="window-controls">
-          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-video')">_</span>
-          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-video')">□</span>
-          <span class="win-btn win-btn-close" onclick="closeWindow('win-video')">✕</span>
+        <div class="window-controls flex items-center gap-1">
+          <span class="tbtn out" onclick="minimizeWindow('win-video')" title="Minimize">_</span>
+          <span class="tbtn out" onclick="maximizeWindow('win-video')" title="Maximize">&#9633;</span>
+          <span class="tbtn out" onclick="closeWindow('win-video')" title="Close">&#10005;</span>
         </div>
       </div>
 
-      <div class="os-window-body flex flex-col p-4 bg-zinc-950 text-zinc-200">
-        <!-- Inner Title Header -->
-        <div class="flex items-center justify-between mb-3 bg-zinc-900/80 border border-zinc-800 p-3.5 rounded-xl">
-          <div>
-            <span class="font-mono text-[10px] text-amber-400 uppercase tracking-widest block mb-0.5">Digital Media Art 10C · Studio Showcase</span>
-            <h3 class="font-bold text-sm text-white">Project 03 · Video Project</h3>
+      <div class="win95-menubar">
+        <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+      </div>
+
+      <div class="win95-toolbar">
+        <button class="win95-tbtn out" id="backBtn-win-video" onclick="backToFolder('win-video')" disabled title="Back to Folder">
+          <span>&larr;</span> Back
+        </button>
+        <div class="win95-address in">
+          <span style="color:#555; font-weight:bold; font-size:11px;">Address</span>
+          <input type="text" readonly id="address-win-video" value="C:\Desktop\Video Project" />
+        </div>
+      </div>
+
+      <div class="os-window-body in">
+        <!-- FOLDER EXPLORER VIEW (INITIAL) -->
+        <div id="folder-win-video" class="win-folder-view">
+          <div class="folder">
+            <div class="fitem" onclick="openWindowContent('win-video')" title="Click to view Video Project Poster">
+              <div class="g">
+                <svg width="44" height="44" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                  <rect x="2" y="4" width="28" height="24" fill="#000"/>
+                  <rect x="3" y="5" width="26" height="22" fill="#2d3748"/>
+                  <rect x="5" y="6" width="3" height="3" fill="#fff"/>
+                  <rect x="11" y="6" width="3" height="3" fill="#fff"/>
+                  <rect x="17" y="6" width="3" height="3" fill="#fff"/>
+                  <rect x="23" y="6" width="3" height="3" fill="#fff"/>
+                  <rect x="5" y="11" width="22" height="10" fill="#008080"/>
+                  <polygon points="13,13 13,19 20,16" fill="#ffd700" stroke="#000" stroke-width="0.5"/>
+                  <rect x="5" y="23" width="3" height="3" fill="#fff"/>
+                  <rect x="11" y="23" width="3" height="3" fill="#fff"/>
+                  <rect x="17" y="23" width="3" height="3" fill="#fff"/>
+                  <rect x="23" y="23" width="3" height="3" fill="#fff"/>
+                </svg>
+              </div>
+              <div class="lb">Video Project</div>
+            </div>
           </div>
-          <span class="font-mono text-[11px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded flex items-center gap-1.5">
-            <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span> IN PRODUCTION
-          </span>
+          <div class="win95-statusbar">1 object(s) (In Production)</div>
         </div>
 
-        <!-- Coming Soon Video Poster Container -->
-        <div class="relative flex-1 w-full bg-gradient-to-b from-zinc-900 via-black to-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-6 flex flex-col items-center justify-between shadow-2xl">
-          <!-- Viewfinder Frame Elements -->
-          <div class="absolute inset-4 border border-zinc-700/40 pointer-events-none rounded-lg">
-            <div class="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-amber-400"></div>
-            <div class="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-amber-400"></div>
-            <div class="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-amber-400"></div>
-            <div class="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-amber-400"></div>
+        <!-- PROJECT CONTENT VIEW (COMING SOON POSTER) -->
+        <div id="content-win-video" class="win-content-view" style="display: none; height: 100%; flex-direction: column;">
+          <div class="flex items-center justify-between mb-3 bg-zinc-900/80 border border-zinc-800 p-3.5 rounded-xl">
+            <div>
+              <span class="font-mono text-[10px] text-amber-400 uppercase tracking-widest block mb-0.5">Digital Media Art 10C &bull; Studio Showcase</span>
+              <h3 class="font-bold text-sm text-white">Project 03 &bull; Video Project</h3>
+            </div>
+            <span class="font-mono text-[11px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded flex items-center gap-1.5">
+              <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span> IN PRODUCTION
+            </span>
           </div>
 
-          <!-- Top Viewfinder Info -->
-          <div class="w-full flex items-center justify-between z-10 font-mono text-[11px]">
-            <div class="flex items-center gap-2 text-red-500 font-bold bg-black/60 px-2.5 py-1 rounded border border-red-900/50">
-              <span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping"></span>
-              <span>REC [STANDBY]</span>
+          <div class="relative flex-1 w-full bg-gradient-to-b from-zinc-900 via-black to-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-6 flex flex-col items-center justify-between shadow-2xl">
+            <div class="absolute inset-4 border border-zinc-700/40 pointer-events-none rounded-lg">
+              <div class="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-amber-400"></div>
+              <div class="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-amber-400"></div>
+              <div class="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-amber-400"></div>
+              <div class="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-amber-400"></div>
             </div>
-            <div class="text-zinc-500 bg-black/60 px-2.5 py-1 rounded border border-zinc-800">
-              4K UHD · 24 FPS · 16:9
-            </div>
-          </div>
 
-          <!-- Center Poster Artwork & Typography -->
-          <div class="flex flex-col items-center justify-center text-center my-auto z-10 px-4">
-            <div class="w-20 h-20 rounded-2xl bg-zinc-900/90 border border-zinc-700/80 shadow-[0_0_35px_rgba(251,191,36,0.18)] flex items-center justify-center text-4xl mb-4">
-              🎬
-            </div>
-            <span class="font-mono text-xs uppercase tracking-[0.3em] text-amber-400/90 mb-1">Project 03 · Video</span>
-            <h2 class="text-3xl sm:text-4xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-300 to-amber-500 uppercase mb-3">
-              Coming Soon
-            </h2>
-            <p class="font-mono text-xs text-zinc-400 max-w-sm leading-relaxed">
-              Video production in progress. The final cut and presentation will be featured here upon release.
-            </p>
-
-            <!-- Video Player Controls Placeholder -->
-            <div class="w-full max-w-xs bg-zinc-900/90 border border-zinc-800 rounded-lg p-2.5 flex items-center gap-3 text-xs font-mono text-zinc-400 mt-5">
-              <span class="w-6 h-6 rounded bg-amber-400/20 text-amber-300 border border-amber-400/40 flex items-center justify-center text-[10px]">
-                ▶
-              </span>
-              <div class="flex-1 bg-zinc-800 h-1.5 rounded-full overflow-hidden">
-                <div class="bg-amber-400 h-full w-[25%] rounded-full animate-pulse"></div>
+            <div class="w-full flex items-center justify-between z-10 font-mono text-[11px]">
+              <div class="flex items-center gap-2 text-red-500 font-bold bg-black/60 px-2.5 py-1 rounded border border-red-900/50">
+                <span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping"></span>
+                <span>REC [STANDBY]</span>
               </div>
-              <span class="text-[10px] text-zinc-500">00:00 / --:--</span>
+              <div class="text-zinc-500 bg-black/60 px-2.5 py-1 rounded border border-zinc-800">
+                4K UHD &bull; 24 FPS &bull; 16:9
+              </div>
             </div>
-          </div>
 
-          <!-- Bottom Viewfinder Status -->
-          <div class="w-full flex items-center justify-between z-10 font-mono text-[10px] text-zinc-500">
-            <span>CH 1/2 STEREO · 48kHz</span>
-            <span class="text-amber-400/80">ARTIST: GABBIE SALAS</span>
+            <div class="flex flex-col items-center justify-center text-center my-auto z-10 px-4">
+              <div class="w-20 h-20 rounded-2xl bg-zinc-900/90 border border-zinc-700/80 shadow-[0_0_35px_rgba(251,191,36,0.18)] flex items-center justify-center text-4xl mb-4">
+                &#127916;
+              </div>
+              <span class="font-mono text-xs uppercase tracking-[0.3em] text-amber-400/90 mb-1">Project 03 &bull; Video</span>
+              <h2 class="text-3xl sm:text-4xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-300 to-amber-500 uppercase mb-3">
+                Coming Soon
+              </h2>
+              <p class="font-mono text-xs text-zinc-400 max-w-sm leading-relaxed">
+                Video production in progress. The final cut and presentation will be featured here upon release.
+              </p>
+
+              <div class="w-full max-w-xs bg-zinc-900/90 border border-zinc-800 rounded-lg p-2.5 flex items-center gap-3 text-xs font-mono text-zinc-400 mt-5">
+                <span class="w-6 h-6 rounded bg-amber-400/20 text-amber-300 border border-amber-400/40 flex items-center justify-center text-[10px]">
+                  &#9658;
+                </span>
+                <div class="flex-1 bg-zinc-800 h-1.5 rounded-full overflow-hidden">
+                  <div class="bg-amber-400 h-full w-[25%] rounded-full animate-pulse"></div>
+                </div>
+                <span class="text-[10px] text-zinc-500">00:00 / --:--</span>
+              </div>
+            </div>
+
+            <div class="w-full flex items-center justify-between z-10 font-mono text-[10px] text-zinc-500">
+              <span>CH 1/2 STEREO &bull; 48kHz</span>
+              <span class="text-amber-400/80">ARTIST: GABBIE SALAS</span>
+            </div>
           </div>
         </div>
       </div>
     </div>
 
     <!-- WINDOW 5: LIMEWIRE PRO P2P CLIENT -->
-    <div id="win-limewire" class="os-window minimized" style="width: 760px; height: 530px; top: 60px; left: 180px;">
-      <div class="os-window-header" style="background: linear-gradient(to bottom, #2b5711 0%, #4c991e 8%, #366d15 90%, #1c3b0a 100%); border-bottom: 1px solid #62c427;" onmousedown="dragWindow(event, 'win-limewire')">
-        <div class="flex items-center gap-2">
-          <span class="text-sm">🍋</span>
-          <span class="os-window-title font-mono text-lime-200">LimeWire PRO v4.12.6 — Turbo Charged P2P</span>
+    <div id="win-limewire" class="os-window minimized out" style="width: 760px; height: 530px; top: 60px; left: 180px;">
+      <div class="os-window-header titlebar" style="background: linear-gradient(90deg, #1b5e20, #43a047) !important;" onmousedown="dragWindow(event, 'win-limewire')">
+        <div class="flex items-center gap-1.5 overflow-hidden">
+          <span style="font-size: 13px;">&#127819;</span>
+          <span class="os-window-title ti" style="color: #ffffff !important;">LimeWire PRO v4.12.6 &mdash; Turbo Charged P2P</span>
         </div>
-        <div class="window-controls">
-          <span class="win-btn win-btn-min" onclick="minimizeWindow('win-limewire')">_</span>
-          <span class="win-btn win-btn-max" onclick="maximizeWindow('win-limewire')">□</span>
-          <span class="win-btn win-btn-close" onclick="closeWindow('win-limewire')">✕</span>
+        <div class="window-controls flex items-center gap-1">
+          <span class="tbtn out" onclick="minimizeWindow('win-limewire')" title="Minimize">_</span>
+          <span class="tbtn out" onclick="maximizeWindow('win-limewire')" title="Maximize">&#9633;</span>
+          <span class="tbtn out" onclick="closeWindow('win-limewire')" title="Close">&#10005;</span>
         </div>
+      </div>
+
+      <div class="win95-menubar">
+        <span><u>F</u>ile</span><span><u>N</u>avigation</span><span><u>V</u>iew</span><span><u>T</u>ools</span><span><u>H</u>elp</span>
       </div>
 
       <div class="os-window-body p-0 flex flex-col bg-zinc-950 text-lime-100 font-mono text-xs">
@@ -1492,7 +1933,6 @@
 
       const rect = img.getBoundingClientRect();
       const screenCenterX = rect.left + rect.width / 2;
-      // Monitor screen center is ~27.5% down from top of the image
       const screenCenterY = rect.top + rect.height * 0.275;
 
       const monitorW = rect.width * 0.20;
@@ -1514,78 +1954,214 @@
       const stage = document.getElementById('deskStage');
       if (!stage) return;
       stage.classList.remove('hidden-desk');
-      // trigger reflow
       void stage.offsetWidth;
       stage.classList.remove('zooming');
     }
 
-    function minimizeAllWindows() {
+    /* Windows 95 Metadata Dictionary */
+    const WIN_INFO = {
+      'win-project': { title: 'Uncanny Valley', icon: '\uD83D\uDCC1' },
+      'win-artifact': { title: 'Quasi Object', icon: '\uD83D\uDCC1' },
+      'win-video': { title: 'Video Project', icon: '\uD83C\uDFA5' },
+      'win-slideshow': { title: 'Project Gallery', icon: '\uD83D\uDCC1' },
+      'win-demos': { title: 'Class Demos', icon: '\uD83D\uDCC1' },
+      'win-about': { title: 'About Gabbie', icon: '\uD83D\uDCC4' },
+      'win-limewire': { title: 'LimeWire v4.12', icon: '\uD83C\uDF4B' }
+    };
+
+    let highestZIndex = 20;
+
+    /* Dynamic Windows 95 Taskbar Manager */
+    function updateTaskbar(activeWinId) {
+      const tasksContainer = document.getElementById('tasks');
+      if (!tasksContainer) return;
+
       document.querySelectorAll('.os-window').forEach(win => {
-        win.classList.add('minimized');
+        const id = win.id;
+        let btn = document.getElementById('taskbtn-' + id);
+        const isOpen = win.dataset.opened === 'true';
+
+        if (!isOpen) {
+          if (btn) btn.remove();
+        } else {
+          const info = WIN_INFO[id] || { title: id, icon: '\uD83D\uDDA5\uFE0F' };
+          if (!btn) {
+            btn = document.createElement('div');
+            btn.id = 'taskbtn-' + id;
+            btn.className = 'taskbtn out';
+            btn.innerHTML = `<span style="font-size:13px;line-height:1;">${info.icon}</span><span style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">${info.title}</span>`;
+            btn.onclick = () => onTaskbarButtonClick(id);
+            tasksContainer.appendChild(btn);
+          }
+          if (id === activeWinId && !win.classList.contains('minimized')) {
+            btn.classList.add('active');
+          } else {
+            btn.classList.remove('active');
+          }
+        }
       });
     }
 
-
-
-      function updateClock() {
-        const now = new Date();
-        document.getElementById('osClock').textContent = now.toLocaleTimeString();
+    function onTaskbarButtonClick(winId) {
+      const win = document.getElementById(winId);
+      if (!win) return;
+      if (win.classList.contains('minimized') || win.style.display === 'none') {
+        win.classList.remove('minimized');
+        win.style.display = 'flex';
+        bringToFront(winId);
+      } else if (win.classList.contains('active-win')) {
+        minimizeWindow(winId);
+      } else {
+        bringToFront(winId);
       }
-      setInterval(updateClock, 1000);
-      updateClock();
+    }
 
-      let highestZIndex = 10;
-
-      function bringToFront(winId) {
-        highestZIndex++;
-        const win = document.getElementById(winId);
-        if (win) win.style.zIndex = highestZIndex;
+    function bringToFront(winId) {
+      highestZIndex++;
+      const win = document.getElementById(winId);
+      if (win) {
+        win.style.zIndex = highestZIndex;
+        document.querySelectorAll('.os-window').forEach(w => {
+          w.classList.add('blur');
+          w.classList.remove('active-win');
+        });
+        win.classList.remove('blur');
+        win.classList.add('active-win');
+        updateTaskbar(winId);
       }
+    }
 
-      function openWindow(winId) {
-        const win = document.getElementById(winId);
-        if (win) {
-          win.classList.remove('minimized');
-          bringToFront(winId);
-        }
+    function openWindow(winId) {
+      const win = document.getElementById(winId);
+      if (win) {
+        win.dataset.opened = 'true';
+        win.classList.remove('minimized');
+        win.style.display = 'flex';
+        bringToFront(winId);
       }
+    }
 
-      function closeWindow(winId) {
-        const win = document.getElementById(winId);
-        if (win) win.classList.add('minimized');
+    function closeWindow(winId) {
+      const win = document.getElementById(winId);
+      if (win) {
+        win.dataset.opened = 'false';
+        win.classList.add('minimized');
+        win.style.display = 'none';
+        win.classList.remove('active-win');
+        updateTaskbar(null);
       }
+    }
 
-      function minimizeWindow(winId) {
+    function minimizeWindow(winId) {
+      const win = document.getElementById(winId);
+      if (win) {
+        win.classList.add('minimized');
+        win.style.display = 'none';
+        win.classList.remove('active-win');
+        updateTaskbar(null);
+      }
+    }
+
+    function maximizeWindow(winId) {
+      const win = document.getElementById(winId);
+      if (!win) return;
+      if (win.dataset.maximized === 'true') {
+        win.dataset.maximized = 'false';
+        win.style.width = win.dataset.origW || '840px';
+        win.style.height = win.dataset.origH || '620px';
+        win.style.top = win.dataset.origT || '50px';
+        win.style.left = win.dataset.origL || '140px';
+      } else {
+        win.dataset.origW = win.style.width;
+        win.dataset.origH = win.style.height;
+        win.dataset.origT = win.style.top;
+        win.dataset.origL = win.style.left;
+        win.dataset.maximized = 'true';
+        win.style.width = '100vw';
+        win.style.height = 'calc(100vh - 32px)';
+        win.style.top = '0px';
+        win.style.left = '0px';
+      }
+    }
+
+    function toggleWindow(winId) {
+      const win = document.getElementById(winId);
+      if (!win) return;
+      if (win.classList.contains('minimized') || win.style.display === 'none') {
+        openWindow(winId);
+      } else {
         closeWindow(winId);
       }
+    }
 
-      function maximizeWindow(winId) {
-        const win = document.getElementById(winId);
-        if (!win) return;
-        if (win.style.width === '100vw') {
-          win.style.width = '700px';
-          win.style.height = '500px';
-          win.style.top = '100px';
-          win.style.left = '150px';
-        } else {
-          win.style.width = '100vw';
-          win.style.height = 'calc(100vh - 38px)';
-          win.style.top = '38px';
-          win.style.left = '0px';
+    /* Windows 95 Folder Navigation Controller */
+    function openWindowContent(winId) {
+      const folderView = document.getElementById('folder-' + winId);
+      const contentView = document.getElementById('content-' + winId);
+      const backBtn = document.getElementById('backBtn-' + winId);
+      const addressInput = document.getElementById('address-' + winId);
+      const info = WIN_INFO[winId] || { title: winId };
+
+      if (folderView && contentView) {
+        folderView.style.display = 'none';
+        contentView.style.display = 'flex';
+        if (backBtn) backBtn.disabled = false;
+        if (addressInput) addressInput.value = 'C:\\Desktop\\' + info.title + '\\' + info.title;
+      }
+    }
+
+    function backToFolder(winId) {
+      const folderView = document.getElementById('folder-' + winId);
+      const contentView = document.getElementById('content-' + winId);
+      const backBtn = document.getElementById('backBtn-' + winId);
+      const addressInput = document.getElementById('address-' + winId);
+      const info = WIN_INFO[winId] || { title: winId };
+
+      if (folderView && contentView) {
+        contentView.style.display = 'none';
+        folderView.style.display = 'flex';
+        if (backBtn) backBtn.disabled = true;
+        if (addressInput) addressInput.value = 'C:\\Desktop\\' + info.title;
+      }
+    }
+
+    /* Start Menu Controller */
+    function toggleStartMenu(e) {
+      if (e) e.stopPropagation();
+      const start = document.getElementById('start');
+      const menu = document.getElementById('startmenu');
+      if (menu) {
+        const isOpen = menu.style.display === 'block';
+        menu.style.display = isOpen ? 'none' : 'block';
+        if (start) {
+          if (isOpen) start.classList.remove('on');
+          else start.classList.add('on');
         }
       }
+    }
 
-      function toggleWindow(winId) {
-        const win = document.getElementById(winId);
-        if (win.classList.contains('minimized')) {
-          openWindow(winId);
-        } else {
-          closeWindow(winId);
-        }
+    function closeStartMenu() {
+      const start = document.getElementById('start');
+      const menu = document.getElementById('startmenu');
+      if (menu) menu.style.display = 'none';
+      if (start) start.classList.remove('on');
+    }
+
+    document.addEventListener('click', (e) => {
+      if (!e.target.closest('#start') && !e.target.closest('#startmenu')) {
+        closeStartMenu();
       }
+    });
 
-      // Drag Controller with Boundary Constraints
-      function dragWindow(e, winId) {
+    function updateClock() {
+      const now = new Date();
+      const clockEl = document.getElementById('osClock');
+      if (clockEl) clockEl.textContent = now.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit', second: '2-digit' });
+    }
+    setInterval(updateClock, 1000);
+    updateClock();
+
+    function dragWindow(e, winId) {
         const win = document.getElementById(winId);
         if (!win) return;
         
@@ -2268,50 +2844,7 @@
         animate();
       })();
 
-      (function() {
-        const canvas = document.getElementById('birdsCanvas');
-        if (!canvas) return;
-        const ctx = canvas.getContext('2d');
-
-        let width, height;
-        function resize() {
-          width = canvas.width = window.innerWidth;
-          height = canvas.height = window.innerHeight;
-        }
-        resize();
-        window.addEventListener('resize', resize);
-
-        const birds = Array.from({ length: 6 }, () => ({
-          x: Math.random() * window.innerWidth,
-          y: Math.random() * (window.innerHeight * 0.4) + 40,
-          vx: 1.2 + Math.random() * 1.5,
-          scale: 0.8 + Math.random() * 1,
-          wingPhase: Math.random() * Math.PI * 2
-        }));
-
-        function animate() {
-          ctx.clearRect(0, 0, width, height);
-          birds.forEach((b) => {
-            b.x += b.vx;
-            b.wingPhase += 0.08;
-            if (b.x > width + 50) b.x = -50;
-
-            ctx.save();
-            ctx.translate(b.x, b.y);
-            ctx.scale(b.scale, b.scale);
-            const wingY = Math.sin(b.wingPhase) * 10;
-            ctx.beginPath();
-            ctx.moveTo(-10, 0);
-            ctx.quadraticCurveTo(0, wingY - 8, 10, 0);
-            ctx.quadraticCurveTo(0, wingY * 0.5, -10, 0);
-            ctx.fillStyle = 'rgba(255, 255, 255, 0.25)';
-            ctx.fill();
-            ctx.restore();
-          });
-          requestAnimationFrame(animate);
-        }
-        animate();
-      })();
+      // Birds animation completely removed
     
         
     // Windows 95 Desktop Icon Selection Handler
