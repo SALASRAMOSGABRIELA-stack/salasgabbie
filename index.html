@@ -1070,6 +1070,168 @@
         height: 220px;
       }
     }
+
+    /* --------------------------------------------------------------------------
+       GAMES FULLSCREEN SCALING & SOLITAIRE STYLES
+       -------------------------------------------------------------------------- */
+    .game-scale-wrapper {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      transition: transform 0.12s ease-out;
+    }
+
+    .sol-topbar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      max-width: 740px;
+      margin-bottom: 12px;
+      padding: 4px 8px;
+      background: rgba(0, 0, 0, 0.25);
+      border: 1px solid rgba(255, 255, 255, 0.25);
+      color: #ffffff;
+      font-family: 'MS Sans Serif', Tahoma, sans-serif;
+      font-size: 11px;
+      box-sizing: border-box;
+    }
+
+    .sol-stat-box {
+      background: #000000;
+      color: #4ade80;
+      font-family: 'Courier New', monospace;
+      font-size: 12px;
+      font-weight: bold;
+      padding: 2px 8px;
+      border: 1px solid #808080;
+      box-shadow: inset 1px 1px #000;
+    }
+
+    .sol-board {
+      display: flex;
+      flex-direction: column;
+      width: 740px;
+      gap: 16px;
+      user-select: none;
+    }
+
+    .sol-upper {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+    }
+
+    .sol-stock-waste, .sol-foundations {
+      display: flex;
+      gap: 12px;
+    }
+
+    .sol-tableau {
+      display: flex;
+      justify-content: space-between;
+      width: 100%;
+      min-height: 380px;
+    }
+
+    .sol-col {
+      width: 76px;
+      min-height: 360px;
+      position: relative;
+    }
+
+    .sol-slot {
+      width: 76px;
+      height: 104px;
+      border-radius: 4px;
+      border: 2px dashed rgba(255, 255, 255, 0.35);
+      background: rgba(0, 0, 0, 0.12);
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: rgba(255, 255, 255, 0.45);
+      font-size: 26px;
+      cursor: pointer;
+      position: relative;
+    }
+
+    .sol-card {
+      width: 76px;
+      height: 104px;
+      border-radius: 4px;
+      box-sizing: border-box;
+      position: absolute;
+      cursor: pointer;
+      user-select: none;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.55);
+      transition: transform 0.08s ease;
+    }
+
+    .sol-card.card-up {
+      background: #ffffff;
+      border: 1px solid #111;
+      color: #111;
+    }
+
+    .sol-card.card-down {
+      background: #000080;
+      border: 2px solid #ffffff;
+      box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
+      background-image: repeating-linear-gradient(45deg, #000080, #000080 4px, #1e3a8a 4px, #1e3a8a 8px);
+    }
+
+    .sol-card.card-red {
+      color: #dc2626;
+    }
+
+    .sol-card.card-black {
+      color: #111827;
+    }
+
+    .sol-card.selected-card {
+      outline: 3px solid #facc15 !important;
+      transform: translateY(-5px);
+      box-shadow: 0 8px 16px rgba(0, 0, 0, 0.7) !important;
+      z-index: 100 !important;
+    }
+
+    .sol-card-corner {
+      position: absolute;
+      top: 3px;
+      left: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+    }
+
+    .sol-card-corner-br {
+      position: absolute;
+      bottom: 3px;
+      right: 5px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      line-height: 1;
+      font-family: Arial, sans-serif;
+      font-size: 11px;
+      font-weight: bold;
+      transform: rotate(180deg);
+    }
+
+    .sol-card-center {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 26px;
+      line-height: 1;
+    }
       </style>
   </head>
   <body class="theme-day">
@@ -2376,9 +2538,9 @@
       </div>
     </div>
 
-    <!-- WINDOW: GAMES EXPLORER (MINESWEEPER, MAHJONG TITANS, SPACE CADET PINBALL) -->
+    <!-- WINDOW: GAMES EXPLORER (MINESWEEPER, MAHJONG TITANS, SPACE CADET PINBALL, SOLITAIRE) -->
     <div id="win-games" class="os-window minimized out" style="width: 860px; height: 640px; top: 60px; left: 160px;">
-      <div class="os-window-header titlebar" onmousedown="dragWindow(event, 'win-games')">
+      <div class="os-window-header titlebar" onmousedown="dragWindow(event, 'win-games')" ondblclick="maximizeWindow('win-games')">
         <div class="flex items-center gap-1.5 overflow-hidden">
           <span style="font-size: 13px;">&#127918;</span>
           <span class="os-window-title ti">Games</span>
@@ -2397,6 +2559,9 @@
       <div class="win95-toolbar">
         <button class="win95-tbtn out" id="backBtn-win-games" onclick="backToGamesFolder()" disabled title="Back to Games">
           <span>&larr;</span> Back
+        </button>
+        <button class="win95-tbtn out" id="maxBtn-win-games" onclick="maximizeWindow('win-games')" title="Maximize or Restore Window">
+          <span id="maxIcon-win-games">&#9633;</span> <span id="maxText-win-games">Maximize</span>
         </button>
         <div class="win95-address in">
           <span style="color:#555; font-weight:bold; font-size:11px;">Address</span>
@@ -2474,48 +2639,123 @@
               </div>
               <div class="lb">Space Cadet</div>
             </div>
+
+            <!-- Game 4: Solitaire -->
+            <div class="fitem" onclick="openGame('solitaire')" title="Launch Solitaire">
+              <div class="g">
+                <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                  <rect x="2" y="7" width="10" height="2" fill="#000"/>
+                  <rect x="3" y="8" width="8" height="2" fill="#e6a100"/>
+                  <rect x="2" y="9" width="28" height="15" fill="#000"/>
+                  <rect x="3" y="10" width="26" height="13" fill="#c68200"/>
+                  <rect x="6" y="4" width="18" height="10" fill="#000"/>
+                  <rect x="7" y="5" width="16" height="8" fill="#007a33"/>
+                  <rect x="9" y="6" width="6" height="8" fill="#fff" stroke="#000" stroke-width="0.5"/>
+                  <rect x="13" y="6" width="6" height="8" fill="#fff" stroke="#000" stroke-width="0.5"/>
+                  <text x="12" y="11" font-size="5" font-family="serif" font-weight="bold" fill="#dc2626" text-anchor="middle">&hearts;</text>
+                  <text x="16" y="11" font-size="5" font-family="serif" font-weight="bold" fill="#000" text-anchor="middle">&spades;</text>
+                  <polygon points="1,25 3,13 29,13 31,25" fill="#000"/>
+                  <polygon points="2,24 4,14 28,14 30,24" fill="#ffd147"/>
+                  <line x1="4" y1="14" x2="28" y2="14" stroke="#fff8b8" stroke-width="1"/>
+                  <line x1="2" y1="24" x2="30" y2="24" stroke="#8a5a00" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="lb">Solitaire</div>
+            </div>
           </div>
-          <div class="win95-statusbar">3 object(s)</div>
+          <div class="win95-statusbar">4 object(s)</div>
         </div>
 
         <!-- GAME VIEW 1: MINESWEEPER -->
         <div id="game-view-minesweeper" class="win-game-view" style="display:none; flex-direction:column; align-items:center; justify-content:center; padding:16px; background:#c0c0c0; user-select:none; overflow-y:auto;">
-          <div class="ms-container">
-            <div class="ms-header">
-              <div id="msMinesLeft" class="ms-led">010</div>
-              <button id="msFaceBtn" class="ms-face-btn" onclick="initMinesweeper()" title="Restart">&#128578;</button>
-              <div id="msTimeCounter" class="ms-led">000</div>
-            </div>
-            <div id="msBoardGrid" class="ms-board"></div>
-            <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:10px; gap:8px;">
-              <button id="msFlagToggleBtn" class="win95-btn out" style="font-size:11px; padding:4px 8px;" onclick="toggleMinesweeperFlagMode()">&#128681; Flag: OFF</button>
-              <button class="win95-btn out" style="font-size:11px; padding:4px 8px;" onclick="initMinesweeper()">New Game</button>
+          <div id="msScaleContainer" class="game-scale-wrapper">
+            <div class="ms-container">
+              <div class="ms-header">
+                <div id="msMinesLeft" class="ms-led">010</div>
+                <button id="msFaceBtn" class="ms-face-btn" onclick="initMinesweeper()" title="Restart">&#128578;</button>
+                <div id="msTimeCounter" class="ms-led">000</div>
+              </div>
+              <div id="msBoardGrid" class="ms-board"></div>
+              <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:10px; gap:8px;">
+                <button id="msFlagToggleBtn" class="win95-btn out" style="font-size:11px; padding:4px 8px;" onclick="toggleMinesweeperFlagMode()">&#128681; Flag: OFF</button>
+                <button class="win95-btn out" style="font-size:11px; padding:4px 8px;" onclick="initMinesweeper()">New Game</button>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- GAME VIEW 2: MAHJONG TITANS -->
         <div id="game-view-mahjong" class="win-game-view" style="display:none; flex-direction:column; align-items:center; justify-content:flex-start; padding:12px; background:#0e2e18; user-select:none; overflow-y:auto;">
-          <div class="mj-container">
-            <div class="mj-topbar">
-              <div>SCORE: <span id="mjScore" style="color:#fff;">0</span></div>
-              <div>PAIRS: <span id="mjPairsLeft" style="color:#fff;">18</span></div>
-              <div>MATCHES: <span id="mjAvailableMatches" style="color:#4ade80;">4</span></div>
-              <div style="display:flex; gap:6px;">
-                <button class="win95-btn out" style="font-size:11px; padding:2px 8px;" onclick="hintMahjong()">Hint</button>
-                <button class="win95-btn out" style="font-size:11px; padding:2px 8px;" onclick="shuffleMahjong()">Shuffle</button>
-                <button class="win95-btn out" style="font-size:11px; padding:2px 8px;" onclick="initMahjong()">New Game</button>
+          <div id="mjScaleContainer" class="game-scale-wrapper" style="width:760px; height:410px;">
+            <div class="mj-container">
+              <div class="mj-topbar">
+                <div>SCORE: <span id="mjScore" style="color:#fff;">0</span></div>
+                <div>PAIRS: <span id="mjPairsLeft" style="color:#fff;">18</span></div>
+                <div>MATCHES: <span id="mjAvailableMatches" style="color:#4ade80;">4</span></div>
+                <div style="display:flex; gap:6px;">
+                  <button class="win95-btn out" style="font-size:11px; padding:2px 8px;" onclick="hintMahjong()">Hint</button>
+                  <button class="win95-btn out" style="font-size:11px; padding:2px 8px;" onclick="shuffleMahjong()">Shuffle</button>
+                  <button class="win95-btn out" style="font-size:11px; padding:2px 8px;" onclick="initMahjong()">New Game</button>
+                </div>
               </div>
-            </div>
-            <div class="mj-board-wrap">
-              <div id="mjBoardContainer" class="mj-board"></div>
+              <div class="mj-board-wrap">
+                <div id="mjBoardContainer" class="mj-board"></div>
+              </div>
             </div>
           </div>
         </div>
 
         <!-- GAME VIEW 3: SPACE CADET PINBALL (AUTHENTIC ORIGINAL 3D PINBALL WEBASSEMBLY PORT) -->
         <div id="game-view-spacecadet" class="win-game-view" style="display:none; flex:1; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%; background:#000000; overflow:hidden;">
-          <iframe id="pinballFrame" src="about:blank" style="width:100%; height:100%; min-height:550px; border:none; display:block;" allow="autoplay; fullscreen" tabindex="0"></iframe>
+          <div id="pinballScaleContainer" class="game-scale-wrapper" style="width:604px; height:442px; position:relative;">
+            <iframe id="pinballFrame" src="about:blank" style="width:604px; height:442px; border:none; display:block; overflow:hidden;" allow="autoplay; fullscreen" tabindex="0"></iframe>
+          </div>
+        </div>
+
+        <!-- GAME VIEW 4: SOLITAIRE (WINDOWS 95 KLONDIKE) -->
+        <div id="game-view-solitaire" class="win-game-view" style="display:none; flex-direction:column; align-items:center; justify-content:flex-start; padding:12px; background:#007a33; user-select:none; overflow-y:auto;">
+          <div id="solitaireScaleContainer" class="game-scale-wrapper" style="width:740px; min-height:520px; transform-origin:center top;">
+            <div class="sol-topbar">
+              <div style="display:flex; gap:6px;">
+                <button class="win95-btn out" style="font-size:11px; padding:2px 8px;" onclick="initSolitaire()">New Game</button>
+                <button class="win95-btn out" style="font-size:11px; padding:2px 8px;" onclick="restartSolitaireDeal()">Restart</button>
+                <button class="win95-btn out" style="font-size:11px; padding:2px 8px;" onclick="undoSolitaire()">Undo</button>
+                <button class="win95-btn out" style="font-size:11px; padding:2px 8px;" onclick="autoCompleteSolitaire()">Auto Finish</button>
+              </div>
+              <div style="display:flex; gap:12px; align-items:center;">
+                <div class="sol-stat-box">SCORE: <span id="solScore">0</span></div>
+                <div class="sol-stat-box">TIME: <span id="solTimer">00:00</span></div>
+                <div class="sol-stat-box">MOVES: <span id="solMoves">0</span></div>
+              </div>
+            </div>
+
+            <div class="sol-board">
+              <!-- Top Row: Stock & Waste on Left, Foundations on Right -->
+              <div class="sol-upper">
+                <div class="sol-stock-waste">
+                  <div id="solStockSlot" class="sol-slot" onclick="handleStockClick()" title="Draw card from stock">&#11119;</div>
+                  <div id="solWasteSlot" class="sol-slot" title="Waste pile"></div>
+                </div>
+                <div class="sol-foundations">
+                  <div id="solFound-S" class="sol-slot" onclick="handleFoundationClick('S')" title="Spades Foundation">&spades;</div>
+                  <div id="solFound-H" class="sol-slot" onclick="handleFoundationClick('H')" title="Hearts Foundation" style="color:rgba(220,38,38,0.5);">&hearts;</div>
+                  <div id="solFound-C" class="sol-slot" onclick="handleFoundationClick('C')" title="Clubs Foundation">&clubs;</div>
+                  <div id="solFound-D" class="sol-slot" onclick="handleFoundationClick('D')" title="Diamonds Foundation" style="color:rgba(220,38,38,0.5);">&diams;</div>
+                </div>
+              </div>
+
+              <!-- Bottom Row: 7 Tableau Columns -->
+              <div class="sol-tableau">
+                <div id="solCol-0" class="sol-col" onclick="handleColEmptyClick(0)"><div class="sol-slot"></div></div>
+                <div id="solCol-1" class="sol-col" onclick="handleColEmptyClick(1)"><div class="sol-slot"></div></div>
+                <div id="solCol-2" class="sol-col" onclick="handleColEmptyClick(2)"><div class="sol-slot"></div></div>
+                <div id="solCol-3" class="sol-col" onclick="handleColEmptyClick(3)"><div class="sol-slot"></div></div>
+                <div id="solCol-4" class="sol-col" onclick="handleColEmptyClick(4)"><div class="sol-slot"></div></div>
+                <div id="solCol-5" class="sol-col" onclick="handleColEmptyClick(5)"><div class="sol-slot"></div></div>
+                <div id="solCol-6" class="sol-col" onclick="handleColEmptyClick(6)"><div class="sol-slot"></div></div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
@@ -2722,6 +2962,10 @@
         if (winId === 'win-games') {
           const pbFrame = document.getElementById('pinballFrame');
           if (pbFrame) pbFrame.src = 'about:blank';
+          if (typeof solTimerInterval !== 'undefined' && solTimerInterval) {
+            clearInterval(solTimerInterval);
+            solTimerInterval = null;
+          }
         }
       }
     }
@@ -2741,20 +2985,31 @@
       if (!win) return;
       if (win.dataset.maximized === 'true') {
         win.dataset.maximized = 'false';
-        win.style.width = win.dataset.origW || '840px';
-        win.style.height = win.dataset.origH || '620px';
+        win.style.width = win.dataset.origW || (winId === 'win-games' ? '860px' : '840px');
+        win.style.height = win.dataset.origH || (winId === 'win-games' ? '640px' : '620px');
         win.style.top = win.dataset.origT || '50px';
         win.style.left = win.dataset.origL || '140px';
       } else {
-        win.dataset.origW = win.style.width;
-        win.dataset.origH = win.style.height;
-        win.dataset.origT = win.style.top;
-        win.dataset.origL = win.style.left;
+        if (!win.dataset.origW || win.dataset.origW === '100vw') {
+          win.dataset.origW = win.style.width || (winId === 'win-games' ? '860px' : '840px');
+          win.dataset.origH = win.style.height || (winId === 'win-games' ? '640px' : '620px');
+          win.dataset.origT = win.style.top || '50px';
+          win.dataset.origL = win.style.left || '140px';
+        }
         win.dataset.maximized = 'true';
         win.style.width = '100vw';
         win.style.height = 'calc(100vh - 32px)';
         win.style.top = '0px';
         win.style.left = '0px';
+      }
+      if (winId === 'win-games') {
+        const isMax = win.dataset.maximized === 'true';
+        const maxText = document.getElementById('maxText-win-games');
+        const maxIcon = document.getElementById('maxIcon-win-games');
+        if (maxText) maxText.textContent = isMax ? 'Restore' : 'Maximize';
+        if (maxIcon) maxIcon.innerHTML = isMax ? '&#10697;' : '&#9633;';
+        setTimeout(resizeAllGamesToFit, 40);
+        setTimeout(resizeAllGamesToFit, 180);
       }
     }
 
@@ -2940,8 +3195,10 @@
     updateClock();
 
     function dragWindow(e, winId) {
+        if (e.target.closest('.window-controls') || e.target.closest('.tbtn') || e.target.closest('button')) return;
         const win = document.getElementById(winId);
         if (!win) return;
+        if (win.dataset.maximized === 'true') return;
         
         bringToFront(winId);
 
@@ -3931,14 +4188,23 @@
         setTimeout(() => {
           if (pbFrame) pbFrame.focus();
         }, 150);
+      } else if (gameName === 'solitaire') {
+        title = 'Solitaire';
+        initSolitaire();
       }
+      const titleEl = document.querySelector('#win-games .os-window-title');
+      if (titleEl) titleEl.textContent = title;
       if (addressInput) addressInput.value = 'C:\\Desktop\\Games\\' + title;
+      setTimeout(resizeAllGamesToFit, 40);
+      setTimeout(resizeAllGamesToFit, 200);
     }
 
     function backToGamesFolder() {
       const folderView = document.getElementById('folder-win-games');
       const backBtn = document.getElementById('backBtn-win-games');
       const addressInput = document.getElementById('address-win-games');
+      const titleEl = document.querySelector('#win-games .os-window-title');
+      if (titleEl) titleEl.textContent = 'Games';
 
       document.querySelectorAll('#win-games .win-game-view').forEach(v => v.style.display = 'none');
       if (folderView) folderView.style.display = 'flex';
@@ -3947,6 +4213,10 @@
 
       const pbFrame = document.getElementById('pinballFrame');
       if (pbFrame) pbFrame.src = 'about:blank';
+      if (typeof solTimerInterval !== 'undefined' && solTimerInterval) {
+        clearInterval(solTimerInterval);
+        solTimerInterval = null;
+      }
     }
 
     /* --------------------------------------------------------------------------
@@ -4450,6 +4720,528 @@ const MAHJONG_DECK = [
       updateMahjongStatus();
     }
 
+    
+    /* --------------------------------------------------------------------------
+       GAMES RESPONSIVE FULLSCREEN SCALING CONTROLLER
+       -------------------------------------------------------------------------- */
+    function resizeAllGamesToFit() {
+      const winGames = document.getElementById('win-games');
+      if (!winGames || winGames.style.display === 'none') return;
+
+      // 1. Space Cadet
+      const pbView = document.getElementById('game-view-spacecadet');
+      const pbCont = document.getElementById('pinballScaleContainer');
+      if (pbView && pbCont && pbView.style.display !== 'none') {
+        const availW = pbView.clientWidth - 16;
+        const availH = pbView.clientHeight - 16;
+        if (availW > 50 && availH > 50) {
+          const scale = Math.min(availW / 604, availH / 442);
+          pbCont.style.transform = `scale(${Math.max(0.4, scale)})`;
+        }
+      }
+
+      // 2. Solitaire
+      const solView = document.getElementById('game-view-solitaire');
+      const solCont = document.getElementById('solitaireScaleContainer');
+      if (solView && solCont && solView.style.display !== 'none') {
+        const availW = solView.clientWidth - 20;
+        const availH = solView.clientHeight - 20;
+        if (availW > 50 && availH > 50) {
+          const scale = Math.min(availW / 740, availH / 520);
+          solCont.style.transform = `scale(${Math.max(0.45, Math.min(scale, 2.2))})`;
+        }
+      }
+
+      // 3. Mahjong Titans
+      const mjView = document.getElementById('game-view-mahjong');
+      const mjCont = document.getElementById('mjScaleContainer');
+      if (mjView && mjCont && mjView.style.display !== 'none') {
+        const availW = mjView.clientWidth - 20;
+        const availH = mjView.clientHeight - 20;
+        if (availW > 50 && availH > 50) {
+          const scale = Math.min(availW / 760, availH / 410);
+          mjCont.style.transform = `scale(${Math.max(0.45, Math.min(scale, 2.2))})`;
+        }
+      }
+
+      // 4. Minesweeper
+      const msView = document.getElementById('game-view-minesweeper');
+      const msCont = document.getElementById('msScaleContainer');
+      if (msView && msCont && msView.style.display !== 'none') {
+        const availW = msView.clientWidth - 20;
+        const availH = msView.clientHeight - 20;
+        if (availW > 50 && availH > 50) {
+          const scale = Math.min(availW / 280, availH / 340);
+          msCont.style.transform = scale > 1.1 ? `scale(${Math.min(scale, 2.0)})` : 'none';
+        }
+      }
+    }
+    window.addEventListener('resize', resizeAllGamesToFit);
+
+    /* --------------------------------------------------------------------------
+       4. WINDOWS 95 SOLITAIRE (KLONDIKE) GAME ENGINE
+       -------------------------------------------------------------------------- */
+    const SOL_SUITS = [
+      { id: 'S', symbol: '\u2660', color: 'black' },
+      { id: 'H', symbol: '\u2665', color: 'red' },
+      { id: 'C', symbol: '\u2663', color: 'black' },
+      { id: 'D', symbol: '\u2666', color: 'red' }
+    ];
+    const SOL_RANKS = ['', 'A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K'];
+
+    let solStock = [];
+    let solWaste = [];
+    let solFoundations = { S: [], H: [], C: [], D: [] };
+    let solTableau = [[], [], [], [], [], [], []];
+    let solInitialDeck = [];
+    let solSelected = null;
+    let solScore = 0;
+    let solMoves = 0;
+    let solTimerSeconds = 0;
+    let solTimerInterval = null;
+    let solUndoStack = [];
+
+    function initSolitaire() {
+      if (solTimerInterval) clearInterval(solTimerInterval);
+      solTimerSeconds = 0;
+      solScore = 0;
+      solMoves = 0;
+      solSelected = null;
+      solUndoStack = [];
+
+      // Generate full 52-card deck
+      let deck = [];
+      let cardId = 1;
+      SOL_SUITS.forEach(s => {
+        for (let r = 1; r <= 13; r++) {
+          deck.push({
+            id: 'c_' + (cardId++),
+            suit: s.id,
+            rank: r,
+            faceUp: false
+          });
+        }
+      });
+
+      // Fisher-Yates shuffle
+      for (let i = deck.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [deck[i], deck[j]] = [deck[j], deck[i]];
+      }
+      solInitialDeck = JSON.parse(JSON.stringify(deck));
+
+      dealSolitaireCards(deck);
+      startSolitaireTimer();
+      renderSolitaire();
+      setTimeout(resizeAllGamesToFit, 40);
+    }
+
+    function restartSolitaireDeal() {
+      if (!solInitialDeck || solInitialDeck.length === 0) {
+        initSolitaire();
+        return;
+      }
+      if (solTimerInterval) clearInterval(solTimerInterval);
+      solTimerSeconds = 0;
+      solScore = 0;
+      solMoves = 0;
+      solSelected = null;
+      solUndoStack = [];
+      dealSolitaireCards(JSON.parse(JSON.stringify(solInitialDeck)));
+      startSolitaireTimer();
+      renderSolitaire();
+    }
+
+    function dealSolitaireCards(deck) {
+      solTableau = [[], [], [], [], [], [], []];
+      solFoundations = { S: [], H: [], C: [], D: [] };
+      solWaste = [];
+
+      for (let col = 0; col < 7; col++) {
+        for (let row = col; row < 7; row++) {
+          const card = deck.pop();
+          if (row === col) card.faceUp = true;
+          solTableau[row].push(card);
+        }
+      }
+      solStock = deck; // remaining 24 cards
+    }
+
+    function startSolitaireTimer() {
+      solTimerInterval = setInterval(() => {
+        solTimerSeconds++;
+        const timerEl = document.getElementById('solTimer');
+        if (timerEl) {
+          const m = Math.floor(solTimerSeconds / 60);
+          const s = solTimerSeconds % 60;
+          timerEl.textContent = `${String(m).padStart(2, '0')}:${String(s).padStart(2, '0')}`;
+        }
+      }, 1000);
+    }
+
+    function saveSolitaireSnapshot() {
+      const snap = {
+        stock: JSON.parse(JSON.stringify(solStock)),
+        waste: JSON.parse(JSON.stringify(solWaste)),
+        foundations: JSON.parse(JSON.stringify(solFoundations)),
+        tableau: JSON.parse(JSON.stringify(solTableau)),
+        score: solScore,
+        moves: solMoves
+      };
+      solUndoStack.push(snap);
+      if (solUndoStack.length > 30) solUndoStack.shift();
+    }
+
+    function undoSolitaire() {
+      if (solUndoStack.length === 0) return;
+      const snap = solUndoStack.pop();
+      solStock = snap.stock;
+      solWaste = snap.waste;
+      solFoundations = snap.foundations;
+      solTableau = snap.tableau;
+      solScore = snap.score;
+      solMoves = snap.moves;
+      solSelected = null;
+      playSynthNote(340, 0.05);
+      renderSolitaire();
+    }
+
+    function handleStockClick() {
+      saveSolitaireSnapshot();
+      if (solStock.length > 0) {
+        const card = solStock.pop();
+        card.faceUp = true;
+        solWaste.push(card);
+        solMoves++;
+        playSynthNote(480, 0.03);
+      } else if (solWaste.length > 0) {
+        // Recycle waste to stock
+        solStock = solWaste.reverse().map(c => { c.faceUp = false; return c; });
+        solWaste = [];
+        solScore = Math.max(0, solScore - 15);
+        solMoves++;
+        playSynthNote(380, 0.04);
+      }
+      solSelected = null;
+      renderSolitaire();
+    }
+
+    function isSolitaireRed(suit) {
+      return suit === 'H' || suit === 'D';
+    }
+
+    function handleCardClick(card, source, colIdx, cardIdx) {
+      if (!card.faceUp) {
+        // If it is top of its column, flip it up!
+        if (source === 'tableau' && cardIdx === solTableau[colIdx].length - 1) {
+          saveSolitaireSnapshot();
+          card.faceUp = true;
+          solScore += 5;
+          solMoves++;
+          playSynthNote(440, 0.04);
+          renderSolitaire();
+        }
+        return;
+      }
+
+      if (!solSelected) {
+        solSelected = { source, colIdx, cardIdx, card };
+        renderSolitaire();
+        return;
+      }
+
+      // If clicked the same card, deselect
+      if (solSelected.source === source && solSelected.colIdx === colIdx && solSelected.cardIdx === cardIdx) {
+        solSelected = null;
+        renderSolitaire();
+        return;
+      }
+
+      // Try legal tableau move
+      if (source === 'tableau') {
+        const targetCol = solTableau[colIdx];
+        const targetTop = targetCol.length > 0 ? targetCol[targetCol.length - 1] : null;
+        if (targetTop && targetTop.faceUp) {
+          if (isSolitaireRed(solSelected.card.suit) !== isSolitaireRed(targetTop.suit) && solSelected.card.rank === targetTop.rank - 1) {
+            saveSolitaireSnapshot();
+            executeTableauMove(solSelected, colIdx);
+            solSelected = null;
+            renderSolitaire();
+            return;
+          }
+        }
+      }
+
+      // Else switch selection to clicked face-up card
+      solSelected = { source, colIdx, cardIdx, card };
+      renderSolitaire();
+    }
+
+    function handleCardDblClick(card, source, colIdx) {
+      if (!card.faceUp) return;
+      // Check if can move to its foundation
+      const found = solFoundations[card.suit];
+      const reqRank = found.length === 0 ? 1 : found[found.length - 1].rank + 1;
+      if (card.rank === reqRank) {
+        if (source === 'tableau') {
+          const col = solTableau[colIdx];
+          if (col[col.length - 1].id !== card.id) return;
+          saveSolitaireSnapshot();
+          const moved = col.pop();
+          found.push(moved);
+          if (col.length > 0 && !col[col.length - 1].faceUp) {
+            col[col.length - 1].faceUp = true;
+            solScore += 5;
+          }
+        } else if (source === 'waste') {
+          saveSolitaireSnapshot();
+          const moved = solWaste.pop();
+          found.push(moved);
+        }
+        solScore += 10;
+        solMoves++;
+        solSelected = null;
+        playSynthNote(620, 0.06);
+        renderSolitaire();
+        checkSolitaireWin();
+      }
+    }
+
+    function handleColEmptyClick(colIdx) {
+      if (!solSelected) return;
+      const targetCol = solTableau[colIdx];
+      if (targetCol.length === 0 && solSelected.card.rank === 13) {
+        saveSolitaireSnapshot();
+        executeTableauMove(solSelected, colIdx);
+        solSelected = null;
+        renderSolitaire();
+      }
+    }
+
+    function handleFoundationClick(suit) {
+      if (!solSelected) return;
+      const found = solFoundations[suit];
+      const reqRank = found.length === 0 ? 1 : found[found.length - 1].rank + 1;
+      if (solSelected.card.suit === suit && solSelected.card.rank === reqRank) {
+        if (solSelected.source === 'tableau') {
+          const col = solTableau[solSelected.colIdx];
+          if (solSelected.cardIdx === col.length - 1) {
+            saveSolitaireSnapshot();
+            const moved = col.pop();
+            found.push(moved);
+            if (col.length > 0 && !col[col.length - 1].faceUp) {
+              col[col.length - 1].faceUp = true;
+              solScore += 5;
+            }
+            solScore += 10;
+            solMoves++;
+            solSelected = null;
+            playSynthNote(620, 0.06);
+            renderSolitaire();
+            checkSolitaireWin();
+          }
+        } else if (solSelected.source === 'waste') {
+          saveSolitaireSnapshot();
+          const moved = solWaste.pop();
+          found.push(moved);
+          solScore += 10;
+          solMoves++;
+          solSelected = null;
+          playSynthNote(620, 0.06);
+          renderSolitaire();
+          checkSolitaireWin();
+        }
+      }
+    }
+
+    function executeTableauMove(selected, targetColIdx) {
+      if (selected.source === 'tableau') {
+        const srcCol = solTableau[selected.colIdx];
+        const movedCards = srcCol.splice(selected.cardIdx);
+        solTableau[targetColIdx].push(...movedCards);
+        if (srcCol.length > 0 && !srcCol[srcCol.length - 1].faceUp) {
+          srcCol[srcCol.length - 1].faceUp = true;
+          solScore += 5;
+        }
+        solScore += 5;
+        solMoves++;
+        playSynthNote(480, 0.05);
+      } else if (selected.source === 'waste') {
+        const moved = solWaste.pop();
+        solTableau[targetColIdx].push(moved);
+        solScore += 5;
+        solMoves++;
+        playSynthNote(480, 0.05);
+      }
+    }
+
+    function autoCompleteSolitaire() {
+      saveSolitaireSnapshot();
+      let movedAny = true;
+      let limit = 0;
+      while (movedAny && limit < 60) {
+        movedAny = false;
+        limit++;
+        if (solWaste.length > 0) {
+          const card = solWaste[solWaste.length - 1];
+          const found = solFoundations[card.suit];
+          const req = found.length === 0 ? 1 : found[found.length - 1].rank + 1;
+          if (card.rank === req) {
+            found.push(solWaste.pop());
+            solScore += 10;
+            movedAny = true;
+            continue;
+          }
+        }
+        for (let c = 0; c < 7; c++) {
+          const col = solTableau[c];
+          if (col.length > 0) {
+            const card = col[col.length - 1];
+            if (card.faceUp) {
+              const found = solFoundations[card.suit];
+              const req = found.length === 0 ? 1 : found[found.length - 1].rank + 1;
+              if (card.rank === req) {
+                found.push(col.pop());
+                solScore += 10;
+                if (col.length > 0 && !col[col.length - 1].faceUp) {
+                  col[col.length - 1].faceUp = true;
+                }
+                movedAny = true;
+                break;
+              }
+            }
+          }
+        }
+      }
+      playSynthNote(580, 0.08);
+      renderSolitaire();
+      checkSolitaireWin();
+    }
+
+    function checkSolitaireWin() {
+      const total = Object.values(solFoundations).reduce((acc, f) => acc + f.length, 0);
+      if (total === 52) {
+        if (solTimerInterval) {
+          clearInterval(solTimerInterval);
+          solTimerInterval = null;
+        }
+        playSynthVictoryTune();
+        setTimeout(() => {
+          alert(`Congratulations! You solved Solitaire!\nScore: ${solScore}\nMoves: ${solMoves}`);
+        }, 200);
+      }
+    }
+
+    function createSolCardEl(card, source, colIdx, cardIdx) {
+      const el = document.createElement('div');
+      el.className = 'sol-card ' + (card.faceUp ? 'card-up ' + (isSolitaireRed(card.suit) ? 'card-red' : 'card-black') : 'card-down');
+      if (solSelected && solSelected.card && solSelected.card.id === card.id) {
+        el.classList.add('selected-card');
+      }
+
+      if (card.faceUp) {
+        const suitDef = SOL_SUITS.find(s => s.id === card.suit);
+        const rankStr = SOL_RANKS[card.rank];
+        const sym = suitDef ? suitDef.symbol : card.suit;
+
+        el.innerHTML = `
+          <div class="sol-card-corner"><span>${rankStr}</span><span>${sym}</span></div>
+          <div class="sol-card-center">${sym}</div>
+          <div class="sol-card-corner-br"><span>${rankStr}</span><span>${sym}</span></div>
+        `;
+
+        el.onclick = (e) => {
+          e.stopPropagation();
+          handleCardClick(card, source, colIdx, cardIdx);
+        };
+        el.ondblclick = (e) => {
+          e.stopPropagation();
+          handleCardDblClick(card, source, colIdx);
+        };
+      } else {
+        el.onclick = (e) => {
+          e.stopPropagation();
+          handleCardClick(card, source, colIdx, cardIdx);
+        };
+      }
+      return el;
+    }
+
+    function renderSolitaire() {
+      // 1. Stock
+      const stockSlot = document.getElementById('solStockSlot');
+      if (stockSlot) {
+        stockSlot.innerHTML = '';
+        if (solStock.length > 0) {
+          const backCard = document.createElement('div');
+          backCard.className = 'sol-card card-down';
+          backCard.style.position = 'absolute';
+          backCard.style.top = '0';
+          backCard.style.left = '0';
+          stockSlot.appendChild(backCard);
+        } else {
+          stockSlot.innerHTML = '<span style="font-size:22px; color:rgba(255,255,255,0.4);">&#11119;</span>';
+        }
+      }
+
+      // 2. Waste
+      const wasteSlot = document.getElementById('solWasteSlot');
+      if (wasteSlot) {
+        wasteSlot.innerHTML = '';
+        if (solWaste.length > 0) {
+          const topCard = solWaste[solWaste.length - 1];
+          const cEl = createSolCardEl(topCard, 'waste', null, solWaste.length - 1);
+          cEl.style.position = 'absolute';
+          cEl.style.top = '0';
+          cEl.style.left = '0';
+          wasteSlot.appendChild(cEl);
+        }
+      }
+
+      // 3. Foundations
+      ['S', 'H', 'C', 'D'].forEach(suit => {
+        const fSlot = document.getElementById('solFound-' + suit);
+        if (fSlot) {
+          fSlot.innerHTML = '';
+          const cards = solFoundations[suit];
+          if (cards.length > 0) {
+            const topCard = cards[cards.length - 1];
+            const cEl = createSolCardEl(topCard, 'foundation', null, cards.length - 1);
+            cEl.style.position = 'absolute';
+            cEl.style.top = '0';
+            cEl.style.left = '0';
+            fSlot.appendChild(cEl);
+          } else {
+            const suitDef = SOL_SUITS.find(s => s.id === suit);
+            fSlot.innerHTML = `<span style="font-size:26px;">${suitDef ? suitDef.symbol : ''}</span>`;
+          }
+        }
+      });
+
+      // 4. Tableau Columns
+      for (let c = 0; c < 7; c++) {
+        const colEl = document.getElementById('solCol-' + c);
+        if (colEl) {
+          colEl.innerHTML = '<div class="sol-slot"></div>';
+          const cards = solTableau[c];
+          let topOffset = 0;
+          cards.forEach((card, idx) => {
+            const cEl = createSolCardEl(card, 'tableau', c, idx);
+            cEl.style.top = topOffset + 'px';
+            cEl.style.left = '0px';
+            cEl.style.zIndex = idx + 2;
+            colEl.appendChild(cEl);
+            topOffset += card.faceUp ? 24 : 16;
+          });
+        }
+      }
+
+      // Stats
+      const scoreEl = document.getElementById('solScore');
+      const movesEl = document.getElementById('solMoves');
+      if (scoreEl) scoreEl.textContent = solScore;
+      if (movesEl) movesEl.textContent = solMoves;
+    }
     </script>
   </body>
 </html>
