@@ -768,6 +768,303 @@
         max-width: 90vw;
       }
     }
+    /* ==========================================
+       WINDOWS 95 GAMES & ENTERTAINMENT SUITE
+       ========================================== */
+    .win-game-view {
+      box-sizing: border-box;
+      width: 100%;
+      height: 100%;
+    }
+
+    /* MINESWEEPER STYLES */
+    .ms-container {
+      background: #c0c0c0;
+      border: 3px solid;
+      border-color: #ffffff #808080 #808080 #ffffff;
+      padding: 10px;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      user-select: none;
+      box-shadow: 2px 2px 6px rgba(0,0,0,0.35);
+      margin: auto;
+    }
+    .ms-header {
+      background: #c0c0c0;
+      border: 2px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      padding: 6px 10px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 100%;
+      box-sizing: border-box;
+      margin-bottom: 10px;
+    }
+    .ms-led {
+      background: #000000;
+      color: #ff0000;
+      font-family: 'Courier New', monospace;
+      font-weight: 900;
+      font-size: 24px;
+      line-height: 1;
+      padding: 3px 6px;
+      border: 1px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      letter-spacing: 2px;
+      min-width: 52px;
+      text-align: right;
+    }
+    .ms-face-btn {
+      width: 34px;
+      height: 34px;
+      border: 2px solid;
+      border-color: #ffffff #808080 #808080 #ffffff;
+      background: #c0c0c0;
+      font-size: 20px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      border-radius: 0;
+      outline: none;
+      user-select: none;
+    }
+    .ms-face-btn:active {
+      border-color: #808080 #ffffff #ffffff #808080;
+    }
+    .ms-board {
+      border: 3px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      display: grid;
+      grid-template-columns: repeat(9, 30px);
+      grid-template-rows: repeat(9, 30px);
+      gap: 0;
+      background: #808080;
+    }
+    .ms-cell {
+      width: 30px;
+      height: 30px;
+      border: 2px solid;
+      border-color: #ffffff #808080 #808080 #ffffff;
+      background: #c0c0c0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: 'MS Sans Serif', Tahoma, sans-serif;
+      font-weight: 900;
+      font-size: 15px;
+      cursor: pointer;
+      user-select: none;
+      box-sizing: border-box;
+    }
+    .ms-cell.revealed {
+      border: 1px solid #7c7c7c !important;
+      background: #c0c0c0 !important;
+      cursor: default;
+    }
+    .ms-cell.mine-hit {
+      background: #ef4444 !important;
+    }
+
+    /* MAHJONG TITANS STYLES */
+    .mj-container {
+      background: radial-gradient(circle at 50% 40%, #1a562e, #0c2614);
+      border: 3px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 760px;
+      box-sizing: border-box;
+      box-shadow: inset 0 0 25px rgba(0,0,0,0.65);
+      border-radius: 4px;
+      margin: auto;
+    }
+    .mj-topbar {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: rgba(0,0,0,0.45);
+      border: 1px solid rgba(255,255,255,0.18);
+      border-radius: 4px;
+      padding: 6px 12px;
+      margin-bottom: 14px;
+      color: #ffd700;
+      font-family: 'MS Sans Serif', Tahoma, sans-serif;
+      font-size: 12px;
+      font-weight: bold;
+    }
+    .mj-board-wrap {
+      position: relative;
+      width: 100%;
+      max-width: 700px;
+      height: 390px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+    }
+    .mj-board {
+      position: relative;
+      width: 660px;
+      height: 370px;
+      margin: 0 auto;
+    }
+    .mj-tile {
+      position: absolute;
+      width: 54px;
+      height: 70px;
+      background: linear-gradient(135deg, #ffffff 0%, #fbf9f4 80%, #d8d0c1 100%);
+      border: 1px solid #7c7263;
+      border-radius: 5px;
+      box-shadow: 2px 3px 0 #1b4d24, 3px 5px 4px rgba(0,0,0,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      user-select: none;
+      transition: transform 0.12s ease, box-shadow 0.12s ease, filter 0.12s ease;
+      font-family: 'Segoe UI Historic', 'SimSun', 'Microsoft YaHei', serif;
+    }
+    .mj-tile::after {
+      content: '';
+      position: absolute;
+      left: -2px;
+      bottom: -3px;
+      right: -2px;
+      height: 4px;
+      background: #185a22;
+      border-radius: 0 0 4px 4px;
+      z-index: -1;
+    }
+    .mj-tile.blocked {
+      filter: brightness(0.75) contrast(0.9);
+      cursor: not-allowed;
+      box-shadow: 1px 2px 0 #103316, 2px 3px 2px rgba(0,0,0,0.3);
+    }
+    .mj-tile.free:hover {
+      transform: translateY(-3px) scale(1.04);
+      box-shadow: 0 4px 12px rgba(255,215,0,0.45), 2px 4px 0 #1b4d24;
+      z-index: 100 !important;
+    }
+    .mj-tile.selected {
+      transform: translateY(-5px) scale(1.06) !important;
+      border: 2px solid #ffd700 !important;
+      box-shadow: 0 0 14px #ffd700, 2px 4px 0 #1b4d24 !important;
+      z-index: 200 !important;
+    }
+    .mj-tile.hint-pulse {
+      animation: mjHintPulse 0.9s infinite alternate ease-in-out;
+      z-index: 150 !important;
+    }
+    @keyframes mjHintPulse {
+      0% { box-shadow: 0 0 4px #00ffff, 2px 3px 0 #1b4d24; }
+      100% { box-shadow: 0 0 18px #00ffff, 2px 4px 0 #1b4d24; transform: scale(1.05); }
+    }
+    .mj-tile.layer-0 { z-index: 10; }
+    .mj-tile.layer-1 { z-index: 20; box-shadow: 3px 5px 0 #1b4d24, 4px 7px 6px rgba(0,0,0,0.55); }
+    .mj-tile.layer-2 { z-index: 30; box-shadow: 4px 7px 0 #1b4d24, 6px 9px 8px rgba(0,0,0,0.65); }
+    .mj-sym {
+      font-size: 26px;
+      line-height: 1;
+      font-weight: bold;
+    }
+    .mj-sub {
+      font-size: 10px;
+      line-height: 1;
+      margin-top: 2px;
+      color: #666;
+      font-family: 'MS Sans Serif', Tahoma, sans-serif;
+    }
+
+    /* SPACE CADET PINBALL STYLES */
+    .pb-container {
+      background: #060713;
+      border: 3px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      padding: 10px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      width: 100%;
+      max-width: 480px;
+      box-sizing: border-box;
+      box-shadow: 0 0 25px rgba(0,0,0,0.8);
+      user-select: none;
+      margin: auto;
+    }
+    .pb-dashboard {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      width: 100%;
+      background: #0c0f24;
+      border: 2px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      padding: 6px 10px;
+      box-sizing: border-box;
+      margin-bottom: 8px;
+    }
+    .pb-lcd-box {
+      background: #000000;
+      border: 1px solid #00f0ff;
+      color: #00f0ff;
+      font-family: 'Courier New', monospace;
+      font-weight: bold;
+      font-size: 13px;
+      padding: 3px 6px;
+      box-shadow: inset 0 0 6px rgba(0,240,255,0.4);
+      letter-spacing: 1px;
+    }
+    #pinballCanvas {
+      background: #070919;
+      border: 2px solid;
+      border-color: #808080 #ffffff #ffffff #808080;
+      display: block;
+      margin: 0 auto;
+      max-width: 100%;
+      height: auto;
+      touch-action: none;
+    }
+    .pb-controls-bar {
+      display: flex;
+      gap: 10px;
+      justify-content: center;
+      width: 100%;
+      margin-top: 8px;
+    }
+    .pb-ctrl-btn {
+      flex: 1;
+      padding: 8px 4px;
+      background: #c0c0c0;
+      border: 2px solid;
+      border-color: #ffffff #808080 #808080 #ffffff;
+      font-family: 'MS Sans Serif', Tahoma, sans-serif;
+      font-weight: bold;
+      font-size: 12px;
+      cursor: pointer;
+      text-align: center;
+      user-select: none;
+      touch-action: manipulation;
+    }
+    .pb-ctrl-btn:active, .pb-ctrl-btn.active {
+      border-color: #808080 #ffffff #ffffff #808080;
+      background: #a0a0a0;
+    }
+
+    @media (max-width: 768px) {
+      .mj-board-wrap {
+        transform: scale(0.55);
+        transform-origin: top center;
+        height: 220px;
+      }
+    }
       </style>
   </head>
   <body class="theme-day">
@@ -847,6 +1144,9 @@
         </li>
         <li onclick="openWindow('win-about'); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
           <span>&#128196;</span> <span>About Gabbie.txt</span>
+        </li>
+                <li onclick="openWindow('win-games'); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
+          <span>&#127918;</span> <span>Games</span>
         </li>
         <li onclick="openWindow('win-limewire'); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
           <span>&#127819;</span> <span>LimeWire v4.12</span>
@@ -993,6 +1293,28 @@
           </svg>
         </div>
         <span class="desktop-icon-title">LimeWire v4.12</span>
+      </div>
+
+      <div class="desktop-icon" onclick="openWindow('win-games')">
+        <div class="desktop-icon-img">
+          <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
+            <rect x="2" y="7" width="10" height="2" fill="#000"/>
+            <rect x="3" y="8" width="8" height="2" fill="#e6a100"/>
+            <rect x="2" y="9" width="28" height="15" fill="#000"/>
+            <rect x="3" y="10" width="26" height="13" fill="#c68200"/>
+            <rect x="6" y="4" width="18" height="10" fill="#000"/>
+            <rect x="7" y="5" width="16" height="8" fill="#fff"/>
+            <rect x="11" y="6" width="8" height="6" fill="#111827"/>
+            <rect x="13" y="7" width="4" height="4" fill="#3b82f6"/>
+            <circle cx="12.5" cy="8.5" r="1" fill="#ef4444"/>
+            <circle cx="17.5" cy="9.5" r="1" fill="#10b981"/>
+            <polygon points="1,25 3,13 29,13 31,25" fill="#000"/>
+            <polygon points="2,24 4,14 28,14 30,24" fill="#ffd147"/>
+            <line x1="4" y1="14" x2="28" y2="14" stroke="#fff8b8" stroke-width="1"/>
+            <line x1="2" y1="24" x2="30" y2="24" stroke="#8a5a00" stroke-width="1"/>
+          </svg>
+        </div>
+        <span class="desktop-icon-title">Games</span>
       </div>
 
       <div class="desktop-icon" onclick="triggerVirusPrank()" title="DO NOT CLICK!">
@@ -2048,6 +2370,178 @@
       </div>
     </div>
 
+    <!-- WINDOW: GAMES EXPLORER (MINESWEEPER, MAHJONG TITANS, SPACE CADET PINBALL) -->
+    <div id="win-games" class="os-window minimized out" style="width: 860px; height: 640px; top: 60px; left: 160px;">
+      <div class="os-window-header titlebar" onmousedown="dragWindow(event, 'win-games')">
+        <div class="flex items-center gap-1.5 overflow-hidden">
+          <span style="font-size: 13px;">&#127918;</span>
+          <span class="os-window-title ti">Games</span>
+        </div>
+        <div class="window-controls flex items-center gap-1">
+          <span class="tbtn out" onclick="minimizeWindow('win-games')" title="Minimize">_</span>
+          <span class="tbtn out" onclick="maximizeWindow('win-games')" title="Maximize">&#9633;</span>
+          <span class="tbtn out" onclick="closeWindow('win-games')" title="Close">&#10005;</span>
+        </div>
+      </div>
+
+      <div class="win95-menubar">
+        <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+      </div>
+
+      <div class="win95-toolbar">
+        <button class="win95-tbtn out" id="backBtn-win-games" onclick="backToGamesFolder()" disabled title="Back to Games">
+          <span>&larr;</span> Back
+        </button>
+        <div class="win95-address in">
+          <span style="color:#555; font-weight:bold; font-size:11px;">Address</span>
+          <input type="text" readonly id="address-win-games" value="C:\Desktop\Games" />
+        </div>
+      </div>
+
+      <div class="os-window-body in" style="flex:1; display:flex; flex-direction:column; overflow:hidden; background:#c0c0c0;">
+        <!-- FOLDER EXPLORER VIEW (INITIAL) -->
+        <div id="folder-win-games" class="win-folder-view" style="display:flex;">
+          <div class="folder" style="padding:24px 28px; gap:28px 24px;">
+            <!-- Game 1: Minesweeper -->
+            <div class="fitem" onclick="openGame('minesweeper')" title="Launch Minesweeper">
+              <div class="g">
+                <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                  <rect x="2" y="7" width="10" height="2" fill="#000"/>
+                  <rect x="3" y="8" width="8" height="2" fill="#e6a100"/>
+                  <rect x="2" y="9" width="28" height="15" fill="#000"/>
+                  <rect x="3" y="10" width="26" height="13" fill="#c68200"/>
+                  <rect x="6" y="4" width="18" height="10" fill="#000"/>
+                  <rect x="7" y="5" width="16" height="8" fill="#c0c0c0"/>
+                  <circle cx="15" cy="9" r="3" fill="#000"/>
+                  <line x1="15" y1="5" x2="15" y2="13" stroke="#000" stroke-width="1"/>
+                  <line x1="11" y1="9" x2="19" y2="9" stroke="#000" stroke-width="1"/>
+                  <line x1="12" y1="6" x2="18" y2="12" stroke="#000" stroke-width="1"/>
+                  <line x1="12" y1="12" x2="18" y2="6" stroke="#000" stroke-width="1"/>
+                  <rect x="14" y="8" width="1" height="1" fill="#fff"/>
+                  <polygon points="1,25 3,13 29,13 31,25" fill="#000"/>
+                  <polygon points="2,24 4,14 28,14 30,24" fill="#ffd147"/>
+                  <line x1="4" y1="14" x2="28" y2="14" stroke="#fff8b8" stroke-width="1"/>
+                  <line x1="2" y1="24" x2="30" y2="24" stroke="#8a5a00" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="lb">Minesweeper</div>
+            </div>
+
+            <!-- Game 2: Mahjong Titans -->
+            <div class="fitem" onclick="openGame('mahjong')" title="Launch Mahjong Titans">
+              <div class="g">
+                <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                  <rect x="2" y="7" width="10" height="2" fill="#000"/>
+                  <rect x="3" y="8" width="8" height="2" fill="#e6a100"/>
+                  <rect x="2" y="9" width="28" height="15" fill="#000"/>
+                  <rect x="3" y="10" width="26" height="13" fill="#c68200"/>
+                  <rect x="6" y="4" width="18" height="10" fill="#000"/>
+                  <rect x="7" y="5" width="16" height="8" fill="#15803d"/>
+                  <rect x="11" y="6" width="8" height="6" fill="#fff" stroke="#14532d" stroke-width="0.5"/>
+                  <text x="15" y="11" font-size="6" font-family="serif" font-weight="bold" fill="#dc2626" text-anchor="middle">&#20013;</text>
+                  <polygon points="1,25 3,13 29,13 31,25" fill="#000"/>
+                  <polygon points="2,24 4,14 28,14 30,24" fill="#ffd147"/>
+                  <line x1="4" y1="14" x2="28" y2="14" stroke="#fff8b8" stroke-width="1"/>
+                  <line x1="2" y1="24" x2="30" y2="24" stroke="#8a5a00" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="lb">Mahjong Titans</div>
+            </div>
+
+            <!-- Game 3: Space Cadet Pinball -->
+            <div class="fitem" onclick="openGame('spacecadet')" title="Launch Space Cadet Pinball">
+              <div class="g">
+                <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
+                  <rect x="2" y="7" width="10" height="2" fill="#000"/>
+                  <rect x="3" y="8" width="8" height="2" fill="#e6a100"/>
+                  <rect x="2" y="9" width="28" height="15" fill="#000"/>
+                  <rect x="3" y="10" width="26" height="13" fill="#c68200"/>
+                  <rect x="6" y="4" width="18" height="10" fill="#000"/>
+                  <rect x="7" y="5" width="16" height="8" fill="#1e1b4b"/>
+                  <polygon points="15,6 18,9 12,9" fill="#38bdf8"/>
+                  <rect x="14" y="9" width="2" height="2" fill="#fbbf24"/>
+                  <polygon points="1,25 3,13 29,13 31,25" fill="#000"/>
+                  <polygon points="2,24 4,14 28,14 30,24" fill="#ffd147"/>
+                  <line x1="4" y1="14" x2="28" y2="14" stroke="#fff8b8" stroke-width="1"/>
+                  <line x1="2" y1="24" x2="30" y2="24" stroke="#8a5a00" stroke-width="1"/>
+                </svg>
+              </div>
+              <div class="lb">Space Cadet</div>
+            </div>
+          </div>
+          <div class="win95-statusbar">3 object(s)</div>
+        </div>
+
+        <!-- GAME VIEW 1: MINESWEEPER -->
+        <div id="game-view-minesweeper" class="win-game-view" style="display:none; flex-direction:column; align-items:center; justify-content:center; padding:16px; background:#c0c0c0; user-select:none; overflow-y:auto;">
+          <div class="ms-container">
+            <div class="ms-header">
+              <div id="msMinesLeft" class="ms-led">010</div>
+              <button id="msFaceBtn" class="ms-face-btn" onclick="initMinesweeper()" title="Restart">&#128578;</button>
+              <div id="msTimeCounter" class="ms-led">000</div>
+            </div>
+            <div id="msBoardGrid" class="ms-board"></div>
+            <div style="display:flex; justify-content:space-between; align-items:center; width:100%; margin-top:10px; gap:8px;">
+              <button id="msFlagToggleBtn" class="win95-btn out" style="font-size:11px; padding:4px 8px;" onclick="toggleMinesweeperFlagMode()">&#128681; Flag: OFF</button>
+              <button class="win95-btn out" style="font-size:11px; padding:4px 8px;" onclick="initMinesweeper()">New Game</button>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAME VIEW 2: MAHJONG TITANS -->
+        <div id="game-view-mahjong" class="win-game-view" style="display:none; flex-direction:column; align-items:center; justify-content:flex-start; padding:12px; background:#0e2e18; user-select:none; overflow-y:auto;">
+          <div class="mj-container">
+            <div class="mj-topbar">
+              <div>SCORE: <span id="mjScore" style="color:#fff;">0</span></div>
+              <div>PAIRS: <span id="mjPairsLeft" style="color:#fff;">18</span></div>
+              <div>MATCHES: <span id="mjAvailableMatches" style="color:#4ade80;">4</span></div>
+              <div style="display:flex; gap:6px;">
+                <button class="win95-btn out" style="font-size:11px; padding:2px 8px;" onclick="hintMahjong()">Hint</button>
+                <button class="win95-btn out" style="font-size:11px; padding:2px 8px;" onclick="shuffleMahjong()">Shuffle</button>
+                <button class="win95-btn out" style="font-size:11px; padding:2px 8px;" onclick="initMahjong()">New Game</button>
+              </div>
+            </div>
+            <div class="mj-board-wrap">
+              <div id="mjBoardContainer" class="mj-board"></div>
+            </div>
+          </div>
+        </div>
+
+        <!-- GAME VIEW 3: SPACE CADET PINBALL -->
+        <div id="game-view-spacecadet" class="win-game-view" style="display:none; flex-direction:column; align-items:center; justify-content:flex-start; padding:12px; background:#050711; user-select:none; overflow-y:auto;">
+          <div class="pb-container">
+            <div class="pb-dashboard">
+              <div>
+                <div style="font-size:9px; color:#94a3b8; font-family:'Courier New', monospace;">SCORE</div>
+                <div id="pbScoreDisplay" class="pb-lcd-box">00000000</div>
+              </div>
+              <div style="text-align:center;">
+                <div style="font-size:9px; color:#94a3b8; font-family:'Courier New', monospace;">RANK</div>
+                <div id="pbRankDisplay" style="font-family:'Courier New', monospace; font-size:12px; font-weight:bold; color:#fbbf24;">CADET</div>
+              </div>
+              <div>
+                <div style="font-size:9px; color:#94a3b8; font-family:'Courier New', monospace;">HIGH SCORE</div>
+                <div id="pbHighScoreDisplay" class="pb-lcd-box">00025000</div>
+              </div>
+            </div>
+
+            <canvas id="pinballCanvas" width="370" height="540"></canvas>
+
+            <div class="pb-controls-bar">
+              <button class="pb-ctrl-btn" onmousedown="pbLeftFlipperUp=true" onmouseup="pbLeftFlipperUp=false" ontouchstart="pbLeftFlipperUp=true" ontouchend="pbLeftFlipperUp=false">&#9664; FLIP (Z)</button>
+              <button class="pb-ctrl-btn" style="background:#f59e0b; color:#000;" onclick="launchPinball()">&#128640; LAUNCH (Space)</button>
+              <button class="pb-ctrl-btn" onmousedown="pbRightFlipperUp=true" onmouseup="pbRightFlipperUp=false" ontouchstart="pbRightFlipperUp=true" ontouchend="pbRightFlipperUp=false">FLIP (/) &#9654;</button>
+            </div>
+            <div style="display:flex; justify-content:space-between; width:100%; font-family:'Courier New', monospace; font-size:10px; color:#64748b; margin-top:6px; padding:0 4px;">
+              <span>BALLS: <span id="pbBallsDisplay" style="color:#00f0ff;">3 / 3</span></span>
+              <span id="pbMissionStatus" style="color:#fbbf24;">READY FOR LAUNCH</span>
+              <button class="win95-btn out" style="font-size:10px; padding:1px 6px;" onclick="resetPinballGame()">Reset</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- SINGLE IMAGE LIGHTBOX MODAL (GLOBAL FALLBACK) -->
     <div id="imageModal" class="modal-overlay" aria-hidden="true">
       <div class="relative bg-zinc-900 border border-zinc-700 p-4 rounded-xl max-w-3xl w-full text-center shadow-2xl">
@@ -2165,7 +2659,8 @@
       'win-slideshow': { title: 'Project Gallery', icon: '\uD83D\uDCC1' },
       'win-demos': { title: 'Class Demos', icon: '\uD83D\uDCC1' },
       'win-about': { title: 'About Gabbie.txt', icon: '\uD83D\uDCC4' },
-      'win-limewire': { title: 'LimeWire v4.12', icon: '\uD83C\uDF4B' }
+      'win-limewire': { title: 'LimeWire v4.12', icon: '\uD83C\uDF4B' },
+      'win-games': { title: 'Games', icon: '\uD83C\uDFAE' }
     };
 
     let highestZIndex = 20;
@@ -3321,6 +3816,1062 @@
         document.querySelectorAll('.desktop-icon').forEach(function(el) { el.classList.remove('selected'); });
       }
     });
+    /* ==========================================================================
+       GAMES EXPLORER CONTROLLER & AUDIO SYNTHESIZER
+       ========================================================================== */
+    let synthAudioCtx = null;
+    function getSynthAudioContext() {
+      if (!synthAudioCtx) {
+        const AudioContext = window.AudioContext || window.webkitAudioContext;
+        if (AudioContext) synthAudioCtx = new AudioContext();
+      }
+      if (synthAudioCtx && synthAudioCtx.state === 'suspended') {
+        synthAudioCtx.resume();
+      }
+      return synthAudioCtx;
+    }
+
+    function playRetroSound(type) {
+      try {
+        const ctx = getSynthAudioContext();
+        if (!ctx) return;
+        const now = ctx.currentTime;
+        const osc = ctx.createOscillator();
+        const gain = ctx.createGain();
+        osc.connect(gain);
+        gain.connect(ctx.destination);
+
+        if (type === 'click') {
+          osc.type = 'triangle';
+          osc.frequency.setValueAtTime(600, now);
+          osc.frequency.exponentialRampToValueAtTime(150, now + 0.04);
+          gain.gain.setValueAtTime(0.12, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.04);
+          osc.start(now);
+          osc.stop(now + 0.04);
+        } else if (type === 'flag') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(440, now);
+          osc.frequency.setValueAtTime(880, now + 0.04);
+          gain.gain.setValueAtTime(0.15, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.08);
+          osc.start(now);
+          osc.stop(now + 0.08);
+        } else if (type === 'explosion') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(120, now);
+          osc.frequency.exponentialRampToValueAtTime(30, now + 0.35);
+          gain.gain.setValueAtTime(0.3, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.35);
+          osc.start(now);
+          osc.stop(now + 0.35);
+        } else if (type === 'win') {
+          [523.25, 659.25, 783.99, 1046.5].forEach((freq, i) => {
+            const o = ctx.createOscillator();
+            const g = ctx.createGain();
+            o.type = 'triangle';
+            o.frequency.setValueAtTime(freq, now + i * 0.1);
+            g.gain.setValueAtTime(0.2, now + i * 0.1);
+            g.gain.linearRampToValueAtTime(0.01, now + i * 0.1 + 0.15);
+            o.connect(g);
+            g.connect(ctx.destination);
+            o.start(now + i * 0.1);
+            o.stop(now + i * 0.1 + 0.15);
+          });
+        } else if (type === 'bumper') {
+          osc.type = 'sine';
+          osc.frequency.setValueAtTime(520, now);
+          osc.frequency.exponentialRampToValueAtTime(950, now + 0.08);
+          gain.gain.setValueAtTime(0.2, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.09);
+          osc.start(now);
+          osc.stop(now + 0.09);
+        } else if (type === 'flipper') {
+          osc.type = 'square';
+          osc.frequency.setValueAtTime(180, now);
+          osc.frequency.exponentialRampToValueAtTime(60, now + 0.04);
+          gain.gain.setValueAtTime(0.1, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.04);
+          osc.start(now);
+          osc.stop(now + 0.04);
+        } else if (type === 'launch') {
+          osc.type = 'sawtooth';
+          osc.frequency.setValueAtTime(150, now);
+          osc.frequency.exponentialRampToValueAtTime(800, now + 0.22);
+          gain.gain.setValueAtTime(0.18, now);
+          gain.gain.linearRampToValueAtTime(0.01, now + 0.22);
+          osc.start(now);
+          osc.stop(now + 0.22);
+        } else if (type === 'match') {
+          [660, 880].forEach((freq, i) => {
+            const o = ctx.createOscillator();
+            const g = ctx.createGain();
+            o.type = 'sine';
+            o.frequency.setValueAtTime(freq, now + i * 0.07);
+            g.gain.setValueAtTime(0.18, now + i * 0.07);
+            g.gain.linearRampToValueAtTime(0.01, now + i * 0.07 + 0.12);
+            o.connect(g);
+            g.connect(ctx.destination);
+            o.start(now + i * 0.07);
+            o.stop(now + i * 0.07 + 0.12);
+          });
+        }
+      } catch (e) {}
+    }
+
+    function openGame(gameName) {
+      const folderView = document.getElementById('folder-win-games');
+      const backBtn = document.getElementById('backBtn-win-games');
+      const addressInput = document.getElementById('address-win-games');
+
+      if (folderView) folderView.style.display = 'none';
+      document.querySelectorAll('#win-games .win-game-view').forEach(v => v.style.display = 'none');
+
+      const target = document.getElementById('game-view-' + gameName);
+      if (target) {
+        target.style.display = 'flex';
+      }
+      if (backBtn) backBtn.disabled = false;
+
+      let title = 'Games';
+      if (gameName === 'minesweeper') {
+        title = 'Minesweeper';
+        initMinesweeper();
+      } else if (gameName === 'mahjong') {
+        title = 'Mahjong Titans';
+        initMahjong();
+      } else if (gameName === 'spacecadet') {
+        title = 'Space Cadet Pinball';
+        initPinball();
+      }
+      if (addressInput) addressInput.value = 'C:\\Desktop\\Games\\' + title;
+    }
+
+    function backToGamesFolder() {
+      const folderView = document.getElementById('folder-win-games');
+      const backBtn = document.getElementById('backBtn-win-games');
+      const addressInput = document.getElementById('address-win-games');
+
+      document.querySelectorAll('#win-games .win-game-view').forEach(v => v.style.display = 'none');
+      if (folderView) folderView.style.display = 'flex';
+      if (backBtn) backBtn.disabled = true;
+      if (addressInput) addressInput.value = 'C:\\Desktop\\Games';
+
+      if (typeof stopPinball === 'function') stopPinball();
+    }
+
+    /* --------------------------------------------------------------------------
+       1. MINESWEEPER LOGIC
+       -------------------------------------------------------------------------- */
+    let msRows = 9;
+    let msCols = 9;
+    let msTotalMines = 10;
+    let msBoard = [];
+    let msGameOver = false;
+    let msWon = false;
+    let msTimer = 0;
+    let msTimerInterval = null;
+    let msFlagMode = false;
+    let msFirstClick = true;
+
+    function initMinesweeper() {
+      if (msTimerInterval) clearInterval(msTimerInterval);
+      msTimer = 0;
+      msGameOver = false;
+      msWon = false;
+      msFirstClick = true;
+      msFlagMode = false;
+      updateMsDisplays();
+      const faceBtn = document.getElementById('msFaceBtn');
+      if (faceBtn) faceBtn.innerHTML = '&#128578;';
+      const flagBtn = document.getElementById('msFlagToggleBtn');
+      if (flagBtn) {
+        flagBtn.innerHTML = '&#128681; Flag: OFF';
+        flagBtn.classList.remove('active');
+      }
+
+      msBoard = [];
+      for (let r = 0; r < msRows; r++) {
+        msBoard[r] = [];
+        for (let c = 0; c < msCols; c++) {
+          msBoard[r][c] = {
+            mine: false,
+            revealed: false,
+            flagged: false,
+            count: 0
+          };
+        }
+      }
+      renderMinesweeperBoard();
+    }
+
+    function plantMines(safeR, safeC) {
+      let planted = 0;
+      while (planted < msTotalMines) {
+        const r = Math.floor(Math.random() * msRows);
+        const c = Math.floor(Math.random() * msCols);
+        if (!msBoard[r][c].mine && (Math.abs(r - safeR) > 1 || Math.abs(c - safeC) > 1)) {
+          msBoard[r][c].mine = true;
+          planted++;
+        }
+      }
+      for (let r = 0; r < msRows; r++) {
+        for (let c = 0; c < msCols; c++) {
+          if (!msBoard[r][c].mine) {
+            let count = 0;
+            for (let dr = -1; dr <= 1; dr++) {
+              for (let dc = -1; dc <= 1; dc++) {
+                const nr = r + dr;
+                const nc = c + dc;
+                if (nr >= 0 && nr < msRows && nc >= 0 && nc < msCols && msBoard[nr][nc].mine) {
+                  count++;
+                }
+              }
+            }
+            msBoard[r][c].count = count;
+          }
+        }
+      }
+    }
+
+    function renderMinesweeperBoard() {
+      const container = document.getElementById('msBoardGrid');
+      if (!container) return;
+      container.innerHTML = '';
+      for (let r = 0; r < msRows; r++) {
+        for (let c = 0; c < msCols; c++) {
+          const cell = document.createElement('div');
+          cell.className = 'ms-cell out';
+          cell.onclick = (e) => onMsCellClick(r, c, e);
+          cell.oncontextmenu = (e) => {
+            e.preventDefault();
+            onMsCellRightClick(r, c);
+          };
+          container.appendChild(cell);
+        }
+      }
+      updateMsCellViews();
+    }
+
+    function updateMsCellViews() {
+      const container = document.getElementById('msBoardGrid');
+      if (!container) return;
+      const cells = container.children;
+      const numColors = ['', '#0000ff', '#008000', '#ff0000', '#000080', '#800000', '#008080', '#000000', '#808080'];
+
+      for (let r = 0; r < msRows; r++) {
+        for (let c = 0; c < msCols; c++) {
+          const idx = r * msCols + c;
+          const el = cells[idx];
+          const data = msBoard[r][c];
+
+          el.className = 'ms-cell';
+          el.innerHTML = '';
+          el.style.color = '';
+
+          if (data.revealed) {
+            el.classList.add('revealed');
+            if (data.mine) {
+              el.innerHTML = '&#128163;';
+              if (data.hit) el.classList.add('mine-hit');
+            } else if (data.count > 0) {
+              el.textContent = data.count;
+              el.style.color = numColors[data.count] || '#000';
+            }
+          } else {
+            el.classList.add('out');
+            if (data.flagged) {
+              el.innerHTML = '&#128681;';
+            }
+          }
+        }
+      }
+    }
+
+    function onMsCellClick(r, c, e) {
+      if (msGameOver || msWon) return;
+      const cell = msBoard[r][c];
+
+      if (msFlagMode) {
+        onMsCellRightClick(r, c);
+        return;
+      }
+
+      if (cell.flagged || cell.revealed) return;
+
+      if (msFirstClick) {
+        msFirstClick = false;
+        plantMines(r, c);
+        msTimerInterval = setInterval(() => {
+          if (!msGameOver && !msWon && msTimer < 999) {
+            msTimer++;
+            updateMsDisplays();
+          }
+        }, 1000);
+      }
+
+      if (cell.mine) {
+        cell.hit = true;
+        msGameOver = true;
+        clearInterval(msTimerInterval);
+        document.getElementById('msFaceBtn').innerHTML = '&#128565;';
+        playRetroSound('explosion');
+        for (let row = 0; row < msRows; row++) {
+          for (let col = 0; col < msCols; col++) {
+            if (msBoard[row][col].mine) {
+              msBoard[row][col].revealed = true;
+            }
+          }
+        }
+        updateMsCellViews();
+        return;
+      }
+
+      playRetroSound('click');
+      revealMsCell(r, c);
+      checkMsWin();
+      updateMsCellViews();
+    }
+
+    function revealMsCell(r, c) {
+      if (r < 0 || r >= msRows || c < 0 || c >= msCols) return;
+      const cell = msBoard[r][c];
+      if (cell.revealed || cell.flagged || cell.mine) return;
+
+      cell.revealed = true;
+      if (cell.count === 0) {
+        for (let dr = -1; dr <= 1; dr++) {
+          for (let dc = -1; dc <= 1; dc++) {
+            if (dr !== 0 || dc !== 0) {
+              revealMsCell(r + dr, c + dc);
+            }
+          }
+        }
+      }
+    }
+
+    function onMsCellRightClick(r, c) {
+      if (msGameOver || msWon) return;
+      const cell = msBoard[r][c];
+      if (cell.revealed) return;
+
+      cell.flagged = !cell.flagged;
+      playRetroSound('flag');
+      updateMsDisplays();
+      updateMsCellViews();
+    }
+
+    function toggleMinesweeperFlagMode() {
+      msFlagMode = !msFlagMode;
+      const btn = document.getElementById('msFlagToggleBtn');
+      if (btn) {
+        btn.innerHTML = msFlagMode ? '&#128681; Flag: ON' : '&#128681; Flag: OFF';
+        if (msFlagMode) btn.classList.add('active');
+        else btn.classList.remove('active');
+      }
+    }
+
+    function checkMsWin() {
+      let unrevealedSafe = 0;
+      for (let r = 0; r < msRows; r++) {
+        for (let c = 0; c < msCols; c++) {
+          if (!msBoard[r][c].mine && !msBoard[r][c].revealed) {
+            unrevealedSafe++;
+          }
+        }
+      }
+      if (unrevealedSafe === 0) {
+        msWon = true;
+        clearInterval(msTimerInterval);
+        document.getElementById('msFaceBtn').innerHTML = '&#128526;';
+        playRetroSound('win');
+        for (let r = 0; r < msRows; r++) {
+          for (let c = 0; c < msCols; c++) {
+            if (msBoard[r][c].mine) msBoard[r][c].flagged = true;
+          }
+        }
+        updateMsDisplays();
+      }
+    }
+
+    function updateMsDisplays() {
+      let flaggedCount = 0;
+      if (msBoard.length > 0) {
+        for (let r = 0; r < msRows; r++) {
+          for (let c = 0; c < msCols; c++) {
+            if (msBoard[r][c].flagged) flaggedCount++;
+          }
+        }
+      }
+      const remaining = Math.max(0, msTotalMines - flaggedCount);
+      const mineEl = document.getElementById('msMinesLeft');
+      const timerEl = document.getElementById('msTimeCounter');
+      if (mineEl) mineEl.textContent = String(remaining).padStart(3, '0');
+      if (timerEl) timerEl.textContent = String(msTimer).padStart(3, '0');
+    }
+
+    /* --------------------------------------------------------------------------
+       2. MAHJONG TITANS LOGIC
+       -------------------------------------------------------------------------- */
+const MAHJONG_DECK = [
+      { sym: '\u4E2D', name: 'Red Dragon', color: '#dc2626' },
+      { sym: '\u767C', name: 'Green Dragon', color: '#16a34a' },
+      { sym: '\u767D', name: 'White Dragon', color: '#2563eb' },
+      { sym: '\u6771', name: 'East Wind', color: '#111827' },
+      { sym: '\u5357', name: 'South Wind', color: '#111827' },
+      { sym: '\u897F', name: 'West Wind', color: '#111827' },
+      { sym: '\u5317', name: 'North Wind', color: '#111827' },
+      { sym: '\u6625', name: 'Spring', color: '#ea580c' },
+      { sym: '\u590F', name: 'Summer', color: '#059669' },
+      { sym: '\u79CB', name: 'Autumn', color: '#d97706' },
+      { sym: '\u51AC', name: 'Winter', color: '#0284c7' },
+      { sym: '1\u842C', name: '1 Wan', color: '#b91c1c' },
+      { sym: '2\u842C', name: '2 Wan', color: '#b91c1c' },
+      { sym: '3\u842C', name: '3 Wan', color: '#b91c1c' },
+      { sym: '1\u7B52', name: '1 Circle', color: '#0284c7' },
+      { sym: '2\u7B52', name: '2 Circle', color: '#15803d' },
+      { sym: '1\u689D', name: '1 Bamboo', color: '#15803d' },
+      { sym: '2\u689D', name: '2 Bamboo', color: '#15803d' }
+    ];
+
+    let mjTiles = [];
+    let mjSelectedTileId = null;
+    let mjScore = 0;
+
+    function initMahjong() {
+      mjScore = 0;
+      mjSelectedTileId = null;
+
+      const pool = [];
+      MAHJONG_DECK.forEach(card => {
+        pool.push({ ...card });
+        pool.push({ ...card });
+      });
+
+      for (let i = pool.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [pool[i], pool[j]] = [pool[j], pool[i]];
+      }
+
+      const positions = [];
+      const startX = 40;
+      const startY = 30;
+      const stepX = 80;
+      const stepY = 82;
+
+      let id = 0;
+      // Layer 0: 4 rows x 7 cols = 28 tiles
+      for (let r = 0; r < 4; r++) {
+        for (let c = 0; c < 7; c++) {
+          positions.push({
+            id: id,
+            layer: 0,
+            x: startX + c * stepX,
+            y: startY + r * stepY,
+            tile: pool[id],
+            removed: false
+          });
+          id++;
+        }
+      }
+
+      // Layer 1: 2 rows x 3 cols = 6 tiles (stacked center)
+      for (let r = 0; r < 2; r++) {
+        for (let c = 0; c < 3; c++) {
+          positions.push({
+            id: id,
+            layer: 1,
+            x: startX + (c + 2) * stepX - 4,
+            y: startY + (r + 1) * stepY - 5,
+            tile: pool[id],
+            removed: false
+          });
+          id++;
+        }
+      }
+
+      // Layer 2: 2 tiles on peak
+      for (let c = 0; c < 2; c++) {
+        positions.push({
+          id: id,
+          layer: 2,
+          x: startX + (c + 2.5) * stepX - 8,
+          y: startY + 1.5 * stepY - 10,
+          tile: pool[id],
+          removed: false
+        });
+        id++;
+      }
+
+      mjTiles = positions;
+      renderMahjongBoard();
+      updateMahjongStatus();
+    }
+
+    function isMahjongTileFree(t) {
+      if (t.removed) return false;
+
+      // Check if covered by higher layer tile
+      for (let other of mjTiles) {
+        if (!other.removed && other.layer > t.layer) {
+          if (Math.abs(other.x - t.x) < 55 && Math.abs(other.y - t.y) < 68) {
+            return false;
+          }
+        }
+      }
+
+      // Check if left or right side on same layer is open
+      let leftBlocked = false;
+      let rightBlocked = false;
+
+      for (let other of mjTiles) {
+        if (!other.removed && other.layer === t.layer && other.id !== t.id) {
+          if (Math.abs(other.y - t.y) < 35) {
+            if (other.x < t.x && (t.x - other.x) < 85) leftBlocked = true;
+            if (other.x > t.x && (other.x - t.x) < 85) rightBlocked = true;
+          }
+        }
+      }
+
+      return !leftBlocked || !rightBlocked;
+    }
+
+    function renderMahjongBoard() {
+      const board = document.getElementById('mjBoardContainer');
+      if (!board) return;
+      board.innerHTML = '';
+
+      mjTiles.forEach(t => {
+        if (t.removed) return;
+        const free = isMahjongTileFree(t);
+        const el = document.createElement('div');
+        el.className = `mj-tile layer-${t.layer} ${free ? 'free' : 'blocked'}`;
+        el.id = 'mj-tile-' + t.id;
+        el.style.left = t.x + 'px';
+        el.style.top = t.y + 'px';
+        if (mjSelectedTileId === t.id) el.classList.add('selected');
+
+        el.innerHTML = `
+          <div class="mj-sym" style="color:${t.tile.color};">${t.tile.sym}</div>
+          <div class="mj-sub">${t.tile.name}</div>
+        `;
+
+        el.onclick = () => onMahjongTileClick(t.id);
+        board.appendChild(el);
+      });
+    }
+
+    function onMahjongTileClick(id) {
+      const tile = mjTiles.find(t => t.id === id);
+      if (!tile || tile.removed || !isMahjongTileFree(tile)) return;
+
+      if (mjSelectedTileId === null) {
+        mjSelectedTileId = id;
+        playRetroSound('click');
+        renderMahjongBoard();
+        return;
+      }
+
+      if (mjSelectedTileId === id) {
+        mjSelectedTileId = null;
+        renderMahjongBoard();
+        return;
+      }
+
+      const prevTile = mjTiles.find(t => t.id === mjSelectedTileId);
+      if (prevTile && prevTile.tile.sym === tile.tile.sym) {
+        tile.removed = true;
+        prevTile.removed = true;
+        mjSelectedTileId = null;
+        mjScore += 100;
+        playRetroSound('match');
+
+        const remaining = mjTiles.filter(t => !t.removed).length;
+        if (remaining === 0) {
+          playRetroSound('win');
+          setTimeout(() => alert('Congratulations! You cleared Mahjong Titans!'), 200);
+        }
+
+        renderMahjongBoard();
+        updateMahjongStatus();
+      } else {
+        mjSelectedTileId = id;
+        playRetroSound('click');
+        renderMahjongBoard();
+      }
+    }
+
+    function updateMahjongStatus() {
+      const remainingPairs = mjTiles.filter(t => !t.removed).length / 2;
+      const scoreEl = document.getElementById('mjScore');
+      const pairsEl = document.getElementById('mjPairsLeft');
+      const matchesEl = document.getElementById('mjAvailableMatches');
+
+      if (scoreEl) scoreEl.textContent = mjScore;
+      if (pairsEl) pairsEl.textContent = remainingPairs;
+
+      const freeTiles = mjTiles.filter(t => !t.removed && isMahjongTileFree(t));
+      const counts = {};
+      freeTiles.forEach(t => {
+        counts[t.tile.sym] = (counts[t.tile.sym] || 0) + 1;
+      });
+      let availableMatches = 0;
+      Object.values(counts).forEach(c => {
+        availableMatches += Math.floor(c / 2);
+      });
+      if (matchesEl) matchesEl.textContent = availableMatches;
+    }
+
+    function hintMahjong() {
+      const freeTiles = mjTiles.filter(t => !t.removed && isMahjongTileFree(t));
+      for (let i = 0; i < freeTiles.length; i++) {
+        for (let j = i + 1; j < freeTiles.length; j++) {
+          if (freeTiles[i].tile.sym === freeTiles[j].tile.sym) {
+            playRetroSound('flag');
+            const el1 = document.getElementById('mj-tile-' + freeTiles[i].id);
+            const el2 = document.getElementById('mj-tile-' + freeTiles[j].id);
+            if (el1) el1.classList.add('hint-pulse');
+            if (el2) el2.classList.add('hint-pulse');
+            setTimeout(() => {
+              if (el1) el1.classList.remove('hint-pulse');
+              if (el2) el2.classList.remove('hint-pulse');
+            }, 2000);
+            return;
+          }
+        }
+      }
+      alert('No matching free pairs currently available! Try Shuffle.');
+    }
+
+    function shuffleMahjong() {
+      const unremoved = mjTiles.filter(t => !t.removed);
+      if (unremoved.length === 0) return;
+
+      const cards = unremoved.map(t => t.tile);
+      for (let i = cards.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [cards[i], cards[j]] = [cards[j], cards[i]];
+      }
+      unremoved.forEach((t, idx) => {
+        t.tile = cards[idx];
+      });
+      mjSelectedTileId = null;
+      playRetroSound('launch');
+      renderMahjongBoard();
+      updateMahjongStatus();
+    }
+
+    /* --------------------------------------------------------------------------
+       3. SPACE CADET PINBALL LOGIC
+       -------------------------------------------------------------------------- */
+    let pbCanvas, pbCtx;
+    let pbBall = { x: 348, y: 470, vx: 0, vy: 0, r: 7 };
+    let pbLaunched = false;
+    let pbScore = 0;
+    let pbHighScore = 25000;
+    let pbBallsLeft = 3;
+    let pbRafId = null;
+    let pbLeftFlipperUp = false;
+    let pbRightFlipperUp = false;
+
+    const leftFlipper = { pivotX: 115, pivotY: 480, length: 55, angle: 0.5, targetAngle: 0.5, restAngle: 0.5, activeAngle: -0.45 };
+    const rightFlipper = { pivotX: 255, pivotY: 480, length: 55, angle: Math.PI - 0.5, targetAngle: Math.PI - 0.5, restAngle: Math.PI - 0.5, activeAngle: Math.PI + 0.45 };
+
+    const pbBumpers = [
+      { x: 140, y: 170, r: 24, color: '#00f0ff', label: 'ATTACK', hitTime: 0 },
+      { x: 230, y: 170, r: 24, color: '#ff00aa', label: 'SCIENCE', hitTime: 0 },
+      { x: 185, y: 240, r: 24, color: '#ffcc00', label: 'DEFENSE', hitTime: 0 }
+    ];
+
+    const pbRollovers = [
+      { x: 95, y: 75, w: 22, h: 14, label: 'C', lit: false },
+      { x: 130, y: 65, w: 22, h: 14, label: 'A', lit: false },
+      { x: 170, y: 60, w: 22, h: 14, label: 'D', lit: false },
+      { x: 210, y: 65, w: 22, h: 14, label: 'E', lit: false },
+      { x: 245, y: 75, w: 22, h: 14, label: 'T', lit: false }
+    ];
+
+    function initPinball() {
+      pbCanvas = document.getElementById('pinballCanvas');
+      if (!pbCanvas) return;
+      pbCtx = pbCanvas.getContext('2d');
+
+      const saved = localStorage.getItem('wheresgabbie_pinball_high');
+      if (saved) pbHighScore = parseInt(saved, 10);
+
+      resetPinballGame();
+      startPinball();
+      setupPinballKeyListeners();
+    }
+
+    function resetPinballGame() {
+      pbScore = 0;
+      pbBallsLeft = 3;
+      pbRollovers.forEach(r => r.lit = false);
+      resetPinballBall();
+      updatePbDisplays();
+    }
+
+    function resetPinballBall() {
+      pbBall.x = 348;
+      pbBall.y = 470;
+      pbBall.vx = 0;
+      pbBall.vy = 0;
+      pbLaunched = false;
+      const statusEl = document.getElementById('pbMissionStatus');
+      if (statusEl) statusEl.textContent = 'READY FOR LAUNCH';
+    }
+
+    function startPinball() {
+      if (pbRafId) cancelAnimationFrame(pbRafId);
+      pbRafId = requestAnimationFrame(pinballLoop);
+    }
+
+    function stopPinball() {
+      if (pbRafId) {
+        cancelAnimationFrame(pbRafId);
+        pbRafId = null;
+      }
+    }
+
+    let pbListenersBound = false;
+    function setupPinballKeyListeners() {
+      if (pbListenersBound) return;
+      pbListenersBound = true;
+
+      window.addEventListener('keydown', (e) => {
+        const gamesWin = document.getElementById('win-games');
+        if (!gamesWin || gamesWin.style.display === 'none' || gamesWin.classList.contains('minimized')) return;
+        const view = document.getElementById('game-view-spacecadet');
+        if (!view || view.style.display === 'none') return;
+
+        if (e.key === 'z' || e.key === 'Z' || e.key === 'ArrowLeft') {
+          pbLeftFlipperUp = true;
+          e.preventDefault();
+        } else if (e.key === '/' || e.key === 'ArrowRight') {
+          pbRightFlipperUp = true;
+          e.preventDefault();
+        } else if (e.code === 'Space' || e.key === 'ArrowDown') {
+          launchPinball();
+          e.preventDefault();
+        }
+      });
+
+      window.addEventListener('keyup', (e) => {
+        if (e.key === 'z' || e.key === 'Z' || e.key === 'ArrowLeft') {
+          pbLeftFlipperUp = false;
+        } else if (e.key === '/' || e.key === 'ArrowRight') {
+          pbRightFlipperUp = false;
+        }
+      });
+    }
+
+    function launchPinball() {
+      if (!pbLaunched && pbBallsLeft > 0) {
+        pbLaunched = true;
+        pbBall.vy = -16.5;
+        pbBall.vx = -0.5;
+        playRetroSound('launch');
+        const statusEl = document.getElementById('pbMissionStatus');
+        if (statusEl) statusEl.textContent = 'MISSION ACTIVE';
+      }
+    }
+
+    function pinballLoop() {
+      updatePinballPhysics();
+      drawPinballTable();
+      pbRafId = requestAnimationFrame(pinballLoop);
+    }
+
+    function updatePinballPhysics() {
+      leftFlipper.targetAngle = pbLeftFlipperUp ? leftFlipper.activeAngle : leftFlipper.restAngle;
+      rightFlipper.targetAngle = pbRightFlipperUp ? rightFlipper.activeAngle : rightFlipper.restAngle;
+      leftFlipper.angle += (leftFlipper.targetAngle - leftFlipper.angle) * 0.45;
+      rightFlipper.angle += (rightFlipper.targetAngle - rightFlipper.angle) * 0.45;
+
+      if (!pbLaunched) return;
+
+      pbBall.vy += 0.28;
+      pbBall.vx *= 0.995;
+      pbBall.vy *= 0.995;
+
+      pbBall.x += pbBall.vx;
+      pbBall.y += pbBall.vy;
+
+      const chuteWallX = 330;
+      if (pbBall.x > chuteWallX && pbBall.y > 110) {
+        if (pbBall.x + pbBall.r > 360) {
+          pbBall.x = 360 - pbBall.r;
+          pbBall.vx = -Math.abs(pbBall.vx) * 0.6;
+        }
+        if (pbBall.x - pbBall.r < chuteWallX && pbBall.y > 110) {
+          pbBall.x = chuteWallX + pbBall.r;
+          pbBall.vx = Math.abs(pbBall.vx) * 0.6;
+        }
+      } else {
+        if (pbBall.x - pbBall.r < 18) {
+          pbBall.x = 18 + pbBall.r;
+          pbBall.vx = Math.abs(pbBall.vx) * 0.75;
+          playRetroSound('click');
+        }
+        if (pbBall.x + pbBall.r > chuteWallX && pbBall.y > 110) {
+          pbBall.x = chuteWallX - pbBall.r;
+          pbBall.vx = -Math.abs(pbBall.vx) * 0.75;
+          playRetroSound('click');
+        }
+      }
+
+      if (pbBall.y - pbBall.r < 30) {
+        pbBall.y = 30 + pbBall.r;
+        pbBall.vy = Math.abs(pbBall.vy) * 0.7;
+        playRetroSound('click');
+      }
+
+      pbRollovers.forEach(ro => {
+        if (!ro.lit && pbBall.x > ro.x && pbBall.x < ro.x + ro.w && pbBall.y > ro.y && pbBall.y < ro.y + ro.h) {
+          ro.lit = true;
+          pbScore += 500;
+          playRetroSound('score');
+          updatePbDisplays();
+        }
+      });
+
+      pbBumpers.forEach(bmp => {
+        const dx = pbBall.x - bmp.x;
+        const dy = pbBall.y - bmp.y;
+        const dist = Math.hypot(dx, dy);
+        if (dist < bmp.r + pbBall.r) {
+          const nx = dx / (dist || 1);
+          const ny = dy / (dist || 1);
+          pbBall.x = bmp.x + nx * (bmp.r + pbBall.r + 2);
+          pbBall.y = bmp.y + ny * (bmp.r + pbBall.r + 2);
+          const speed = Math.max(8, Math.hypot(pbBall.vx, pbBall.vy));
+          pbBall.vx = nx * speed * 1.25;
+          pbBall.vy = ny * speed * 1.25;
+
+          bmp.hitTime = Date.now();
+          pbScore += 250;
+          playRetroSound('bumper');
+          updatePbDisplays();
+        }
+      });
+
+      checkFlipperCollision(leftFlipper, pbLeftFlipperUp);
+      checkFlipperCollision(rightFlipper, pbRightFlipperUp);
+
+      if (pbBall.x > 50 && pbBall.x < 100 && pbBall.y > 380 && pbBall.y < 460) {
+        pbBall.vx = Math.abs(pbBall.vx) + 5;
+        pbBall.vy = -Math.abs(pbBall.vy) - 2;
+        pbScore += 150;
+        playRetroSound('bumper');
+        updatePbDisplays();
+      }
+      if (pbBall.x > 265 && pbBall.x < 315 && pbBall.y > 380 && pbBall.y < 460) {
+        pbBall.vx = -Math.abs(pbBall.vx) - 5;
+        pbBall.vy = -Math.abs(pbBall.vy) - 2;
+        pbScore += 150;
+        playRetroSound('bumper');
+        updatePbDisplays();
+      }
+
+      if (pbBall.y > 540) {
+        playRetroSound('flipper');
+        pbBallsLeft--;
+        updatePbDisplays();
+        if (pbBallsLeft > 0) {
+          resetPinballBall();
+        } else {
+          pbLaunched = false;
+          const statusEl = document.getElementById('pbMissionStatus');
+          if (statusEl) statusEl.textContent = 'GAME OVER - PRESS LAUNCH';
+          if (pbScore > pbHighScore) {
+            pbHighScore = pbScore;
+            localStorage.setItem('wheresgabbie_pinball_high', pbHighScore);
+          }
+          updatePbDisplays();
+        }
+      }
+    }
+
+    function checkFlipperCollision(flp, isPressing) {
+      const tipX = flp.pivotX + Math.cos(flp.angle) * flp.length;
+      const tipY = flp.pivotY + Math.sin(flp.angle) * flp.length;
+
+      const dx = tipX - flp.pivotX;
+      const dy = tipY - flp.pivotY;
+      const lenSq = dx * dx + dy * dy;
+      let t = ((pbBall.x - flp.pivotX) * dx + (pbBall.y - flp.pivotY) * dy) / lenSq;
+      t = Math.max(0, Math.min(1, t));
+
+      const closeX = flp.pivotX + t * dx;
+      const closeY = flp.pivotY + t * dy;
+      const dist = Math.hypot(pbBall.x - closeX, pbBall.y - closeY);
+
+      if (dist < pbBall.r + 6) {
+        const nx = -(tipY - flp.pivotY) / flp.length;
+        const ny = (tipX - flp.pivotX) / flp.length;
+
+        pbBall.x = closeX + nx * (pbBall.r + 8);
+        pbBall.y = closeY + ny * (pbBall.r + 8);
+
+        const impulse = isPressing ? -12 : -6;
+        pbBall.vy = impulse;
+        pbBall.vx += (closeX - flp.pivotX) * 0.1;
+        playRetroSound('flipper');
+        pbScore += 50;
+        updatePbDisplays();
+      }
+    }
+
+    function drawPinballTable() {
+      if (!pbCtx) return;
+      const w = pbCanvas.width;
+      const h = pbCanvas.height;
+
+      pbCtx.fillStyle = '#080a1c';
+      pbCtx.fillRect(0, 0, w, h);
+
+      pbCtx.fillStyle = 'rgba(255,255,255,0.4)';
+      [[40,50],[110,120],[280,80],[80,260],[300,230],[180,320],[50,420],[280,360]].forEach(([sx, sy]) => {
+        pbCtx.fillRect(sx, sy, 2, 2);
+      });
+
+      pbCtx.font = 'bold 12px "Courier New", monospace';
+      pbCtx.fillStyle = '#00f0ff';
+      pbCtx.textAlign = 'center';
+      pbCtx.fillText('SPACE CADET', 170, 24);
+
+      pbCtx.strokeStyle = '#4f46e5';
+      pbCtx.lineWidth = 3;
+      pbCtx.beginPath();
+      pbCtx.moveTo(330, h);
+      pbCtx.lineTo(330, 110);
+      pbCtx.arc(275, 110, 55, 0, -Math.PI / 2, true);
+      pbCtx.stroke();
+
+      pbCtx.strokeStyle = '#38bdf8';
+      pbCtx.lineWidth = 4;
+      pbCtx.strokeRect(10, 10, w - 20, h - 20);
+
+      pbRollovers.forEach(ro => {
+        pbCtx.fillStyle = ro.lit ? '#fbbf24' : '#1e1b4b';
+        pbCtx.strokeStyle = '#38bdf8';
+        pbCtx.lineWidth = 1.5;
+        pbCtx.fillRect(ro.x, ro.y, ro.w, ro.h);
+        pbCtx.strokeRect(ro.x, ro.y, ro.w, ro.h);
+
+        pbCtx.fillStyle = ro.lit ? '#000000' : '#ffffff';
+        pbCtx.font = 'bold 10px monospace';
+        pbCtx.textAlign = 'center';
+        pbCtx.fillText(ro.label, ro.x + ro.w / 2, ro.y + ro.h - 3);
+      });
+
+      pbBumpers.forEach(bmp => {
+        const isHit = (Date.now() - bmp.hitTime) < 140;
+        pbCtx.beginPath();
+        pbCtx.arc(bmp.x, bmp.y, bmp.r, 0, Math.PI * 2);
+        pbCtx.fillStyle = isHit ? '#ffffff' : bmp.color;
+        pbCtx.fill();
+        pbCtx.strokeStyle = '#ffffff';
+        pbCtx.lineWidth = 3;
+        pbCtx.stroke();
+
+        pbCtx.beginPath();
+        pbCtx.arc(bmp.x, bmp.y, bmp.r * 0.5, 0, Math.PI * 2);
+        pbCtx.fillStyle = '#090a1a';
+        pbCtx.fill();
+
+        pbCtx.fillStyle = '#ffffff';
+        pbCtx.font = 'bold 8px monospace';
+        pbCtx.textAlign = 'center';
+        pbCtx.fillText(bmp.label, bmp.x, bmp.y + 3);
+      });
+
+      pbCtx.fillStyle = '#1e1b4b';
+      pbCtx.strokeStyle = '#ec4899';
+      pbCtx.lineWidth = 2.5;
+
+      pbCtx.beginPath();
+      pbCtx.moveTo(60, 390);
+      pbCtx.lineTo(95, 450);
+      pbCtx.lineTo(60, 450);
+      pbCtx.closePath();
+      pbCtx.fill();
+      pbCtx.stroke();
+
+      pbCtx.beginPath();
+      pbCtx.moveTo(300, 390);
+      pbCtx.lineTo(265, 450);
+      pbCtx.lineTo(300, 450);
+      pbCtx.closePath();
+      pbCtx.fill();
+      pbCtx.stroke();
+
+      drawFlipper(leftFlipper, '#38bdf8');
+      drawFlipper(rightFlipper, '#38bdf8');
+
+      pbCtx.fillStyle = pbLaunched ? '#334155' : '#e11d48';
+      pbCtx.fillRect(338, 500, 20, 24);
+      pbCtx.strokeStyle = '#cbd5e1';
+      pbCtx.lineWidth = 2;
+      for (let y = 504; y < 520; y += 4) {
+        pbCtx.strokeRect(340, y, 16, 2);
+      }
+
+      pbCtx.beginPath();
+      pbCtx.arc(pbBall.x, pbBall.y, pbBall.r, 0, Math.PI * 2);
+      const ballGrad = pbCtx.createRadialGradient(pbBall.x - 2, pbBall.y - 2, 1, pbBall.x, pbBall.y, pbBall.r);
+      ballGrad.addColorStop(0, '#ffffff');
+      ballGrad.addColorStop(0.7, '#cbd5e1');
+      ballGrad.addColorStop(1, '#475569');
+      pbCtx.fillStyle = ballGrad;
+      pbCtx.fill();
+      pbCtx.strokeStyle = '#000000';
+      pbCtx.lineWidth = 1;
+      pbCtx.stroke();
+    }
+
+    function drawFlipper(flp, color) {
+      const tipX = flp.pivotX + Math.cos(flp.angle) * flp.length;
+      const tipY = flp.pivotY + Math.sin(flp.angle) * flp.length;
+
+      pbCtx.save();
+      pbCtx.strokeStyle = '#ffffff';
+      pbCtx.lineWidth = 7;
+      pbCtx.lineCap = 'round';
+      pbCtx.beginPath();
+      pbCtx.moveTo(flp.pivotX, flp.pivotY);
+      pbCtx.lineTo(tipX, tipY);
+      pbCtx.stroke();
+
+      pbCtx.strokeStyle = color;
+      pbCtx.lineWidth = 4;
+      pbCtx.stroke();
+
+      pbCtx.fillStyle = '#fbbf24';
+      pbCtx.beginPath();
+      pbCtx.arc(flp.pivotX, flp.pivotY, 5, 0, Math.PI * 2);
+      pbCtx.fill();
+      pbCtx.restore();
+    }
+
+    function updatePbDisplays() {
+      const scoreEl = document.getElementById('pbScoreDisplay');
+      const highEl = document.getElementById('pbHighScoreDisplay');
+      const ballsEl = document.getElementById('pbBallsDisplay');
+      const rankEl = document.getElementById('pbRankDisplay');
+
+      if (scoreEl) scoreEl.textContent = String(pbScore).padStart(8, '0');
+      if (highEl) highEl.textContent = String(Math.max(pbScore, pbHighScore)).padStart(8, '0');
+      if (ballsEl) ballsEl.textContent = `${pbBallsLeft} / 3`;
+
+      let rank = 'CADET';
+      if (pbScore >= 50000) rank = 'COMMANDER';
+      else if (pbScore >= 20000) rank = 'LIEUTENANT';
+      else if (pbScore >= 5000) rank = 'ENSIGN';
+      if (rankEl) rankEl.textContent = rank;
+    }
+
     </script>
   </body>
 </html>
