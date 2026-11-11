@@ -622,6 +622,11 @@
           font-size: 11px !important;
         }
 
+        #virusIcon {
+          right: 12px !important;
+          bottom: 44px !important;
+        }
+
         .os-window {
           width: calc(100vw - 12px) !important;
           max-height: calc(100vh - 46px) !important;
@@ -1316,27 +1321,28 @@
         </div>
         <span class="desktop-icon-title">Games</span>
       </div>
+    </div>
 
-      <div class="desktop-icon" onclick="triggerVirusPrank()" title="DO NOT CLICK!">
-        <div class="desktop-icon-img">
-          <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
-            <rect x="2" y="3" width="28" height="26" fill="#000"/>
-            <rect x="3" y="4" width="26" height="24" fill="#c0c0c0"/>
-            <line x1="3" y1="4" x2="28" y2="4" stroke="#fff" stroke-width="1"/>
-            <line x1="3" y1="4" x2="3" y2="27" stroke="#fff" stroke-width="1"/>
-            <line x1="28" y1="5" x2="28" y2="28" stroke="#808080" stroke-width="1"/>
-            <line x1="4" y1="27" x2="28" y2="27" stroke="#808080" stroke-width="1"/>
-            <rect x="5" y="6" width="22" height="5" fill="#000080"/>
-            <rect x="23" y="7" width="3" height="3" fill="#c0c0c0"/>
-            <rect x="24" y="8" width="1" height="1" fill="#000"/>
-            <rect x="5" y="12" width="22" height="14" fill="#111"/>
-            <polygon points="16,13 7,24 25,24" fill="#ffd700" stroke="#000" stroke-width="0.5"/>
-            <rect x="15" y="16" width="2" height="4" fill="#000"/>
-            <rect x="15" y="21" width="2" height="1.5" fill="#000"/>
-          </svg>
-        </div>
-        <span class="desktop-icon-title">DO NOT OPEN.exe</span>
+    <!-- DO NOT OPEN.EXE SHORTCUT (POSITIONED AT BOTTOM RIGHT OF SCREEN) -->
+    <div id="virusIcon" class="desktop-icon" onclick="triggerVirusPrank()" title="DO NOT CLICK!" style="position: fixed; right: 24px; bottom: 50px; z-index: 10;">
+      <div class="desktop-icon-img">
+        <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
+          <rect x="2" y="3" width="28" height="26" fill="#000"/>
+          <rect x="3" y="4" width="26" height="24" fill="#c0c0c0"/>
+          <line x1="3" y1="4" x2="28" y2="4" stroke="#fff" stroke-width="1"/>
+          <line x1="3" y1="4" x2="3" y2="27" stroke="#fff" stroke-width="1"/>
+          <line x1="28" y1="5" x2="28" y2="28" stroke="#808080" stroke-width="1"/>
+          <line x1="4" y1="27" x2="28" y2="27" stroke="#808080" stroke-width="1"/>
+          <rect x="5" y="6" width="22" height="5" fill="#000080"/>
+          <rect x="23" y="7" width="3" height="3" fill="#c0c0c0"/>
+          <rect x="24" y="8" width="1" height="1" fill="#000"/>
+          <rect x="5" y="12" width="22" height="14" fill="#111"/>
+          <polygon points="16,13 7,24 25,24" fill="#ffd700" stroke="#000" stroke-width="0.5"/>
+          <rect x="15" y="16" width="2" height="4" fill="#000"/>
+          <rect x="15" y="21" width="2" height="1.5" fill="#000"/>
+        </svg>
       </div>
+      <span class="desktop-icon-title">DO NOT OPEN.exe</span>
     </div>
 
         <!-- WINDOW 1: UNCANNY VALLEY SLIDESHOW -->
@@ -2507,37 +2513,9 @@
           </div>
         </div>
 
-        <!-- GAME VIEW 3: SPACE CADET PINBALL -->
-        <div id="game-view-spacecadet" class="win-game-view" style="display:none; flex-direction:column; align-items:center; justify-content:flex-start; padding:12px; background:#050711; user-select:none; overflow-y:auto;">
-          <div class="pb-container">
-            <div class="pb-dashboard">
-              <div>
-                <div style="font-size:9px; color:#94a3b8; font-family:'Courier New', monospace;">SCORE</div>
-                <div id="pbScoreDisplay" class="pb-lcd-box">00000000</div>
-              </div>
-              <div style="text-align:center;">
-                <div style="font-size:9px; color:#94a3b8; font-family:'Courier New', monospace;">RANK</div>
-                <div id="pbRankDisplay" style="font-family:'Courier New', monospace; font-size:12px; font-weight:bold; color:#fbbf24;">CADET</div>
-              </div>
-              <div>
-                <div style="font-size:9px; color:#94a3b8; font-family:'Courier New', monospace;">HIGH SCORE</div>
-                <div id="pbHighScoreDisplay" class="pb-lcd-box">00025000</div>
-              </div>
-            </div>
-
-            <canvas id="pinballCanvas" width="370" height="540"></canvas>
-
-            <div class="pb-controls-bar">
-              <button class="pb-ctrl-btn" onmousedown="pbLeftFlipperUp=true" onmouseup="pbLeftFlipperUp=false" ontouchstart="pbLeftFlipperUp=true" ontouchend="pbLeftFlipperUp=false">&#9664; FLIP (Z)</button>
-              <button class="pb-ctrl-btn" style="background:#f59e0b; color:#000;" onclick="launchPinball()">&#128640; LAUNCH (Space)</button>
-              <button class="pb-ctrl-btn" onmousedown="pbRightFlipperUp=true" onmouseup="pbRightFlipperUp=false" ontouchstart="pbRightFlipperUp=true" ontouchend="pbRightFlipperUp=false">FLIP (/) &#9654;</button>
-            </div>
-            <div style="display:flex; justify-content:space-between; width:100%; font-family:'Courier New', monospace; font-size:10px; color:#64748b; margin-top:6px; padding:0 4px;">
-              <span>BALLS: <span id="pbBallsDisplay" style="color:#00f0ff;">3 / 3</span></span>
-              <span id="pbMissionStatus" style="color:#fbbf24;">READY FOR LAUNCH</span>
-              <button class="win95-btn out" style="font-size:10px; padding:1px 6px;" onclick="resetPinballGame()">Reset</button>
-            </div>
-          </div>
+        <!-- GAME VIEW 3: SPACE CADET PINBALL (AUTHENTIC ORIGINAL 3D PINBALL WEBASSEMBLY PORT) -->
+        <div id="game-view-spacecadet" class="win-game-view" style="display:none; flex:1; flex-direction:column; align-items:center; justify-content:center; width:100%; height:100%; background:#000000; overflow:hidden;">
+          <iframe id="pinballFrame" src="about:blank" style="width:100%; height:100%; min-height:550px; border:none; display:block;" allow="autoplay; fullscreen" tabindex="0"></iframe>
         </div>
       </div>
     </div>
@@ -2741,6 +2719,10 @@
         win.style.display = 'none';
         win.classList.remove('active-win');
         updateTaskbar(null);
+        if (winId === 'win-games') {
+          const pbFrame = document.getElementById('pinballFrame');
+          if (pbFrame) pbFrame.src = 'about:blank';
+        }
       }
     }
 
@@ -3942,7 +3924,13 @@
         initMahjong();
       } else if (gameName === 'spacecadet') {
         title = 'Space Cadet Pinball';
-        initPinball();
+        const pbFrame = document.getElementById('pinballFrame');
+        if (pbFrame && (!pbFrame.src || pbFrame.src === 'about:blank' || !pbFrame.src.includes('pinball.alula.me'))) {
+          pbFrame.src = 'https://pinball.alula.me/';
+        }
+        setTimeout(() => {
+          if (pbFrame) pbFrame.focus();
+        }, 150);
       }
       if (addressInput) addressInput.value = 'C:\\Desktop\\Games\\' + title;
     }
@@ -3957,7 +3945,8 @@
       if (backBtn) backBtn.disabled = true;
       if (addressInput) addressInput.value = 'C:\\Desktop\\Games';
 
-      if (typeof stopPinball === 'function') stopPinball();
+      const pbFrame = document.getElementById('pinballFrame');
+      if (pbFrame) pbFrame.src = 'about:blank';
     }
 
     /* --------------------------------------------------------------------------
@@ -4459,417 +4448,6 @@ const MAHJONG_DECK = [
       playRetroSound('launch');
       renderMahjongBoard();
       updateMahjongStatus();
-    }
-
-    /* --------------------------------------------------------------------------
-       3. SPACE CADET PINBALL LOGIC
-       -------------------------------------------------------------------------- */
-    let pbCanvas, pbCtx;
-    let pbBall = { x: 348, y: 470, vx: 0, vy: 0, r: 7 };
-    let pbLaunched = false;
-    let pbScore = 0;
-    let pbHighScore = 25000;
-    let pbBallsLeft = 3;
-    let pbRafId = null;
-    let pbLeftFlipperUp = false;
-    let pbRightFlipperUp = false;
-
-    const leftFlipper = { pivotX: 115, pivotY: 480, length: 55, angle: 0.5, targetAngle: 0.5, restAngle: 0.5, activeAngle: -0.45 };
-    const rightFlipper = { pivotX: 255, pivotY: 480, length: 55, angle: Math.PI - 0.5, targetAngle: Math.PI - 0.5, restAngle: Math.PI - 0.5, activeAngle: Math.PI + 0.45 };
-
-    const pbBumpers = [
-      { x: 140, y: 170, r: 24, color: '#00f0ff', label: 'ATTACK', hitTime: 0 },
-      { x: 230, y: 170, r: 24, color: '#ff00aa', label: 'SCIENCE', hitTime: 0 },
-      { x: 185, y: 240, r: 24, color: '#ffcc00', label: 'DEFENSE', hitTime: 0 }
-    ];
-
-    const pbRollovers = [
-      { x: 95, y: 75, w: 22, h: 14, label: 'C', lit: false },
-      { x: 130, y: 65, w: 22, h: 14, label: 'A', lit: false },
-      { x: 170, y: 60, w: 22, h: 14, label: 'D', lit: false },
-      { x: 210, y: 65, w: 22, h: 14, label: 'E', lit: false },
-      { x: 245, y: 75, w: 22, h: 14, label: 'T', lit: false }
-    ];
-
-    function initPinball() {
-      pbCanvas = document.getElementById('pinballCanvas');
-      if (!pbCanvas) return;
-      pbCtx = pbCanvas.getContext('2d');
-
-      const saved = localStorage.getItem('wheresgabbie_pinball_high');
-      if (saved) pbHighScore = parseInt(saved, 10);
-
-      resetPinballGame();
-      startPinball();
-      setupPinballKeyListeners();
-    }
-
-    function resetPinballGame() {
-      pbScore = 0;
-      pbBallsLeft = 3;
-      pbRollovers.forEach(r => r.lit = false);
-      resetPinballBall();
-      updatePbDisplays();
-    }
-
-    function resetPinballBall() {
-      pbBall.x = 348;
-      pbBall.y = 470;
-      pbBall.vx = 0;
-      pbBall.vy = 0;
-      pbLaunched = false;
-      const statusEl = document.getElementById('pbMissionStatus');
-      if (statusEl) statusEl.textContent = 'READY FOR LAUNCH';
-    }
-
-    function startPinball() {
-      if (pbRafId) cancelAnimationFrame(pbRafId);
-      pbRafId = requestAnimationFrame(pinballLoop);
-    }
-
-    function stopPinball() {
-      if (pbRafId) {
-        cancelAnimationFrame(pbRafId);
-        pbRafId = null;
-      }
-    }
-
-    let pbListenersBound = false;
-    function setupPinballKeyListeners() {
-      if (pbListenersBound) return;
-      pbListenersBound = true;
-
-      window.addEventListener('keydown', (e) => {
-        const gamesWin = document.getElementById('win-games');
-        if (!gamesWin || gamesWin.style.display === 'none' || gamesWin.classList.contains('minimized')) return;
-        const view = document.getElementById('game-view-spacecadet');
-        if (!view || view.style.display === 'none') return;
-
-        if (e.key === 'z' || e.key === 'Z' || e.key === 'ArrowLeft') {
-          pbLeftFlipperUp = true;
-          e.preventDefault();
-        } else if (e.key === '/' || e.key === 'ArrowRight') {
-          pbRightFlipperUp = true;
-          e.preventDefault();
-        } else if (e.code === 'Space' || e.key === 'ArrowDown') {
-          launchPinball();
-          e.preventDefault();
-        }
-      });
-
-      window.addEventListener('keyup', (e) => {
-        if (e.key === 'z' || e.key === 'Z' || e.key === 'ArrowLeft') {
-          pbLeftFlipperUp = false;
-        } else if (e.key === '/' || e.key === 'ArrowRight') {
-          pbRightFlipperUp = false;
-        }
-      });
-    }
-
-    function launchPinball() {
-      if (!pbLaunched && pbBallsLeft > 0) {
-        pbLaunched = true;
-        pbBall.vy = -16.5;
-        pbBall.vx = -0.5;
-        playRetroSound('launch');
-        const statusEl = document.getElementById('pbMissionStatus');
-        if (statusEl) statusEl.textContent = 'MISSION ACTIVE';
-      }
-    }
-
-    function pinballLoop() {
-      updatePinballPhysics();
-      drawPinballTable();
-      pbRafId = requestAnimationFrame(pinballLoop);
-    }
-
-    function updatePinballPhysics() {
-      leftFlipper.targetAngle = pbLeftFlipperUp ? leftFlipper.activeAngle : leftFlipper.restAngle;
-      rightFlipper.targetAngle = pbRightFlipperUp ? rightFlipper.activeAngle : rightFlipper.restAngle;
-      leftFlipper.angle += (leftFlipper.targetAngle - leftFlipper.angle) * 0.45;
-      rightFlipper.angle += (rightFlipper.targetAngle - rightFlipper.angle) * 0.45;
-
-      if (!pbLaunched) return;
-
-      pbBall.vy += 0.28;
-      pbBall.vx *= 0.995;
-      pbBall.vy *= 0.995;
-
-      pbBall.x += pbBall.vx;
-      pbBall.y += pbBall.vy;
-
-      const chuteWallX = 330;
-      if (pbBall.x > chuteWallX && pbBall.y > 110) {
-        if (pbBall.x + pbBall.r > 360) {
-          pbBall.x = 360 - pbBall.r;
-          pbBall.vx = -Math.abs(pbBall.vx) * 0.6;
-        }
-        if (pbBall.x - pbBall.r < chuteWallX && pbBall.y > 110) {
-          pbBall.x = chuteWallX + pbBall.r;
-          pbBall.vx = Math.abs(pbBall.vx) * 0.6;
-        }
-      } else {
-        if (pbBall.x - pbBall.r < 18) {
-          pbBall.x = 18 + pbBall.r;
-          pbBall.vx = Math.abs(pbBall.vx) * 0.75;
-          playRetroSound('click');
-        }
-        if (pbBall.x + pbBall.r > chuteWallX && pbBall.y > 110) {
-          pbBall.x = chuteWallX - pbBall.r;
-          pbBall.vx = -Math.abs(pbBall.vx) * 0.75;
-          playRetroSound('click');
-        }
-      }
-
-      if (pbBall.y - pbBall.r < 30) {
-        pbBall.y = 30 + pbBall.r;
-        pbBall.vy = Math.abs(pbBall.vy) * 0.7;
-        playRetroSound('click');
-      }
-
-      pbRollovers.forEach(ro => {
-        if (!ro.lit && pbBall.x > ro.x && pbBall.x < ro.x + ro.w && pbBall.y > ro.y && pbBall.y < ro.y + ro.h) {
-          ro.lit = true;
-          pbScore += 500;
-          playRetroSound('score');
-          updatePbDisplays();
-        }
-      });
-
-      pbBumpers.forEach(bmp => {
-        const dx = pbBall.x - bmp.x;
-        const dy = pbBall.y - bmp.y;
-        const dist = Math.hypot(dx, dy);
-        if (dist < bmp.r + pbBall.r) {
-          const nx = dx / (dist || 1);
-          const ny = dy / (dist || 1);
-          pbBall.x = bmp.x + nx * (bmp.r + pbBall.r + 2);
-          pbBall.y = bmp.y + ny * (bmp.r + pbBall.r + 2);
-          const speed = Math.max(8, Math.hypot(pbBall.vx, pbBall.vy));
-          pbBall.vx = nx * speed * 1.25;
-          pbBall.vy = ny * speed * 1.25;
-
-          bmp.hitTime = Date.now();
-          pbScore += 250;
-          playRetroSound('bumper');
-          updatePbDisplays();
-        }
-      });
-
-      checkFlipperCollision(leftFlipper, pbLeftFlipperUp);
-      checkFlipperCollision(rightFlipper, pbRightFlipperUp);
-
-      if (pbBall.x > 50 && pbBall.x < 100 && pbBall.y > 380 && pbBall.y < 460) {
-        pbBall.vx = Math.abs(pbBall.vx) + 5;
-        pbBall.vy = -Math.abs(pbBall.vy) - 2;
-        pbScore += 150;
-        playRetroSound('bumper');
-        updatePbDisplays();
-      }
-      if (pbBall.x > 265 && pbBall.x < 315 && pbBall.y > 380 && pbBall.y < 460) {
-        pbBall.vx = -Math.abs(pbBall.vx) - 5;
-        pbBall.vy = -Math.abs(pbBall.vy) - 2;
-        pbScore += 150;
-        playRetroSound('bumper');
-        updatePbDisplays();
-      }
-
-      if (pbBall.y > 540) {
-        playRetroSound('flipper');
-        pbBallsLeft--;
-        updatePbDisplays();
-        if (pbBallsLeft > 0) {
-          resetPinballBall();
-        } else {
-          pbLaunched = false;
-          const statusEl = document.getElementById('pbMissionStatus');
-          if (statusEl) statusEl.textContent = 'GAME OVER - PRESS LAUNCH';
-          if (pbScore > pbHighScore) {
-            pbHighScore = pbScore;
-            localStorage.setItem('wheresgabbie_pinball_high', pbHighScore);
-          }
-          updatePbDisplays();
-        }
-      }
-    }
-
-    function checkFlipperCollision(flp, isPressing) {
-      const tipX = flp.pivotX + Math.cos(flp.angle) * flp.length;
-      const tipY = flp.pivotY + Math.sin(flp.angle) * flp.length;
-
-      const dx = tipX - flp.pivotX;
-      const dy = tipY - flp.pivotY;
-      const lenSq = dx * dx + dy * dy;
-      let t = ((pbBall.x - flp.pivotX) * dx + (pbBall.y - flp.pivotY) * dy) / lenSq;
-      t = Math.max(0, Math.min(1, t));
-
-      const closeX = flp.pivotX + t * dx;
-      const closeY = flp.pivotY + t * dy;
-      const dist = Math.hypot(pbBall.x - closeX, pbBall.y - closeY);
-
-      if (dist < pbBall.r + 6) {
-        const nx = -(tipY - flp.pivotY) / flp.length;
-        const ny = (tipX - flp.pivotX) / flp.length;
-
-        pbBall.x = closeX + nx * (pbBall.r + 8);
-        pbBall.y = closeY + ny * (pbBall.r + 8);
-
-        const impulse = isPressing ? -12 : -6;
-        pbBall.vy = impulse;
-        pbBall.vx += (closeX - flp.pivotX) * 0.1;
-        playRetroSound('flipper');
-        pbScore += 50;
-        updatePbDisplays();
-      }
-    }
-
-    function drawPinballTable() {
-      if (!pbCtx) return;
-      const w = pbCanvas.width;
-      const h = pbCanvas.height;
-
-      pbCtx.fillStyle = '#080a1c';
-      pbCtx.fillRect(0, 0, w, h);
-
-      pbCtx.fillStyle = 'rgba(255,255,255,0.4)';
-      [[40,50],[110,120],[280,80],[80,260],[300,230],[180,320],[50,420],[280,360]].forEach(([sx, sy]) => {
-        pbCtx.fillRect(sx, sy, 2, 2);
-      });
-
-      pbCtx.font = 'bold 12px "Courier New", monospace';
-      pbCtx.fillStyle = '#00f0ff';
-      pbCtx.textAlign = 'center';
-      pbCtx.fillText('SPACE CADET', 170, 24);
-
-      pbCtx.strokeStyle = '#4f46e5';
-      pbCtx.lineWidth = 3;
-      pbCtx.beginPath();
-      pbCtx.moveTo(330, h);
-      pbCtx.lineTo(330, 110);
-      pbCtx.arc(275, 110, 55, 0, -Math.PI / 2, true);
-      pbCtx.stroke();
-
-      pbCtx.strokeStyle = '#38bdf8';
-      pbCtx.lineWidth = 4;
-      pbCtx.strokeRect(10, 10, w - 20, h - 20);
-
-      pbRollovers.forEach(ro => {
-        pbCtx.fillStyle = ro.lit ? '#fbbf24' : '#1e1b4b';
-        pbCtx.strokeStyle = '#38bdf8';
-        pbCtx.lineWidth = 1.5;
-        pbCtx.fillRect(ro.x, ro.y, ro.w, ro.h);
-        pbCtx.strokeRect(ro.x, ro.y, ro.w, ro.h);
-
-        pbCtx.fillStyle = ro.lit ? '#000000' : '#ffffff';
-        pbCtx.font = 'bold 10px monospace';
-        pbCtx.textAlign = 'center';
-        pbCtx.fillText(ro.label, ro.x + ro.w / 2, ro.y + ro.h - 3);
-      });
-
-      pbBumpers.forEach(bmp => {
-        const isHit = (Date.now() - bmp.hitTime) < 140;
-        pbCtx.beginPath();
-        pbCtx.arc(bmp.x, bmp.y, bmp.r, 0, Math.PI * 2);
-        pbCtx.fillStyle = isHit ? '#ffffff' : bmp.color;
-        pbCtx.fill();
-        pbCtx.strokeStyle = '#ffffff';
-        pbCtx.lineWidth = 3;
-        pbCtx.stroke();
-
-        pbCtx.beginPath();
-        pbCtx.arc(bmp.x, bmp.y, bmp.r * 0.5, 0, Math.PI * 2);
-        pbCtx.fillStyle = '#090a1a';
-        pbCtx.fill();
-
-        pbCtx.fillStyle = '#ffffff';
-        pbCtx.font = 'bold 8px monospace';
-        pbCtx.textAlign = 'center';
-        pbCtx.fillText(bmp.label, bmp.x, bmp.y + 3);
-      });
-
-      pbCtx.fillStyle = '#1e1b4b';
-      pbCtx.strokeStyle = '#ec4899';
-      pbCtx.lineWidth = 2.5;
-
-      pbCtx.beginPath();
-      pbCtx.moveTo(60, 390);
-      pbCtx.lineTo(95, 450);
-      pbCtx.lineTo(60, 450);
-      pbCtx.closePath();
-      pbCtx.fill();
-      pbCtx.stroke();
-
-      pbCtx.beginPath();
-      pbCtx.moveTo(300, 390);
-      pbCtx.lineTo(265, 450);
-      pbCtx.lineTo(300, 450);
-      pbCtx.closePath();
-      pbCtx.fill();
-      pbCtx.stroke();
-
-      drawFlipper(leftFlipper, '#38bdf8');
-      drawFlipper(rightFlipper, '#38bdf8');
-
-      pbCtx.fillStyle = pbLaunched ? '#334155' : '#e11d48';
-      pbCtx.fillRect(338, 500, 20, 24);
-      pbCtx.strokeStyle = '#cbd5e1';
-      pbCtx.lineWidth = 2;
-      for (let y = 504; y < 520; y += 4) {
-        pbCtx.strokeRect(340, y, 16, 2);
-      }
-
-      pbCtx.beginPath();
-      pbCtx.arc(pbBall.x, pbBall.y, pbBall.r, 0, Math.PI * 2);
-      const ballGrad = pbCtx.createRadialGradient(pbBall.x - 2, pbBall.y - 2, 1, pbBall.x, pbBall.y, pbBall.r);
-      ballGrad.addColorStop(0, '#ffffff');
-      ballGrad.addColorStop(0.7, '#cbd5e1');
-      ballGrad.addColorStop(1, '#475569');
-      pbCtx.fillStyle = ballGrad;
-      pbCtx.fill();
-      pbCtx.strokeStyle = '#000000';
-      pbCtx.lineWidth = 1;
-      pbCtx.stroke();
-    }
-
-    function drawFlipper(flp, color) {
-      const tipX = flp.pivotX + Math.cos(flp.angle) * flp.length;
-      const tipY = flp.pivotY + Math.sin(flp.angle) * flp.length;
-
-      pbCtx.save();
-      pbCtx.strokeStyle = '#ffffff';
-      pbCtx.lineWidth = 7;
-      pbCtx.lineCap = 'round';
-      pbCtx.beginPath();
-      pbCtx.moveTo(flp.pivotX, flp.pivotY);
-      pbCtx.lineTo(tipX, tipY);
-      pbCtx.stroke();
-
-      pbCtx.strokeStyle = color;
-      pbCtx.lineWidth = 4;
-      pbCtx.stroke();
-
-      pbCtx.fillStyle = '#fbbf24';
-      pbCtx.beginPath();
-      pbCtx.arc(flp.pivotX, flp.pivotY, 5, 0, Math.PI * 2);
-      pbCtx.fill();
-      pbCtx.restore();
-    }
-
-    function updatePbDisplays() {
-      const scoreEl = document.getElementById('pbScoreDisplay');
-      const highEl = document.getElementById('pbHighScoreDisplay');
-      const ballsEl = document.getElementById('pbBallsDisplay');
-      const rankEl = document.getElementById('pbRankDisplay');
-
-      if (scoreEl) scoreEl.textContent = String(pbScore).padStart(8, '0');
-      if (highEl) highEl.textContent = String(Math.max(pbScore, pbHighScore)).padStart(8, '0');
-      if (ballsEl) ballsEl.textContent = `${pbBallsLeft} / 3`;
-
-      let rank = 'CADET';
-      if (pbScore >= 50000) rank = 'COMMANDER';
-      else if (pbScore >= 20000) rank = 'LIEUTENANT';
-      else if (pbScore >= 5000) rank = 'ENSIGN';
-      if (rankEl) rankEl.textContent = rank;
     }
 
     </script>
