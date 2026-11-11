@@ -772,6 +772,14 @@
     </div>
   </div>
 
+    <!-- DVD BOUNCING LOGO SCREENSAVER OVERLAY -->
+    <div id="screensaverOverlay" style="display:none; position:fixed; inset:0; z-index:999999; background:#000000; overflow:hidden; user-select:none; cursor:none;">
+      <img id="dvdLogo" src="images/bounce.png" alt="WheresGabbie Screensaver Logo" style="position:absolute; left:0; top:0; width:200px; height:auto; will-change:transform, filter; pointer-events:none; image-rendering: -webkit-optimize-contrast;" />
+      <div style="position:absolute; bottom:16px; width:100%; text-align:center; color:#555; font-family:'JetBrains Mono', monospace; font-size:11px; pointer-events:none; opacity:0.6;">
+        [ PRESS ANY KEY OR CLICK TO WAKE ]
+      </div>
+    </div>
+
     <!-- CANVAS LAYERS -->
     <canvas id="trailCanvas"></canvas>
     <canvas id="grassCanvas"></canvas>
@@ -808,7 +816,7 @@
     <!-- Windows 95 Start Menu Popup -->
     <div id="startmenu" class="out" style="display:none; position:fixed; left:4px; bottom:36px; width:220px; z-index:5000; background:#c0c0c0; box-shadow: 2px 2px 0 #000;">
       <div style="position:absolute; left:0; top:0; bottom:0; width:26px; background:linear-gradient(#000082, #1084d0); writing-mode:vertical-rl; transform:rotate(180deg); color:#fff; font-family:'MS Sans Serif', Tahoma, sans-serif; font-size:14px; font-weight:bold; text-align:center; padding:10px 0; user-select:none;">
-        Windows<span style="color:#ffd147;">95</span>
+        Wheres<span style="color:#ffd147;">Gabbie</span>
       </div>
       <ul style="list-style:none; margin-left:28px; padding:3px; margin-top:0; margin-bottom:0; font-family: Tahoma, 'MS Sans Serif', sans-serif; font-size:12px;">
         <li onclick="returnToDesk(); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
@@ -835,6 +843,22 @@
         </li>
         <li onclick="triggerVirusPrank(); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer; border-top:1px solid #808080; margin-top:4px;">
           <span>&#9888;&#65039;</span> <span>DO NOT OPEN.exe</span>
+        </li>
+        <li onclick="startScreensaverMode(); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
+          <svg width="15" height="15" viewBox="0 0 16 16" shape-rendering="crispEdges" style="flex-shrink:0;">
+            <rect x="7" y="1" width="3" height="1" fill="#ffd147"/>
+            <rect x="5" y="2" width="4" height="1" fill="#ffd147"/>
+            <rect x="4" y="3" width="3" height="1" fill="#ffd147"/>
+            <rect x="3" y="4" width="3" height="1" fill="#ffd147"/>
+            <rect x="2" y="5" width="3" height="2" fill="#ffd147"/>
+            <rect x="2" y="7" width="3" height="2" fill="#ffd147"/>
+            <rect x="2" y="9" width="3" height="2" fill="#ffd147"/>
+            <rect x="3" y="11" width="3" height="1" fill="#ffd147"/>
+            <rect x="4" y="12" width="3" height="1" fill="#ffd147"/>
+            <rect x="5" y="13" width="4" height="1" fill="#ffd147"/>
+            <rect x="7" y="14" width="3" height="1" fill="#ffd147"/>
+          </svg>
+          <span>Sleep</span>
         </li>
       </ul>
     </div>
@@ -3074,6 +3098,162 @@
           closeProjectPreview();
         }
       });
+
+      // DVD BOUNCING LOGO SCREENSAVER ENGINE (SLEEP MODE)
+      let screensaverActive = false;
+      let screensaverRafId = null;
+      let dvdX = 100;
+      let dvdY = 100;
+      let dvdVx = 2.4;
+      let dvdVy = 1.9;
+      let dvdWidth = 200;
+      let dvdHeight = 133;
+      let lastDvdColorIdx = 0;
+
+      const DVD_FILTERS = [
+        'none',
+        'hue-rotate(50deg) saturate(1.8) brightness(1.1)',
+        'hue-rotate(100deg) saturate(2) brightness(1.15)',
+        'hue-rotate(150deg) saturate(1.8) brightness(1.1)',
+        'hue-rotate(195deg) saturate(2) brightness(1.2)',
+        'hue-rotate(240deg) saturate(1.9) brightness(1.1)',
+        'hue-rotate(280deg) saturate(2.2) brightness(1.2)',
+        'hue-rotate(325deg) saturate(2) brightness(1.15)'
+      ];
+
+      function changeDvdColor() {
+        const logo = document.getElementById('dvdLogo');
+        if (!logo) return;
+        let nextIdx;
+        do {
+          nextIdx = Math.floor(Math.random() * DVD_FILTERS.length);
+        } while (nextIdx === lastDvdColorIdx);
+        lastDvdColorIdx = nextIdx;
+        logo.style.filter = DVD_FILTERS[nextIdx];
+      }
+
+      function screensaverLoop() {
+        if (!screensaverActive) return;
+
+        const overlay = document.getElementById('screensaverOverlay');
+        const logo = document.getElementById('dvdLogo');
+        if (!overlay || !logo) return;
+
+        const screenW = window.innerWidth;
+        const screenH = window.innerHeight;
+        const maxW = screenW - dvdWidth;
+        const maxH = screenH - dvdHeight;
+
+        dvdX += dvdVx;
+        dvdY += dvdVy;
+
+        let collided = false;
+
+        // Horizontal bounce
+        if (dvdX <= 0) {
+          dvdX = 0;
+          dvdVx = Math.abs(dvdVx);
+          collided = true;
+        } else if (dvdX >= maxW) {
+          dvdX = Math.max(0, maxW);
+          dvdVx = -Math.abs(dvdVx);
+          collided = true;
+        }
+
+        // Vertical bounce
+        if (dvdY <= 0) {
+          dvdY = 0;
+          dvdVy = Math.abs(dvdVy);
+          collided = true;
+        } else if (dvdY >= maxH) {
+          dvdY = Math.max(0, maxH);
+          dvdVy = -Math.abs(dvdVy);
+          collided = true;
+        }
+
+        if (collided) {
+          changeDvdColor();
+        }
+
+        logo.style.transform = 'translate3d(' + dvdX + 'px, ' + dvdY + 'px, 0)';
+
+        screensaverRafId = requestAnimationFrame(screensaverLoop);
+      }
+
+      function startScreensaverMode() {
+        const overlay = document.getElementById('screensaverOverlay');
+        const logo = document.getElementById('dvdLogo');
+        if (!overlay || !logo) return;
+
+        screensaverActive = true;
+        overlay.style.display = 'block';
+
+        // Dynamic responsive logo sizing (aspect ratio 3:2 matching 6000x4000)
+        dvdWidth = Math.min(220, Math.max(140, Math.floor(window.innerWidth * 0.22)));
+        dvdHeight = Math.floor(dvdWidth / 1.5);
+        logo.style.width = dvdWidth + 'px';
+        logo.style.height = dvdHeight + 'px';
+
+        // Initial position away from borders
+        const maxW = Math.max(10, window.innerWidth - dvdWidth);
+        const maxH = Math.max(10, window.innerHeight - dvdHeight);
+        dvdX = Math.floor(Math.random() * (maxW * 0.7)) + Math.floor(maxW * 0.15);
+        dvdY = Math.floor(Math.random() * (maxH * 0.7)) + Math.floor(maxH * 0.15);
+
+        // Random velocities
+        const speed = 2.4;
+        dvdVx = (Math.random() > 0.5 ? 1 : -1) * (speed + (Math.random() * 0.4 - 0.2));
+        dvdVy = (Math.random() > 0.5 ? 1 : -1) * (speed * 0.78 + (Math.random() * 0.4 - 0.2));
+
+        changeDvdColor();
+        logo.style.transform = 'translate3d(' + dvdX + 'px, ' + dvdY + 'px, 0)';
+
+        if (screensaverRafId) cancelAnimationFrame(screensaverRafId);
+        screensaverRafId = requestAnimationFrame(screensaverLoop);
+
+        // Guard delay to prevent immediate click dismissal
+        setTimeout(() => {
+          if (!screensaverActive) return;
+          window.addEventListener('keydown', onScreensaverWake);
+          overlay.addEventListener('click', onScreensaverWake);
+          overlay.addEventListener('mousemove', onScreensaverMouseMove);
+        }, 350);
+      }
+
+      let screensaverMouseMoves = 0;
+      function onScreensaverMouseMove() {
+        screensaverMouseMoves++;
+        if (screensaverMouseMoves > 5) {
+          stopScreensaverMode();
+        }
+      }
+
+      function onScreensaverWake(e) {
+        if (e) {
+          e.stopPropagation();
+          e.preventDefault();
+        }
+        stopScreensaverMode();
+      }
+
+      function stopScreensaverMode() {
+        if (!screensaverActive) return;
+        screensaverActive = false;
+        screensaverMouseMoves = 0;
+
+        if (screensaverRafId) {
+          cancelAnimationFrame(screensaverRafId);
+          screensaverRafId = null;
+        }
+
+        window.removeEventListener('keydown', onScreensaverWake);
+        const overlay = document.getElementById('screensaverOverlay');
+        if (overlay) {
+          overlay.removeEventListener('click', onScreensaverWake);
+          overlay.removeEventListener('mousemove', onScreensaverMouseMove);
+          overlay.style.display = 'none';
+        }
+      }
 
       // AMBIENT CANVAS BACKGROUND LOGIC
       (function() {
