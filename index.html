@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
@@ -87,24 +87,24 @@
       /* DESKTOP ICONS (WINDOWS 95 STYLE) */
       .desktop-icons-grid {
         position: fixed;
-        top: 16px;
-        left: 16px;
+        top: 20px;
+        left: 20px;
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
-        gap: 16px 12px;
+        gap: 20px 16px;
         max-height: calc(100vh - 56px);
         z-index: 10;
         pointer-events: auto;
       }
 
       .desktop-icon {
-        width: 82px;
+        width: 104px;
         display: flex;
         flex-direction: column;
         align-items: center;
-        gap: 4px;
-        padding: 4px 2px;
+        gap: 5px;
+        padding: 5px 3px;
         background: transparent !important;
         border: 1px dotted transparent !important;
         border-radius: 0 !important;
@@ -115,8 +115,8 @@
       }
 
       .desktop-icon-img {
-        width: 44px;
-        height: 44px;
+        width: 55px;
+        height: 55px;
         background: transparent !important;
         border: none !important;
         border-radius: 0 !important;
@@ -126,6 +126,11 @@
         justify-content: center;
         filter: drop-shadow(1px 1px 0 rgba(0, 0, 0, 0.6));
         transition: transform 0.12s ease, filter 0.12s ease;
+      }
+
+      .desktop-icon-img svg {
+        width: 45px;
+        height: 45px;
       }
 
       .desktop-icon:hover .desktop-icon-img,
@@ -140,12 +145,12 @@
 
       .desktop-icon-title {
         font-family: var(--ui);
-        font-size: 11px;
+        font-size: 13px;
         color: #ffffff;
         text-align: center;
         text-shadow: 1px 1px 0 #000000;
         word-break: break-word;
-        line-height: 1.2;
+        line-height: 1.25;
         padding: 2px 4px;
         border-radius: 0;
         border: 1px dotted transparent;
@@ -599,17 +604,22 @@
         }
 
         .desktop-icon {
-          width: 70px !important;
+          width: 88px !important;
           padding: 2px !important;
         }
 
         .desktop-icon-img {
-          width: 36px !important;
-          height: 36px !important;
+          width: 45px !important;
+          height: 45px !important;
+        }
+
+        .desktop-icon-img svg {
+          width: 40px !important;
+          height: 40px !important;
         }
 
         .desktop-icon-title {
-          font-size: 10px !important;
+          font-size: 11px !important;
         }
 
         .os-window {
@@ -774,7 +784,7 @@
 
     <!-- DVD BOUNCING LOGO SCREENSAVER OVERLAY -->
     <div id="screensaverOverlay" style="display:none; position:fixed; inset:0; z-index:999999; background:#000000; overflow:hidden; user-select:none; cursor:none;">
-      <img id="dvdLogo" src="images/bounceNEW.png" alt="WheresGabbie Screensaver Logo" style="position:absolute; left:0; top:0; width:200px; height:auto; will-change:transform, filter; pointer-events:none; image-rendering: -webkit-optimize-contrast;" />
+      <img id="dvdLogo" src="images/bounceNEW.png" alt="WheresGabbie Screensaver Logo" style="position:absolute; left:0; top:0; width:400px; height:auto; will-change:transform, filter; pointer-events:none; image-rendering: -webkit-optimize-contrast;" />
       <div style="position:absolute; bottom:16px; width:100%; text-align:center; color:#555; font-family:'JetBrains Mono', monospace; font-size:11px; pointer-events:none; opacity:0.6;">
         [ PRESS ANY KEY OR CLICK TO WAKE ]
       </div>
@@ -836,7 +846,7 @@
           <span>&#128193;</span> <span>Class Demos</span>
         </li>
         <li onclick="openWindow('win-about'); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
-          <span>&#128196;</span> <span>About Gabbie</span>
+          <span>&#128196;</span> <span>About Gabbie.txt</span>
         </li>
         <li onclick="openWindow('win-limewire'); closeStartMenu();" style="display:flex; align-items:center; gap:8px; padding:6px 8px; cursor:pointer;">
           <span>&#127819;</span> <span>LimeWire v4.12</span>
@@ -867,7 +877,7 @@
     <div class="desktop-icons-grid">
       <div class="desktop-icon" onclick="openWindow('win-project')">
         <div class="desktop-icon-img">
-          <svg width="36" height="36" viewBox="0 0 32 32" shape-rendering="crispEdges">
+          <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
             <rect x="2" y="7" width="10" height="2" fill="#000"/>
             <rect x="3" y="8" width="8" height="2" fill="#e6a100"/>
             <rect x="2" y="9" width="28" height="15" fill="#000"/>
@@ -887,7 +897,7 @@
 
       <div class="desktop-icon" onclick="openWindow('win-artifact')">
         <div class="desktop-icon-img">
-          <svg width="36" height="36" viewBox="0 0 32 32" shape-rendering="crispEdges">
+          <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
             <rect x="2" y="7" width="10" height="2" fill="#000"/>
             <rect x="3" y="8" width="8" height="2" fill="#e6a100"/>
             <rect x="2" y="9" width="28" height="15" fill="#000"/>
@@ -906,7 +916,7 @@
 
       <div class="desktop-icon" onclick="openWindow('win-video')" title="Project 3 — Video Project">
         <div class="desktop-icon-img">
-          <svg width="36" height="36" viewBox="0 0 32 32" shape-rendering="crispEdges">
+          <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
             <rect x="2" y="4" width="28" height="24" fill="#000"/>
             <rect x="3" y="5" width="26" height="22" fill="#2d3748"/>
             <rect x="5" y="6" width="3" height="3" fill="#fff"/>
@@ -928,7 +938,7 @@
 
       <div class="desktop-icon" onclick="openWindow('win-demos')">
         <div class="desktop-icon-img">
-          <svg width="36" height="36" viewBox="0 0 32 32" shape-rendering="crispEdges">
+          <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
             <rect x="2" y="7" width="10" height="2" fill="#000"/>
             <rect x="3" y="8" width="8" height="2" fill="#e6a100"/>
             <rect x="2" y="9" width="28" height="15" fill="#000"/>
@@ -949,28 +959,27 @@
 
       <div class="desktop-icon" onclick="openWindow('win-about')">
         <div class="desktop-icon-img">
-          <svg width="36" height="36" viewBox="0 0 32 32" shape-rendering="crispEdges">
-            <rect x="2" y="7" width="10" height="2" fill="#000"/>
-            <rect x="3" y="8" width="8" height="2" fill="#e6a100"/>
-            <rect x="2" y="9" width="28" height="15" fill="#000"/>
-            <rect x="3" y="10" width="26" height="13" fill="#c68200"/>
-            <rect x="6" y="4" width="18" height="10" fill="#000"/>
-            <rect x="7" y="5" width="16" height="8" fill="#fff"/>
-            <circle cx="11" cy="8.5" r="2" fill="#0284c7"/>
-            <rect x="15" y="7" width="6" height="1.5" fill="#333"/>
-            <rect x="15" y="10" width="5" height="1" fill="#777"/>
-            <polygon points="1,25 3,13 29,13 31,25" fill="#000"/>
-            <polygon points="2,24 4,14 28,14 30,24" fill="#ffd147"/>
-            <line x1="4" y1="14" x2="28" y2="14" stroke="#fff8b8" stroke-width="1"/>
-            <line x1="2" y1="24" x2="30" y2="24" stroke="#8a5a00" stroke-width="1"/>
+          <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
+            <!-- Windows 95 Notepad Document Icon -->
+            <rect x="5" y="3" width="22" height="26" fill="#000000"/>
+            <rect x="6" y="4" width="20" height="24" fill="#ffffff"/>
+            <polygon points="20,4 25,9 20,9" fill="#c0c0c0"/>
+            <line x1="20" y1="4" x2="20" y2="9" stroke="#808080" stroke-width="1"/>
+            <line x1="20" y1="9" x2="25" y2="9" stroke="#808080" stroke-width="1"/>
+            <line x1="9" y1="8" x2="18" y2="8" stroke="#000080" stroke-width="1.5"/>
+            <line x1="9" y1="12" x2="23" y2="12" stroke="#808080" stroke-width="1"/>
+            <line x1="9" y1="15" x2="23" y2="15" stroke="#808080" stroke-width="1"/>
+            <line x1="9" y1="18" x2="23" y2="18" stroke="#808080" stroke-width="1"/>
+            <line x1="9" y1="21" x2="21" y2="21" stroke="#808080" stroke-width="1"/>
+            <line x1="9" y1="24" x2="17" y2="24" stroke="#808080" stroke-width="1"/>
           </svg>
         </div>
-        <span class="desktop-icon-title">About Gabbie</span>
+        <span class="desktop-icon-title">About Gabbie.txt</span>
       </div>
 
       <div class="desktop-icon" onclick="openWindow('win-limewire')">
         <div class="desktop-icon-img">
-          <svg width="36" height="36" viewBox="0 0 32 32" shape-rendering="crispEdges">
+          <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
             <path d="M18 3 C22 3 26 5 27 9 C23 10 19 9 17 6 C17 4 17 3 18 3 Z" fill="#2d8a1e" stroke="#164d0d" stroke-width="1"/>
             <circle cx="16" cy="18" r="13" fill="#1b6613" stroke="#0f3d0a" stroke-width="1"/>
             <circle cx="16" cy="18" r="12" fill="#4ade26"/>
@@ -988,7 +997,7 @@
 
       <div class="desktop-icon" onclick="triggerVirusPrank()" title="DO NOT CLICK!">
         <div class="desktop-icon-img">
-          <svg width="36" height="36" viewBox="0 0 32 32" shape-rendering="crispEdges">
+          <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
             <rect x="2" y="3" width="28" height="26" fill="#000"/>
             <rect x="3" y="4" width="26" height="24" fill="#c0c0c0"/>
             <line x1="3" y1="4" x2="28" y2="4" stroke="#fff" stroke-width="1"/>
@@ -1570,12 +1579,12 @@
       </div>
     </div>
 
-    <!-- WINDOW 3: ABOUT & STUDIO PRACTICE -->
-    <div id="win-about" class="os-window minimized out" style="width: 740px; height: 530px; top: 90px; left: 300px;">
+    <!-- WINDOW 3: ABOUT GABBIE (NOTEPAD .TXT FILE) -->
+    <div id="win-about" class="os-window minimized out" style="width: 620px; height: 460px; top: 90px; left: 280px;">
       <div class="os-window-header titlebar" onmousedown="dragWindow(event, 'win-about')">
         <div class="flex items-center gap-1.5 overflow-hidden">
           <span style="font-size: 13px;">&#128196;</span>
-          <span class="os-window-title ti">About Gabbie &amp; Art 10C</span>
+          <span class="os-window-title ti">About Gabbie.txt - Notepad</span>
         </div>
         <div class="window-controls flex items-center gap-1">
           <span class="tbtn out" onclick="minimizeWindow('win-about')" title="Minimize">_</span>
@@ -1585,83 +1594,26 @@
       </div>
 
       <div class="win95-menubar">
-        <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>V</u>iew</span><span><u>H</u>elp</span>
+        <span><u>F</u>ile</span><span><u>E</u>dit</span><span><u>S</u>earch</span><span><u>H</u>elp</span>
       </div>
 
-      <div class="win95-toolbar">
-        <button class="win95-tbtn out" id="backBtn-win-about" onclick="backToFolder('win-about')" disabled title="Back to Folder">
-          <span>&larr;</span> Back
-        </button>
-        <div class="win95-address in">
-          <span style="color:#555; font-weight:bold; font-size:11px;">Address</span>
-          <input type="text" readonly id="address-win-about" value="C:\Desktop\About Gabbie" />
-        </div>
-      </div>
-
-      <div class="os-window-body in">
-        <!-- FOLDER EXPLORER VIEW (INITIAL) -->
-        <div id="folder-win-about" class="win-folder-view">
-          <div class="folder">
-            <div class="fitem" onclick="openWindowContent('win-about')" title="Click to view About Gabbie text">
-              <div class="g">
-                <svg width="44" height="44" viewBox="0 0 32 32" shape-rendering="crispEdges">
-                  <rect x="5" y="3" width="22" height="26" fill="#000"/>
-                  <rect x="6" y="4" width="20" height="24" fill="#ffffff"/>
-                  <line x1="9" y1="8" x2="23" y2="8" stroke="#000082" stroke-width="1.5"/>
-                  <line x1="9" y1="12" x2="23" y2="12" stroke="#808080" stroke-width="1"/>
-                  <line x1="9" y1="16" x2="23" y2="16" stroke="#808080" stroke-width="1"/>
-                  <line x1="9" y1="20" x2="20" y2="20" stroke="#808080" stroke-width="1"/>
-                  <line x1="9" y1="24" x2="16" y2="24" stroke="#808080" stroke-width="1"/>
-                </svg>
-              </div>
-              <div class="lb">About_Gabbie.txt</div>
-            </div>
-          </div>
-          <div class="win95-statusbar">1 object(s) (1.2 KB)</div>
-        </div>
-
-        <!-- PROJECT CONTENT VIEW (NOTEPAD / BIO) -->
-        <div id="content-win-about" class="win-content-view" style="display: none; height: 100%; flex-direction: column;">
-          <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
-            <div class="bg-zinc-900/80 border border-zinc-800 p-5 rounded-xl flex flex-col justify-between">
-              <div>
-                <span class="font-mono text-[11px] text-amber-400 uppercase tracking-widest block mb-2">Identity &amp; Trajectory</span>
-                <h3 class="font-bold text-lg text-white mb-2">About Gabbie</h3>
-                <p class="text-xs text-zinc-400 leading-relaxed">
-                  Student, designer, and digital creator working at the intersection of graphic storytelling, character design, and modern front-end media.
-                </p>
-              </div>
-              <div class="mt-6">
-                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-2">Interests &amp; Disciplines</span>
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Character Design</span>
-                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Typography</span>
-                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Digital Storytelling</span>
-                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Traditional Art</span>
-                </div>
-              </div>
-            </div>
-
-            <div class="bg-zinc-900/80 border border-zinc-800 p-5 rounded-xl flex flex-col justify-between">
-              <div>
-                <span class="font-mono text-[11px] text-amber-400 uppercase tracking-widest block mb-2">Academic Studio</span>
-                <h3 class="font-bold text-lg text-white mb-2">Art 10C Studio</h3>
-                <p class="text-xs text-zinc-400 leading-relaxed">
-                  Exploring advanced digital art and design theory using computer imaging applications and scanning technologies. Applying visual design principles and studio projects focused on personal expression.
-                </p>
-              </div>
-              <div class="mt-6">
-                <span class="font-mono text-[10px] text-zinc-500 uppercase tracking-wider block mb-2">Software &amp; Skills</span>
-                <div class="flex flex-wrap gap-1.5">
-                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Adobe Illustrator</span>
-                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Photoshop</span>
-                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">Blender</span>
-                  <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2 py-1 rounded border border-zinc-700">HTML &amp; CSS</span>
-                </div>
-              </div>
+      <div class="os-window-body in" style="flex:1; display:flex; flex-direction:column; overflow:hidden; background:#ffffff;">
+        <div class="notepad-doc" style="flex:1; background:#ffffff; color:#000000; padding:22px 24px; font-family:'MS Sans Serif', Tahoma, sans-serif; font-size:13px; line-height:1.6; overflow-y:auto; user-select:text;">
+          <h2 style="font-family:'MS Sans Serif', Tahoma, sans-serif; font-size:22px; font-weight:bold; color:#000080; margin-top:0; margin-bottom:12px; letter-spacing:-0.2px;">About Gabbie</h2>
+          <p style="font-size:13px; color:#222222; line-height:1.65; max-width:62ch; margin-bottom:18px;">
+            Student, designer, and digital creator working at the intersection of graphic storytelling, character design, and modern front-end media.
+          </p>
+          <div style="margin-top:20px; padding-top:14px; border-top:1px solid #e0e0e0;">
+            <div style="font-size:11px; font-weight:bold; color:#666666; text-transform:uppercase; letter-spacing:0.5px; margin-bottom:10px;">Interests &amp; Disciplines</div>
+            <div style="display:flex; flex-wrap:wrap; gap:8px;">
+              <span style="font-size:12px; font-family:'Courier New', monospace; background:#f4f4f4; border:1px solid #808080; padding:3px 10px; color:#000000; box-shadow:1px 1px 0 #fff inset;">Character Design</span>
+              <span style="font-size:12px; font-family:'Courier New', monospace; background:#f4f4f4; border:1px solid #808080; padding:3px 10px; color:#000000; box-shadow:1px 1px 0 #fff inset;">Typography</span>
+              <span style="font-size:12px; font-family:'Courier New', monospace; background:#f4f4f4; border:1px solid #808080; padding:3px 10px; color:#000000; box-shadow:1px 1px 0 #fff inset;">Digital Storytelling</span>
+              <span style="font-size:12px; font-family:'Courier New', monospace; background:#f4f4f4; border:1px solid #808080; padding:3px 10px; color:#000000; box-shadow:1px 1px 0 #fff inset;">Traditional Art</span>
             </div>
           </div>
         </div>
+        <div class="win95-statusbar" style="flex-shrink:0;">Ln 1, Col 1&nbsp;&nbsp;|&nbsp;&nbsp;100%&nbsp;&nbsp;|&nbsp;&nbsp;Windows (CRLF)</div>
       </div>
     </div>
 
@@ -2239,7 +2191,7 @@
       'win-video': { title: 'Video Project', icon: '\uD83C\uDFA5' },
       'win-slideshow': { title: 'Project Gallery', icon: '\uD83D\uDCC1' },
       'win-demos': { title: 'Class Demos', icon: '\uD83D\uDCC1' },
-      'win-about': { title: 'About Gabbie', icon: '\uD83D\uDCC4' },
+      'win-about': { title: 'About Gabbie.txt', icon: '\uD83D\uDCC4' },
       'win-limewire': { title: 'LimeWire v4.12', icon: '\uD83C\uDF4B' }
     };
 
@@ -3106,8 +3058,8 @@
       let dvdY = 100;
       let dvdVx = 2.4;
       let dvdVy = 1.9;
-      let dvdWidth = 200;
-      let dvdHeight = 133;
+      let dvdWidth = 400;
+      let dvdHeight = 267;
       let lastDvdColorIdx = 0;
 
       const DVD_FILTERS = [
@@ -3189,7 +3141,7 @@
         overlay.style.display = 'block';
 
         // Dynamic responsive logo sizing (aspect ratio 3:2 matching 6000x4000)
-        dvdWidth = Math.min(220, Math.max(140, Math.floor(window.innerWidth * 0.22)));
+        dvdWidth = Math.min(440, Math.max(280, Math.floor(window.innerWidth * 0.44)));
         dvdHeight = Math.floor(dvdWidth / 1.5);
         logo.style.width = dvdWidth + 'px';
         logo.style.height = dvdHeight + 'px';
