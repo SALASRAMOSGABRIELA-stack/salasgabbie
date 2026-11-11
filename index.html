@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
@@ -434,8 +434,6 @@
       filter: drop-shadow(0 20px 45px rgba(0, 0, 0, 0.7));
       transition: transform 0.25s ease, filter 0.25s ease;
       cursor: inherit;
-      -webkit-mask-image: radial-gradient(ellipse 96% 96% at 50% 50%, black 80%, transparent 100%);
-      mask-image: radial-gradient(ellipse 96% 96% at 50% 50%, black 80%, transparent 100%);
     }
 
     .screensaver-frame:hover .screensaver-img {
@@ -478,6 +476,30 @@
     @keyframes pulsePrompt {
       0%, 100% { opacity: 0.75; transform: translateX(-50%) scale(1); }
       50% { opacity: 1; transform: translateX(-50%) scale(1.03); }
+    }
+
+    /* MOBILE RESPONSIVE SIZING FOR COMPUTER INTRO */
+    @media (max-width: 768px) {
+      .screensaver-frame {
+        width: 100vw;
+        max-width: 100vw;
+        max-height: 80vh;
+        overflow: visible;
+      }
+      .screensaver-img {
+        width: min(235vw, 1020px);
+        max-width: none;
+        max-height: 75vh;
+        height: auto;
+      }
+      .enter-prompt {
+        bottom: 20px;
+        padding: 8px 18px;
+        font-size: 11px;
+        letter-spacing: 0.14em;
+        white-space: nowrap;
+        max-width: 90vw;
+      }
     }
       </style>
   </head>
@@ -1272,7 +1294,7 @@
       // Monitor screen center is ~27.5% down from top of the image
       const screenCenterY = rect.top + rect.height * 0.275;
 
-      const monitorW = rect.width * 0.41;
+      const monitorW = rect.width * 0.20;
       const monitorH = rect.height * 0.26;
       const scaleX = window.innerWidth / Math.max(monitorW, 80);
       const scaleY = window.innerHeight / Math.max(monitorH, 80);
