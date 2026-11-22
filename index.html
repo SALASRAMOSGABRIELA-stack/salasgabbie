@@ -422,10 +422,11 @@
         flex: 1;
         display: flex;
         flex-direction: column;
-        background: #0f172a;
-        color: #ffffff;
+        background: #ffffff;
+        color: #000000;
         overflow: auto;
-        padding: 1rem;
+        padding: 14px 16px;
+        font-family: 'MS Sans Serif', Tahoma, sans-serif;
       }
 
       /* Slide & Lightbox Rules */
@@ -441,6 +442,48 @@
 
       .modal-slide.active {
         display: flex;
+      }
+
+      .modal-counter {
+        font-family: 'Courier New', monospace;
+        font-size: 11px;
+        color: #222222;
+        background: #f4f4f4;
+        border: 1px solid #808080;
+        padding: 2px 8px;
+        box-shadow: 1px 1px 0 #ffffff inset;
+        margin-bottom: 8px;
+        display: inline-block;
+      }
+
+      .modal-dot {
+        width: 10px;
+        height: 10px;
+        background: #c0c0c0;
+        border: 1px solid #808080;
+        box-shadow: 1px 1px 0 #ffffff inset;
+        cursor: pointer;
+        display: inline-block;
+        transition: all 0.1s ease;
+      }
+
+      .modal-dot:hover {
+        background: #e0e0e0;
+      }
+
+      .modal-dot.active {
+        background: #000080 !important;
+        border: 1px solid #000000 !important;
+        box-shadow: 1px 1px 0 #000040 inset !important;
+      }
+
+      .win95-nav-btn {
+        user-select: none;
+        transition: background 0.05s ease;
+      }
+
+      .win95-nav-btn:active {
+        border-color: #000000 #ffffff #ffffff #000000 !important;
       }
 
       .modal-slide img {
@@ -1421,64 +1464,66 @@
         </div>
 
         <!-- UNCANNY VALLEY CONTENT VIEW (SINGLE IMAGE: Final 1.png) -->
-        <div id="content-win-project" class="win-content-view" style="display: none; height: 100%; flex-direction: column;">
-          <div class="flex items-center justify-between mb-2 bg-zinc-900/80 border border-zinc-800 p-2.5 rounded-lg">
+        <div id="content-win-project" class="win-content-view" style="display: none; height: 100%; flex-direction: column; background: #ffffff; color: #000000; font-family: 'MS Sans Serif', Tahoma, sans-serif; padding: 14px 16px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e0e0e0;">
             <div>
-              <span class="font-mono text-[10px] text-amber-400 uppercase tracking-widest block mb-0.5">Project 01 &mdash; Showcase</span>
-              <h3 class="font-bold text-xs text-white">Final 1.png</h3>
+              <div style="font-size: 11px; font-weight: bold; color: #666666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;">Project 01 &mdash; Showcase</div>
+              <h2 style="font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 18px; font-weight: bold; color: #000080; margin: 0; letter-spacing: -0.2px;">Final 1.png</h2>
             </div>
-            <span class="font-mono text-[10px] bg-zinc-800 text-zinc-300 px-2 py-0.5 rounded border border-zinc-700">
+            <span style="font-size: 11px; font-family: 'Courier New', monospace; background: #f4f4f4; border: 1px solid #808080; padding: 2px 8px; color: #000000; box-shadow: 1px 1px 0 #fff inset;">
               Lossless PNG
             </span>
           </div>
 
-          <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-3 overflow-hidden">
-            <img src="images/Final 1.png" alt="Final 1" class="max-w-full max-h-full object-contain rounded shadow-lg cursor-pointer transition-transform hover:scale-[1.01]" onclick="openProjectPreview('images/Final 1.png')" title="Click to view full preview" onerror="this.onerror=null; this.src='images/Uncanny Valley HiRes.png';" />
+          <div class="in" style="position: relative; width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; background: #ffffff; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; padding: 12px; overflow: hidden;">
+            <img src="images/Final 1.png" alt="Final 1" style="max-width: 100%; max-height: 100%; object-fit: contain; cursor: pointer; border: 1px solid #d4d0c8; box-shadow: 0 1px 3px rgba(0,0,0,0.15);" onclick="openProjectPreview('images/Final 1.png')" title="Click to view full preview" onerror="this.onerror=null; this.src='images/Uncanny Valley HiRes.png';" />
           </div>
+          <div class="win95-statusbar" style="flex-shrink: 0; margin: 10px -16px -14px -16px;">1 object(s) selected &bull; 100%</div>
         </div>
 
         <!-- PROJECT PDF SLIDESHOW (SLIDES 1-5) -->
-        <div id="content-win-project-pdf" class="win-content-view" style="display: none; height: 100%; flex-direction: column;">
-          <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2 text-center">Uncanny Valley &mdash; Project PDF Slides</h3>
+        <div id="content-win-project-pdf" class="win-content-view" style="display: none; height: 100%; flex-direction: column; background: #ffffff; color: #000000; font-family: 'MS Sans Serif', Tahoma, sans-serif; padding: 14px 16px;">
+          <h2 style="font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 16px; font-weight: bold; color: #000080; margin: 0 0 10px 0; text-align: center;">Uncanny Valley &mdash; Project PDF Slides</h2>
 
-          <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
+          <div class="in" style="position: relative; width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; background: #ffffff; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; padding: 12px; overflow: hidden;">
             <div class="modal-slide active">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">UNO OF 05</div>
+              <div class="modal-counter">UNO OF 05</div>
               <img src="images/Uncanny Valley HiRes.png" alt="Uncanny Valley HiRes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+01';" />
             </div>
 
             <div class="modal-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DOS OF 05</div>
+              <div class="modal-counter">DOS OF 05</div>
               <img src="images/Uncanny Valley HIRESS.png" alt="Uncanny Valley HIRESS" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+02';" />
             </div>
 
             <div class="modal-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">TRES OF 05</div>
+              <div class="modal-counter">TRES OF 05</div>
               <img src="images/Uncanny Valley HiRes3.png" alt="Uncanny Valley HiRes3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+03';" />
             </div>
 
             <div class="modal-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CUATRO OF 05</div>
+              <div class="modal-counter">CUATRO OF 05</div>
               <img src="images/Uncanny Valley HiRes4.png" alt="Uncanny Valley HiRes4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+04';" />
             </div>
 
             <div class="modal-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CINCO OF 05</div>
+              <div class="modal-counter">CINCO OF 05</div>
               <img src="images/Uncanny Valley HiRes5.png" alt="Uncanny Valley HiRes5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Image+05';" />
             </div>
 
             <!-- Clickable Navigation Arrows -->
-            <button type="button" id="prevProjectSlideBtn" onclick="prevProjectSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">&#10094;</button>
-            <button type="button" id="nextProjectSlideBtn" onclick="nextProjectSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">&#10095;</button>
+            <button type="button" id="prevProjectSlideBtn" onclick="prevProjectSlide(event)" class="win95-nav-btn out" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; font-size: 14px; font-weight: bold; color: #000000; background: #c0c0c0; border: 2px solid; border-color: #ffffff #000000 #000000 #ffffff; z-index: 20; cursor: pointer; display: flex; align-items: center; justify-content: center; user-select: none;" title="Previous Slide">&#10094;</button>
+            <button type="button" id="nextProjectSlideBtn" onclick="nextProjectSlide(event)" class="win95-nav-btn out" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; font-size: 14px; font-weight: bold; color: #000000; background: #c0c0c0; border: 2px solid; border-color: #ffffff #000000 #000000 #ffffff; z-index: 20; cursor: pointer; display: flex; align-items: center; justify-content: center; user-select: none;" title="Next Slide">&#10095;</button>
           </div>
 
-          <div class="flex justify-center gap-2 mt-3 flex-wrap">
-            <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToProjectSlide(event, 0)"></span>
-            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToProjectSlide(event, 1)"></span>
-            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToProjectSlide(event, 2)"></span>
-            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToProjectSlide(event, 3)"></span>
-            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToProjectSlide(event, 4)"></span>
+          <div style="display: flex; justify-content: center; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
+            <span class="modal-dot active" data-index="0" onclick="goToProjectSlide(event, 0)" title="Slide 1"></span>
+            <span class="modal-dot" data-index="1" onclick="goToProjectSlide(event, 1)" title="Slide 2"></span>
+            <span class="modal-dot" data-index="2" onclick="goToProjectSlide(event, 2)" title="Slide 3"></span>
+            <span class="modal-dot" data-index="3" onclick="goToProjectSlide(event, 3)" title="Slide 4"></span>
+            <span class="modal-dot" data-index="4" onclick="goToProjectSlide(event, 4)" title="Slide 5"></span>
           </div>
+          <div class="win95-statusbar" style="flex-shrink: 0; margin: 10px -16px -14px -16px;">5 slide(s) &bull; Project PDF</div>
         </div>
       </div>
     </div>
@@ -1838,71 +1883,72 @@
         </div>
 
         <!-- PROJECT CONTENT VIEW (SLIDESHOW) -->
-        <div id="content-win-demos" class="win-content-view" style="display: none; height: 100%; flex-direction: column;">
-          <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2 text-center">Class Demos Slideshow</h3>
+        <div id="content-win-demos" class="win-content-view" style="display: none; height: 100%; flex-direction: column; background: #ffffff; color: #000000; font-family: 'MS Sans Serif', Tahoma, sans-serif; padding: 14px 16px;">
+          <h2 style="font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 16px; font-weight: bold; color: #000080; margin: 0 0 10px 0; text-align: center;">Class Demos Slideshow</h2>
 
-          <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
+          <div class="in" style="position: relative; width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; background: #ffffff; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; padding: 12px; overflow: hidden;">
             <div class="modal-slide active">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">UNO OF 09 &mdash; CATS</div>
+              <div class="modal-counter">UNO OF 09 &mdash; CATS</div>
               <img src="images/cAts.png" alt="cAts" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=cAts';" />
             </div>
 
             <div class="modal-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DOS OF 09 &mdash; CUBES</div>
+              <div class="modal-counter">DOS OF 09 &mdash; CUBES</div>
               <img src="images/cUbes.png" alt="cUbes" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=cUbes';" />
             </div>
 
             <div class="modal-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">TRES OF 09 &mdash; FURBALL</div>
+              <div class="modal-counter">TRES OF 09 &mdash; FURBALL</div>
               <img src="images/FuRbaLL.png" alt="FuRbaLL" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=FuRbaLL';" />
             </div>
 
             <div class="modal-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CUATRO OF 09 &mdash; LINCOLN</div>
+              <div class="modal-counter">CUATRO OF 09 &mdash; LINCOLN</div>
               <img src="images/LiNCOLN.png" alt="LiNCOLN" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=LiNCOLN';" />
             </div>
 
             <div class="modal-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CINCO OF 09 &mdash; PAWN</div>
+              <div class="modal-counter">CINCO OF 09 &mdash; PAWN</div>
               <img src="images/pAwn.png" alt="pAwn" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=pAwn';" />
             </div>
 
             <div class="modal-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">SEIS OF 09 &mdash; PHOTOSHOP 2</div>
+              <div class="modal-counter">SEIS OF 09 &mdash; PHOTOSHOP 2</div>
               <img src="images/PS 2.png" alt="PS 2" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PS+2';" />
             </div>
 
             <div class="modal-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">SIETE OF 09 &mdash; PHOTOSHOP 3</div>
+              <div class="modal-counter">SIETE OF 09 &mdash; PHOTOSHOP 3</div>
               <img src="images/PS 3.png" alt="PS 3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PS+3';" />
             </div>
 
             <div class="modal-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">OCHO OF 09 &mdash; PHOTOSHOP 1</div>
+              <div class="modal-counter">OCHO OF 09 &mdash; PHOTOSHOP 1</div>
               <img src="images/PS1.png" alt="PS1" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=PS1';" />
             </div>
 
             <div class="modal-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">NUEVE OF 09 &mdash; SPACE</div>
+              <div class="modal-counter">NUEVE OF 09 &mdash; SPACE</div>
               <img src="images/SPaCE.png" alt="SPaCE" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=SPaCE';" />
             </div>
 
             <!-- Navigation Arrows -->
-            <button type="button" id="prevDemoSlideBtn" onclick="prevDemoSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">&#10094;</button>
-            <button type="button" id="nextDemoSlideBtn" onclick="nextDemoSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">&#10095;</button>
+            <button type="button" id="prevDemoSlideBtn" onclick="prevDemoSlide(event)" class="win95-nav-btn out" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; font-size: 14px; font-weight: bold; color: #000000; background: #c0c0c0; border: 2px solid; border-color: #ffffff #000000 #000000 #ffffff; z-index: 20; cursor: pointer; display: flex; align-items: center; justify-content: center; user-select: none;" title="Previous Slide">&#10094;</button>
+            <button type="button" id="nextDemoSlideBtn" onclick="nextDemoSlide(event)" class="win95-nav-btn out" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; font-size: 14px; font-weight: bold; color: #000000; background: #c0c0c0; border: 2px solid; border-color: #ffffff #000000 #000000 #ffffff; z-index: 20; cursor: pointer; display: flex; align-items: center; justify-content: center; user-select: none;" title="Next Slide">&#10095;</button>
           </div>
 
-          <div class="flex justify-center gap-2 mt-3 flex-wrap">
-            <span class="modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToDemoSlide(event, 0)"></span>
-            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToDemoSlide(event, 1)"></span>
-            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToDemoSlide(event, 2)"></span>
-            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToDemoSlide(event, 3)"></span>
-            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToDemoSlide(event, 4)"></span>
-            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="5" onclick="goToDemoSlide(event, 5)"></span>
-            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="6" onclick="goToDemoSlide(event, 6)"></span>
-            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="7" onclick="goToDemoSlide(event, 7)"></span>
-            <span class="modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="8" onclick="goToDemoSlide(event, 8)"></span>
+          <div style="display: flex; justify-content: center; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
+            <span class="modal-dot active" data-index="0" onclick="goToDemoSlide(event, 0)" title="Slide 1"></span>
+            <span class="modal-dot" data-index="1" onclick="goToDemoSlide(event, 1)" title="Slide 2"></span>
+            <span class="modal-dot" data-index="2" onclick="goToDemoSlide(event, 2)" title="Slide 3"></span>
+            <span class="modal-dot" data-index="3" onclick="goToDemoSlide(event, 3)" title="Slide 4"></span>
+            <span class="modal-dot" data-index="4" onclick="goToDemoSlide(event, 4)" title="Slide 5"></span>
+            <span class="modal-dot" data-index="5" onclick="goToDemoSlide(event, 5)" title="Slide 6"></span>
+            <span class="modal-dot" data-index="6" onclick="goToDemoSlide(event, 6)" title="Slide 7"></span>
+            <span class="modal-dot" data-index="7" onclick="goToDemoSlide(event, 7)" title="Slide 8"></span>
+            <span class="modal-dot" data-index="8" onclick="goToDemoSlide(event, 8)" title="Slide 9"></span>
           </div>
+          <div class="win95-statusbar" style="flex-shrink: 0; margin: 10px -16px -14px -16px;">9 demo slide(s) &bull; Class Demos</div>
         </div>
       </div>
     </div>
@@ -2020,18 +2066,18 @@
         </div>
 
         <!-- PROJECT CONTENT VIEW (3D MODEL VIEWER) -->
-        <div id="content-win-artifact" class="win-content-view" style="display: none; height: 100%; flex-direction: column;">
-          <div class="flex items-center justify-between mb-3 bg-zinc-900/80 border border-zinc-800 p-3.5 rounded-xl">
+        <div id="content-win-artifact" class="win-content-view" style="display: none; height: 100%; flex-direction: column; background: #ffffff; color: #000000; font-family: 'MS Sans Serif', Tahoma, sans-serif; padding: 14px 16px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e0e0e0;">
             <div>
-              <span class="font-mono text-[10px] text-amber-400 uppercase tracking-widest block mb-0.5">Interactive Digital Media</span>
-              <h3 class="font-bold text-sm text-white">Quasi Object</h3>
+              <div style="font-size: 11px; font-weight: bold; color: #666666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;">Interactive Digital Media</div>
+              <h2 style="font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 18px; font-weight: bold; color: #000080; margin: 0; letter-spacing: -0.2px;">Quasi Object</h2>
             </div>
-            <span class="font-mono text-[11px] bg-zinc-800 text-zinc-300 px-2.5 py-1 rounded border border-zinc-700">
-              GsTan.glb 
+            <span style="font-size: 11px; font-family: 'Courier New', monospace; background: #f4f4f4; border: 1px solid #808080; padding: 2px 8px; color: #000000; box-shadow: 1px 1px 0 #fff inset;">
+              GsTan.glb
             </span>
           </div>
 
-          <div class="model-container relative flex-1 w-full bg-black border border-zinc-800 rounded-xl overflow-hidden p-2 flex flex-col">
+          <div class="model-container in" style="position: relative; flex: 1; width: 100%; background: #ffffff; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; overflow: hidden; padding: 4px; display: flex; flex-direction: column;">
             <model-viewer 
               src="images/Models/GsTan.glb" 
               alt="Quasi Object - GsTan" 
@@ -2039,59 +2085,61 @@
               camera-controls 
               auto-rotate 
               ar
-              style="width: 100%; height: 100%; min-height: 360px; display: block; background-color: #0c0c0e; border-radius: 8px; --poster-color: transparent;">
+              style="width: 100%; height: 100%; min-height: 360px; display: block; background-color: #f8f8f8; --poster-color: transparent;">
             </model-viewer>
           </div>
+          <div class="win95-statusbar" style="flex-shrink: 0; margin: 10px -16px -14px -16px;">1 3D model &bull; Interactive GLB</div>
         </div>
 
         <!-- PROJECT PDF SLIDESHOW (SLIDES 6-11) -->
-        <div id="content-win-artifact-pdf" class="win-content-view" style="display: none; height: 100%; flex-direction: column;">
-          <h3 class="font-mono text-sm text-amber-300 uppercase tracking-wider mb-2 text-center">Quasi Object &mdash; Project PDF Slides</h3>
+        <div id="content-win-artifact-pdf" class="win-content-view" style="display: none; height: 100%; flex-direction: column; background: #ffffff; color: #000000; font-family: 'MS Sans Serif', Tahoma, sans-serif; padding: 14px 16px;">
+          <h2 style="font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 16px; font-weight: bold; color: #000080; margin: 0 0 10px 0; text-align: center;">Quasi Object &mdash; Project PDF Slides</h2>
 
-          <div class="relative w-full flex-1 flex items-center justify-center bg-zinc-950/90 border border-zinc-800 rounded-xl p-4 overflow-hidden">
+          <div class="in" style="position: relative; width: 100%; flex: 1; display: flex; align-items: center; justify-content: center; background: #ffffff; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; padding: 12px; overflow: hidden;">
             <div class="modal-slide quasi-pdf-slide active">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">UNO OF 06 &mdash; Final slide 1</div>
+              <div class="modal-counter">UNO OF 06 &mdash; Final slide 1</div>
               <img src="images/Final slide 1.png" alt="Final slide 1" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+1';" />
             </div>
 
             <div class="modal-slide quasi-pdf-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">DOS OF 06 &mdash; Final slide 2</div>
+              <div class="modal-counter">DOS OF 06 &mdash; Final slide 2</div>
               <img src="images/Final slide 2.png" alt="Final slide 2" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+2';" />
             </div>
 
             <div class="modal-slide quasi-pdf-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">TRES OF 06 &mdash; Final slide 3</div>
+              <div class="modal-counter">TRES OF 06 &mdash; Final slide 3</div>
               <img src="images/Final slide 3.png" alt="Final slide 3" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+3';" />
             </div>
 
             <div class="modal-slide quasi-pdf-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CUATRO OF 06 &mdash; Final slide 4</div>
+              <div class="modal-counter">CUATRO OF 06 &mdash; Final slide 4</div>
               <img src="images/Final slide 4.png" alt="Final slide 4" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+4';" />
             </div>
 
             <div class="modal-slide quasi-pdf-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">CINCO OF 06 &mdash; Final slide 5</div>
+              <div class="modal-counter">CINCO OF 06 &mdash; Final slide 5</div>
               <img src="images/Final slide 5.png" alt="Final slide 5" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+5';" />
             </div>
 
             <div class="modal-slide quasi-pdf-slide">
-              <div class="modal-counter font-mono text-xs text-zinc-400 mb-2">SEIS OF 06 &mdash; Final slide 6</div>
+              <div class="modal-counter">SEIS OF 06 &mdash; Final slide 6</div>
               <img src="images/Final slide 6.png" alt="Final slide 6" onerror="this.onerror=null; this.src='https://placehold.co/600x400/18181b/ffffff?text=Final+Slide+6';" />
             </div>
 
             <!-- Navigation Arrows -->
-            <button type="button" id="prevQuasiSlideBtn" onclick="prevQuasiSlide(event)" class="absolute left-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">&#10094;</button>
-            <button type="button" id="nextQuasiSlideBtn" onclick="nextQuasiSlide(event)" class="absolute right-3 top-1/2 -translate-y-1/2 bg-black/70 hover:bg-white hover:text-black text-white border border-zinc-700 w-10 h-10 rounded-full font-bold transition-all z-20 cursor-pointer flex items-center justify-center shadow-lg">&#10095;</button>
+            <button type="button" id="prevQuasiSlideBtn" onclick="prevQuasiSlide(event)" class="win95-nav-btn out" style="position: absolute; left: 10px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; font-size: 14px; font-weight: bold; color: #000000; background: #c0c0c0; border: 2px solid; border-color: #ffffff #000000 #000000 #ffffff; z-index: 20; cursor: pointer; display: flex; align-items: center; justify-content: center; user-select: none;" title="Previous Slide">&#10094;</button>
+            <button type="button" id="nextQuasiSlideBtn" onclick="nextQuasiSlide(event)" class="win95-nav-btn out" style="position: absolute; right: 10px; top: 50%; transform: translateY(-50%); width: 32px; height: 32px; font-size: 14px; font-weight: bold; color: #000000; background: #c0c0c0; border: 2px solid; border-color: #ffffff #000000 #000000 #ffffff; z-index: 20; cursor: pointer; display: flex; align-items: center; justify-content: center; user-select: none;" title="Next Slide">&#10095;</button>
           </div>
 
-          <div class="flex justify-center gap-2 mt-3 flex-wrap">
-            <span class="quasi-dot modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer" data-index="0" onclick="goToQuasiSlide(event, 0)"></span>
-            <span class="quasi-dot modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="1" onclick="goToQuasiSlide(event, 1)"></span>
-            <span class="quasi-dot modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="2" onclick="goToQuasiSlide(event, 2)"></span>
-            <span class="quasi-dot modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="3" onclick="goToQuasiSlide(event, 3)"></span>
-            <span class="quasi-dot modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="4" onclick="goToQuasiSlide(event, 4)"></span>
-            <span class="quasi-dot modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer" data-index="5" onclick="goToQuasiSlide(event, 5)"></span>
+          <div style="display: flex; justify-content: center; gap: 8px; margin-top: 10px; flex-wrap: wrap;">
+            <span class="quasi-dot modal-dot active" data-index="0" onclick="goToQuasiSlide(event, 0)" title="Slide 1"></span>
+            <span class="quasi-dot modal-dot" data-index="1" onclick="goToQuasiSlide(event, 1)" title="Slide 2"></span>
+            <span class="quasi-dot modal-dot" data-index="2" onclick="goToQuasiSlide(event, 2)" title="Slide 3"></span>
+            <span class="quasi-dot modal-dot" data-index="3" onclick="goToQuasiSlide(event, 3)" title="Slide 4"></span>
+            <span class="quasi-dot modal-dot" data-index="4" onclick="goToQuasiSlide(event, 4)" title="Slide 5"></span>
+            <span class="quasi-dot modal-dot" data-index="5" onclick="goToQuasiSlide(event, 5)" title="Slide 6"></span>
           </div>
+          <div class="win95-statusbar" style="flex-shrink: 0; margin: 10px -16px -14px -16px;">6 slide(s) &bull; Project PDF</div>
         </div>
       </div>
     </div>
@@ -2152,63 +2200,55 @@
         </div>
 
         <!-- PROJECT CONTENT VIEW (COMING SOON POSTER) -->
-        <div id="content-win-video" class="win-content-view" style="display: none; height: 100%; flex-direction: column;">
-          <div class="flex items-center justify-between mb-3 bg-zinc-900/80 border border-zinc-800 p-3.5 rounded-xl">
+        <div id="content-win-video" class="win-content-view" style="display: none; height: 100%; flex-direction: column; background: #ffffff; color: #000000; font-family: 'MS Sans Serif', Tahoma, sans-serif; padding: 14px 16px;">
+          <div style="display: flex; align-items: center; justify-content: space-between; margin-bottom: 12px; padding-bottom: 8px; border-bottom: 1px solid #e0e0e0;">
             <div>
-              <span class="font-mono text-[10px] text-amber-400 uppercase tracking-widest block mb-0.5">Digital Media Art 10C &bull; Studio Showcase</span>
-              <h3 class="font-bold text-sm text-white">Project 03 &bull; Video Project</h3>
+              <div style="font-size: 11px; font-weight: bold; color: #666666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 2px;">Digital Media Art 10C &bull; Studio Showcase</div>
+              <h2 style="font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 18px; font-weight: bold; color: #000080; margin: 0; letter-spacing: -0.2px;">Project 03 &bull; Video Project</h2>
             </div>
-            <span class="font-mono text-[11px] bg-amber-500/10 text-amber-300 border border-amber-500/30 px-2.5 py-1 rounded flex items-center gap-1.5">
-              <span class="w-2 h-2 rounded-full bg-amber-400 animate-pulse"></span> IN PRODUCTION
+            <span style="font-size: 11px; font-family: 'Courier New', monospace; background: #f4f4f4; border: 1px solid #808080; padding: 2px 8px; color: #000080; font-weight: bold; box-shadow: 1px 1px 0 #fff inset;">
+              IN PRODUCTION
             </span>
           </div>
 
-          <div class="relative flex-1 w-full bg-gradient-to-b from-zinc-900 via-black to-zinc-950 border border-zinc-800 rounded-xl overflow-hidden p-6 flex flex-col items-center justify-between shadow-2xl">
-            <div class="absolute inset-4 border border-zinc-700/40 pointer-events-none rounded-lg">
-              <div class="absolute -top-1 -left-1 w-3 h-3 border-t-2 border-l-2 border-amber-400"></div>
-              <div class="absolute -top-1 -right-1 w-3 h-3 border-t-2 border-r-2 border-amber-400"></div>
-              <div class="absolute -bottom-1 -left-1 w-3 h-3 border-b-2 border-l-2 border-amber-400"></div>
-              <div class="absolute -bottom-1 -right-1 w-3 h-3 border-b-2 border-r-2 border-amber-400"></div>
-            </div>
-
-            <div class="w-full flex items-center justify-between z-10 font-mono text-[11px]">
-              <div class="flex items-center gap-2 text-red-500 font-bold bg-black/60 px-2.5 py-1 rounded border border-red-900/50">
-                <span class="w-2.5 h-2.5 rounded-full bg-red-600 animate-ping"></span>
+          <div class="in" style="position: relative; flex: 1; width: 100%; background: #ffffff; border: 2px solid; border-color: #808080 #ffffff #ffffff #808080; padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: space-between; overflow-y: auto;">
+            <div style="width: 100%; display: flex; align-items: center; justify-content: space-between; font-family: 'Courier New', monospace; font-size: 11px;">
+              <div style="display: flex; align-items: center; gap: 6px; color: #b91c1c; font-weight: bold; background: #f4f4f4; border: 1px solid #808080; padding: 2px 8px; box-shadow: 1px 1px 0 #fff inset;">
+                <span style="display: inline-block; width: 8px; height: 8px; border-radius: 50%; background: #dc2626;"></span>
                 <span>REC [STANDBY]</span>
               </div>
-              <div class="text-zinc-500 bg-black/60 px-2.5 py-1 rounded border border-zinc-800">
+              <div style="color: #555555; background: #f4f4f4; border: 1px solid #808080; padding: 2px 8px; box-shadow: 1px 1px 0 #fff inset;">
                 4K UHD &bull; 24 FPS &bull; 16:9
               </div>
             </div>
 
-            <div class="flex flex-col items-center justify-center text-center my-auto z-10 px-4">
-              <div class="w-20 h-20 rounded-2xl bg-zinc-900/90 border border-zinc-700/80 shadow-[0_0_35px_rgba(251,191,36,0.18)] flex items-center justify-center text-4xl mb-4">
+            <div style="display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; margin: auto; padding: 16px 8px;">
+              <div style="width: 72px; height: 72px; background: #f4f4f4; border: 2px solid; border-color: #ffffff #808080 #808080 #ffffff; display: flex; align-items: center; justify-content: center; font-size: 36px; margin-bottom: 14px; box-shadow: 1px 1px 0 #fff inset;">
                 &#127916;
               </div>
-              <span class="font-mono text-xs uppercase tracking-[0.3em] text-amber-400/90 mb-1">Project 03 &bull; Video</span>
-              <h2 class="text-3xl sm:text-4xl font-extrabold tracking-wider text-transparent bg-clip-text bg-gradient-to-r from-amber-200 via-yellow-300 to-amber-500 uppercase mb-3">
+              <div style="font-family: 'Courier New', monospace; font-size: 11px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; color: #666666; margin-bottom: 4px;">Project 03 &bull; Video</div>
+              <h2 style="font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 26px; font-weight: bold; color: #000080; margin: 0 0 10px 0; letter-spacing: -0.3px;">
                 Coming Soon
               </h2>
-              <p class="font-mono text-xs text-zinc-400 max-w-sm leading-relaxed">
+              <p style="font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 13px; color: #222222; line-height: 1.6; max-width: 48ch; margin: 0 auto 18px auto;">
                 Video production in progress. The final cut and presentation will be featured here upon release.
               </p>
 
-              <div class="w-full max-w-xs bg-zinc-900/90 border border-zinc-800 rounded-lg p-2.5 flex items-center gap-3 text-xs font-mono text-zinc-400 mt-5">
-                <span class="w-6 h-6 rounded bg-amber-400/20 text-amber-300 border border-amber-400/40 flex items-center justify-center text-[10px]">
-                  &#9658;
-                </span>
-                <div class="flex-1 bg-zinc-800 h-1.5 rounded-full overflow-hidden">
-                  <div class="bg-amber-400 h-full w-[25%] rounded-full animate-pulse"></div>
+              <div style="width: 100%; max-width: 320px; background: #f4f4f4; border: 1px solid #808080; box-shadow: 1px 1px 0 #fff inset; padding: 8px 12px; display: flex; align-items: center; gap: 10px; font-family: 'Courier New', monospace; font-size: 11px; color: #000000;">
+                <button type="button" class="win95-btn out" style="width: 24px; height: 24px; background: #c0c0c0; border: 2px solid; border-color: #ffffff #000000 #000000 #ffffff; display: flex; align-items: center; justify-content: center; font-size: 10px; font-weight: bold; color: #000000; cursor: pointer; padding: 0;" title="Play">&#9658;</button>
+                <div style="flex: 1; height: 10px; background: #ffffff; border: 1px solid #808080; box-shadow: 1px 1px 0 #808080 inset; position: relative; overflow: hidden;">
+                  <div style="background: #000080; height: 100%; width: 25%;"></div>
                 </div>
-                <span class="text-[10px] text-zinc-500">00:00 / --:--</span>
+                <span style="font-size: 11px; color: #555555;">00:00 / --:--</span>
               </div>
             </div>
 
-            <div class="w-full flex items-center justify-between z-10 font-mono text-[10px] text-zinc-500">
+            <div style="width: 100%; display: flex; align-items: center; justify-content: space-between; font-family: 'Courier New', monospace; font-size: 11px; color: #555555; border-top: 1px solid #e0e0e0; padding-top: 10px; margin-top: 12px;">
               <span>CH 1/2 STEREO &bull; 48kHz</span>
-              <span class="text-amber-400/80">ARTIST: GABBIE SALAS</span>
+              <span style="font-weight: bold; color: #000080;">ARTIST: GABBIE SALAS</span>
             </div>
           </div>
+          <div class="win95-statusbar" style="flex-shrink: 0; margin: 10px -16px -14px -16px;">1 media clip &bull; Video Project (In Production)</div>
         </div>
       </div>
     </div>
@@ -2922,10 +2962,10 @@
       dots.forEach((dot, idx) => {
         if (idx === currentQuasiSlideIndex) {
           dot.classList.add('active');
-          dot.className = 'quasi-dot modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer';
+          dot.className = 'quasi-dot modal-dot active';
         } else {
           dot.classList.remove('active');
-          dot.className = 'quasi-dot modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer';
+          dot.className = 'quasi-dot modal-dot';
         }
       });
     }
@@ -3063,10 +3103,10 @@
         dots.forEach((dot, idx) => {
           if (idx === currentProjectSlideIndex) {
             dot.classList.add('active');
-            dot.className = 'modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer';
+            dot.className = 'modal-dot active';
           } else {
             dot.classList.remove('active');
-            dot.className = 'modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer';
+            dot.className = 'modal-dot';
           }
         });
       }
@@ -3170,10 +3210,10 @@
         dots.forEach((dot, idx) => {
           if (idx === currentDemoSlideIndex) {
             dot.classList.add('active');
-            dot.className = 'modal-dot active w-2.5 h-2.5 rounded-full bg-amber-400 cursor-pointer';
+            dot.className = 'modal-dot active';
           } else {
             dot.classList.remove('active');
-            dot.className = 'modal-dot w-2.5 h-2.5 rounded-full bg-zinc-700 cursor-pointer';
+            dot.className = 'modal-dot';
           }
         });
       }
