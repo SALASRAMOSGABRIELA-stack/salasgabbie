@@ -15,6 +15,9 @@
     <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
 
+    <!-- Three.js 3D Graphics Library (for Virtual Museum Walkthrough) -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+
     <!-- Standalone Monogram SVG Favicon -->
     <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='20' fill='%2318181b'/><text x='50' y='68' font-family='monospace' font-weight='bold' font-size='52' fill='%23fbbf24' text-anchor='middle'>GS</text></svg>" />
 
@@ -1113,6 +1116,30 @@
         height: 220px;
       }
     }
+
+    /* Secret Vault Password Shake Animation & Top-Right Desktop Icon */
+    #secretVaultIcon {
+      position: fixed;
+      right: 24px;
+      top: 20px;
+      z-index: 10;
+    }
+    @media (max-width: 768px) {
+      #secretVaultIcon {
+        right: 12px !important;
+        top: 14px !important;
+      }
+    }
+    @keyframes shake-pass {
+      0%, 100% { transform: translateX(0); }
+      20%, 60% { transform: translateX(-6px); }
+      40%, 80% { transform: translateX(6px); }
+    }
+    .shake-anim {
+      animation: shake-pass 0.4s ease-in-out;
+      border-color: #ff3333 !important;
+      box-shadow: 0 0 12px rgba(255, 50, 50, 0.7) !important;
+    }
       </style>
   </head>
   <body class="theme-day">
@@ -1386,6 +1413,30 @@
         </svg>
       </div>
       <span class="desktop-icon-title">DO NOT OPEN.exe</span>
+    </div>
+
+    <!-- TOP SECRET / ENCRYPTED VAULT SHORTCUT (TOP RIGHT OF SCREEN) -->
+    <div id="secretVaultIcon" class="desktop-icon" onclick="openSecretVault()" title="Top Secret - Password Encrypted">
+      <div class="desktop-icon-img">
+        <svg width="45" height="45" viewBox="0 0 32 32" shape-rendering="crispEdges">
+          <!-- Cyber Vault Box / Safe -->
+          <rect x="2" y="3" width="28" height="26" fill="#000000"/>
+          <rect x="3" y="4" width="26" height="24" fill="#071b0e"/>
+          <!-- Matrix scanline traces -->
+          <line x1="5" y1="7" x2="27" y2="7" stroke="#00ff66" stroke-width="1" opacity="0.7"/>
+          <line x1="5" y1="10" x2="19" y2="10" stroke="#00ff66" stroke-width="1" opacity="0.5"/>
+          <line x1="5" y1="13" x2="13" y2="13" stroke="#00aa44" stroke-width="1" opacity="0.8"/>
+          <!-- Golden Padlock -->
+          <rect x="12" y="9" width="8" height="8" rx="3" fill="none" stroke="#ffd700" stroke-width="2"/>
+          <rect x="9" y="15" width="14" height="11" fill="#c68200" stroke="#000" stroke-width="1"/>
+          <rect x="10" y="16" width="12" height="9" fill="#ffd147"/>
+          <circle cx="16" cy="19.5" r="1.5" fill="#000"/>
+          <polygon points="15,20 17,20 16.5,23.5 15.5,23.5" fill="#000"/>
+          <!-- Status LED: Green -->
+          <rect x="24" y="6" width="3" height="3" fill="#00ff66"/>
+        </svg>
+      </div>
+      <span class="desktop-icon-title">Top Secret</span>
     </div>
 
         <!-- WINDOW 1: UNCANNY VALLEY SLIDESHOW -->
@@ -2591,6 +2642,194 @@
       </div>
     </div>
 
+    <!-- WINDOW: ENCRYPTED VAULT / MATRIX AUTHENTICATION -->
+    <div id="win-secret" class="os-window minimized out" style="width: 580px; height: 480px; top: 80px; left: calc(50% - 290px); z-index: 100;">
+      <div class="os-window-header titlebar" style="background: linear-gradient(90deg, #022b10, #008f39) !important;" onmousedown="dragWindow(event, 'win-secret')">
+        <div class="flex items-center gap-1.5 overflow-hidden">
+          <span style="font-size: 13px;">&#128274;</span>
+          <span class="os-window-title ti" style="color: #ffffff !important;">Top Secret &mdash; Encrypted Archive Console</span>
+        </div>
+        <div class="window-controls flex items-center gap-1">
+          <span class="tbtn out" onclick="minimizeWindow('win-secret')" title="Minimize">_</span>
+          <span class="tbtn out" onclick="maximizeWindow('win-secret')" title="Maximize">&#9633;</span>
+          <span class="tbtn out" onclick="closeSecretVault()" title="Close">&#10005;</span>
+        </div>
+      </div>
+
+      <div class="win95-menubar">
+        <span><u>S</u>ecurity</span><span><u>C</u>ipher</span><span><u>T</u>erminal</span><span><u>H</u>elp</span>
+      </div>
+
+      <div class="os-window-body in" style="position: relative; flex: 1; display: flex; flex-direction: column; overflow: hidden; background: #020a04; margin: 2px 3px 3px 3px !important;">
+        <!-- Matrix Digital Rain Canvas -->
+        <canvas id="matrixCanvas" style="position: absolute; inset: 0; width: 100%; height: 100%; display: block; z-index: 1;"></canvas>
+
+        <!-- CRT Scanline & Phosphor Overlay -->
+        <div style="position: absolute; inset: 0; pointer-events: none; z-index: 2; background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.3) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.03), rgba(0, 255, 0, 0.02), rgba(0, 255, 0, 0.03)); background-size: 100% 3px, 4px 100%;"></div>
+
+        <!-- Terminal Password Input Box -->
+        <div style="position: relative; z-index: 3; margin: auto; width: 90%; max-width: 440px; background: rgba(5, 20, 10, 0.94); border: 2px solid #00ff66; box-shadow: 0 0 25px rgba(0, 255, 102, 0.35), inset 0 0 15px rgba(0, 255, 102, 0.2); padding: 22px 24px; border-radius: 4px; backdrop-filter: blur(4px);">
+          <div style="display: flex; align-items: center; justify-content: space-between; border-bottom: 1px solid #00bb44; padding-bottom: 8px; margin-bottom: 14px;">
+            <div style="font-family: 'Courier New', monospace; font-size: 12px; font-weight: bold; color: #00ff66; letter-spacing: 1.5px;">
+              &#9654; SYSTEM://RESTRICTED_ACCESS
+            </div>
+            <div style="font-family: 'Courier New', monospace; font-size: 10px; color: #00aa44; border: 1px solid #00aa44; padding: 1px 6px;">
+              256-BIT ENCRYPTION
+            </div>
+          </div>
+
+          <p style="font-family: 'Courier New', monospace; font-size: 12px; color: #88ffaa; line-height: 1.5; margin: 0 0 14px 0;">
+            This encrypted terminal grants clearance to the private Virtual Museum Exhibition. Enter the security passkey to decrypt.
+          </p>
+
+          <form id="secretPassForm" onsubmit="submitSecretPassword(event)" style="display: flex; flex-direction: column; gap: 10px; margin: 0;">
+            <div style="position: relative; display: flex; align-items: center;">
+              <span style="position: absolute; left: 10px; color: #00ff66; font-family: 'Courier New', monospace; font-weight: bold; font-size: 14px; pointer-events: none;">&gt;</span>
+              <input type="password" id="secretPassInput" placeholder="Enter passkey..." autocomplete="off" style="width: 100%; background: #031206; color: #00ff66; border: 1px solid #00aa44; font-family: 'Courier New', monospace; font-size: 14px; padding: 8px 36px 8px 26px; outline: none; box-shadow: inset 0 0 8px rgba(0,255,102,0.25);" />
+              <button type="button" onclick="toggleSecretPassVisibility()" style="position: absolute; right: 8px; background: none; border: none; color: #00aa44; cursor: pointer; font-size: 14px; padding: 2px;" title="Show/Hide Passkey">&#128065;</button>
+            </div>
+
+            <div id="secretStatusMsg" style="font-family: 'Courier New', monospace; font-size: 11px; min-height: 18px; color: #ff5555; text-align: left; padding-left: 2px;"></div>
+
+            <div style="display: flex; gap: 10px; margin-top: 4px;">
+              <button type="submit" id="secretDecryptBtn" style="flex: 1; background: #00aa44; color: #000000; border: 2px solid; border-color: #66ff99 #003311 #003311 #66ff99; font-family: 'Courier New', monospace; font-size: 12px; font-weight: bold; padding: 8px; cursor: pointer; text-transform: uppercase; letter-spacing: 1px;" onmouseover="this.style.background='#00ff66'" onmouseout="this.style.background='#00aa44'">
+                [ Decrypt &amp; Enter ]
+              </button>
+              <button type="button" onclick="closeSecretVault()" style="background: #112211; color: #88ffaa; border: 1px solid #00aa44; font-family: 'Courier New', monospace; font-size: 12px; padding: 8px 14px; cursor: pointer;">
+                Cancel
+              </button>
+            </div>
+          </form>
+        </div>
+
+        <div class="win95-statusbar" style="flex-shrink: 0; background: #051408; color: #00cc55; border-top: 1px solid #008833; z-index: 3;">
+          CIPHER: ACTIVE &bull; PORT: 8443 &bull; HOST: WHERESGABBIE.NET
+        </div>
+      </div>
+    </div>
+
+    <!-- FULLSCREEN 3D MUSEUM INTERIOR OVERLAY -->
+    <div id="museum-overlay" style="display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 99999; background: #000000; overflow: hidden; font-family: 'MS Sans Serif', Tahoma, sans-serif;">
+      <!-- Three.js Canvas Container -->
+      <div id="museum-canvas-container" style="width: 100%; height: 100%; position: absolute; inset: 0; cursor: grab;"></div>
+
+      <!-- Center Reticle / Crosshair -->
+      <div id="museum-crosshair" style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); width: 8px; height: 8px; border-radius: 50%; border: 1.5px solid rgba(255,255,255,0.7); pointer-events: none; z-index: 10; transition: transform 0.15s ease, border-color 0.15s ease, background 0.15s ease;"></div>
+
+      <!-- Top Museum HUD Bar -->
+      <div style="position: absolute; top: 0; left: 0; right: 0; height: 52px; background: linear-gradient(180deg, rgba(12,12,16,0.92) 0%, rgba(12,12,16,0.5) 80%, transparent 100%); display: flex; align-items: center; justify-content: space-between; padding: 0 20px; z-index: 20; color: #ffffff; pointer-events: auto;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+          <span style="font-size: 20px;">&#127963;</span>
+          <div>
+            <div style="font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 13px; font-weight: bold; letter-spacing: 0.5px; color: #ffffff;">THE SALAS CONTEMPORARY</div>
+            <div style="font-family: 'Courier New', monospace; font-size: 10px; color: #c0c0c0; letter-spacing: 0.3px;">VIRTUAL EXHIBITION HALL &bull; GALLERY I</div>
+          </div>
+        </div>
+
+        <div class="hidden md:flex items-center gap-4 text-xs font-mono text-zinc-300 bg-black/60 px-4 py-1.5 rounded-full border border-white/20">
+          <span>Walk: <kbd style="background:#333; padding:1px 5px; border-radius:3px; color:#fff;">W</kbd><kbd style="background:#333; padding:1px 5px; border-radius:3px; color:#fff;">A</kbd><kbd style="background:#333; padding:1px 5px; border-radius:3px; color:#fff;">S</kbd><kbd style="background:#333; padding:1px 5px; border-radius:3px; color:#fff;">D</kbd> or &uarr;&larr;&darr;&rarr;</span>
+          <span>&bull;</span>
+          <span>Look: <strong>Drag Mouse</strong></span>
+          <span>&bull;</span>
+          <span>Inspect: <strong>Click Art or Card</strong></span>
+        </div>
+
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <button type="button" onclick="toggleMuseumFullscreen()" class="win95-btn out" style="background: #c0c0c0; color: #000; font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 11px; font-weight: bold; padding: 5px 12px; border: 2px solid; border-color: #fff #000 #000 #fff; cursor: pointer;" title="Toggle Fullscreen">
+            &#9974; Fullscreen
+          </button>
+          <button type="button" onclick="exitMuseum()" class="win95-btn out" style="background: #c0c0c0; color: #b91c1c; font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 11px; font-weight: bold; padding: 5px 12px; border: 2px solid; border-color: #fff #000 #000 #fff; cursor: pointer;" title="Exit Museum">
+            &#10005; Exit Gallery
+          </button>
+        </div>
+      </div>
+
+      <!-- On-Screen Virtual Walk Controls (Bottom Left) -->
+      <div style="position: absolute; bottom: 20px; left: 20px; z-index: 20; display: flex; flex-direction: column; align-items: center; gap: 4px; pointer-events: auto; user-select: none;">
+        <button type="button" onmousedown="startMuseumMove('forward')" onmouseup="stopMuseumMove('forward')" ontouchstart="startMuseumMove('forward')" ontouchend="stopMuseumMove('forward')" class="win95-btn out" style="width: 38px; height: 38px; background: rgba(220,220,220,0.9); color: #000; font-size: 16px; font-weight: bold; border: 2px solid; border-color: #fff #000 #000 #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Walk Forward">&uarr;</button>
+        <div style="display: flex; gap: 4px;">
+          <button type="button" onmousedown="startMuseumMove('left')" onmouseup="stopMuseumMove('left')" ontouchstart="startMuseumMove('left')" ontouchend="stopMuseumMove('left')" class="win95-btn out" style="width: 38px; height: 38px; background: rgba(220,220,220,0.9); color: #000; font-size: 16px; font-weight: bold; border: 2px solid; border-color: #fff #000 #000 #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Strafe Left">&larr;</button>
+          <button type="button" onmousedown="startMuseumMove('backward')" onmouseup="stopMuseumMove('backward')" ontouchstart="startMuseumMove('backward')" ontouchend="stopMuseumMove('backward')" class="win95-btn out" style="width: 38px; height: 38px; background: rgba(220,220,220,0.9); color: #000; font-size: 16px; font-weight: bold; border: 2px solid; border-color: #fff #000 #000 #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Walk Backward">&darr;</button>
+          <button type="button" onmousedown="startMuseumMove('right')" onmouseup="stopMuseumMove('right')" ontouchstart="startMuseumMove('right')" ontouchend="stopMuseumMove('right')" class="win95-btn out" style="width: 38px; height: 38px; background: rgba(220,220,220,0.9); color: #000; font-size: 16px; font-weight: bold; border: 2px solid; border-color: #fff #000 #000 #fff; cursor: pointer; display: flex; align-items: center; justify-content: center;" title="Strafe Right">&rarr;</button>
+        </div>
+      </div>
+
+      <!-- Click-to-Walk / Controls Hint (Bottom Center) -->
+      <div style="position: absolute; bottom: 20px; left: 50%; transform: translateX(-50%); z-index: 20; background: rgba(10,10,12,0.75); color: #e4e4e7; font-family: 'Courier New', monospace; font-size: 11px; padding: 6px 16px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.15); pointer-events: none; text-align: center;">
+        &bull; Drag to look &bull; WASD to walk &bull; Click art or description card to inspect &bull;
+      </div>
+
+      <!-- ARTWORK INSPECTION LIGHTBOX MODAL -->
+      <div id="museum-artwork-modal" style="display: none; position: absolute; inset: 0; z-index: 50; background: rgba(0, 0, 0, 0.88); backdrop-filter: blur(6px); align-items: center; justify-content: center; padding: 20px;" onclick="if(event.target === this) closeArtworkModal()">
+        <div class="os-window out" style="position: relative; width: 94vw; max-width: 960px; max-height: 92vh; display: flex; flex-direction: column; background: var(--face); box-shadow: 0 20px 60px rgba(0,0,0,0.85); border: 2px solid; border-color: #fff #000 #000 #fff;">
+          <!-- Modal Header -->
+          <div class="os-window-header titlebar" style="background: linear-gradient(90deg, #000080, #1084d0) !important; cursor: default;">
+            <div class="flex items-center gap-1.5 overflow-hidden">
+              <span style="font-size: 13px;">&#127912;</span>
+              <span class="os-window-title ti" style="color: #ffffff !important;">The Salas Contemporary &mdash; Artwork Inspection</span>
+            </div>
+            <button type="button" onclick="closeArtworkModal()" class="tbtn out" style="width: 20px; height: 20px; line-height: 14px; text-align: center; font-weight: bold; cursor: pointer; color: #000;" title="Close">&#10005;</button>
+          </div>
+
+          <!-- Modal Body: Image on left, Placard on right -->
+          <div style="display: flex; flex-direction: row; flex-wrap: wrap; padding: 20px; gap: 24px; background: #fdfdfd; max-height: calc(88vh - 40px); overflow-y: auto;">
+            <!-- Framed Artwork Container -->
+            <div style="flex: 1 1 480px; display: flex; align-items: center; justify-content: center; background: #f2efe9; border: 2px solid; border-color: #808080 #fff #fff #808080; padding: 20px; min-height: 380px;">
+              <!-- Outer Frame Moulding -->
+              <div style="background: #18181b; padding: 12px; border: 3px solid; border-color: #3f3f46 #09090b #09090b #3f3f46; box-shadow: 0 10px 25px rgba(0,0,0,0.35); max-width: 100%; display: flex; justify-content: center; align-items: center;">
+                <!-- Mat board -->
+                <div style="background: #fbf9f5; padding: 16px; border: 1px solid #d4d4d8; box-shadow: inset 0 2px 4px rgba(0,0,0,0.15); display: flex; justify-content: center; align-items: center;">
+                  <img id="museum-modal-img" src="" alt="Artwork View" style="max-width: 100%; max-height: 52vh; object-fit: contain; display: block; box-shadow: 0 1px 3px rgba(0,0,0,0.2);" />
+                </div>
+              </div>
+            </div>
+
+            <!-- Placard Information -->
+            <div style="flex: 1 1 320px; display: flex; flex-direction: column; justify-content: space-between; font-family: 'MS Sans Serif', Tahoma, sans-serif;">
+              <div>
+                <div style="font-size: 11px; font-weight: bold; color: #666666; text-transform: uppercase; letter-spacing: 1px; margin-bottom: 6px;">The Salas Contemporary &bull; Gallery I</div>
+                <h2 id="museum-modal-title" style="font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 24px; font-weight: bold; color: #000080; margin: 0 0 4px 0; line-height: 1.25;">Artwork Title</h2>
+                <div id="museum-modal-artist" style="font-size: 14px; font-weight: bold; color: #222222; margin-bottom: 14px;">Gabbie Salas</div>
+
+                <div style="border-top: 1px solid #e0e0e0; padding-top: 12px; margin-bottom: 14px; font-family: 'Courier New', monospace; font-size: 12px; color: #444444; line-height: 1.6;">
+                  <div><strong style="color: #000;">Date:</strong> <span id="museum-modal-year">2025</span></div>
+                  <div><strong style="color: #000;">Medium:</strong> <span id="museum-modal-medium">Digital Composition</span></div>
+                  <div><strong style="color: #000;">Dimensions:</strong> <span id="museum-modal-dimensions">36 &times; 48 in</span></div>
+                </div>
+
+                <div style="border-top: 1px solid #e0e0e0; padding-top: 12px;">
+                  <div style="font-size: 11px; font-weight: bold; color: #666666; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 6px;">Curatorial Note</div>
+                  <p id="museum-modal-desc" style="font-size: 13px; color: #222222; line-height: 1.65; margin: 0;">
+                    Description of artwork.
+                  </p>
+                </div>
+              </div>
+
+              <!-- Modal Bottom Navigation Controls -->
+              <div style="border-top: 1px solid #e0e0e0; padding-top: 16px; margin-top: 20px; display: flex; align-items: center; justify-content: space-between; gap: 8px;">
+                <div style="display: flex; gap: 6px;">
+                  <button type="button" onclick="navigateArtworkModal(-1)" class="win95-btn out" style="background: #c0c0c0; color: #000; font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 11px; font-weight: bold; padding: 5px 12px; border: 2px solid; border-color: #fff #000 #000 #fff; cursor: pointer;">
+                    &#10094; Previous Piece
+                  </button>
+                  <button type="button" onclick="navigateArtworkModal(1)" class="win95-btn out" style="background: #c0c0c0; color: #000; font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 11px; font-weight: bold; padding: 5px 12px; border: 2px solid; border-color: #fff #000 #000 #fff; cursor: pointer;">
+                    Next Piece &#10095;
+                  </button>
+                </div>
+                <button type="button" onclick="closeArtworkModal()" class="win95-btn out" style="background: #c0c0c0; color: #000; font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 11px; font-weight: bold; padding: 5px 14px; border: 2px solid; border-color: #fff #000 #000 #fff; cursor: pointer;">
+                  Close (Esc)
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <!-- Modal Statusbar -->
+          <div class="win95-statusbar" style="flex-shrink: 0; background: var(--face); border-top: 1px solid #808080; padding: 3px 8px; font-size: 11px; color: #555;">
+            <span id="museum-modal-status">Piece 1 of 9 &bull; Permanent Collection</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
     <!-- SINGLE IMAGE LIGHTBOX MODAL (GLOBAL FALLBACK) -->
     <div id="imageModal" class="modal-overlay" aria-hidden="true">
       <div class="relative bg-zinc-900 border border-zinc-700 p-4 rounded-xl max-w-3xl w-full text-center shadow-2xl">
@@ -2709,7 +2948,8 @@
       'win-demos': { title: 'Class Demos', icon: '\uD83D\uDCC1' },
       'win-about': { title: 'About Gabbie.txt', icon: '\uD83D\uDCC4' },
       'win-limewire': { title: 'LimeWire v4.12', icon: '\uD83C\uDF4B' },
-      'win-games': { title: 'Games', icon: '\uD83C\uDFAE' }
+      'win-games': { title: 'Games', icon: '\uD83C\uDFAE' },
+      'win-secret': { title: 'Top Secret.enc', icon: '\uD83D\uDD12' }
     };
 
     let highestZIndex = 20;
@@ -4549,7 +4789,1251 @@ const MAHJONG_DECK = [
       updateMahjongStatus();
     }
 
-    
+/* ==========================================================================
+   ENCRYPTED VAULT & 3D VIRTUAL MUSEUM ENGINE
+   Reference: ArtPlacer Virtual Exhibition & 3D Gallery Walkthrough
+   Password: "sundance"
+   ========================================================================== */
+
+/* --------------------------------------------------------------------------
+   CURATED ARTWORK REPOSITORY (PLACEHOLDERS READY FOR USER ARTWORK)
+   To add your own artwork:
+   1. Place your image file in your site directory (e.g. "my_painting.jpg")
+   2. Update the 'image' field below with your filename
+   3. Update 'title', 'artist', 'year', 'medium', 'dimensions', and 'description'
+   -------------------------------------------------------------------------- */
+const MUSEUM_ARTWORKS = [
+  {
+    id: 1,
+    title: "Digital Horizon I",
+    artist: "Gabbie Salas",
+    year: "2025",
+    medium: "Digital Mixed Media & Archival Pigment",
+    dimensions: "36 x 48 in (91 x 122 cm)",
+    description: "An inaugural study exploring organic form and synthetic spatial dimensions. Atmospheric gradients merge with tactile contour line work.",
+    image: "", // Placeholder - leave empty or set to your image path (e.g. "artwork1.jpg")
+    aspectRatio: 1.33
+  },
+  {
+    id: 2,
+    title: "Monument to Ephemeral Space",
+    artist: "Gabbie Salas",
+    year: "2025",
+    medium: "Oil & Oil Pastel on Linen",
+    dimensions: "48 x 60 in (122 x 152 cm)",
+    description: "Gallery Centerpiece. A bold monumental composition commanding the central gallery axis, investigating architectural memory and liminal geometry.",
+    image: "", // Centerpiece placeholder
+    aspectRatio: 1.4
+  },
+  {
+    id: 3,
+    title: "Chromatic Synthesis No. 4",
+    artist: "Gabbie Salas",
+    year: "2025",
+    medium: "Acrylic & Polymer on Canvas",
+    dimensions: "36 x 48 in (91 x 122 cm)",
+    description: "A rhythmic exploration of color harmonies, juxtaposing high-chroma geometric fields against soft muted underpaintings.",
+    image: "",
+    aspectRatio: 1.33
+  },
+  {
+    id: 4,
+    title: "Tectonic Study in Ochre",
+    artist: "Gabbie Salas",
+    year: "2024",
+    medium: "Pigment, Sand & Casein on Birch Panel",
+    dimensions: "40 x 40 in (102 x 102 cm)",
+    description: "Layered geological textures inspired by natural strata, erosion, and tactile surface manipulation.",
+    image: "",
+    aspectRatio: 1.0
+  },
+  {
+    id: 5,
+    title: "Luminescence & Static",
+    artist: "Gabbie Salas",
+    year: "2025",
+    medium: "Silver Gelatin & Screenprint",
+    dimensions: "32 x 44 in (81 x 112 cm)",
+    description: "High-contrast study examining cathode-ray luminescence, scanlines, and the quiet beauty of analog television feedback.",
+    image: "",
+    aspectRatio: 1.375
+  },
+  {
+    id: 6,
+    title: "Convergence of Forms",
+    artist: "Gabbie Salas",
+    year: "2024",
+    medium: "Graphite, Ink & Gouache on Heavy Cotton",
+    dimensions: "36 x 48 in (91 x 122 cm)",
+    description: "Delicate linear matrices intersecting with dense volumetric shadows, capturing fleeting moments of physical balance.",
+    image: "",
+    aspectRatio: 1.33
+  },
+  {
+    id: 7,
+    title: "Resonance in Cobalt",
+    artist: "Gabbie Salas",
+    year: "2025",
+    medium: "Deep Ultramarine Oil & Wax on Canvas",
+    dimensions: "36 x 48 in (91 x 122 cm)",
+    description: "A deep meditative field of layered ultramarine and cold wax, inviting prolonged contemplation and subtle color refraction.",
+    image: "",
+    aspectRatio: 1.33
+  },
+  {
+    id: 8,
+    title: "Urban Topology Study",
+    artist: "Gabbie Salas",
+    year: "2025",
+    medium: "Architectural Drafting Ink & Mylar",
+    dimensions: "34 x 46 in (86 x 117 cm)",
+    description: "Abstracted elevation drawings of architectural facades, emphasizing perspective convergence and geometric repetition.",
+    image: "",
+    aspectRatio: 1.35
+  },
+  {
+    id: 9,
+    title: "The Uncanny Interior",
+    artist: "Gabbie Salas",
+    year: "2025",
+    medium: "Digital Render & Photographic Emulsion",
+    dimensions: "40 x 50 in (102 x 127 cm)",
+    description: "The concluding piece of Gallery I, bridging spatial realism with surreal dreamscapes and familiar yet unsettled domestic interiors.",
+    image: "",
+    aspectRatio: 1.25
+  }
+];
+
+/* --------------------------------------------------------------------------
+   MATRIX DIGITAL RAIN CONTROLLER (SECRET VAULT)
+   -------------------------------------------------------------------------- */
+let matrixCanvas = null;
+let matrixCtx = null;
+let matrixAnimId = null;
+let matrixColumns = [];
+let matrixBurstActive = false;
+
+function initMatrixRain() {
+  matrixCanvas = document.getElementById('matrixCanvas');
+  if (!matrixCanvas) return;
+  matrixCtx = matrixCanvas.getContext('2d');
+  resizeMatrixCanvas();
+  window.addEventListener('resize', resizeMatrixCanvas);
+}
+
+function resizeMatrixCanvas() {
+  if (!matrixCanvas) return;
+  const parent = matrixCanvas.parentElement;
+  if (!parent) return;
+  matrixCanvas.width = parent.clientWidth || 560;
+  matrixCanvas.height = parent.clientHeight || 400;
+
+  const colCount = Math.floor(matrixCanvas.width / 16) + 1;
+  matrixColumns = [];
+  for (let i = 0; i < colCount; i++) {
+    matrixColumns.push({
+      x: i * 16,
+      y: Math.random() * -matrixCanvas.height,
+      speed: 1.8 + Math.random() * 2.8,
+      chars: []
+    });
+  }
+}
+
+function drawMatrixRain() {
+  if (!matrixCtx || !matrixCanvas) return;
+
+  // Dark translucent background for trailing glow
+  matrixCtx.fillStyle = matrixBurstActive ? 'rgba(0, 30, 10, 0.2)' : 'rgba(2, 10, 4, 0.18)';
+  matrixCtx.fillRect(0, 0, matrixCanvas.width, matrixCanvas.height);
+
+  // Matrix Glyphs: Katakana, Cyrillic, Numbers, Binary & Special Characters
+  const glyphs = "0123456789ABCDEF0101XYZ\u30a2\u30a4\u30a6\u30a8\u30aa\u30ab\u30ad\u30af\u30b1\u30b3\u30b5\u30b7\u30b9\u30bb\u30bd\u30bf\u30c1\u30c4\u30c6\u30c8\u30ca\u30cb\u30cc\u30cd\u30ce\u30cf\u30d2\u30d5\u30d8\u30db";
+
+  matrixCtx.font = "14px 'Courier New', monospace";
+
+  for (let i = 0; i < matrixColumns.length; i++) {
+    const col = matrixColumns[i];
+    const char = glyphs[Math.floor(Math.random() * glyphs.length)];
+
+    // Head character is glowing bright white/light-green
+    if (matrixBurstActive) {
+      matrixCtx.fillStyle = '#ffffff';
+      matrixCtx.shadowColor = '#00ff66';
+      matrixCtx.shadowBlur = 10;
+    } else {
+      matrixCtx.fillStyle = '#bbf5c8';
+      matrixCtx.shadowColor = '#00ff66';
+      matrixCtx.shadowBlur = 4;
+    }
+    matrixCtx.fillText(char, col.x, col.y);
+
+    // Trail character
+    const trailChar = glyphs[Math.floor(Math.random() * glyphs.length)];
+    matrixCtx.fillStyle = matrixBurstActive ? '#00ff66' : '#00aa38';
+    matrixCtx.shadowBlur = 0;
+    matrixCtx.fillText(trailChar, col.x, col.y - 16);
+
+    col.y += col.speed * (matrixBurstActive ? 3.5 : 1.0);
+
+    if (col.y > matrixCanvas.height + 30) {
+      col.y = -20;
+      col.speed = 1.8 + Math.random() * 2.8;
+    }
+  }
+
+  matrixAnimId = requestAnimationFrame(drawMatrixRain);
+}
+
+function startMatrixRain() {
+  if (!matrixCanvas) initMatrixRain();
+  if (matrixAnimId) cancelAnimationFrame(matrixAnimId);
+  matrixBurstActive = false;
+  drawMatrixRain();
+}
+
+function stopMatrixRain() {
+  if (matrixAnimId) {
+    cancelAnimationFrame(matrixAnimId);
+    matrixAnimId = null;
+  }
+}
+
+/* --------------------------------------------------------------------------
+   SECRET VAULT AUTHENTICATION DIALOG
+   -------------------------------------------------------------------------- */
+function openSecretVault() {
+  const win = document.getElementById('win-secret');
+  if (!win) return;
+
+  win.style.display = 'flex';
+  win.classList.remove('minimized');
+  bringToFront('win-secret');
+
+  startMatrixRain();
+
+  const input = document.getElementById('secretPassInput');
+  if (input) {
+    input.value = '';
+    setTimeout(() => input.focus(), 80);
+  }
+
+  const msg = document.getElementById('secretStatusMsg');
+  if (msg) {
+    msg.textContent = '';
+    msg.style.color = '#ff5555';
+  }
+
+  if (typeof playRetroSound === 'function') {
+    playRetroSound('launch');
+  }
+}
+
+function closeSecretVault() {
+  const win = document.getElementById('win-secret');
+  if (win) {
+    win.classList.add('minimized');
+    win.style.display = 'none';
+  }
+  stopMatrixRain();
+  const input = document.getElementById('secretPassInput');
+  if (input) input.value = '';
+  const msg = document.getElementById('secretStatusMsg');
+  if (msg) msg.textContent = '';
+  matrixBurstActive = false;
+  if (typeof updateTaskbar === 'function') updateTaskbar();
+}
+
+function toggleSecretPassVisibility() {
+  const input = document.getElementById('secretPassInput');
+  if (!input) return;
+  input.type = input.type === 'password' ? 'text' : 'password';
+}
+
+function submitSecretPassword(e) {
+  if (e) e.preventDefault();
+
+  const input = document.getElementById('secretPassInput');
+  const msg = document.getElementById('secretStatusMsg');
+  const btn = document.getElementById('secretDecryptBtn');
+  if (!input) return;
+
+  const password = (input.value || '').trim();
+
+  // Password check: "sundance" (case-insensitive)
+  if (password.toLowerCase() === 'sundance') {
+    // ACCESS GRANTED
+    if (msg) {
+      msg.style.color = '#00ff66';
+      msg.textContent = '[ACCESS GRANTED] DECRYPTING SECURE EXHIBITION HALL...';
+    }
+    matrixBurstActive = true;
+    if (btn) btn.disabled = true;
+
+    if (typeof playRetroSound === 'function') {
+      playRetroSound('launch');
+    }
+
+    // Transition into 3D Museum
+    setTimeout(() => {
+      closeSecretVault();
+      if (btn) btn.disabled = false;
+      openMuseum();
+    }, 650);
+  } else {
+    // ACCESS DENIED
+    if (msg) {
+      msg.style.color = '#ff5555';
+      msg.textContent = '[ACCESS DENIED] INVALID SECURITY CLEARANCE KEY';
+    }
+    input.classList.remove('shake-anim');
+    void input.offsetWidth; // re-flow
+    input.classList.add('shake-anim');
+    setTimeout(() => input.classList.remove('shake-anim'), 450);
+
+    if (typeof playRetroSound === 'function') {
+      playRetroSound('error');
+    }
+  }
+}
+
+/* --------------------------------------------------------------------------
+   3D VIRTUAL MUSEUM ENGINE (THREE.JS)
+   Clean contemporary gallery, hardwood floor, track lighting, framed works,
+   3D tombstone description placards, first-person walk navigation.
+   -------------------------------------------------------------------------- */
+let museumInitialized = false;
+let museumActive = false;
+let museumScene, museumCamera, museumRenderer;
+let museumAnimId = null;
+
+// Navigation state
+const museumNav = {
+  forward: false,
+  backward: false,
+  left: false,
+  right: false,
+  velocity: null,
+  yaw: 0,
+  pitch: 0,
+  isDragging: false,
+  lastMouseX: 0,
+  lastMouseY: 0,
+  dragDistance: 0,
+  targetFloorPos: null
+};
+
+// Interactive 3D objects for raycasting
+const museumInteractiveMeshes = [];
+const museumRaycaster = typeof THREE !== 'undefined' ? new THREE.Raycaster() : null;
+const museumMouseVec = typeof THREE !== 'undefined' ? new THREE.Vector2() : null;
+
+// Procedural textures cache
+const placeholderDataUrls = [];
+
+/* Procedural Hardwood Parquet Texture Generator */
+function createParquetCanvasTexture() {
+  const canvas = document.createElement('canvas');
+  canvas.width = 1024;
+  canvas.height = 1024;
+  const ctx = canvas.getContext('2d');
+
+  // Base warm honey/oak floor
+  ctx.fillStyle = '#b88a57';
+  ctx.fillRect(0, 0, 1024, 1024);
+
+  // Parquet plank grid
+  const plankW = 128;
+  const plankH = 32;
+
+  for (let y = 0; y < 1024; y += plankH) {
+    const isShifted = Math.floor(y / plankH) % 2 === 1;
+    const xOffset = isShifted ? 64 : 0;
+
+    for (let x = -64; x < 1024 + 64; x += plankW) {
+      // Subtle variations in plank wood tone
+      const toneVariation = Math.sin(x * 0.05 + y * 0.1) * 14 + (Math.random() * 8 - 4);
+      const r = Math.min(255, Math.max(0, 192 + toneVariation));
+      const g = Math.min(255, Math.max(0, 142 + toneVariation * 0.85));
+      const b = Math.min(255, Math.max(0, 92 + toneVariation * 0.7));
+
+      ctx.fillStyle = `rgb(${Math.round(r)}, ${Math.round(g)}, ${Math.round(b)})`;
+      ctx.fillRect(x + xOffset, y, plankW, plankH);
+
+      // Wood grain lines
+      ctx.strokeStyle = `rgba(100, 60, 20, ${0.08 + Math.random() * 0.08})`;
+      ctx.lineWidth = 1;
+      for (let gIdx = 0; gIdx < 3; gIdx++) {
+        const gy = y + 4 + Math.random() * (plankH - 8);
+        ctx.beginPath();
+        ctx.moveTo(x + xOffset, gy);
+        ctx.bezierCurveTo(
+          x + xOffset + 40, gy + (Math.random() * 4 - 2),
+          x + xOffset + 80, gy + (Math.random() * 4 - 2),
+          x + xOffset + plankW, gy
+        );
+        ctx.stroke();
+      }
+
+      // Plank bevel borders
+      ctx.strokeStyle = 'rgba(60, 35, 10, 0.45)';
+      ctx.lineWidth = 1.5;
+      ctx.strokeRect(x + xOffset, y, plankW, plankH);
+
+      // Plank highlight edge
+      ctx.strokeStyle = 'rgba(255, 235, 200, 0.2)';
+      ctx.lineWidth = 1;
+      ctx.beginPath();
+      ctx.moveTo(x + xOffset + 1, y + plankH - 1);
+      ctx.lineTo(x + xOffset + 1, y + 1);
+      ctx.lineTo(x + xOffset + plankW - 1, y + 1);
+      ctx.stroke();
+    }
+  }
+
+  const texture = new THREE.CanvasTexture(canvas);
+  texture.wrapS = THREE.RepeatWrapping;
+  texture.wrapT = THREE.RepeatWrapping;
+  texture.repeat.set(12, 16);
+  return texture;
+}
+
+/* Procedural High-Resolution Placeholder Artwork Generator */
+function createArtworkPlaceholderCanvas(art, index) {
+  const canvas = document.createElement('canvas');
+  canvas.width = 1200;
+  canvas.height = 900;
+  const ctx = canvas.getContext('2d');
+
+  // Sophisticated museum blueprint / gallery study background
+  const bgGrad = ctx.createLinearGradient(0, 0, 1200, 900);
+  bgGrad.addColorStop(0, '#1c2229');
+  bgGrad.addColorStop(0.5, '#151920');
+  bgGrad.addColorStop(1, '#0e1217');
+  ctx.fillStyle = bgGrad;
+  ctx.fillRect(0, 0, 1200, 900);
+
+  // Delicate architectural grid lines
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.06)';
+  ctx.lineWidth = 1;
+  for (let x = 0; x <= 1200; x += 40) {
+    ctx.beginPath();
+    ctx.moveTo(x, 0);
+    ctx.lineTo(x, 900);
+    ctx.stroke();
+  }
+  for (let y = 0; y <= 900; y += 40) {
+    ctx.beginPath();
+    ctx.moveTo(0, y);
+    ctx.lineTo(1200, y);
+    ctx.stroke();
+  }
+
+  // Museum Inner Framing Mat Border
+  ctx.strokeStyle = 'rgba(200, 170, 110, 0.4)';
+  ctx.lineWidth = 2;
+  ctx.strokeRect(60, 60, 1080, 780);
+
+  // Geometric abstract focal glyphs
+  ctx.strokeStyle = 'rgba(200, 170, 110, 0.6)';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.arc(600, 360, 150, 0, Math.PI * 2);
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.arc(600, 360, 180, 0, Math.PI * 2);
+  ctx.strokeStyle = 'rgba(255, 255, 255, 0.12)';
+  ctx.stroke();
+
+  ctx.beginPath();
+  ctx.moveTo(420, 360);
+  ctx.lineTo(780, 360);
+  ctx.moveTo(600, 180);
+  ctx.lineTo(600, 540);
+  ctx.strokeStyle = 'rgba(200, 170, 110, 0.3)';
+  ctx.stroke();
+
+  // Typography
+  ctx.fillStyle = '#c8aa6e';
+  ctx.font = "bold 20px 'Courier New', monospace";
+  ctx.textAlign = 'center';
+  ctx.fillText("THE SALAS CONTEMPORARY \u2022 EXHIBITION HALL I", 600, 130);
+
+  ctx.fillStyle = '#ffffff';
+  ctx.font = "bold 44px 'Georgia', serif";
+  ctx.fillText(art.title, 600, 350);
+
+  ctx.fillStyle = '#e2e8f0';
+  ctx.font = "italic 24px 'Georgia', serif";
+  ctx.fillText(art.artist + " \u2014 " + art.year, 600, 395);
+
+  ctx.fillStyle = '#94a3b8';
+  ctx.font = "18px 'Courier New', monospace";
+  ctx.fillText(art.medium + " \u2022 " + art.dimensions, 600, 440);
+
+  // Instruction callout box
+  ctx.fillStyle = 'rgba(200, 170, 110, 0.12)';
+  ctx.fillRect(360, 580, 480, 110);
+  ctx.strokeStyle = 'rgba(200, 170, 110, 0.5)';
+  ctx.lineWidth = 1.5;
+  ctx.strokeRect(360, 580, 480, 110);
+
+  ctx.fillStyle = '#ffd700';
+  ctx.font = "bold 18px 'Courier New', monospace";
+  ctx.fillText("[ ARTWORK PLACEHOLDER \u2014 PIECE #" + (index + 1) + " ]", 600, 615);
+
+  ctx.fillStyle = '#cbd5e1';
+  ctx.font = "15px 'Courier New', monospace";
+  ctx.fillText("Replace with your image in MUSEUM_ARTWORKS", 600, 645);
+  ctx.fillText("Click artwork or placard to view enlarged", 600, 670);
+
+  // Save data URL for lightbox modal fallback
+  placeholderDataUrls[index] = canvas.toDataURL('image/png');
+
+  const texture = new THREE.CanvasTexture(canvas);
+  return texture;
+}
+
+/* Procedural Description Placard (Tombstone Card) Texture */
+function createPlacardCanvasTexture(art, index) {
+  const canvas = document.createElement('canvas');
+  canvas.width = 600;
+  canvas.height = 450;
+  const ctx = canvas.getContext('2d');
+
+  // Heavy archival museum card stock
+  ctx.fillStyle = '#f8f7f4';
+  ctx.fillRect(0, 0, 600, 450);
+
+  // Subtle beveled edge border
+  ctx.strokeStyle = '#d5d2ca';
+  ctx.lineWidth = 4;
+  ctx.strokeRect(2, 2, 596, 446);
+
+  // Card text styling
+  ctx.fillStyle = '#666666';
+  ctx.font = "bold 13px 'Arial', sans-serif";
+  ctx.textAlign = 'left';
+  ctx.letterSpacing = '1px';
+  ctx.fillText("THE SALAS CONTEMPORARY", 40, 55);
+
+  ctx.fillStyle = '#111827';
+  ctx.font = "bold 26px 'Georgia', serif";
+  ctx.fillText(art.artist, 40, 100);
+
+  ctx.fillStyle = '#1e3a8a';
+  ctx.font = "italic bold 20px 'Georgia', serif";
+  // Word wrap title if long
+  const words = (art.title + ", " + art.year).split(' ');
+  let line = '';
+  let yPos = 135;
+  for (let w = 0; w < words.length; w++) {
+    const testLine = line + words[w] + ' ';
+    if (ctx.measureText(testLine).width > 520 && w > 0) {
+      ctx.fillText(line, 40, yPos);
+      line = words[w] + ' ';
+      yPos += 26;
+    } else {
+      line = testLine;
+    }
+  }
+  ctx.fillText(line, 40, yPos);
+
+  yPos += 30;
+  ctx.fillStyle = '#4b5563';
+  ctx.font = "14px 'Arial', sans-serif";
+  ctx.fillText(art.medium, 40, yPos);
+  yPos += 20;
+  ctx.fillText(art.dimensions, 40, yPos);
+
+  // Separator rule
+  yPos += 20;
+  ctx.strokeStyle = '#e5e7eb';
+  ctx.lineWidth = 1.5;
+  ctx.beginPath();
+  ctx.moveTo(40, yPos);
+  ctx.lineTo(560, yPos);
+  ctx.stroke();
+
+  // Curatorial excerpt text
+  yPos += 26;
+  ctx.fillStyle = '#374151';
+  ctx.font = "14px 'Georgia', serif";
+  const descWords = art.description.split(' ');
+  let descLine = '';
+  for (let d = 0; d < descWords.length; d++) {
+    const testDesc = descLine + descWords[d] + ' ';
+    if (ctx.measureText(testDesc).width > 520 && d > 0) {
+      ctx.fillText(descLine, 40, yPos);
+      descLine = descWords[d] + ' ';
+      yPos += 22;
+      if (yPos > 390) break;
+    } else {
+      descLine = testDesc;
+    }
+  }
+  if (yPos <= 390) ctx.fillText(descLine, 40, yPos);
+
+  // Bottom action hint
+  ctx.fillStyle = '#9ca3af';
+  ctx.font = "italic 12px 'Arial', sans-serif";
+  ctx.fillText("\u25B6 Click to inspect artwork enlarged", 40, 420);
+
+  const texture = new THREE.CanvasTexture(canvas);
+  return texture;
+}
+
+/* --------------------------------------------------------------------------
+   INITIALIZE 3D VIRTUAL MUSEUM SCENE
+   -------------------------------------------------------------------------- */
+function initMuseumThree() {
+  if (typeof THREE === 'undefined') {
+    console.error("Three.js library is not loaded.");
+    return;
+  }
+
+  const container = document.getElementById('museum-canvas-container');
+  if (!container) return;
+
+  // Scene setup
+  museumScene = new THREE.Scene();
+  museumScene.background = new THREE.Color(0x0e1013);
+  museumScene.fog = new THREE.FogExp2(0x181a1f, 0.018);
+
+  // Camera setup (eye-height = 1.7m standard museum standing eye level)
+  const aspect = container.clientWidth / container.clientHeight;
+  museumCamera = new THREE.PerspectiveCamera(60, aspect, 0.1, 150);
+  museumCamera.position.set(0, 1.7, 14);
+  museumCamera.rotation.order = 'YXZ';
+  museumNav.yaw = 0;
+  museumNav.pitch = 0;
+  museumNav.velocity = new THREE.Vector3(0, 0, 0);
+
+  // WebGL Renderer
+  museumRenderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
+  museumRenderer.setSize(container.clientWidth, container.clientHeight);
+  museumRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+  museumRenderer.shadowMap.enabled = true;
+  museumRenderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  container.innerHTML = '';
+  container.appendChild(museumRenderer.domElement);
+
+  // Lighting
+  const ambientLight = new THREE.AmbientLight(0xfffaed, 0.82);
+  museumScene.add(ambientLight);
+
+  const ceilingFill = new THREE.DirectionalLight(0xfff7e6, 0.45);
+  ceilingFill.position.set(0, 15, 0);
+  museumScene.add(ceilingFill);
+
+  // Room Dimensions (Width = 32m, Length = 44m, Height = 6.5m)
+  const roomW = 32;
+  const roomL = 44;
+  const roomH = 6.5;
+
+  // Parquet Hardwood Floor
+  const floorTexture = createParquetCanvasTexture();
+  const floorGeo = new THREE.PlaneGeometry(roomW, roomL);
+  const floorMat = new THREE.MeshStandardMaterial({
+    map: floorTexture,
+    roughness: 0.35,
+    metalness: 0.08
+  });
+  const floorMesh = new THREE.Mesh(floorGeo, floorMat);
+  floorMesh.rotation.x = -Math.PI / 2;
+  floorMesh.receiveShadow = true;
+  floorMesh.userData = { isFloor: true };
+  museumScene.add(floorMesh);
+
+  // Ceiling
+  const ceilGeo = new THREE.PlaneGeometry(roomW, roomL);
+  const ceilMat = new THREE.MeshStandardMaterial({
+    color: 0xeeece6,
+    roughness: 0.9,
+    metalness: 0.0
+  });
+  const ceilMesh = new THREE.Mesh(ceilGeo, ceilMat);
+  ceilMesh.position.y = roomH;
+  ceilMesh.rotation.x = Math.PI / 2;
+  museumScene.add(ceilMesh);
+
+  // Recessed Modern Lighting Tracks on Ceiling
+  const trackMat = new THREE.MeshBasicMaterial({ color: 0x1a1a1a });
+  const trackGeoL = new THREE.BoxGeometry(0.3, 0.08, roomL - 6);
+  const trackLeft = new THREE.Mesh(trackGeoL, trackMat);
+  trackLeft.position.set(-roomW / 2 + 3.5, roomH - 0.04, 0);
+  museumScene.add(trackLeft);
+
+  const trackRight = new THREE.Mesh(trackGeoL, trackMat);
+  trackRight.position.set(roomW / 2 - 3.5, roomH - 0.04, 0);
+  museumScene.add(trackRight);
+
+  // Gallery Walls Material (Warm off-white museum paint)
+  const wallMat = new THREE.MeshStandardMaterial({
+    color: 0xf5f3ee,
+    roughness: 0.85,
+    metalness: 0.02
+  });
+
+  // Baseboard Trim Material (Dark architectural charcoal)
+  const baseboardMat = new THREE.MeshStandardMaterial({
+    color: 0x222226,
+    roughness: 0.5
+  });
+
+  // Helper to build a wall with baseboard
+  function buildWall(width, height, pos, rotY) {
+    const wallGeo = new THREE.PlaneGeometry(width, height);
+    const wall = new THREE.Mesh(wallGeo, wallMat);
+    wall.position.set(pos[0], pos[1], pos[2]);
+    wall.rotation.y = rotY;
+    wall.receiveShadow = true;
+    museumScene.add(wall);
+
+    // Baseboard
+    const bbGeo = new THREE.BoxGeometry(width, 0.22, 0.08);
+    const bb = new THREE.Mesh(bbGeo, baseboardMat);
+    bb.position.set(pos[0], 0.11, pos[2]);
+    bb.rotation.y = rotY;
+    museumScene.add(bb);
+  }
+
+  // North Wall (front, z = -roomL / 2)
+  buildWall(roomW, roomH, [0, roomH / 2, -roomL / 2], 0);
+  // South Wall (back, z = roomL / 2)
+  buildWall(roomW, roomH, [0, roomH / 2, roomL / 2], Math.PI);
+  // West Wall (left, x = -roomW / 2)
+  buildWall(roomL, roomH, [-roomW / 2, roomH / 2, 0], Math.PI / 2);
+  // East Wall (right, x = roomW / 2)
+  buildWall(roomL, roomH, [roomW / 2, roomH / 2, 0], -Math.PI / 2);
+
+  // Central Minimalist Gallery Bench
+  const benchGroup = new THREE.Group();
+  const seatGeo = new THREE.BoxGeometry(4.8, 0.35, 1.4);
+  const seatMat = new THREE.MeshStandardMaterial({ color: 0x1c1917, roughness: 0.4 });
+  const seat = new THREE.Mesh(seatGeo, seatMat);
+  seat.position.y = 0.5;
+  seat.castShadow = true;
+  benchGroup.add(seat);
+
+  const legGeo = new THREE.BoxGeometry(0.12, 0.5, 1.3);
+  const legMat = new THREE.MeshStandardMaterial({ color: 0xa8a29e, metalness: 0.8, roughness: 0.3 });
+  const leg1 = new THREE.Mesh(legGeo, legMat);
+  leg1.position.set(-2.0, 0.25, 0);
+  const leg2 = new THREE.Mesh(legGeo, legMat);
+  leg2.position.set(2.0, 0.25, 0);
+  benchGroup.add(leg1);
+  benchGroup.add(leg2);
+  benchGroup.position.set(0, 0, 0);
+  museumScene.add(benchGroup);
+
+  // Wall Artwork Layout Configuration (9 artworks)
+  const artworkConfigs = [
+    // North Wall (Z = -roomL/2 = -22m)
+    { idx: 0, pos: [-9, 2.5, -roomL / 2 + 0.15], rot: 0, w: 3.8, h: 2.85 },
+    { idx: 1, pos: [0, 2.5, -roomL / 2 + 0.15], rot: 0, w: 4.8, h: 3.4 }, // Centerpiece
+    { idx: 2, pos: [9, 2.5, -roomL / 2 + 0.15], rot: 0, w: 3.8, h: 2.85 },
+
+    // East Wall (X = roomW/2 = 16m)
+    { idx: 3, pos: [roomW / 2 - 0.15, 2.5, -8], rot: -Math.PI / 2, w: 3.2, h: 3.2 },
+    { idx: 4, pos: [roomW / 2 - 0.15, 2.5, 8], rot: -Math.PI / 2, w: 3.6, h: 2.6 },
+
+    // South Wall (Z = roomL/2 = 22m)
+    { idx: 5, pos: [7, 2.5, roomL / 2 - 0.15], rot: Math.PI, w: 3.8, h: 2.85 },
+    { idx: 6, pos: [-7, 2.5, roomL / 2 - 0.15], rot: Math.PI, w: 3.8, h: 2.85 },
+
+    // West Wall (X = -roomW/2 = -16m)
+    { idx: 7, pos: [-roomW / 2 + 0.15, 2.5, 8], rot: Math.PI / 2, w: 3.6, h: 2.7 },
+    { idx: 8, pos: [-roomW / 2 + 0.15, 2.5, -8], rot: Math.PI / 2, w: 3.8, h: 3.0 }
+  ];
+
+  // Build each 3D Framed Artwork and Placard
+  museumInteractiveMeshes.length = 0; // reset
+
+  artworkConfigs.forEach(cfg => {
+    const art = MUSEUM_ARTWORKS[cfg.idx];
+    if (!art) return;
+
+    const artGroup = new THREE.Group();
+    artGroup.position.set(cfg.pos[0], cfg.pos[1], cfg.pos[2]);
+    artGroup.rotation.y = cfg.rot;
+
+    // 1. Outer Deep Architectural Picture Frame (Moulding)
+    const frameDepth = 0.12;
+    const frameBorder = 0.18;
+    const outerW = cfg.w + frameBorder * 2;
+    const outerH = cfg.h + frameBorder * 2;
+
+    const frameGeo = new THREE.BoxGeometry(outerW, outerH, frameDepth);
+    const frameMat = new THREE.MeshStandardMaterial({
+      color: 0x18181b, // Matte contemporary charcoal-black frame
+      roughness: 0.35,
+      metalness: 0.15
+    });
+    const frameMesh = new THREE.Mesh(frameGeo, frameMat);
+    frameMesh.position.z = -frameDepth / 2;
+    frameMesh.castShadow = true;
+    artGroup.add(frameMesh);
+
+    // 2. Archival Mat Board (Passe-partout)
+    const matGeo = new THREE.PlaneGeometry(cfg.w, cfg.h);
+    const matMat = new THREE.MeshStandardMaterial({
+      color: 0xfaf8f5,
+      roughness: 0.95
+    });
+    const matMesh = new THREE.Mesh(matGeo, matMat);
+    matMesh.position.z = 0.005;
+    artGroup.add(matMesh);
+
+    // 3. Artwork Canvas Texture
+    let artTexture;
+    if (art.image && art.image.trim().length > 0) {
+      artTexture = new THREE.TextureLoader().load(art.image, undefined, undefined, () => {
+        // Fallback to placeholder on missing file
+        artTexture = createArtworkPlaceholderCanvas(art, cfg.idx);
+        canvasMesh.material.map = artTexture;
+        canvasMesh.material.needsUpdate = true;
+      });
+    } else {
+      artTexture = createArtworkPlaceholderCanvas(art, cfg.idx);
+    }
+
+    const canvasW = cfg.w * 0.88;
+    const canvasH = cfg.h * 0.88;
+    const canvasGeo = new THREE.PlaneGeometry(canvasW, canvasH);
+    const canvasMat = new THREE.MeshStandardMaterial({
+      map: artTexture,
+      roughness: 0.45,
+      metalness: 0.05
+    });
+    const canvasMesh = new THREE.Mesh(canvasGeo, canvasMat);
+    canvasMesh.position.z = 0.012;
+    canvasMesh.userData = { artworkIndex: cfg.idx, isArtwork: true };
+    artGroup.add(canvasMesh);
+    museumInteractiveMeshes.push(canvasMesh);
+
+    // 4. Dedicated Gallery Spotlight per Artwork
+    const spot = new THREE.SpotLight(0xfff3db, 2.2);
+    spot.angle = Math.PI / 5;
+    spot.penumbra = 0.45;
+    spot.decay = 1.4;
+    spot.distance = 16;
+    // Position spotlight 3m in front and above the painting
+    const spotForwardOffset = 3.5;
+    const spotX = cfg.pos[0] + Math.sin(cfg.rot) * spotForwardOffset;
+    const spotZ = cfg.pos[2] + Math.cos(cfg.rot) * spotForwardOffset;
+    spot.position.set(spotX, roomH - 0.2, spotZ);
+    spot.target = canvasMesh;
+    museumScene.add(spot);
+    museumScene.add(spot.target);
+
+    // 5. 3D Museum Tombstone Description Placard (Mounted to the right of artwork)
+    const placardW = 0.65;
+    const placardH = 0.48;
+    const placardOffsetRight = (outerW / 2) + (placardW / 2) + 0.35;
+    const placardYOffset = -0.4; // Slightly lower than frame center (~eye level)
+
+    const placardGeo = new THREE.BoxGeometry(placardW, placardH, 0.02);
+    const placardTex = createPlacardCanvasTexture(art, cfg.idx);
+    const placardFrontMat = new THREE.MeshStandardMaterial({
+      map: placardTex,
+      roughness: 0.6
+    });
+    const placardSideMat = new THREE.MeshStandardMaterial({ color: 0xd8d4cc, roughness: 0.8 });
+    const placardMaterials = [
+      placardSideMat, placardSideMat, placardSideMat, placardSideMat,
+      placardFrontMat, placardSideMat
+    ];
+    const placardMesh = new THREE.Mesh(placardGeo, placardMaterials);
+    placardMesh.position.set(placardOffsetRight, placardYOffset, 0.01);
+    placardMesh.userData = { artworkIndex: cfg.idx, isPlacard: true };
+    artGroup.add(placardMesh);
+    museumInteractiveMeshes.push(placardMesh);
+
+    museumScene.add(artGroup);
+  });
+
+  // Attach event handlers for window resize and canvas interactions
+  window.addEventListener('resize', onMuseumResize);
+  setupMuseumControls(container);
+
+  museumInitialized = true;
+}
+
+/* --------------------------------------------------------------------------
+   MUSEUM CONTROLS: FIRST-PERSON WALK & SMOOTH MOUSE LOOK
+   -------------------------------------------------------------------------- */
+function setupMuseumControls(container) {
+  // Mouse Drag Look Controls
+  container.addEventListener('mousedown', (e) => {
+    museumNav.isDragging = true;
+    museumNav.lastMouseX = e.clientX;
+    museumNav.lastMouseY = e.clientY;
+    museumNav.dragDistance = 0;
+    container.style.cursor = 'grabbing';
+  });
+
+  window.addEventListener('mousemove', (e) => {
+    if (!museumActive) return;
+
+    // Track mouse vector for hover raycast
+    museumMouseVec.x = (e.clientX / window.innerWidth) * 2 - 1;
+    museumMouseVec.y = -(e.clientY / window.innerHeight) * 2 + 1;
+
+    if (museumNav.isDragging) {
+      const deltaX = e.clientX - museumNav.lastMouseX;
+      const deltaY = e.clientY - museumNav.lastMouseY;
+      museumNav.dragDistance += Math.abs(deltaX) + Math.abs(deltaY);
+
+      museumNav.yaw -= deltaX * 0.0032;
+      museumNav.pitch -= deltaY * 0.0032;
+      // Clamp pitch to avoid flip (-78 to +78 degrees)
+      museumNav.pitch = Math.max(-1.36, Math.min(1.36, museumNav.pitch));
+
+      museumNav.lastMouseX = e.clientX;
+      museumNav.lastMouseY = e.clientY;
+    } else {
+      // Hover Raycast for Reticle and Cursor
+      checkMuseumHover();
+    }
+  });
+
+  window.addEventListener('mouseup', (e) => {
+    if (!museumActive) return;
+    if (museumNav.isDragging) {
+      museumNav.isDragging = false;
+      container.style.cursor = 'grab';
+
+      // If user merely clicked without dragging, perform interactive click
+      if (museumNav.dragDistance < 6) {
+        handleMuseumCanvasClick(e);
+      }
+    }
+  });
+
+  // Touch Support for Mobile / Tablet Walk
+  container.addEventListener('touchstart', (e) => {
+    if (e.touches.length === 1) {
+      museumNav.isDragging = true;
+      museumNav.lastMouseX = e.touches[0].clientX;
+      museumNav.lastMouseY = e.touches[0].clientY;
+      museumNav.dragDistance = 0;
+    }
+  }, { passive: true });
+
+  window.addEventListener('touchmove', (e) => {
+    if (!museumActive || !museumNav.isDragging || e.touches.length !== 1) return;
+    const deltaX = e.touches[0].clientX - museumNav.lastMouseX;
+    const deltaY = e.touches[0].clientY - museumNav.lastMouseY;
+    museumNav.dragDistance += Math.abs(deltaX) + Math.abs(deltaY);
+
+    museumNav.yaw -= deltaX * 0.004;
+    museumNav.pitch -= deltaY * 0.004;
+    museumNav.pitch = Math.max(-1.36, Math.min(1.36, museumNav.pitch));
+
+    museumNav.lastMouseX = e.touches[0].clientX;
+    museumNav.lastMouseY = e.touches[0].clientY;
+  }, { passive: true });
+
+  window.addEventListener('touchend', (e) => {
+    if (!museumActive) return;
+    if (museumNav.isDragging) {
+      museumNav.isDragging = false;
+      if (museumNav.dragDistance < 6 && e.changedTouches && e.changedTouches.length > 0) {
+        handleMuseumCanvasClick(e.changedTouches[0]);
+      }
+    }
+  });
+
+  // Keyboard Walking Listeners (WASD + Arrow Keys)
+  window.addEventListener('keydown', (e) => {
+    if (!museumActive) return;
+
+    // Do not trigger walk if modal is open
+    const modal = document.getElementById('museum-artwork-modal');
+    if (modal && modal.style.display !== 'none') {
+      if (e.key === 'Escape') closeArtworkModal();
+      if (e.key === 'ArrowLeft') navigateArtworkModal(-1);
+      if (e.key === 'ArrowRight') navigateArtworkModal(1);
+      return;
+    }
+
+    if (e.code === 'KeyW' || e.code === 'ArrowUp') { museumNav.forward = true; e.preventDefault(); }
+    if (e.code === 'KeyS' || e.code === 'ArrowDown') { museumNav.backward = true; e.preventDefault(); }
+    if (e.code === 'KeyA' || e.code === 'ArrowLeft') { museumNav.left = true; e.preventDefault(); }
+    if (e.code === 'KeyD' || e.code === 'ArrowRight') { museumNav.right = true; e.preventDefault(); }
+    if (e.code === 'Escape') exitMuseum();
+  });
+
+  window.addEventListener('keyup', (e) => {
+    if (e.code === 'KeyW' || e.code === 'ArrowUp') museumNav.forward = false;
+    if (e.code === 'KeyS' || e.code === 'ArrowDown') museumNav.backward = false;
+    if (e.code === 'KeyA' || e.code === 'ArrowLeft') museumNav.left = false;
+    if (e.code === 'KeyD' || e.code === 'ArrowRight') museumNav.right = false;
+  });
+}
+
+/* Hover Check for Crosshair Reticle Feedback */
+function checkMuseumHover() {
+  if (!museumRaycaster || !museumCamera) return;
+  museumRaycaster.setFromCamera(museumMouseVec, museumCamera);
+  const intersects = museumRaycaster.intersectObjects(museumInteractiveMeshes, false);
+
+  const crosshair = document.getElementById('museum-crosshair');
+  const container = document.getElementById('museum-canvas-container');
+
+  if (intersects.length > 0) {
+    if (crosshair) {
+      crosshair.style.transform = 'translate(-50%, -50%) scale(2.2)';
+      crosshair.style.borderColor = '#ffd700';
+      crosshair.style.background = 'rgba(255, 215, 0, 0.4)';
+    }
+    if (container) container.style.cursor = 'pointer';
+  } else {
+    if (crosshair) {
+      crosshair.style.transform = 'translate(-50%, -50%) scale(1)';
+      crosshair.style.borderColor = 'rgba(255,255,255,0.7)';
+      crosshair.style.background = 'transparent';
+    }
+    if (container && !museumNav.isDragging) container.style.cursor = 'grab';
+  }
+}
+
+/* Interactive Click: Opens Lightbox Modal or Walks to Floor Location */
+function handleMuseumCanvasClick(e) {
+  if (!museumRaycaster || !museumCamera) return;
+
+  const clickVec = new THREE.Vector2(
+    (e.clientX / window.innerWidth) * 2 - 1,
+    -(e.clientY / window.innerHeight) * 2 + 1
+  );
+
+  museumRaycaster.setFromCamera(clickVec, museumCamera);
+
+  // 1. Check if an artwork or placard was clicked
+  const artHits = museumRaycaster.intersectObjects(museumInteractiveMeshes, false);
+  if (artHits.length > 0) {
+    const hitObj = artHits[0].object;
+    if (hitObj.userData && typeof hitObj.userData.artworkIndex === 'number') {
+      openArtworkModal(hitObj.userData.artworkIndex);
+      return;
+    }
+  }
+
+  // 2. Check if floor was clicked for click-to-walk feature
+  const allHits = museumRaycaster.intersectObjects(museumScene.children, true);
+  for (let i = 0; i < allHits.length; i++) {
+    if (allHits[i].object.userData && allHits[i].object.userData.isFloor) {
+      museumNav.targetFloorPos = allHits[i].point.clone();
+      // Keep eye height
+      museumNav.targetFloorPos.y = 1.7;
+      break;
+    }
+  }
+}
+
+/* On-Screen D-Pad Buttons for Touch / Mouse */
+function startMuseumMove(direction) {
+  if (direction === 'forward') museumNav.forward = true;
+  if (direction === 'backward') museumNav.backward = true;
+  if (direction === 'left') museumNav.left = true;
+  if (direction === 'right') museumNav.right = true;
+}
+
+function stopMuseumMove(direction) {
+  if (direction === 'forward') museumNav.forward = false;
+  if (direction === 'backward') museumNav.backward = false;
+  if (direction === 'left') museumNav.left = false;
+  if (direction === 'right') museumNav.right = false;
+}
+
+/* --------------------------------------------------------------------------
+   MUSEUM MAIN ANIMATION LOOP & PHYSICS
+   -------------------------------------------------------------------------- */
+function updateMuseumPhysics() {
+  if (!museumCamera) return;
+
+  // Apply smooth yaw and pitch rotation
+  museumCamera.rotation.y = museumNav.yaw;
+  museumCamera.rotation.x = museumNav.pitch;
+
+  // Compute walk movement directions relative to camera yaw
+  const forwardVec = new THREE.Vector3(0, 0, -1).applyAxisAngle(new THREE.Vector3(0, 1, 0), museumNav.yaw);
+  const rightVec = new THREE.Vector3(1, 0, 0).applyAxisAngle(new THREE.Vector3(0, 1, 0), museumNav.yaw);
+
+  const moveDir = new THREE.Vector3(0, 0, 0);
+
+  if (museumNav.forward) moveDir.add(forwardVec);
+  if (museumNav.backward) moveDir.sub(forwardVec);
+  if (museumNav.left) moveDir.sub(rightVec);
+  if (museumNav.right) moveDir.add(rightVec);
+
+  const walkAccel = 0.038;
+  if (moveDir.lengthSq() > 0.001) {
+    moveDir.normalize();
+    museumNav.velocity.addScaledVector(moveDir, walkAccel);
+    museumNav.targetFloorPos = null; // Keyboard cancels click-to-walk
+  }
+
+  // Handle click-to-walk floor glide
+  if (museumNav.targetFloorPos) {
+    const toTarget = new THREE.Vector3().subVectors(museumNav.targetFloorPos, museumCamera.position);
+    toTarget.y = 0; // horizontal only
+    if (toTarget.length() > 0.4) {
+      toTarget.normalize();
+      museumNav.velocity.addScaledVector(toTarget, walkAccel);
+    } else {
+      museumNav.targetFloorPos = null;
+    }
+  }
+
+  // Damping / Friction
+  museumNav.velocity.multiplyScalar(0.85);
+
+  // Apply velocity to camera
+  museumCamera.position.add(museumNav.velocity);
+
+  // Gallery boundaries collision (Room width = 32m, length = 44m)
+  const roomLimitX = 32 / 2 - 1.4;
+  const roomLimitZ = 44 / 2 - 1.4;
+
+  museumCamera.position.x = Math.max(-roomLimitX, Math.min(roomLimitX, museumCamera.position.x));
+  museumCamera.position.z = Math.max(-roomLimitZ, Math.min(roomLimitZ, museumCamera.position.z));
+  museumCamera.position.y = 1.7; // Fixed standing eye height
+}
+
+function museumAnimate() {
+  if (!museumActive) return;
+  museumAnimId = requestAnimationFrame(museumAnimate);
+
+  updateMuseumPhysics();
+  museumRenderer.render(museumScene, museumCamera);
+}
+
+function onMuseumResize() {
+  if (!museumRenderer || !museumCamera) return;
+  const container = document.getElementById('museum-canvas-container');
+  if (!container) return;
+
+  const w = container.clientWidth || window.innerWidth;
+  const h = container.clientHeight || window.innerHeight;
+
+  museumCamera.aspect = w / h;
+  museumCamera.updateProjectionMatrix();
+  museumRenderer.setSize(w, h);
+}
+
+/* --------------------------------------------------------------------------
+   OPEN / EXIT MUSEUM LIFECYCLE
+   -------------------------------------------------------------------------- */
+function openMuseum() {
+  const overlay = document.getElementById('museum-overlay');
+  if (!overlay) return;
+
+  overlay.style.display = 'block';
+  museumActive = true;
+
+  if (!museumInitialized) {
+    initMuseumThree();
+  }
+
+  onMuseumResize();
+
+  if (museumAnimId) cancelAnimationFrame(museumAnimId);
+  museumAnimate();
+}
+
+function exitMuseum() {
+  const overlay = document.getElementById('museum-overlay');
+  if (overlay) overlay.style.display = 'none';
+
+  museumActive = false;
+  if (museumAnimId) {
+    cancelAnimationFrame(museumAnimId);
+    museumAnimId = null;
+  }
+
+  // Reset keys
+  museumNav.forward = false;
+  museumNav.backward = false;
+  museumNav.left = false;
+  museumNav.right = false;
+  museumNav.velocity.set(0, 0, 0);
+
+  // Exit fullscreen if active
+  if (document.fullscreenElement && document.exitFullscreen) {
+    document.exitFullscreen().catch(() => {});
+  }
+}
+
+function toggleMuseumFullscreen() {
+  const overlay = document.getElementById('museum-overlay');
+  if (!overlay) return;
+
+  if (!document.fullscreenElement) {
+    overlay.requestFullscreen().catch(() => {});
+  } else {
+    document.exitFullscreen().catch(() => {});
+  }
+}
+
+/* --------------------------------------------------------------------------
+   ARTWORK INSPECTION LIGHTBOX MODAL
+   Enlarged framed image + Full curatorial tombstone description
+   -------------------------------------------------------------------------- */
+let currentModalArtworkIndex = 0;
+
+function openArtworkModal(index) {
+  if (index < 0 || index >= MUSEUM_ARTWORKS.length) return;
+  currentModalArtworkIndex = index;
+  const art = MUSEUM_ARTWORKS[index];
+
+  const modal = document.getElementById('museum-artwork-modal');
+  const imgElem = document.getElementById('museum-modal-img');
+  const titleElem = document.getElementById('museum-modal-title');
+  const artistElem = document.getElementById('museum-modal-artist');
+  const yearElem = document.getElementById('museum-modal-year');
+  const mediumElem = document.getElementById('museum-modal-medium');
+  const dimElem = document.getElementById('museum-modal-dimensions');
+  const descElem = document.getElementById('museum-modal-desc');
+  const statusElem = document.getElementById('museum-modal-status');
+
+  if (art.image && art.image.trim().length > 0) {
+    imgElem.src = art.image;
+  } else if (placeholderDataUrls[index]) {
+    imgElem.src = placeholderDataUrls[index];
+  } else {
+    // Generate fallback
+    imgElem.src = createArtworkPlaceholderCanvas(art, index).image.toDataURL();
+  }
+
+  if (titleElem) titleElem.textContent = art.title;
+  if (artistElem) artistElem.textContent = art.artist;
+  if (yearElem) yearElem.textContent = art.year;
+  if (mediumElem) mediumElem.textContent = art.medium;
+  if (dimElem) dimElem.textContent = art.dimensions;
+  if (descElem) descElem.textContent = art.description;
+  if (statusElem) statusElem.textContent = `Piece ${index + 1} of ${MUSEUM_ARTWORKS.length} \u2022 Permanent Collection`;
+
+  if (modal) modal.style.display = 'flex';
+
+  if (typeof playRetroSound === 'function') {
+    playRetroSound('launch');
+  }
+}
+
+function closeArtworkModal() {
+  const modal = document.getElementById('museum-artwork-modal');
+  if (modal) modal.style.display = 'none';
+}
+
+function navigateArtworkModal(direction) {
+  const total = MUSEUM_ARTWORKS.length;
+  currentModalArtworkIndex = (currentModalArtworkIndex + direction + total) % total;
+  openArtworkModal(currentModalArtworkIndex);
+}
+
     </script>
   </body>
 </html>
