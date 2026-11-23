@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
@@ -4823,7 +4823,7 @@ const MUSEUM_ARTWORKS = [
     dimensions: "9 x 5 in",
     description: "Glowing scrapbook.",
     image: "images/sb front cover.png",
-    aspectRatio: 1.75
+    aspectRatio: 1.0
   },
   {
     id: 3,
@@ -5500,24 +5500,24 @@ function initMuseumThree() {
   benchGroup.position.set(0, 0, 0);
   museumScene.add(benchGroup);
 
-  // Wall Artwork Layout Configuration (9 curated artworks matched to aspect ratios)
+  // Wall Artwork Layout Configuration (9 curated artworks matched to exact aspect ratios)
   const artworkConfigs = [
     // North Wall (Z = -roomL/2 = -22m)
-    { idx: 0, pos: [-9, 2.5, -roomL / 2 + 0.15], rot: 0, w: 3.2, h: 3.2 },
-    { idx: 1, pos: [0, 2.5, -roomL / 2 + 0.15], rot: 0, w: 4.8, h: 3.36 }, // Centerpiece
-    { idx: 2, pos: [9, 2.5, -roomL / 2 + 0.15], rot: 0, w: 3.6, h: 2.86 },
+    { idx: 0, pos: [-9, 2.5, -roomL / 2 + 0.15], rot: 0, w: 3.2, h: 3.2 }, // NVLL BW (1:1 Square)
+    { idx: 1, pos: [0, 2.5, -roomL / 2 + 0.15], rot: 0, w: 3.6, h: 3.6 }, // Centerpiece: Scrapbook (1:1 Square)
+    { idx: 2, pos: [9, 2.5, -roomL / 2 + 0.15], rot: 0, w: 3.6, h: 2.86 }, // cAts (1.26 aspect)
 
     // East Wall (X = roomW/2 = 16m)
-    { idx: 3, pos: [roomW / 2 - 0.15, 2.5, -8], rot: -Math.PI / 2, w: 3.2, h: 3.2 },
-    { idx: 4, pos: [roomW / 2 - 0.15, 2.5, 8], rot: -Math.PI / 2, w: 4.4, h: 2.5 },
+    { idx: 3, pos: [roomW / 2 - 0.15, 2.5, -8], rot: -Math.PI / 2, w: 3.2, h: 3.2 }, // cUbes (1:1 Square)
+    { idx: 4, pos: [roomW / 2 - 0.15, 2.5, 8], rot: -Math.PI / 2, w: 4.4, h: 2.47 }, // FuRbaLL (1.78 aspect)
 
     // South Wall (Z = roomL/2 = 22m)
-    { idx: 5, pos: [7, 2.5, roomL / 2 - 0.15], rot: Math.PI, w: 4.4, h: 2.5 },
-    { idx: 6, pos: [-7, 2.5, roomL / 2 - 0.15], rot: Math.PI, w: 4.4, h: 2.5 },
+    { idx: 5, pos: [7, 2.5, roomL / 2 - 0.15], rot: Math.PI, w: 4.4, h: 2.47 }, // LiNCOLN (1.78 aspect)
+    { idx: 6, pos: [-7, 2.5, roomL / 2 - 0.15], rot: Math.PI, w: 4.4, h: 2.47 }, // pAwn (1.78 aspect)
 
     // West Wall (X = -roomW/2 = -16m)
-    { idx: 7, pos: [-roomW / 2 + 0.15, 2.5, 8], rot: Math.PI / 2, w: 4.4, h: 2.5 },
-    { idx: 8, pos: [-roomW / 2 + 0.15, 2.5, -8], rot: Math.PI / 2, w: 3.2, h: 3.2 }
+    { idx: 7, pos: [-roomW / 2 + 0.15, 2.5, 8], rot: Math.PI / 2, w: 4.4, h: 2.47 }, // SPaCE (1.78 aspect)
+    { idx: 8, pos: [-roomW / 2 + 0.15, 2.5, -8], rot: Math.PI / 2, w: 3.2, h: 3.2 }  // Photoshop 1 (1:1 Square)
   ];
 
   // Build each 3D Framed Artwork and Placard
@@ -5583,13 +5583,12 @@ function initMuseumThree() {
 
     const canvasGeo = new THREE.BoxGeometry(canvasW, canvasH, canvasDepth);
     const canvasMesh = new THREE.Mesh(canvasGeo, canvasMaterials);
-    // Position front face proud of mat board (z = 0.015 + 0.015 = 0.03) to eliminate z-fighting
     canvasMesh.position.z = 0.02;
     canvasMesh.userData = { artworkIndex: cfg.idx, isArtwork: true };
     artGroup.add(canvasMesh);
     museumInteractiveMeshes.push(canvasMesh);
 
-    // Load Artwork Image Texture with fallback
+    // Load Artwork Image Texture with aspect ratio safeguard
     if (art.image && art.image.trim().length > 0) {
       const texLoader = new THREE.TextureLoader();
       texLoader.setCrossOrigin('anonymous');
@@ -5597,6 +5596,20 @@ function initMuseumThree() {
         art.image,
         function(loadedTex) {
           loadedTex.needsUpdate = true;
+          // Protect aspect ratio so image is never stretched
+          if (loadedTex.image && loadedTex.image.width && loadedTex.image.height) {
+            const imgAspect = loadedTex.image.width / loadedTex.image.height;
+            const boxAspect = canvasW / canvasH;
+            if (Math.abs(imgAspect - boxAspect) > 0.02) {
+              if (imgAspect > boxAspect) {
+                loadedTex.repeat.set(1, boxAspect / imgAspect);
+                loadedTex.offset.set(0, (1 - boxAspect / imgAspect) / 2);
+              } else {
+                loadedTex.repeat.set(imgAspect / boxAspect, 1);
+                loadedTex.offset.set((1 - imgAspect / boxAspect) / 2, 0);
+              }
+            }
+          }
           canvasFrontMat.map = loadedTex;
           canvasFrontMat.needsUpdate = true;
         },
