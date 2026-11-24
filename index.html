@@ -1,4 +1,4 @@
-﻿<!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
   <head>
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/3.4.0/model-viewer.min.js"></script>
@@ -2710,6 +2710,11 @@
 
     <!-- FULLSCREEN 3D MUSEUM INTERIOR OVERLAY -->
     <div id="museum-overlay" style="display: none; position: fixed; inset: 0; width: 100vw; height: 100vh; z-index: 99999; background: #000000; overflow: hidden; font-family: 'MS Sans Serif', Tahoma, sans-serif;">
+      <!-- Claude Debussy - Arabesque No. 1 in E Major Audio -->
+      <audio id="museumAudio" loop preload="auto">
+        <source src="https://archive.org/download/ArabesqueNo.1InEciccolini/5-08Debussy_ArabesquesL66-Arabesque1InE.mp3" type="audio/mpeg">
+        <source src="https://archive.org/download/ArabesqueNo.1InEciccolini/5-08Debussy_ArabesquesL66-Arabesque1InE.ogg" type="audio/ogg">
+      </audio>
       <!-- Three.js Canvas Container -->
       <div id="museum-canvas-container" style="width: 100%; height: 100%; position: absolute; inset: 0; cursor: grab;"></div>
 
@@ -2735,6 +2740,9 @@
         </div>
 
         <div style="display: flex; align-items: center; gap: 8px;">
+          <button id="museumMusicBtn" type="button" onclick="toggleMuseumMusic()" class="win95-btn out" style="background: #c0c0c0; color: #000; font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 11px; font-weight: bold; padding: 5px 12px; border: 2px solid; border-color: #fff #000 #000 #fff; cursor: pointer; display: flex; align-items: center; gap: 4px;" title="Turn Music Off (Claude Debussy - Arabesque No. 1)">
+            <span id="museumMusicIcon">&#128266;</span> <span id="museumMusicText">Music: On</span>
+          </button>
           <button type="button" onclick="toggleMuseumFullscreen()" class="win95-btn out" style="background: #c0c0c0; color: #000; font-family: 'MS Sans Serif', Tahoma, sans-serif; font-size: 11px; font-weight: bold; padding: 5px 12px; border: 2px solid; border-color: #fff #000 #000 #fff; cursor: pointer;" title="Toggle Fullscreen">
             &#9974; Fullscreen
           </button>
@@ -4834,7 +4842,7 @@ const MUSEUM_ARTWORKS = [
     dimensions: "10 x 15 in",
     description: "Atmospheric Perspective.",
     image: "images/frog.png",
-    aspectRatio: 1.26
+    aspectRatio: 1.54
   },
   {
     id: 4,
@@ -4845,7 +4853,7 @@ const MUSEUM_ARTWORKS = [
     dimensions: "7.5 x 10 in",
     description: "Painting from reference.",
     image: "images/cup.png",
-    aspectRatio: 1.0
+    aspectRatio: 0.75
   },
   {
     id: 5,
@@ -4856,7 +4864,7 @@ const MUSEUM_ARTWORKS = [
     dimensions: "7.5 x 10 in",
     description: "Warm, color study.",
     image: "images/app.png",
-    aspectRatio: 1.78
+    aspectRatio: 0.75
   },
   {
     id: 6,
@@ -4903,6 +4911,76 @@ const MUSEUM_ARTWORKS = [
     aspectRatio: 1.0
   }
 ];
+
+/* --------------------------------------------------------------------------
+   MUSEUM BACKGROUND MUSIC CONTROLLER
+   Claude Debussy: "Deux arabesques, L. 66: No. 1 in E Major"
+   -------------------------------------------------------------------------- */
+let museumMusicEnabled = true;
+
+function getMuseumAudio() {
+  return document.getElementById('museumAudio');
+}
+
+function playMuseumMusic() {
+  if (!museumMusicEnabled) return;
+  const audio = getMuseumAudio();
+  if (audio) {
+    audio.volume = 0.35;
+    const playPromise = audio.play();
+    if (playPromise !== undefined) {
+      playPromise.then(() => {
+        updateMuseumMusicUI(true);
+      }).catch(err => {
+        console.warn("Autoplay audio blocked or pending user interaction:", err);
+        updateMuseumMusicUI(false);
+      });
+    }
+  }
+}
+
+function pauseMuseumMusic() {
+  const audio = getMuseumAudio();
+  if (audio) {
+    audio.pause();
+  }
+}
+
+function toggleMuseumMusic() {
+  const audio = getMuseumAudio();
+  if (!audio) return;
+
+  if (audio.paused) {
+    museumMusicEnabled = true;
+    audio.volume = 0.35;
+    audio.play().then(() => {
+      updateMuseumMusicUI(true);
+    }).catch(err => {
+      console.warn("Failed playing audio:", err);
+    });
+  } else {
+    museumMusicEnabled = false;
+    audio.pause();
+    updateMuseumMusicUI(false);
+  }
+}
+
+function updateMuseumMusicUI(isPlaying) {
+  const icon = document.getElementById('museumMusicIcon');
+  const text = document.getElementById('museumMusicText');
+  const btn = document.getElementById('museumMusicBtn');
+  if (icon && text) {
+    if (isPlaying) {
+      icon.innerHTML = '&#128266;';
+      text.textContent = 'Music: On';
+      if (btn) btn.title = 'Turn Music Off (Claude Debussy - Arabesque No. 1)';
+    } else {
+      icon.innerHTML = '&#128263;';
+      text.textContent = 'Music: Off';
+      if (btn) btn.title = 'Turn Music On (Claude Debussy - Arabesque No. 1)';
+    }
+  }
+}
 
 /* --------------------------------------------------------------------------
    MATRIX DIGITAL RAIN CONTROLLER (SECRET VAULT)
@@ -5385,20 +5463,22 @@ function initMuseumThree() {
   museumNav.pitch = 0;
   museumNav.velocity = new THREE.Vector3(0, 0, 0);
 
-  // WebGL Renderer
+  // WebGL Renderer with ACESFilmic Tone Mapping for authentic gallery dynamic range
   museumRenderer = new THREE.WebGLRenderer({ antialias: true, powerPreference: 'high-performance' });
   museumRenderer.setSize(container.clientWidth, container.clientHeight);
   museumRenderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
   museumRenderer.shadowMap.enabled = true;
   museumRenderer.shadowMap.type = THREE.PCFSoftShadowMap;
+  museumRenderer.toneMapping = THREE.ACESFilmicToneMapping;
+  museumRenderer.toneMappingExposure = 0.95;
   container.innerHTML = '';
   container.appendChild(museumRenderer.domElement);
 
-  // Ambient & Directional Lighting for vivid, bright artwork visibility
-  const ambientLight = new THREE.AmbientLight(0xffffff, 0.95);
+  // Calibrated Soft Gallery Lighting (reduced brightness for deep colors and no glare)
+  const ambientLight = new THREE.AmbientLight(0xf2efe9, 0.45);
   museumScene.add(ambientLight);
 
-  const ceilingFill = new THREE.DirectionalLight(0xfff8ee, 0.6);
+  const ceilingFill = new THREE.DirectionalLight(0xfff5e6, 0.22);
   ceilingFill.position.set(0, 15, 0);
   museumScene.add(ceilingFill);
 
@@ -5500,24 +5580,24 @@ function initMuseumThree() {
   benchGroup.position.set(0, 0, 0);
   museumScene.add(benchGroup);
 
-  // Wall Artwork Layout Configuration (9 curated artworks matched to exact aspect ratios)
+  // Wall Artwork Layout Configuration (9 curated artworks matched to exact image aspect ratios)
   const artworkConfigs = [
     // North Wall (Z = -roomL/2 = -22m)
-    { idx: 0, pos: [-9, 2.5, -roomL / 2 + 0.15], rot: 0, w: 3.2, h: 3.2 }, // NVLL BW (1:1 Square)
-    { idx: 1, pos: [0, 2.5, -roomL / 2 + 0.15], rot: 0, w: 3.6, h: 3.6 }, // Centerpiece: Scrapbook (1:1 Square)
-    { idx: 2, pos: [9, 2.5, -roomL / 2 + 0.15], rot: 0, w: 3.6, h: 2.86 }, // cAts (1.26 aspect)
+    { idx: 0, pos: [-9, 2.5, -roomL / 2 + 0.15], rot: 0, w: 3.2, h: 3.2 }, // NVLL BW (1:1 Square, 2184x2184)
+    { idx: 1, pos: [0, 2.5, -roomL / 2 + 0.15], rot: 0, w: 3.6, h: 3.6 }, // Centerpiece: Scrapbook (1:1 Square, 2000x2000)
+    { idx: 2, pos: [9, 2.5, -roomL / 2 + 0.15], rot: 0, w: 3.85, h: 2.5 }, // Frog (1.54 Landscape, 4796x3117)
 
     // East Wall (X = roomW/2 = 16m)
-    { idx: 3, pos: [roomW / 2 - 0.15, 2.5, -8], rot: -Math.PI / 2, w: 3.2, h: 3.2 }, // cUbes (1:1 Square)
-    { idx: 4, pos: [roomW / 2 - 0.15, 2.5, 8], rot: -Math.PI / 2, w: 4.4, h: 2.47 }, // FuRbaLL (1.78 aspect)
+    { idx: 3, pos: [roomW / 2 - 0.15, 2.5, -8], rot: -Math.PI / 2, w: 2.5, h: 3.32 }, // Cup (0.75 Portrait, 2325x3086)
+    { idx: 4, pos: [roomW / 2 - 0.15, 2.5, 8], rot: -Math.PI / 2, w: 2.5, h: 3.32 }, // Apple (0.75 Portrait, 2325x3086)
 
     // South Wall (Z = roomL/2 = 22m)
-    { idx: 5, pos: [7, 2.5, roomL / 2 - 0.15], rot: Math.PI, w: 4.4, h: 2.47 }, // LiNCOLN (1.78 aspect)
-    { idx: 6, pos: [-7, 2.5, roomL / 2 - 0.15], rot: Math.PI, w: 4.4, h: 2.47 }, // pAwn (1.78 aspect)
+    { idx: 5, pos: [7, 2.5, roomL / 2 - 0.15], rot: Math.PI, w: 4.4, h: 2.47 }, // LiNCOLN (1.78 aspect, 1920x1080)
+    { idx: 6, pos: [-7, 2.5, roomL / 2 - 0.15], rot: Math.PI, w: 4.4, h: 2.47 }, // pAwn (1.78 aspect, 1920x1080)
 
     // West Wall (X = -roomW/2 = -16m)
-    { idx: 7, pos: [-roomW / 2 + 0.15, 2.5, 8], rot: Math.PI / 2, w: 4.4, h: 2.47 }, // SPaCE (1.78 aspect)
-    { idx: 8, pos: [-roomW / 2 + 0.15, 2.5, -8], rot: Math.PI / 2, w: 3.2, h: 3.2 }  // Photoshop 1 (1:1 Square)
+    { idx: 7, pos: [-roomW / 2 + 0.15, 2.5, 8], rot: Math.PI / 2, w: 4.4, h: 2.47 }, // SPaCE (1.78 aspect, 1920x1080)
+    { idx: 8, pos: [-roomW / 2 + 0.15, 2.5, -8], rot: Math.PI / 2, w: 3.2, h: 3.2 }  // Photoshop 1 (1:1 Square, 2000x2000)
   ];
 
   // Build each 3D Framed Artwork and Placard
@@ -5540,7 +5620,7 @@ function initMuseumThree() {
     const frameGeo = new THREE.BoxGeometry(outerW, outerH, frameDepth);
     const frameMat = new THREE.MeshStandardMaterial({
       color: 0x18181b,
-      roughness: 0.35,
+      roughness: 0.45,
       metalness: 0.15
     });
     const frameMesh = new THREE.Mesh(frameGeo, frameMat);
@@ -5553,7 +5633,7 @@ function initMuseumThree() {
     // 2. Archival Mat Board (Passe-partout)
     const matGeo = new THREE.PlaneGeometry(cfg.w, cfg.h);
     const matMat = new THREE.MeshStandardMaterial({
-      color: 0xfbf9f5,
+      color: 0xf5f3ee,
       roughness: 0.95
     });
     const matMesh = new THREE.Mesh(matGeo, matMat);
@@ -5567,11 +5647,11 @@ function initMuseumThree() {
     const canvasH = cfg.h * 0.90;
     const canvasDepth = 0.03;
 
-    // Materials: Canvas sides neutral dark gray, front is the artwork texture
+    // Materials: Canvas sides neutral dark gray, front is the artwork texture with soft matte finish
     const canvasSideMat = new THREE.MeshStandardMaterial({ color: 0x242424, roughness: 0.7 });
     const canvasFrontMat = new THREE.MeshStandardMaterial({
       color: 0xffffff,
-      roughness: 0.2,
+      roughness: 0.5,
       metalness: 0.0
     });
 
@@ -5608,6 +5688,9 @@ function initMuseumThree() {
                 loadedTex.repeat.set(imgAspect / boxAspect, 1);
                 loadedTex.offset.set((1 - imgAspect / boxAspect) / 2, 0);
               }
+            } else {
+              loadedTex.repeat.set(1, 1);
+              loadedTex.offset.set(0, 0);
             }
           }
           canvasFrontMat.map = loadedTex;
@@ -5627,12 +5710,12 @@ function initMuseumThree() {
       canvasFrontMat.needsUpdate = true;
     }
 
-    // 4. Dedicated Gallery Spotlight per Artwork (with separate Object3D target)
-    const spot = new THREE.SpotLight(0xfff5e0, 2.4);
-    spot.angle = Math.PI / 4.5;
-    spot.penumbra = 0.45;
-    spot.decay = 1.2;
-    spot.distance = 18;
+    // 4. Dedicated Gallery Spotlight per Artwork (soft warm gallery illumination)
+    const spot = new THREE.SpotLight(0xfff1d6, 0.9);
+    spot.angle = Math.PI / 4.2;
+    spot.penumbra = 0.6;
+    spot.decay = 1.5;
+    spot.distance = 16;
     const spotForwardOffset = 3.2;
     const spotX = cfg.pos[0] + Math.sin(cfg.rot) * spotForwardOffset;
     const spotZ = cfg.pos[2] + Math.cos(cfg.rot) * spotForwardOffset;
@@ -5948,6 +6031,9 @@ function openMuseum() {
 
   if (museumAnimId) cancelAnimationFrame(museumAnimId);
   museumAnimate();
+
+  // Start Claude Debussy - Arabesque No. 1 background music
+  playMuseumMusic();
 }
 
 function exitMuseum() {
@@ -5959,6 +6045,9 @@ function exitMuseum() {
     cancelAnimationFrame(museumAnimId);
     museumAnimId = null;
   }
+
+  // Pause background music on exit
+  pauseMuseumMusic();
 
   museumNav.forward = false;
   museumNav.backward = false;
@@ -6036,6 +6125,7 @@ function navigateArtworkModal(direction) {
   currentModalArtworkIndex = (currentModalArtworkIndex + direction + total) % total;
   openArtworkModal(currentModalArtworkIndex);
 }
+
 
     </script>
   </body>
