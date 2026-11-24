@@ -5876,19 +5876,42 @@ function buildLouvreArtworkFrame(cfg, artGroup, interactiveMeshes, bw, outerW, o
   outerH = outerH || (cfg.h + bw * 2);
   const frameDepth = 0.08;
 
-  // 1. Structural Back Architrave Frame (Tailloir)
-  const baseFrameGeo = new THREE.BoxGeometry(outerW, outerH, frameDepth);
+  // 1. Structural Back Architrave Frame (4 perimeter rails leaving the center 100% open for the artwork)
   const baseFrameMat = new THREE.MeshStandardMaterial({
     color: 0x6e4919,
     roughness: 0.48,
     metalness: 0.70
   });
-  const baseFrameMesh = new THREE.Mesh(baseFrameGeo, baseFrameMat);
-  baseFrameMesh.position.z = frameDepth / 2 - 0.015;
-  baseFrameMesh.castShadow = true;
-  baseFrameMesh.userData = { artworkIndex: cfg.idx, isFrame: true };
-  artGroup.add(baseFrameMesh);
-  interactiveMeshes.push(baseFrameMesh);
+
+  const bRailGeoH = new THREE.BoxGeometry(outerW, bw, frameDepth);
+  const bRailTop = new THREE.Mesh(bRailGeoH, baseFrameMat);
+  bRailTop.position.set(0, cfg.h / 2 + bw / 2, frameDepth / 2 - 0.015);
+  bRailTop.castShadow = true;
+  bRailTop.userData = { artworkIndex: cfg.idx, isFrame: true };
+  artGroup.add(bRailTop);
+  interactiveMeshes.push(bRailTop);
+
+  const bRailBot = new THREE.Mesh(bRailGeoH, baseFrameMat);
+  bRailBot.position.set(0, -(cfg.h / 2 + bw / 2), frameDepth / 2 - 0.015);
+  bRailBot.castShadow = true;
+  bRailBot.userData = { artworkIndex: cfg.idx, isFrame: true };
+  artGroup.add(bRailBot);
+  interactiveMeshes.push(bRailBot);
+
+  const bRailGeoV = new THREE.BoxGeometry(bw, cfg.h, frameDepth);
+  const bRailLeft = new THREE.Mesh(bRailGeoV, baseFrameMat);
+  bRailLeft.position.set(-(cfg.w / 2 + bw / 2), 0, frameDepth / 2 - 0.015);
+  bRailLeft.castShadow = true;
+  bRailLeft.userData = { artworkIndex: cfg.idx, isFrame: true };
+  artGroup.add(bRailLeft);
+  interactiveMeshes.push(bRailLeft);
+
+  const bRailRight = new THREE.Mesh(bRailGeoV, baseFrameMat);
+  bRailRight.position.set(cfg.w / 2 + bw / 2, 0, frameDepth / 2 - 0.015);
+  bRailRight.castShadow = true;
+  bRailRight.userData = { artworkIndex: cfg.idx, isFrame: true };
+  artGroup.add(bRailRight);
+  interactiveMeshes.push(bRailRight);
 
   // 2. Carved Moulding Frieze Rails (Haut, Bas, Gauche, Droite)
   const railThickness = bw * 0.72;
@@ -6065,33 +6088,7 @@ function buildLouvreArtworkFrame(cfg, artGroup, interactiveMeshes, bw, outerW, o
     interactiveMeshes.push(centMesh);
   });
 
-  // 7. Fine inner gilded slip (filet dore)
-  const slipMat = new THREE.MeshStandardMaterial({
-    color: 0xdfb76c,
-    roughness: 0.25,
-    metalness: 0.82
-  });
-  const canvasW = cfg.w * 0.90;
-  const canvasH = cfg.h * 0.90;
-  const slipW = canvasW + 0.04;
-  const slipH = canvasH + 0.04;
-  const slipThick = 0.02;
 
-  const sTop = new THREE.Mesh(new THREE.BoxGeometry(slipW, slipThick, 0.012), slipMat);
-  sTop.position.set(0, canvasH / 2 + slipThick / 2, 0.012);
-  artGroup.add(sTop);
-
-  const sBot = new THREE.Mesh(new THREE.BoxGeometry(slipW, slipThick, 0.012), slipMat);
-  sBot.position.set(0, -(canvasH / 2 + slipThick / 2), 0.012);
-  artGroup.add(sBot);
-
-  const sLeft = new THREE.Mesh(new THREE.BoxGeometry(slipThick, canvasH, 0.012), slipMat);
-  sLeft.position.set(-(canvasW / 2 + slipThick / 2), 0, 0.012);
-  artGroup.add(sLeft);
-
-  const sRight = new THREE.Mesh(new THREE.BoxGeometry(slipThick, canvasH, 0.012), slipMat);
-  sRight.position.set(canvasW / 2 + slipThick / 2, 0, 0.012);
-  artGroup.add(sRight);
 }
 
 
