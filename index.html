@@ -2783,10 +2783,10 @@
           <div style="display: flex; flex-direction: row; flex-wrap: wrap; padding: 20px; gap: 24px; background: #fdfdfd; max-height: calc(88vh - 40px); overflow-y: auto;">
             <!-- Framed Artwork Container -->
             <div style="flex: 1 1 480px; display: flex; align-items: center; justify-content: center; background: #f2efe9; border: 2px solid; border-color: #808080 #fff #fff #808080; padding: 20px; min-height: 380px;">
-              <!-- Outer Frame Moulding -->
-              <div style="background: #18181b; padding: 12px; border: 3px solid; border-color: #3f3f46 #09090b #09090b #3f3f46; box-shadow: 0 10px 25px rgba(0,0,0,0.35); max-width: 100%; display: flex; justify-content: center; align-items: center;">
-                <!-- Mat board -->
-                <div style="background: #fbf9f5; padding: 16px; border: 1px solid #d4d4d8; box-shadow: inset 0 2px 4px rgba(0,0,0,0.15); display: flex; justify-content: center; align-items: center;">
+              <!-- Outer Musee du Louvre Carved Giltwood Frame Moulding -->
+              <div style="background: linear-gradient(135deg, #d4af37 0%, #aa7c11 25%, #ffdf78 50%, #8c5d19 75%, #f5d57a 100%); padding: 14px; border: 3px solid; border-color: #ffe699 #5a3408 #5a3408 #ffe699; box-shadow: 0 14px 35px rgba(0,0,0,0.5), inset 0 1px 3px rgba(255,255,255,0.4); max-width: 100%; display: flex; justify-content: center; align-items: center;">
+                <!-- Archival Mat Board with Fine Gilded Sight Rim -->
+                <div style="background: #fbf9f5; padding: 16px; border: 2px solid #caa043; box-shadow: inset 0 2px 5px rgba(0,0,0,0.2); display: flex; justify-content: center; align-items: center;">
                   <img id="museum-modal-img" src="" alt="Artwork View" style="max-width: 100%; max-height: 52vh; object-fit: contain; display: block; box-shadow: 0 1px 3px rgba(0,0,0,0.2);" />
                 </div>
               </div>
@@ -5438,6 +5438,664 @@ function createPlacardCanvasTexture(art, index) {
 }
 
 /* --------------------------------------------------------------------------
+   MUSEE DU LOUVRE HISTORICAL FRAME SYSTEM
+   Reference: 'Regards sur les Cadres' & Louvre Frame Collection (The Frame Blog)
+   Styles:
+   1. Louis XIV Grand Giltwood Frame (Cadre d'apparat Louis XIV)
+   2. Regence / Louis XV Rocaille Gilt Frame (Cadre Rocaille aux Coquilles)
+   3. Grand Salon Classical Water-Gilded Frame (Cadre d'epoque Grand Salon du Louvre)
+   -------------------------------------------------------------------------- */
+const LOUVRE_FRAME_STYLES = {
+  LOUIS_XIV: 'louis_xiv',
+  REGENCE_ROCAILLE: 'regence_rocaille',
+  GRAND_SALON: 'grand_salon'
+};
+
+const louvreTextureCache = {};
+
+function createLouvreFriezeCanvas(width, height, style, isVertical) {
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext('2d');
+  const w = width;
+  const h = height;
+
+  // Base Gold Leaf Gradient (traditional water-gilding over Armenian red bole)
+  const grad = isVertical
+    ? ctx.createLinearGradient(0, 0, w, 0)
+    : ctx.createLinearGradient(0, 0, 0, h);
+
+  grad.addColorStop(0.00, '#5a2d12'); // Dark red clay bole shadow at back edge
+  grad.addColorStop(0.06, '#8b5322'); // Bole warm transition
+  grad.addColorStop(0.18, '#d4af37'); // Classic French gold
+  grad.addColorStop(0.35, '#ffdf78'); // High burnished gold ridge
+  grad.addColorStop(0.50, '#cba043'); // Frieze base gold
+  grad.addColorStop(0.68, '#8c5920'); // Recessed shadow behind relief
+  grad.addColorStop(0.82, '#eed171'); // Inner bead ridge highlight
+  grad.addColorStop(0.92, '#7a4a18'); // Sight step shadow
+  grad.addColorStop(1.00, '#f5d57a'); // Burnished sight bevel rim
+
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, w, h);
+
+  // Gold leaf foil sheets subtle overlap lines
+  ctx.strokeStyle = 'rgba(70, 35, 10, 0.25)';
+  ctx.lineWidth = 1;
+  const step = isVertical ? 70 : 80;
+  for (let p = 0; p < (isVertical ? h : w); p += step) {
+    if (isVertical) {
+      ctx.beginPath(); ctx.moveTo(0, p); ctx.lineTo(w, p); ctx.stroke();
+    } else {
+      ctx.beginPath(); ctx.moveTo(p, 0); ctx.lineTo(p, h); ctx.stroke();
+    }
+  }
+
+  // Draw style-specific carved ornamentation
+  if (!isVertical) {
+    drawHorizontalCarvings(ctx, w, h, style);
+  } else {
+    drawVerticalCarvings(ctx, w, h, style);
+  }
+
+  return canvas;
+}
+
+function drawHorizontalCarvings(ctx, w, h, style) {
+  // 1. Top Bead-and-Reel Band (Boudin de perles)
+  const beadY = h * 0.16;
+  const beadR = Math.max(2, h * 0.055);
+  const beadSpacing = beadR * 3.4;
+
+  for (let x = beadR * 2; x < w; x += beadSpacing) {
+    ctx.fillStyle = 'rgba(40, 18, 5, 0.7)';
+    ctx.beginPath();
+    ctx.arc(x + 1, beadY + 1.5, beadR, 0, Math.PI * 2);
+    ctx.fill();
+
+    const rad = ctx.createRadialGradient(x - beadR * 0.35, beadY - beadR * 0.35, beadR * 0.1, x, beadY, beadR);
+    rad.addColorStop(0, '#fff4b8');
+    rad.addColorStop(0.3, '#f0cc66');
+    rad.addColorStop(0.7, '#b8861d');
+    rad.addColorStop(1, '#5e320d');
+    ctx.fillStyle = rad;
+    ctx.beginPath();
+    ctx.arc(x, beadY, beadR, 0, Math.PI * 2);
+    ctx.fill();
+
+    const reelX = x + beadSpacing * 0.5;
+    if (reelX < w - beadR) {
+      ctx.fillStyle = 'rgba(40, 18, 5, 0.6)';
+      ctx.fillRect(reelX - 1.5, beadY - beadR * 0.7 + 1, 3.5, beadR * 1.4);
+      ctx.fillStyle = '#ffde7a';
+      ctx.fillRect(reelX - 1, beadY - beadR * 0.7, 2.5, beadR * 1.4);
+    }
+  }
+
+  // 2. Main Running Frieze
+  const friezeCenterY = h * 0.52;
+  const friezeH = h * 0.42;
+
+  if (style === LOUVRE_FRAME_STYLES.LOUIS_XIV) {
+    // Acanthus Leaf Rinceaux & Central Rosettes
+    const waveStep = 64;
+    for (let x = 0; x < w + waveStep; x += waveStep) {
+      ctx.strokeStyle = 'rgba(45, 20, 6, 0.65)';
+      ctx.lineWidth = 4;
+      ctx.beginPath();
+      ctx.arc(x + 16, friezeCenterY + 1, 14, 0.2 * Math.PI, 1.2 * Math.PI);
+      ctx.stroke();
+
+      ctx.strokeStyle = '#ffd875';
+      ctx.lineWidth = 3;
+      ctx.beginPath();
+      ctx.arc(x + 16, friezeCenterY, 14, 0.2 * Math.PI, 1.2 * Math.PI);
+      ctx.stroke();
+
+      for (let angle = 0.3; angle <= 1.1; angle += 0.25) {
+        const lx = x + 16 + Math.cos(angle * Math.PI) * 14;
+        const ly = friezeCenterY - Math.sin(angle * Math.PI) * 14;
+
+        ctx.fillStyle = 'rgba(50, 22, 7, 0.6)';
+        ctx.beginPath();
+        ctx.ellipse(lx + 1, ly + 1, 5, 2.5, angle, 0, Math.PI * 2);
+        ctx.fill();
+
+        const leafGrad = ctx.createLinearGradient(lx - 4, ly - 4, lx + 4, ly + 4);
+        leafGrad.addColorStop(0, '#fff0a8');
+        leafGrad.addColorStop(0.5, '#e0b545');
+        leafGrad.addColorStop(1, '#855118');
+        ctx.fillStyle = leafGrad;
+        ctx.beginPath();
+        ctx.ellipse(lx, ly, 5, 2.5, angle, 0, Math.PI * 2);
+        ctx.fill();
+      }
+
+      const rosetX = x + waveStep * 0.5;
+      ctx.fillStyle = 'rgba(40, 15, 5, 0.7)';
+      ctx.beginPath(); ctx.arc(rosetX + 1, friezeCenterY + 1, 4.5, 0, Math.PI * 2); ctx.fill();
+      ctx.fillStyle = '#ffea9f';
+      ctx.beginPath(); ctx.arc(rosetX, friezeCenterY, 4, 0, Math.PI * 2); ctx.fill();
+    }
+  } else if (style === LOUVRE_FRAME_STYLES.REGENCE_ROCAILLE) {
+    // Cross-hatched Diaper Trellis & Sweeping Rocaille C-Scrolls
+    ctx.strokeStyle = 'rgba(80, 40, 15, 0.3)';
+    ctx.lineWidth = 1;
+    for (let d = -h; d < w + h; d += 12) {
+      ctx.beginPath(); ctx.moveTo(d, friezeCenterY - friezeH * 0.45); ctx.lineTo(d + friezeH * 0.9, friezeCenterY + friezeH * 0.45); ctx.stroke();
+      ctx.beginPath(); ctx.moveTo(d, friezeCenterY + friezeH * 0.45); ctx.lineTo(d + friezeH * 0.9, friezeCenterY - friezeH * 0.45); ctx.stroke();
+    }
+
+    const rStep = 56;
+    for (let x = 0; x < w + rStep; x += rStep) {
+      ctx.strokeStyle = 'rgba(45, 18, 5, 0.7)';
+      ctx.lineWidth = 3.5;
+      ctx.beginPath();
+      ctx.bezierCurveTo(x + 1, friezeCenterY - 10, x + 25, friezeCenterY + 13, x + 50, friezeCenterY - 9);
+      ctx.stroke();
+
+      ctx.strokeStyle = '#ffe48a';
+      ctx.lineWidth = 2.5;
+      ctx.beginPath();
+      ctx.bezierCurveTo(x, friezeCenterY - 11, x + 24, friezeCenterY + 12, x + 49, friezeCenterY - 10);
+      ctx.stroke();
+
+      ctx.fillStyle = '#fff2b4';
+      ctx.beginPath();
+      ctx.arc(x + 24, friezeCenterY, 3.5, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  } else {
+    // Grand Salon Classical Fluting and Laurel Wreath
+    const fluteStep = 18;
+    for (let x = 4; x < w; x += fluteStep) {
+      ctx.fillStyle = 'rgba(40, 18, 5, 0.45)';
+      ctx.fillRect(x + 1, friezeCenterY - friezeH * 0.42, 6, friezeH * 0.84);
+      ctx.fillStyle = '#ffe998';
+      ctx.fillRect(x + 5, friezeCenterY - friezeH * 0.42, 2, friezeH * 0.84);
+    }
+
+    ctx.strokeStyle = 'rgba(50, 22, 6, 0.7)';
+    ctx.lineWidth = 3;
+    ctx.beginPath();
+    for (let x = 0; x < w; x += 36) {
+      ctx.quadraticCurveTo(x + 18, friezeCenterY - 11, x + 36, friezeCenterY);
+    }
+    ctx.stroke();
+
+    ctx.strokeStyle = '#ffd868';
+    ctx.lineWidth = 2;
+    ctx.beginPath();
+    for (let x = 0; x < w; x += 36) {
+      ctx.quadraticCurveTo(x + 18, friezeCenterY - 12, x + 36, friezeCenterY - 1);
+    }
+    ctx.stroke();
+  }
+
+  // 3. Bottom Sight Molding: Rais-de-coeur (Leaf and Dart)
+  const dartY = h * 0.85;
+  const dartSpacing = 16;
+  for (let x = 4; x < w; x += dartSpacing) {
+    ctx.fillStyle = 'rgba(45, 18, 5, 0.65)';
+    ctx.beginPath();
+    ctx.moveTo(x + 1, dartY - 4);
+    ctx.lineTo(x + 6, dartY + 4);
+    ctx.lineTo(x + 1, dartY + 6);
+    ctx.lineTo(x - 4, dartY + 4);
+    ctx.closePath();
+    ctx.fill();
+
+    ctx.fillStyle = '#ffea9f';
+    ctx.beginPath();
+    ctx.moveTo(x, dartY - 5);
+    ctx.lineTo(x + 5, dartY + 3);
+    ctx.lineTo(x, dartY + 5);
+    ctx.lineTo(x - 5, dartY + 3);
+    ctx.closePath();
+    ctx.fill();
+  }
+}
+
+function drawVerticalCarvings(ctx, w, h, style) {
+  ctx.save();
+  ctx.translate(w, 0);
+  ctx.rotate(Math.PI / 2);
+  drawHorizontalCarvings(ctx, h, w, style);
+  ctx.restore();
+}
+
+function createLouvreFriezeBumpCanvas(width, height, style, isVertical) {
+  const canvas = document.createElement('canvas');
+  canvas.width = width;
+  canvas.height = height;
+  const ctx = canvas.getContext('2d');
+  const w = width;
+  const h = height;
+
+  ctx.fillStyle = '#808080';
+  ctx.fillRect(0, 0, w, h);
+
+  const grad = isVertical
+    ? ctx.createLinearGradient(0, 0, w, 0)
+    : ctx.createLinearGradient(0, 0, 0, h);
+
+  grad.addColorStop(0.00, '#202020');
+  grad.addColorStop(0.06, '#606060');
+  grad.addColorStop(0.18, '#d0d0d0');
+  grad.addColorStop(0.35, '#ffffff');
+  grad.addColorStop(0.50, '#909090');
+  grad.addColorStop(0.68, '#404040');
+  grad.addColorStop(0.82, '#e0e0e0');
+  grad.addColorStop(0.92, '#303030');
+  grad.addColorStop(1.00, '#f0f0f0');
+
+  ctx.fillStyle = grad;
+  ctx.fillRect(0, 0, w, h);
+
+  const beadY = isVertical ? w * 0.16 : h * 0.16;
+  const beadR = Math.max(2, (isVertical ? w : h) * 0.055);
+  const beadSpacing = beadR * 3.4;
+
+  if (!isVertical) {
+    for (let x = beadR * 2; x < w; x += beadSpacing) {
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath(); ctx.arc(x, beadY, beadR * 0.85, 0, Math.PI * 2); ctx.fill();
+    }
+
+    const friezeCenterY = h * 0.52;
+    ctx.strokeStyle = '#ffffff';
+    ctx.lineWidth = 3;
+    for (let x = 0; x < w; x += 48) {
+      ctx.beginPath();
+      ctx.arc(x + 16, friezeCenterY, 12, 0.2 * Math.PI, 1.2 * Math.PI);
+      ctx.stroke();
+    }
+  }
+
+  return canvas;
+}
+
+function createLouvreCartoucheCanvas(size, style) {
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  const s = size;
+
+  const bg = ctx.createRadialGradient(s * 0.5, s * 0.5, s * 0.1, s * 0.5, s * 0.5, s * 0.6);
+  bg.addColorStop(0, '#ffe894');
+  bg.addColorStop(0.4, '#d8ac3b');
+  bg.addColorStop(0.8, '#87511b');
+  bg.addColorStop(1, '#4e230a');
+  ctx.fillStyle = bg;
+  ctx.fillRect(0, 0, s, s);
+
+  ctx.save();
+  ctx.translate(s * 0.5, s * 0.5);
+
+  for (let i = 0; i < 8; i++) {
+    ctx.rotate((Math.PI * 2) / 8);
+    ctx.fillStyle = 'rgba(40, 16, 5, 0.7)';
+    ctx.beginPath();
+    ctx.ellipse(s * 0.28, s * 0.05, s * 0.22, s * 0.08, 0.2, 0, Math.PI * 2);
+    ctx.fill();
+
+    const fGrad = ctx.createLinearGradient(0, 0, s * 0.45, 0);
+    fGrad.addColorStop(0, '#fff4b8');
+    fGrad.addColorStop(0.5, '#e5ba48');
+    fGrad.addColorStop(1, '#784615');
+    ctx.fillStyle = fGrad;
+    ctx.beginPath();
+    ctx.ellipse(s * 0.27, 0, s * 0.21, s * 0.07, 0, 0, Math.PI * 2);
+    ctx.fill();
+  }
+
+  const shellR = s * 0.24;
+  ctx.fillStyle = 'rgba(40, 16, 5, 0.8)';
+  ctx.beginPath(); ctx.arc(1, 2, shellR, 0, Math.PI * 2); ctx.fill();
+
+  const shellGrad = ctx.createRadialGradient(-shellR * 0.3, -shellR * 0.3, shellR * 0.1, 0, 0, shellR);
+  shellGrad.addColorStop(0, '#fffbe0');
+  shellGrad.addColorStop(0.3, '#f5d36e');
+  shellGrad.addColorStop(0.7, '#c6962a');
+  shellGrad.addColorStop(1, '#5c2d0d');
+  ctx.fillStyle = shellGrad;
+  ctx.beginPath(); ctx.arc(0, 0, shellR, 0, Math.PI * 2); ctx.fill();
+
+  ctx.strokeStyle = '#63320c';
+  ctx.lineWidth = 2;
+  for (let a = 0; a < Math.PI * 2; a += Math.PI / 6) {
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(Math.cos(a) * shellR, Math.sin(a) * shellR);
+    ctx.stroke();
+  }
+  ctx.strokeStyle = '#fff0a8';
+  ctx.lineWidth = 1.5;
+  for (let a = 0.08; a < Math.PI * 2; a += Math.PI / 6) {
+    ctx.beginPath();
+    ctx.moveTo(0, 0);
+    ctx.lineTo(Math.cos(a) * (shellR - 1), Math.sin(a) * (shellR - 1));
+    ctx.stroke();
+  }
+
+  ctx.restore();
+  return canvas;
+}
+
+function createLouvreCartoucheBumpCanvas(size, style) {
+  const canvas = document.createElement('canvas');
+  canvas.width = size;
+  canvas.height = size;
+  const ctx = canvas.getContext('2d');
+  const s = size;
+
+  ctx.fillStyle = '#606060';
+  ctx.fillRect(0, 0, s, s);
+
+  ctx.save();
+  ctx.translate(s * 0.5, s * 0.5);
+
+  for (let i = 0; i < 8; i++) {
+    ctx.rotate((Math.PI * 2) / 8);
+    ctx.fillStyle = '#d0d0d0';
+    ctx.beginPath(); ctx.ellipse(s * 0.27, 0, s * 0.21, s * 0.07, 0, 0, Math.PI * 2); ctx.fill();
+  }
+
+  const shellR = s * 0.24;
+  const shellGrad = ctx.createRadialGradient(-shellR * 0.3, -shellR * 0.3, shellR * 0.1, 0, 0, shellR);
+  shellGrad.addColorStop(0, '#ffffff');
+  shellGrad.addColorStop(0.7, '#b0b0b0');
+  shellGrad.addColorStop(1, '#303030');
+  ctx.fillStyle = shellGrad;
+  ctx.beginPath(); ctx.arc(0, 0, shellR, 0, Math.PI * 2); ctx.fill();
+
+  ctx.restore();
+  return canvas;
+}
+
+function getLouvreFrameTextures(style) {
+  if (louvreTextureCache[style]) {
+    return louvreTextureCache[style];
+  }
+
+  const friezeHCanvas = createLouvreFriezeCanvas(512, 128, style, false);
+  const friezeVCanvas = createLouvreFriezeCanvas(128, 512, style, true);
+  const friezeBumpHCanvas = createLouvreFriezeBumpCanvas(512, 128, style, false);
+  const friezeBumpVCanvas = createLouvreFriezeBumpCanvas(128, 512, style, true);
+  const cartoucheCanvas = createLouvreCartoucheCanvas(256, style);
+  const cartoucheBumpCanvas = createLouvreCartoucheBumpCanvas(256, style);
+
+  const friezeH = new THREE.CanvasTexture(friezeHCanvas);
+  friezeH.wrapS = THREE.RepeatWrapping;
+  friezeH.wrapT = THREE.ClampToEdgeWrapping;
+  friezeH.repeat.set(4, 1);
+
+  const friezeV = new THREE.CanvasTexture(friezeVCanvas);
+  friezeV.wrapS = THREE.ClampToEdgeWrapping;
+  friezeV.wrapT = THREE.RepeatWrapping;
+  friezeV.repeat.set(1, 4);
+
+  const friezeBumpH = new THREE.CanvasTexture(friezeBumpHCanvas);
+  friezeBumpH.wrapS = THREE.RepeatWrapping;
+  friezeBumpH.wrapT = THREE.ClampToEdgeWrapping;
+  friezeBumpH.repeat.set(4, 1);
+
+  const friezeBumpV = new THREE.CanvasTexture(friezeBumpVCanvas);
+  friezeBumpV.wrapS = THREE.ClampToEdgeWrapping;
+  friezeBumpV.wrapT = THREE.RepeatWrapping;
+  friezeBumpV.repeat.set(1, 4);
+
+  const cartouche = new THREE.CanvasTexture(cartoucheCanvas);
+  const cartoucheBump = new THREE.CanvasTexture(cartoucheBumpCanvas);
+
+  louvreTextureCache[style] = {
+    friezeH, friezeV, friezeBumpH, friezeBumpV,
+    cartouche, cartoucheBump
+  };
+
+  return louvreTextureCache[style];
+}
+
+function getLouvreStyleForArtwork(idx) {
+  if (idx === 0 || idx === 1 || idx === 5) {
+    return LOUVRE_FRAME_STYLES.LOUIS_XIV;
+  } else if (idx === 3 || idx === 6 || idx === 8) {
+    return LOUVRE_FRAME_STYLES.REGENCE_ROCAILLE;
+  } else {
+    return LOUVRE_FRAME_STYLES.GRAND_SALON;
+  }
+}
+
+function buildLouvreArtworkFrame(cfg, artGroup, interactiveMeshes, bw, outerW, outerH) {
+  const style = getLouvreStyleForArtwork(cfg.idx);
+  const textures = getLouvreFrameTextures(style);
+
+  bw = bw || Math.min(0.30, Math.max(0.24, Math.min(cfg.w, cfg.h) * 0.09));
+  outerW = outerW || (cfg.w + bw * 2);
+  outerH = outerH || (cfg.h + bw * 2);
+  const frameDepth = 0.08;
+
+  // 1. Structural Back Architrave Frame (Tailloir)
+  const baseFrameGeo = new THREE.BoxGeometry(outerW, outerH, frameDepth);
+  const baseFrameMat = new THREE.MeshStandardMaterial({
+    color: 0x6e4919,
+    roughness: 0.48,
+    metalness: 0.70
+  });
+  const baseFrameMesh = new THREE.Mesh(baseFrameGeo, baseFrameMat);
+  baseFrameMesh.position.z = frameDepth / 2 - 0.015;
+  baseFrameMesh.castShadow = true;
+  baseFrameMesh.userData = { artworkIndex: cfg.idx, isFrame: true };
+  artGroup.add(baseFrameMesh);
+  interactiveMeshes.push(baseFrameMesh);
+
+  // 2. Carved Moulding Frieze Rails (Haut, Bas, Gauche, Droite)
+  const railThickness = bw * 0.72;
+  const railDepth = 0.045;
+  const railZ = frameDepth + railDepth / 2 - 0.015;
+
+  const railMatH = new THREE.MeshStandardMaterial({
+    map: textures.friezeH,
+    bumpMap: textures.friezeBumpH,
+    bumpScale: 0.035,
+    roughness: 0.35,
+    metalness: 0.82
+  });
+
+  const railMatV = new THREE.MeshStandardMaterial({
+    map: textures.friezeV,
+    bumpMap: textures.friezeBumpV,
+    bumpScale: 0.035,
+    roughness: 0.35,
+    metalness: 0.82
+  });
+
+  // Top Rail
+  const topRailGeo = new THREE.BoxGeometry(outerW, railThickness, railDepth);
+  const topRail = new THREE.Mesh(topRailGeo, railMatH);
+  topRail.position.set(0, cfg.h / 2 + bw * 0.50, railZ);
+  topRail.userData = { artworkIndex: cfg.idx, isFrame: true };
+  artGroup.add(topRail);
+  interactiveMeshes.push(topRail);
+
+  // Bottom Rail
+  const botRailGeo = new THREE.BoxGeometry(outerW, railThickness, railDepth);
+  const botRail = new THREE.Mesh(botRailGeo, railMatH);
+  botRail.position.set(0, -(cfg.h / 2 + bw * 0.50), railZ);
+  botRail.userData = { artworkIndex: cfg.idx, isFrame: true };
+  artGroup.add(botRail);
+  interactiveMeshes.push(botRail);
+
+  // Left Rail
+  const leftRailGeo = new THREE.BoxGeometry(railThickness, cfg.h + bw * 0.28, railDepth);
+  const leftRail = new THREE.Mesh(leftRailGeo, railMatV);
+  leftRail.position.set(-(cfg.w / 2 + bw * 0.50), 0, railZ);
+  leftRail.userData = { artworkIndex: cfg.idx, isFrame: true };
+  artGroup.add(leftRail);
+  interactiveMeshes.push(leftRail);
+
+  // Right Rail
+  const rightRailGeo = new THREE.BoxGeometry(railThickness, cfg.h + bw * 0.28, railDepth);
+  const rightRail = new THREE.Mesh(rightRailGeo, railMatV);
+  rightRail.position.set(cfg.w / 2 + bw * 0.50, 0, railZ);
+  rightRail.userData = { artworkIndex: cfg.idx, isFrame: true };
+  artGroup.add(rightRail);
+  interactiveMeshes.push(rightRail);
+
+  // 3. Raised Outer Torus Bead (Boudin d'astragale dore)
+  const torusMat = new THREE.MeshStandardMaterial({
+    color: 0xdfb76c,
+    roughness: 0.26,
+    metalness: 0.86
+  });
+  const torusR = 0.016;
+  const torusZ = railZ + railDepth / 2 + 0.005;
+
+  const tBeadGeoH = new THREE.CylinderGeometry(torusR, torusR, outerW, 8);
+  const tTop = new THREE.Mesh(tBeadGeoH, torusMat);
+  tTop.rotation.z = Math.PI / 2;
+  tTop.position.set(0, cfg.h / 2 + bw * 0.84, torusZ);
+  artGroup.add(tTop);
+
+  const tBot = new THREE.Mesh(tBeadGeoH, torusMat);
+  tBot.rotation.z = Math.PI / 2;
+  tBot.position.set(0, -(cfg.h / 2 + bw * 0.84), torusZ);
+  artGroup.add(tBot);
+
+  const tBeadGeoV = new THREE.CylinderGeometry(torusR, torusR, outerH, 8);
+  const tLeft = new THREE.Mesh(tBeadGeoV, torusMat);
+  tLeft.position.set(-(cfg.w / 2 + bw * 0.84), 0, torusZ);
+  artGroup.add(tLeft);
+
+  const tRight = new THREE.Mesh(tBeadGeoV, torusMat);
+  tRight.position.set(cfg.w / 2 + bw * 0.84, 0, torusZ);
+  artGroup.add(tRight);
+
+  // 4. Angled Sight Bevel (Biseau Dore / Gorge en cuvette)
+  const sightBevelMat = new THREE.MeshStandardMaterial({
+    color: 0xf3ca75,
+    roughness: 0.20,
+    metalness: 0.88,
+    side: THREE.DoubleSide
+  });
+  const bevelSlope = bw * 0.22;
+
+  const bTopGeo = new THREE.PlaneGeometry(cfg.w, bevelSlope);
+  const bTop = new THREE.Mesh(bTopGeo, sightBevelMat);
+  bTop.position.set(0, cfg.h / 2 + bevelSlope / 2 * 0.707, 0.045);
+  bTop.rotation.x = Math.PI / 4;
+  artGroup.add(bTop);
+
+  const bBotGeo = new THREE.PlaneGeometry(cfg.w, bevelSlope);
+  const bBot = new THREE.Mesh(bBotGeo, sightBevelMat);
+  bBot.position.set(0, -(cfg.h / 2 + bevelSlope / 2 * 0.707), 0.045);
+  bBot.rotation.x = -Math.PI / 4;
+  artGroup.add(bBot);
+
+  const bLeftGeo = new THREE.PlaneGeometry(bevelSlope, cfg.h);
+  const bLeft = new THREE.Mesh(bLeftGeo, sightBevelMat);
+  bLeft.position.set(-(cfg.w / 2 + bevelSlope / 2 * 0.707), 0, 0.045);
+  bLeft.rotation.y = -Math.PI / 4;
+  artGroup.add(bLeft);
+
+  const bRightGeo = new THREE.PlaneGeometry(bevelSlope, cfg.h);
+  const bRight = new THREE.Mesh(bRightGeo, sightBevelMat);
+  bRight.position.set(cfg.w / 2 + bevelSlope / 2 * 0.707, 0, 0.045);
+  bRight.rotation.y = Math.PI / 4;
+  artGroup.add(bRight);
+
+  // 5. Sculpted Corner Cartouches (Coins de Cadre a feuilles d'acanthe)
+  const cSize = bw * 1.30;
+  const cZ = railZ + 0.02;
+
+  const cornerMat = new THREE.MeshStandardMaterial({
+    map: textures.cartouche,
+    bumpMap: textures.cartoucheBump,
+    bumpScale: 0.045,
+    roughness: 0.34,
+    metalness: 0.80
+  });
+
+  const cornerPositions = [
+    { x: -(cfg.w / 2 + bw * 0.50), y: cfg.h / 2 + bw * 0.50, rot: 0 },
+    { x: cfg.w / 2 + bw * 0.50, y: cfg.h / 2 + bw * 0.50, rot: -Math.PI / 2 },
+    { x: cfg.w / 2 + bw * 0.50, y: -(cfg.h / 2 + bw * 0.50), rot: Math.PI },
+    { x: -(cfg.w / 2 + bw * 0.50), y: -(cfg.h / 2 + bw * 0.50), rot: Math.PI / 2 }
+  ];
+
+  cornerPositions.forEach(cp => {
+    const cBlockGeo = new THREE.BoxGeometry(cSize, cSize, 0.05);
+    const cBlock = new THREE.Mesh(cBlockGeo, baseFrameMat);
+    cBlock.position.set(cp.x, cp.y, cZ - 0.01);
+    cBlock.userData = { artworkIndex: cfg.idx, isFrame: true };
+    artGroup.add(cBlock);
+    interactiveMeshes.push(cBlock);
+
+    const cPlateGeo = new THREE.PlaneGeometry(cSize * 0.98, cSize * 0.98);
+    const cPlate = new THREE.Mesh(cPlateGeo, cornerMat);
+    cPlate.rotation.z = cp.rot;
+    cPlate.position.set(cp.x, cp.y, cZ + 0.026);
+    cPlate.userData = { artworkIndex: cfg.idx, isFrame: true };
+    artGroup.add(cPlate);
+    interactiveMeshes.push(cPlate);
+
+    const bossGeo = new THREE.SphereGeometry(cSize * 0.16, 10, 8);
+    const bossMat = new THREE.MeshStandardMaterial({ color: 0xffe28a, roughness: 0.22, metalness: 0.88 });
+    const boss = new THREE.Mesh(bossGeo, bossMat);
+    boss.position.set(cp.x, cp.y, cZ + 0.038);
+    artGroup.add(boss);
+  });
+
+  // 6. Sculpted Center Cartouches (Centres de Cadre a coquille royale)
+  const centerPositions = [
+    { x: 0, y: cfg.h / 2 + bw * 0.50, w: bw * 1.25, h: bw * 0.85, rot: 0 },
+    { x: 0, y: -(cfg.h / 2 + bw * 0.50), w: bw * 1.25, h: bw * 0.85, rot: Math.PI },
+    { x: -(cfg.w / 2 + bw * 0.50), y: 0, w: bw * 0.85, h: bw * 1.25, rot: Math.PI / 2 },
+    { x: cfg.w / 2 + bw * 0.50, y: 0, w: bw * 0.85, h: bw * 1.25, rot: -Math.PI / 2 }
+  ];
+
+  centerPositions.forEach(cp => {
+    const centGeo = new THREE.BoxGeometry(cp.w, cp.h, 0.04);
+    const centMesh = new THREE.Mesh(centGeo, cornerMat);
+    centMesh.rotation.z = cp.rot;
+    centMesh.position.set(cp.x, cp.y, railZ + 0.015);
+    centMesh.userData = { artworkIndex: cfg.idx, isFrame: true };
+    artGroup.add(centMesh);
+    interactiveMeshes.push(centMesh);
+  });
+
+  // 7. Fine inner gilded slip (filet dore)
+  const slipMat = new THREE.MeshStandardMaterial({
+    color: 0xdfb76c,
+    roughness: 0.25,
+    metalness: 0.82
+  });
+  const canvasW = cfg.w * 0.90;
+  const canvasH = cfg.h * 0.90;
+  const slipW = canvasW + 0.04;
+  const slipH = canvasH + 0.04;
+  const slipThick = 0.02;
+
+  const sTop = new THREE.Mesh(new THREE.BoxGeometry(slipW, slipThick, 0.012), slipMat);
+  sTop.position.set(0, canvasH / 2 + slipThick / 2, 0.012);
+  artGroup.add(sTop);
+
+  const sBot = new THREE.Mesh(new THREE.BoxGeometry(slipW, slipThick, 0.012), slipMat);
+  sBot.position.set(0, -(canvasH / 2 + slipThick / 2), 0.012);
+  artGroup.add(sBot);
+
+  const sLeft = new THREE.Mesh(new THREE.BoxGeometry(slipThick, canvasH, 0.012), slipMat);
+  sLeft.position.set(-(canvasW / 2 + slipThick / 2), 0, 0.012);
+  artGroup.add(sLeft);
+
+  const sRight = new THREE.Mesh(new THREE.BoxGeometry(slipThick, canvasH, 0.012), slipMat);
+  sRight.position.set(canvasW / 2 + slipThick / 2, 0, 0.012);
+  artGroup.add(sRight);
+}
+
+
+/* --------------------------------------------------------------------------
    INITIALIZE 3D VIRTUAL MUSEUM SCENE
    -------------------------------------------------------------------------- */
 function initMuseumThree() {
@@ -5611,24 +6269,11 @@ function initMuseumThree() {
     artGroup.position.set(cfg.pos[0], cfg.pos[1], cfg.pos[2]);
     artGroup.rotation.y = cfg.rot;
 
-    // 1. Outer Deep Architectural Picture Frame (Moulding)
-    const frameDepth = 0.08;
-    const frameBorder = 0.16;
-    const outerW = cfg.w + frameBorder * 2;
-    const outerH = cfg.h + frameBorder * 2;
-
-    const frameGeo = new THREE.BoxGeometry(outerW, outerH, frameDepth);
-    const frameMat = new THREE.MeshStandardMaterial({
-      color: 0x18181b,
-      roughness: 0.45,
-      metalness: 0.15
-    });
-    const frameMesh = new THREE.Mesh(frameGeo, frameMat);
-    frameMesh.position.z = -frameDepth / 2;
-    frameMesh.castShadow = true;
-    frameMesh.userData = { artworkIndex: cfg.idx, isFrame: true };
-    artGroup.add(frameMesh);
-    museumInteractiveMeshes.push(frameMesh);
+    // 1. Authentic Musee du Louvre Historical Picture Frame (Regards sur les Cadres)
+    const bw = Math.min(0.30, Math.max(0.24, Math.min(cfg.w, cfg.h) * 0.09));
+    const outerW = cfg.w + bw * 2;
+    const outerH = cfg.h + bw * 2;
+    buildLouvreArtworkFrame(cfg, artGroup, museumInteractiveMeshes, bw, outerW, outerH);
 
     // 2. Archival Mat Board (Passe-partout)
     const matGeo = new THREE.PlaneGeometry(cfg.w, cfg.h);
